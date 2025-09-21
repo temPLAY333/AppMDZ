@@ -4,7 +4,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import TopBar from "../components/TopBar";
 import Variant from "../components/Variant";
 import NavBar from "../components/NavBar";
-import Ellipse6 from "../assets/Ellipse-6.svg";
+import Klipartz from "../assets/Klipartz.svg";
 import { Color, Padding, Border, FontSize, FontFamily } from "../GlobalStyles";
 
 const Idioma = () => {
@@ -26,7 +26,7 @@ const Idioma = () => {
         </LinearGradient>
         <Variant />
       </View>
-      <NavBar ellipse6={<Ellipse6 width={50} height={50} />} />
+      <NavBar klipartz={<Klipartz width={55} height={55} />} />
     </ScrollView>
   );
 };

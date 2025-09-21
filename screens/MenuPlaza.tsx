@@ -3,7 +3,7 @@ import { ScrollView, StyleSheet, View } from "react-native";
 import TopBar from "../components/TopBar";
 import Item from "../components/Item";
 import NavBar from "../components/NavBar";
-import Ellipse6 from "../assets/Ellipse-6.svg";
+import Klipartz from "../assets/Klipartz.svg";
 import { Color, Padding, Gap } from "../GlobalStyles";
 
 const MenuPlaza = () => {
@@ -27,7 +27,7 @@ const MenuPlaza = () => {
           plazaHeight={29}
         />
       </View>
-      <NavBar ellipse6={<Ellipse6 width={50} height={50} />} />
+      <NavBar klipartz={<Klipartz width={55} height={55} />} />
     </ScrollView>
   );
 };

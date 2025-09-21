@@ -41,6 +41,7 @@ export const Padding = {
   p_15: 15,
   p_18: 18,
   p_19: 19,
+  p_22: 22,
   p_36: 36,
 };
 /* border radiuses */

@@ -6,7 +6,7 @@ import Ellipse6 from "../assets/Ellipse-6.svg";
 import { Color, Gap, Border } from "../GlobalStyles";
 
 export type NavBarType = {
-  ellipse6?: React.ReactNode;
+  klipartz?: React.ReactNode;
 
   /** Style props */
   navBarElevation?: number | string;
@@ -16,7 +16,7 @@ const getStyleValue = (key: string, value: string | number | undefined) => {
   if (value === undefined) return;
   return { [key]: value === "unset" ? undefined : value };
 };
-const NavBar = ({ navBarElevation, ellipse6 }: NavBarType) => {
+const NavBar = ({ navBarElevation, klipartz }: NavBarType) => {
   const navBarStyle = useMemo(() => {
     return {
       ...getStyleValue("elevation", navBarElevation),

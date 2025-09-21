@@ -2,7 +2,7 @@ import * as React from "react";
 import { ScrollView, Text, StyleSheet, View } from "react-native";
 import TopBar from "../components/TopBar";
 import NavBar from "../components/NavBar";
-import Ellipse6 from "../assets/Ellipse-6.svg";
+import Klipartz from "../assets/Klipartz.svg";
 import { Gap, Color, FontSize, FontFamily, Padding } from "../GlobalStyles";
 
 const Referencias = () => {
@@ -56,7 +56,7 @@ const Referencias = () => {
           </Text>
         </View>
       </View>
-      <NavBar ellipse6={<Ellipse6 width={50} height={50} />} />
+      <NavBar klipartz={<Klipartz width={55} height={55} />} />
     </ScrollView>
   );
 };
