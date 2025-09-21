@@ -1,5 +1,6 @@
 /* Fonts */
 export const FontFamily = {
+  interRegular: "Inter-Regular",
   interExtraBold: "Inter-ExtraBold",
   interBold: "Inter-Bold",
 };
@@ -9,6 +10,7 @@ export const FontSize = {
   size_24: 24,
   size_32: 32,
   size_36: 36,
+  size_40: 40,
   size_48: 48,
   size_64: 64,
 };
@@ -26,6 +28,8 @@ export const Color = {
 /* Gaps */
 export const Gap = {
   gap_10: 10,
+  gap_19: 19,
+  gap_22: 22,
   gap_30: 30,
   gap_60: 60,
 };
@@ -45,5 +49,6 @@ export const Border = {
   br_4: 4,
   br_5: 5,
   br_10: 10,
+  br_40: 40,
   br_100: 100,
 };

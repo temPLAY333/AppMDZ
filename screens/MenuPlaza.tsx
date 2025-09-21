@@ -3,7 +3,8 @@ import { ScrollView, StyleSheet, View } from "react-native";
 import TopBar from "../components/TopBar";
 import Item from "../components/Item";
 import NavBar from "../components/NavBar";
-import { Color, Padding } from "../GlobalStyles";
+import Ellipse6 from "../assets/Ellipse-6.svg";
+import { Color, Padding, Gap } from "../GlobalStyles";
 
 const MenuPlaza = () => {
   return (
@@ -26,7 +27,7 @@ const MenuPlaza = () => {
           plazaHeight={29}
         />
       </View>
-      <NavBar />
+      <NavBar ellipse6={<Ellipse6 width={50} height={50} />} />
     </ScrollView>
   );
 };
@@ -52,7 +53,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: Padding.p_36,
     paddingTop: 45,
     paddingBottom: 93,
-    gap: 22,
+    gap: Gap.gap_22,
     flex: 1,
   },
 });

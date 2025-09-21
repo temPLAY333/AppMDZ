@@ -35,7 +35,7 @@
     "react-native-svg-transformer": "^1.5.0"
   },
   "main": "expo/AppEntry.js",
-  "name": "MDZAppParques",
+  "name": "mdz-appparques",
   "private": true,
   "scripts": {
     "android": "expo start --android",

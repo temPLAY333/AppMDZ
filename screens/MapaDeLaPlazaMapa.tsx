@@ -2,7 +2,7 @@ import * as React from "react";
 import { ScrollView, Text, StyleSheet, Pressable, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import TopBar from "../components/TopBar";
-import ModeloIcon from "../components/ModeloIcon";
+import MapaIcon from "../components/MapaIcon";
 import NavBar from "../components/NavBar";
 import Ellipse6 from "../assets/Ellipse-6.svg";
 import {
@@ -14,18 +14,18 @@ import {
   Border,
 } from "../GlobalStyles";
 
-const MapaDeLaPlazaModelo = () => {
+const MapaDeLaPlazaMapa = () => {
   return (
     <ScrollView
-      style={styles.mapaDeLaPlazaModelo}
-      contentContainerStyle={styles.mapaDeLaPlazaModeloContent}
+      style={styles.mapaDeLaPlazaMapa}
+      contentContainerStyle={styles.mapaDeLaPlazaMapaContent}
     >
       <TopBar text="San Martin" textoWidth={131} />
       <View style={[styles.list, styles.listFlexBox]}>
         <Text style={[styles.plazaSanMartin, styles.mapaTypo]}>
           Plaza San Martin
         </Text>
-        <ModeloIcon />
+        <MapaIcon />
         <LinearGradient
           style={styles.doblebutton}
           locations={[0, 1]}
@@ -44,7 +44,7 @@ const MapaDeLaPlazaModelo = () => {
 };
 
 const styles = StyleSheet.create({
-  mapaDeLaPlazaModeloContent: {
+  mapaDeLaPlazaMapaContent: {
     flexDirection: "column",
     alignItems: "flex-start",
     justifyContent: "flex-start",
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     color: Color.colorWhite,
     fontSize: FontSize.size_32,
   },
-  mapaDeLaPlazaModelo: {
+  mapaDeLaPlazaMapa: {
     backgroundColor: Color.colorGray200,
     maxWidth: "100%",
     flex: 1,
@@ -108,4 +108,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MapaDeLaPlazaModelo;
+export default MapaDeLaPlazaMapa;

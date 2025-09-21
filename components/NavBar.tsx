@@ -1,11 +1,13 @@
 import React, { useMemo } from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, ImageSourcePropType } from "react-native";
 import { Image } from "expo-image";
 import Klipartz from "../assets/Klipartz.svg";
 import Ellipse6 from "../assets/Ellipse-6.svg";
 import { Color, Gap, Border } from "../GlobalStyles";
 
 export type NavBarType = {
+  ellipse6?: React.ReactNode;
+
   /** Style props */
   navBarElevation?: number | string;
 };
@@ -14,7 +16,7 @@ const getStyleValue = (key: string, value: string | number | undefined) => {
   if (value === undefined) return;
   return { [key]: value === "unset" ? undefined : value };
 };
-const NavBar = ({ navBarElevation }: NavBarType) => {
+const NavBar = ({ navBarElevation, ellipse6 }: NavBarType) => {
   const navBarStyle = useMemo(() => {
     return {
       ...getStyleValue("elevation", navBarElevation),

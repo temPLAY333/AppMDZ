@@ -2,18 +2,18 @@ import * as React from "react";
 import { ScrollView, Pressable, Text, StyleSheet, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import TopBar from "../components/TopBar";
-import Variant from "../components/Variant";
+import Variant1 from "../components/Variant1";
 import NavBar from "../components/NavBar";
 import Ellipse6 from "../assets/Ellipse-6.svg";
 import { Color, Padding, Border, FontSize, FontFamily } from "../GlobalStyles";
 
-const Idioma = () => {
+const InformacionAdicional = () => {
   return (
     <ScrollView
-      style={styles.idioma}
-      contentContainerStyle={styles.idiomaScrollViewContent}
+      style={styles.informacionAdicional}
+      contentContainerStyle={styles.informacionAdicionalScrollViewContent}
     >
-      <TopBar text="Idioma" textoWidth={83} />
+      <TopBar text="Informacion Adicional" textoWidth={260} />
       <View style={[styles.list, styles.listFlexBox]}>
         <LinearGradient
           style={styles.idiomavariant3}
@@ -21,10 +21,10 @@ const Idioma = () => {
           colors={["rgba(25, 164, 223, 0)", "#19a4df"]}
         >
           <Pressable style={[styles.pressable, styles.listFlexBox]}>
-            <Text style={styles.espaol}>{`Español `}</Text>
+            <Text style={styles.espaol}>Referencia</Text>
           </Pressable>
         </LinearGradient>
-        <Variant />
+        <Variant1 />
       </View>
       <NavBar ellipse6={<Ellipse6 width={50} height={50} />} />
     </ScrollView>
@@ -32,7 +32,7 @@ const Idioma = () => {
 };
 
 const styles = StyleSheet.create({
-  idiomaScrollViewContent: {
+  informacionAdicionalScrollViewContent: {
     flexDirection: "column",
     alignItems: "flex-start",
     justifyContent: "flex-start",
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     overflow: "hidden",
   },
-  idioma: {
+  informacionAdicional: {
     backgroundColor: Color.colorGray200,
     maxWidth: "100%",
     flex: 1,
@@ -80,4 +80,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Idioma;
+export default InformacionAdicional;

@@ -13,6 +13,7 @@ import TopBar from "../components/TopBar";
 import Ellipse4 from "../assets/Ellipse-4.svg";
 import Plants from "../components/Plants";
 import NavBar from "../components/NavBar";
+import Ellipse6 from "../assets/Ellipse-6.svg";
 import { Color, Padding } from "../GlobalStyles";
 
 const ParadaPlanta1 = () => {
@@ -43,12 +44,12 @@ const ParadaPlanta1 = () => {
             <View style={styles.items}>
               <Plants
                 descripcion="Se encuentra en las plazas  Independencia, Chile y España.  Es un árbol que llega a medir 6-12 m de altura. Hojas alternas bipinnadas. Flores amarillas pequeñas agrupadas en cabezuelas. Su fruto es una vaina glabra, delgada, de color castaño, dehiscente (se abre al madurar). Perteneciente a la familia Fabáceas"
-                emojisProperty1="Natural"
                 emojisProperty12="Natural"
+                emojisProperty13="Natural"
               />
             </View>
           </ScrollView>
-          <NavBar />
+          <NavBar ellipse6={<Ellipse6 width={50} height={50} />} />
         </View>
       </KeyboardAvoidingView>
     </SafeAreaView>
