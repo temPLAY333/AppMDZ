@@ -5,12 +5,14 @@ import { FontFamily, Gap, FontSize, Padding, Color } from "../GlobalStyles";
 
 export type PlantsType = {
   descripcion?: string;
-  emojisProperty13?: string;
+  emojisProperty1?: string;
+  emojisProperty12?: string;
 };
 
 const Plants = ({
   descripcion = "Se encuentra en las plazas  Independencia, Chile y España.  Es un árbol que llega a medir 6-12 m de altura. Hojas alternas bipinnadas. Flores amarillas pequeñas agrupadas en cabezuelas. Su fruto es una vaina glabra, delgada, de color castaño, dehiscente (se abre al madurar). Perteneciente a la familia Fabáceas",
-  emojisProperty13,
+  emojisProperty1,
+  emojisProperty12,
 }: PlantsType) => {
   const [emojisItems] = useState([
     { property1: "Natural" },

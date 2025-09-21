@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "MDZAppParques",
-    "slug": "MDZAppParques",
+    "name": "mdz-appparques",
+    "slug": "mdz-appparques",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

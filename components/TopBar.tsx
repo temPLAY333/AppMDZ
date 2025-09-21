@@ -1,15 +1,28 @@
-import * as React from "react";
+import React, { useMemo } from "react";
 import { Text, StyleSheet, View } from "react-native";
 import { Color, Padding, FontSize, FontFamily } from "../GlobalStyles";
 
 export type TopBarType = {
   text?: string;
+
+  /** Style props */
+  textoWidth?: number | string;
 };
 
-const TopBar = ({ text = "Parada N°1" }: TopBarType) => {
+const getStyleValue = (key: string, value: string | number | undefined) => {
+  if (value === undefined) return;
+  return { [key]: value === "unset" ? undefined : value };
+};
+const TopBar = ({ text = "Parada N°1", textoWidth }: TopBarType) => {
+  const textoStyle = useMemo(() => {
+    return {
+      ...getStyleValue("width", textoWidth),
+    };
+  }, [textoWidth]);
+
   return (
     <View style={styles.topbar}>
-      <Text style={styles.texto}>{text}</Text>
+      <Text style={[styles.texto, textoStyle]}>{text}</Text>
     </View>
   );
 };
