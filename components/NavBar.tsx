@@ -1,9 +1,10 @@
 import React, { useMemo } from "react";
-import { View, StyleSheet, ImageSourcePropType } from "react-native";
+import { View, StyleSheet, ImageSourcePropType, Pressable } from "react-native";
 import { Image } from "expo-image";
 import Klipartz from "../assets/Klipartz.svg";
 import Ellipse6 from "../assets/Ellipse-6.svg";
 import { Color, Gap, Border } from "../GlobalStyles";
+import { useNavigation, CommonActions } from "@react-navigation/native";
 
 export type NavBarType = {
   klipartz?: React.ReactNode;
@@ -17,25 +18,50 @@ const getStyleValue = (key: string, value: string | number | undefined) => {
   return { [key]: value === "unset" ? undefined : value };
 };
 const NavBar = ({ navBarElevation, klipartz }: NavBarType) => {
+  const navigation = useNavigation<any>();
+  
   const navBarStyle = useMemo(() => {
     return {
       ...getStyleValue("elevation", navBarElevation),
     };
   }, [navBarElevation]);
 
+  // Navegación de retorno (atrás)
+  const handleGoBack = () => {
+    navigation.goBack();
+  };
+  
+  // Navegación al Home
+  const navigateToHome = () => {
+    navigation.navigate("Home");
+  };
+  
+  // Navegación a Información Adicional
+  const navigateToInformacionAdicional = () => {
+    navigation.navigate("InformacionAdicional");
+  };
+
   return (
     <View style={[styles.navbar, navBarStyle]}>
-      <Klipartz
-        style={[styles.klipartzIcon, styles.iconLayout]}
-        width={55}
-        height={55}
-      />
-      <Ellipse6 style={styles.navbarChild} width={50} height={50} />
-      <Image
-        style={styles.iconLayout}
-        contentFit="cover"
-        source={require("../assets/klipartz-com-1.png")}
-      />
+      <Pressable onPress={handleGoBack}>
+        <Klipartz
+          style={[styles.klipartzIcon, styles.iconLayout]}
+          width={55}
+          height={55}
+        />
+      </Pressable>
+      
+      <Pressable onPress={navigateToHome}>
+        <Ellipse6 style={styles.navbarChild} width={50} height={50} />
+      </Pressable>
+      
+      <Pressable onPress={navigateToInformacionAdicional}>
+        <Image
+          style={styles.iconLayout}
+          contentFit="cover"
+          source={require("../assets/klipartz-com-1.png")}
+        />
+      </Pressable>
     </View>
   );
 };
@@ -46,7 +72,7 @@ const styles = StyleSheet.create({
     width: 55,
   },
   navbar: {
-    width: 412,
+    width: '100%', // Ancho flexible
     boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
     shadowColor: Color.colorGray300,
     shadowOffset: {
@@ -57,7 +83,7 @@ const styles = StyleSheet.create({
     elevation: 4,
     shadowOpacity: 1,
     backgroundColor: Color.colorGray100,
-    height: 60,
+    height: 60, // Alto fijo
     overflow: "hidden",
     flexDirection: "row",
     alignItems: "center",

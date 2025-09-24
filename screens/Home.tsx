@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ScrollView, Pressable, Text, StyleSheet, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import TopBar from "../components/TopBar";
-import Item from "../components/Item";
 import NavBar from "../components/NavBar";
 import Klipartz from "../assets/Klipartz.svg";
+import { plazas } from "../data";  // Importamos los datos de plazas
+import { useNavigation } from "@react-navigation/native";
 import {
   Color,
   FontFamily,
@@ -15,17 +16,43 @@ import {
 } from "../GlobalStyles";
 
 const Home = () => {
-  const [itemItems] = useState([
-    { clicked: "Visual", text: "Plaza Chile", bandera: "🇨🇱", plazaHeight: 29 },
-    { clicked: "Visual", text: "Plaza España", bandera: "🇪🇸", plazaHeight: "" },
-    {
-      clicked: "Visual",
-      text: "Plaza Independencia",
-      bandera: "🇦🇷",
-      plazaHeight: 58,
-    },
-    { clicked: "Visual", text: "Plaza Italia", bandera: "🇪🇸", plazaHeight: "" },
-  ]);
+  const navigation = useNavigation<any>();
+  
+  // Definimos el tipo para los items
+  type ItemType = {
+    id: string;
+    clicked: string;
+    text: string;
+    bandera: string;
+    plazaHeight: number | string;
+  };
+
+  // Usamos los datos importados con el tipo correcto
+  const [itemItems, setItemItems] = useState<ItemType[]>([]);
+  
+  // Cargamos los datos de las plazas
+  useEffect(() => {
+    // Filtramos la Plaza San Martín que se renderiza aparte
+    const plazaItems = plazas
+      .filter(plaza => plaza.id !== 'plaza-san-martin')
+      .map(plaza => ({
+        id: plaza.id,
+        clicked: "Visual",
+        text: plaza.nombre,
+        bandera: plaza.bandera,
+        plazaHeight: plaza.nombre.length > 15 ? 58 : 29,
+      }));
+    
+    setItemItems(plazaItems);
+  }, []);
+  
+  // Buscamos la Plaza San Martín para mostrarla destacada
+  const plazaSanMartin = plazas.find(plaza => plaza.id === 'plaza-san-martin');
+
+  // Función para navegar a la plaza seleccionada
+  const navigateToPlaza = (plazaId: string) => {
+    navigation.navigate("MenuPlaza", { plazaId });
+  };
 
   return (
     <ScrollView
@@ -35,24 +62,30 @@ const Home = () => {
       <TopBar text="Menu Principal" textoWidth={178} />
       <View style={[styles.list, styles.listFlexBox]}>
         {itemItems.map((item, index) => (
-          <Item
+          <Pressable
             key={index}
-            clicked={item.clicked}
-            text={item.text}
-            bandera={item.bandera}
-            plazaHeight={item.plazaHeight}
-          />
+            style={styles.item}
+            onPress={() => navigateToPlaza(item.id)}
+          >
+            <Text style={[styles.plaza, styles.textTypo]}>{item.text}</Text>
+            <Text style={[styles.text, styles.textTypo]}>{item.bandera}</Text>
+          </Pressable>
         ))}
         <LinearGradient
           style={styles.item}
           locations={[0, 1]}
           colors={["rgba(25, 164, 223, 0)", "#19a4df"]}
         >
-          <Pressable style={[styles.pressable, styles.listFlexBox]}>
+          <Pressable 
+            style={[styles.pressable, styles.listFlexBox]}
+            onPress={() => navigateToPlaza('plaza-san-martin')}
+          >
             <Text style={[styles.plaza, styles.textTypo]}>
-              Plaza San Martin
+              {plazaSanMartin?.nombre || "Plaza San Martin"}
             </Text>
-            <Text style={[styles.text, styles.textTypo]}>🎖️</Text>
+            <Text style={[styles.text, styles.textTypo]}>
+              {plazaSanMartin?.bandera || "🎖️"}
+            </Text>
           </Pressable>
         </LinearGradient>
       </View>
@@ -66,7 +99,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     alignItems: "flex-start",
     justifyContent: "flex-start",
-    height: 917,
+    minHeight: 917, // Altura mínima en lugar de fija
   },
   listFlexBox: {
     justifyContent: "center",
@@ -86,15 +119,16 @@ const styles = StyleSheet.create({
   },
   list: {
     alignSelf: "stretch",
-    paddingHorizontal: Padding.p_36,
+    paddingHorizontal: '5%', // Padding relativo
     paddingTop: 45,
     paddingBottom: 93,
     gap: 25,
     flex: 1,
   },
   item: {
-    width: 340,
-    height: 80,
+    width: '100%', // Ancho relativo
+    maxWidth: 500, // Máximo ancho para pantallas grandes
+    minHeight: 80, // Altura mínima
   },
   pressable: {
     borderRadius: Border.br_5,
@@ -106,8 +140,8 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   plaza: {
-    height: 29,
-    width: 223,
+    minHeight: 29,
+    flex: 1, // Permite crecer según el contenido
     fontSize: FontSize.size_24,
     textAlign: "center",
   },

@@ -8,7 +8,7 @@ import JuegosPregunta1 from "./screens/JuegosPregunta1";
 import Home from "./screens/Home";
 import MenuPlaza from "./screens/MenuPlaza";
 import LoadScreen from "./screens/LoadScreen";
-import Revision from "./components/Revision";
+import Revision from "./screens/Revision";
 import Idioma from "./screens/Idioma";
 import MapaDeLaPlazaModelo from "./screens/MapaDeLaPlazaModelo";
 import MapaDeLaPlazaMapa from "./screens/MapaDeLaPlazaMapa";
@@ -22,12 +22,14 @@ import ModeloIcon from "./components/ModeloIcon";
 import MapaIcon from "./components/MapaIcon";
 import Variant1 from "./components/Variant1";
 import TerminoEspecifico from "./components/TerminoEspecifico";
+import { LanguageProvider } from "./contexts/LanguageContext";
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { View, Text, Pressable, TouchableOpacity } from "react-native";
+import { actualizarDescripcionesPlantasMultilingues } from "./utils/plantasTranslations";
 
 const App = () => {
-  const [hideSplashScreen, setHideSplashScreen] = React.useState(true);
+  const [hideSplashScreen, setHideSplashScreen] = React.useState(false); // Comienza mostrando la pantalla de carga
 
   const [fontsLoaded, error] = useFonts({
     "Inter-Regular": require("./assets/fonts/Inter-Regular.ttf"),
@@ -35,18 +37,34 @@ const App = () => {
     "Inter-ExtraBold": require("./assets/fonts/Inter-ExtraBold.ttf"),
   });
 
+  // Inicializar traducciones y simular una pantalla de carga
+  React.useEffect(() => {
+    // Inicializar traducciones de plantas
+    actualizarDescripcionesPlantasMultilingues();
+    
+    // Mostrar pantalla de carga por 2.5 segundos
+    const timer = setTimeout(() => {
+      setHideSplashScreen(true);
+    }, 2500);
+    
+    return () => clearTimeout(timer);
+  }, []);
+
   if (!fontsLoaded && !error) {
     return null;
   }
 
   return (
     <>
-      <NavigationContainer>
-        {hideSplashScreen ? (
-          <Stack.Navigator
-            initialRouteName="Emojis"
-            screenOptions={{ headerShown: false }}
-          >
+      <LanguageProvider>
+        <NavigationContainer>
+          {!hideSplashScreen ? (
+            <LoadScreen />
+          ) : (
+            <Stack.Navigator
+              initialRouteName="Idioma"
+              screenOptions={{ headerShown: false }}
+            >
             <Stack.Screen
               name="JuegosPregunta2"
               component={JuegosPregunta2}
@@ -113,43 +131,44 @@ const App = () => {
               options={{ headerShown: false }}
             />
             <Stack.Screen
-              name="Home"
+              name="Item"
               component={Item}
               options={{ headerShown: false }}
             />
             <Stack.Screen
-              name="Idioma"
+              name="Variant"
               component={Variant}
               options={{ headerShown: false }}
             />
             <Stack.Screen
-              name="MapaDeLaPlazaModelo"
+              name="Mark"
               component={Mark}
               options={{ headerShown: false }}
             />
             <Stack.Screen
-              name="MapaDeLaPlazaModelo"
+              name="ModeloIcon"
               component={ModeloIcon}
               options={{ headerShown: false }}
             />
             <Stack.Screen
-              name="MapaDeLaPlazaMapa"
+              name="MapaIcon"
               component={MapaIcon}
               options={{ headerShown: false }}
             />
             <Stack.Screen
-              name="InformacionAdicional"
+              name="Variant1"
               component={Variant1}
               options={{ headerShown: false }}
             />
             <Stack.Screen
-              name="Glosario"
+              name="TerminoEspecifico"
               component={TerminoEspecifico}
               options={{ headerShown: false }}
             />
           </Stack.Navigator>
-        ) : null}
-      </NavigationContainer>
+          )}
+        </NavigationContainer>
+      </LanguageProvider>
     </>
   );
 };

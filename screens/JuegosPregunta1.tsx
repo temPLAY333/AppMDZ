@@ -1,37 +1,142 @@
-import * as React from "react";
+import React, { useState, useEffect } from "react";
 import { Image } from "expo-image";
-import { StyleSheet, ImageBackground, View } from "react-native";
+import { StyleSheet, ImageBackground, View, Text, Pressable } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useRoute, useNavigation } from "@react-navigation/native";
 import TopBar from "../components/TopBar";
 import Ellipse4 from "../assets/Ellipse-4.svg";
 import MultipleChoice from "../components/MultipleChoice";
 import NavBar from "../components/NavBar";
 import Klipartz from "../assets/Klipartz.svg";
-import { Color } from "../GlobalStyles";
+import { Color, FontFamily, FontSize } from "../GlobalStyles";
+import { preguntasPorPlazaId } from "../data/preguntas";
+import { Pregunta, Opcion } from "../data/types";
+
+// Define los tipos para los parámetros de la ruta
+type RouteParamList = {
+  JuegosPregunta1: { plazaId: string };
+};
+
+import { RouteProp } from "@react-navigation/native";
+type JuegosPregunta1ScreenRouteProp = RouteProp<RouteParamList, 'JuegosPregunta1'>;
 
 const JuegosPregunta1 = () => {
+  const route = useRoute<JuegosPregunta1ScreenRouteProp>();
+  const navigation = useNavigation<any>();
+  const { plazaId } = route.params || { plazaId: 'plaza-san-martin' }; // Valor por defecto
+  
+  const [preguntasSeleccionadas, setPreguntasSeleccionadas] = useState<Pregunta[]>([]);
+  const [indicePreguntaActual, setIndicePreguntaActual] = useState(0);
+  const [respuestas, setRespuestas] = useState<{ [key: string]: string }>({});
+  const [selectedOption, setSelectedOption] = useState<string | null>(null);
+  
+  // Cargar las preguntas de la plaza seleccionada al montar el componente
+  useEffect(() => {
+    if (plazaId && preguntasPorPlazaId[plazaId]) {
+      // Obtener todas las preguntas disponibles para la plaza
+      const todasLasPreguntas = preguntasPorPlazaId[plazaId].preguntas;
+      
+      // Seleccionar 5 preguntas aleatorias
+      const preguntasAleatorias = seleccionarPreguntasAleatorias(todasLasPreguntas, 5);
+      setPreguntasSeleccionadas(preguntasAleatorias);
+    }
+  }, [plazaId]);
+
+  // Función para seleccionar preguntas aleatorias
+  const seleccionarPreguntasAleatorias = (preguntas: Pregunta[], cantidad: number): Pregunta[] => {
+    const preguntasCopiadas = [...preguntas];
+    const resultado: Pregunta[] = [];
+    
+    // Asegurarse de no seleccionar más preguntas de las disponibles
+    const cantidadReal = Math.min(cantidad, preguntasCopiadas.length);
+    
+    for (let i = 0; i < cantidadReal; i++) {
+      const indiceAleatorio = Math.floor(Math.random() * preguntasCopiadas.length);
+      resultado.push(preguntasCopiadas[indiceAleatorio]);
+      preguntasCopiadas.splice(indiceAleatorio, 1);
+    }
+    
+    return resultado;
+  };
+
+  // Función para manejar la selección de respuesta
+  const handleSeleccionRespuesta = (opcionIndex: number) => {
+    const preguntaActual = preguntasSeleccionadas[indicePreguntaActual];
+    if (preguntaActual) {
+      setSelectedOption(preguntaActual.opciones[opcionIndex].texto);
+      setRespuestas({
+        ...respuestas,
+        [preguntaActual.id]: preguntaActual.opciones[opcionIndex].texto
+      });
+    }
+  };
+
+  // Función para pasar a la siguiente pregunta
+  const siguientePregunta = () => {
+    if (indicePreguntaActual < preguntasSeleccionadas.length - 1) {
+      setIndicePreguntaActual(indicePreguntaActual + 1);
+      setSelectedOption(null); // Resetear la opción seleccionada
+    } else {
+      // Si es la última pregunta, navegar a la pantalla de revisión
+      navigation.navigate("Revision", {
+        plazaId,
+        respuestas,
+        preguntas: preguntasSeleccionadas
+      });
+    }
+  };
+
+  // Si no hay preguntas seleccionadas, mostrar un mensaje de carga
+  if (preguntasSeleccionadas.length === 0) {
+    return (
+      <SafeAreaView style={styles.viewBg}>
+        <View style={[styles.view, styles.viewBg]}>
+          <TopBar text={`Trivia`} textoWidth={157} />
+          <Text style={styles.loadingText}>Cargando preguntas...</Text>
+          <NavBar klipartz={<Klipartz width={55} height={55} />} />
+        </View>
+      </SafeAreaView>
+    );
+  }
+
+  // Obtener la pregunta actual
+  const preguntaActual = preguntasSeleccionadas[indicePreguntaActual];
+  
   return (
     <SafeAreaView style={styles.viewBg}>
       <View style={[styles.view, styles.viewBg]}>
-        <TopBar text="Pregunta N°1" textoWidth={157} />
-        <ImageBackground
-          style={styles.imagenIcon}
-          resizeMode="cover"
-          source={require("../assets/image-3.png")}
+        <TopBar text={`Pregunta ${indicePreguntaActual + 1} de ${preguntasSeleccionadas.length}`} textoWidth={250} />
+        
+        <View style={styles.preguntaContainer}>
+          <Text style={styles.preguntaText}>{preguntaActual.texto}</Text>
+        </View>
+        
+        <View style={styles.opcionesContainer}>
+          {preguntaActual.opciones.map((opcion, index) => (
+            <Pressable 
+              key={index}
+              style={[
+                styles.opcionBtn,
+                selectedOption === opcion.texto && styles.opcionSeleccionada
+              ]}
+              onPress={() => handleSeleccionRespuesta(index)}
+            >
+              <Text style={styles.opcionText}>{opcion.texto}</Text>
+            </Pressable>
+          ))}
+        </View>
+        
+        <Pressable 
+          style={styles.siguienteBtn}
+          onPress={siguientePregunta}
         >
-          <Image
-            style={styles.image3Icon}
-            contentFit="cover"
-            source={require("../assets/image-3.png")}
-          />
-          <Ellipse4 style={styles.imagenChild} width={171} height={207} />
-        </ImageBackground>
-        <MultipleChoice
-          cantidad={4}
-          opcionCheck3="None"
-          opcionText3="Ninguna"
-          opcionEllipse53={require("../assets/Ellipse-5.svg")}
-        />
+          <Text style={styles.siguienteBtnText}>
+            {indicePreguntaActual < preguntasSeleccionadas.length - 1 
+              ? "Siguiente" 
+              : "Ver Resultados"}
+          </Text>
+        </Pressable>
+        
         <NavBar klipartz={<Klipartz width={55} height={55} />} />
       </View>
     </SafeAreaView>
@@ -49,8 +154,69 @@ const styles = StyleSheet.create({
   },
   view: {
     width: "100%",
-    height: 917,
+    height: "100%",
     overflow: "hidden",
+    display: "flex",
+    flexDirection: "column",
+  },
+  loadingText: {
+    fontSize: FontSize.size_32,
+    color: Color.colorWhite,
+    textAlign: "center",
+    fontFamily: FontFamily.interBold,
+    flex: 1,
+    marginTop: 50,
+  },
+  preguntaContainer: {
+    padding: 20,
+    marginTop: 20,
+    alignItems: "center",
+  },
+  preguntaText: {
+    fontSize: FontSize.size_32,
+    fontWeight: "700",
+    color: Color.colorWhite,
+    textAlign: "center",
+    fontFamily: FontFamily.interBold,
+  },
+  opcionesContainer: {
+    padding: 20,
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    gap: 15,
+  },
+  opcionBtn: {
+    width: '90%',
+    maxWidth: 400,
+    padding: 15,
+    backgroundColor: Color.colorSteelblue,
+    borderRadius: 10,
+    alignItems: "center",
+  },
+  opcionSeleccionada: {
+    backgroundColor: '#19a4df',
+    borderWidth: 2,
+    borderColor: Color.colorWhite,
+  },
+  opcionText: {
+    color: Color.colorWhite,
+    fontSize: FontSize.size_24,
+    fontFamily: FontFamily.interBold,
+    textAlign: "center",
+  },
+  siguienteBtn: {
+    backgroundColor: Color.colorSteelblue,
+    padding: 15,
+    margin: 20,
+    borderRadius: 10,
+    alignItems: "center",
+    marginBottom: 80,
+  },
+  siguienteBtnText: {
+    color: Color.colorWhite,
+    fontSize: FontSize.size_24,
+    fontFamily: FontFamily.interBold,
   },
   imagenIcon: {
     width: 412,

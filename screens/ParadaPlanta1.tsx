@@ -43,7 +43,10 @@ const ParadaPlanta1 = () => {
             </ImageBackground>
             <View style={styles.items}>
               <Plants
-                descripcion="Se encuentra en las plazas  Independencia, Chile y España.  Es un árbol que llega a medir 6-12 m de altura. Hojas alternas bipinnadas. Flores amarillas pequeñas agrupadas en cabezuelas. Su fruto es una vaina glabra, delgada, de color castaño, dehiscente (se abre al madurar). Perteneciente a la familia Fabáceas"
+                descripcionesMultilingue={{
+                  es: "Se encuentra en las plazas Independencia, Chile y España. Es un árbol que llega a medir 6-12 m de altura. Hojas alternas bipinnadas. Flores amarillas pequeñas agrupadas en cabezuelas. Su fruto es una vaina glabra, delgada, de color castaño, dehiscente (se abre al madurar). Perteneciente a la familia Fabáceas",
+                  en: "Found in Independence, Chile, and Spain squares. It's a tree that grows to 6-12 m tall. Alternate bipinnate leaves. Small yellow flowers clustered in heads. Its fruit is a glabrous, thin, brown pod that splits open when ripe. Belongs to the Fabaceae family."
+                }}
                 emojisProperty13="Natural"
                 emojisProperty11="Natural"
               />
@@ -84,24 +87,25 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   imagenIcon: {
-    width: 412,
+    width: '100%', // Ancho flexible
     flexDirection: "row",
     paddingHorizontal: 45,
     paddingBottom: 69,
-    height: 276,
+    aspectRatio: 1.5, // Usa relación de aspecto en lugar de altura fija
+    maxHeight: 276, // Altura máxima
   },
   image3Icon: {
-    width: 414,
+    width: '100%', // Ancho flexible
     display: "none",
-    height: 276,
+    aspectRatio: 1.5, // Usa relación de aspecto en lugar de altura fija
   },
   imagenChild: {
-    width: 171,
-    height: 207,
+    width: '42%', // Ancho relativo
+    aspectRatio: 0.82, // Mantiene la relación de aspecto
     zIndex: 1,
   },
   items: {
-    height: 1015,
+    flex: 1, // Permite que crezca según el contenido
     padding: Padding.p_10,
     alignSelf: "stretch",
     overflow: "hidden",

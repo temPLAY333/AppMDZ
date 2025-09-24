@@ -2,12 +2,24 @@ import * as React from "react";
 import { ScrollView, Pressable, Text, StyleSheet, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import TopBar from "../components/TopBar";
-import Variant1 from "../components/Variant1";
 import NavBar from "../components/NavBar";
 import Klipartz from "../assets/Klipartz.svg";
+import { useNavigation } from "@react-navigation/native";
 import { Color, Padding, Border, FontSize, FontFamily } from "../GlobalStyles";
 
 const InformacionAdicional = () => {
+  const navigation = useNavigation<any>();
+
+  // Navegación a Referencias
+  const navigateToReferencias = () => {
+    navigation.navigate("Referencias");
+  };
+
+  // Navegación a Glosario
+  const navigateToGlosario = () => {
+    navigation.navigate("Glosario");
+  };
+
   return (
     <ScrollView
       style={styles.informacionAdicional}
@@ -20,11 +32,20 @@ const InformacionAdicional = () => {
           locations={[0, 1]}
           colors={["rgba(25, 164, 223, 0)", "#19a4df"]}
         >
-          <Pressable style={[styles.pressable, styles.listFlexBox]}>
+          <Pressable 
+            style={[styles.pressable, styles.listFlexBox]}
+            onPress={navigateToReferencias}
+          >
             <Text style={styles.espaol}>Referencia</Text>
           </Pressable>
         </LinearGradient>
-        <Variant1 />
+        
+        <Pressable 
+          style={styles.glosarioButton}
+          onPress={navigateToGlosario}
+        >
+          <Text style={styles.glosarioText}>Glosario</Text>
+        </Pressable>
       </View>
       <NavBar klipartz={<Klipartz width={55} height={55} />} />
     </ScrollView>
@@ -70,6 +91,26 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   espaol: {
+    height: 44,
+    width: 223,
+    fontSize: FontSize.size_36,
+    fontWeight: "700",
+    fontFamily: FontFamily.interBold,
+    color: Color.colorWhite,
+    textAlign: "center",
+  },
+  glosarioButton: {
+    width: 340,
+    borderRadius: Border.br_10,
+    backgroundColor: Color.colorSteelblue,
+    height: 80,
+    overflow: "hidden",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: Padding.p_10,
+  },
+  glosarioText: {
     height: 44,
     width: 223,
     fontSize: FontSize.size_36,

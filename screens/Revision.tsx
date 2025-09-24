@@ -1,47 +1,110 @@
-import * as React from "react";
-import { ScrollView, Text, StyleSheet, View } from "react-native";
+import React, { useEffect, useState } from "react";
+import { ScrollView, Text, StyleSheet, View, Pressable } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useRoute, useNavigation } from "@react-navigation/native";
 import TopBar from "../components/TopBar";
-import MultipleChoice from "../components/MultipleChoice";
 import Opcion from "../components/Opcion";
 import NavBar from "../components/NavBar";
 import Klipartz from "../assets/Klipartz.svg";
 import { Color, FontSize, FontFamily } from "../GlobalStyles";
+import { Pregunta } from "../data/types";
+
+// Define los tipos para los parámetros de la ruta
+type RouteParamList = {
+  Revision: { 
+    plazaId: string;
+    respuestas: { [key: string]: string };
+    preguntas: Pregunta[];
+  };
+};
+
+import { RouteProp } from "@react-navigation/native";
+type RevisionScreenRouteProp = RouteProp<RouteParamList, 'Revision'>;
 
 const Revision = () => {
+  const route = useRoute<RevisionScreenRouteProp>();
+  const navigation = useNavigation<any>();
+  const { plazaId, respuestas, preguntas } = route.params || { 
+    plazaId: '', 
+    respuestas: {}, 
+    preguntas: [] 
+  };
+  
+  // Calcular puntuación
+  const calcularPuntuacion = () => {
+    let puntos = 0;
+    preguntas.forEach(pregunta => {
+      const respuestaUsuario = respuestas[pregunta.id];
+      const opcionCorrecta = pregunta.opciones.find(opcion => opcion.esCorrecta);
+      
+      if (respuestaUsuario && opcionCorrecta && respuestaUsuario === opcionCorrecta.texto) {
+        puntos++;
+      }
+    });
+    return puntos;
+  };
+  
+  const puntuacion = calcularPuntuacion();
+  const porcentajeAciertos = (puntuacion / preguntas.length) * 100;
+  
+  // Volver al menú de la plaza
+  const volverAlMenu = () => {
+    navigation.navigate("MenuPlaza", { plazaId });
+  };
+
   return (
     <SafeAreaView style={styles.viewBg}>
       <View style={[styles.view, styles.viewBg]}>
-        <TopBar text="Respuestas" textoWidth={142} />
+        <TopBar text="Resultados" textoWidth={142} />
+        
+        <View style={styles.puntuacionContainer}>
+          <Text style={styles.puntuacionText}>
+            Tu puntuación: {puntuacion} de {preguntas.length} ({porcentajeAciertos.toFixed(0)}%)
+          </Text>
+        </View>
+        
         <ScrollView
           style={styles.respuestas}
           contentContainerStyle={styles.respuestasContainerContent}
         >
-          <MultipleChoice
-            cantidad={4}
-            multipleChoiceAlignSelf="unset"
-            multipleChoiceWidth={412}
-            opcionCheck3="None"
-            opcionText3="Opción 4"
-            opcionEllipse53={require("../assets/Ellipse-5.svg")}
-          />
-          <ScrollView
-            style={styles.multiplechoice}
-            contentContainerStyle={styles.multipleChoiceContainerContent}
-          >
-            <Text style={styles.quePlantaEs}>2) Que planta es?</Text>
-            <Opcion check="Good" text="Verdadero" />
-            <Opcion check="None" text="Falso" />
-          </ScrollView>
-          <ScrollView
-            style={styles.multiplechoice}
-            contentContainerStyle={styles.multipleChoiceContainer1Content}
-          >
-            <Text style={styles.quePlantaEs}>2) Que planta es?</Text>
-            <Opcion check="Good" text="Verdadero" />
-            <Opcion check="None" text="Falso" />
-          </ScrollView>
+          {preguntas.map((pregunta, index) => {
+            const respuestaUsuario = respuestas[pregunta.id];
+            const opcionCorrecta = pregunta.opciones.find(opcion => opcion.esCorrecta)?.texto || '';
+            const esCorrecta = respuestaUsuario === opcionCorrecta;
+            
+            return (
+              <View key={index} style={styles.preguntaContainer}>
+                <Text style={styles.preguntaNumero}>{index + 1}) {pregunta.texto}</Text>
+                
+                <View style={styles.respuestaContainer}>
+                  <Text style={styles.respuestaLabel}>Tu respuesta:</Text>
+                  <Text style={[
+                    styles.respuestaText, 
+                    esCorrecta ? styles.respuestaCorrecta : styles.respuestaIncorrecta
+                  ]}>
+                    {respuestaUsuario || 'Sin respuesta'}
+                  </Text>
+                </View>
+                
+                {!esCorrecta && (
+                  <View style={styles.respuestaContainer}>
+                    <Text style={styles.respuestaLabel}>Respuesta correcta:</Text>
+                    <Text style={[styles.respuestaText, styles.respuestaCorrecta]}>
+                      {opcionCorrecta}
+                    </Text>
+                  </View>
+                )}
+                
+                <Text style={styles.explicacionText}>{pregunta.explicacion}</Text>
+              </View>
+            );
+          })}
         </ScrollView>
+        
+        <Pressable style={styles.volverBtn} onPress={volverAlMenu}>
+          <Text style={styles.volverBtnText}>Volver al Menú</Text>
+        </Pressable>
+        
         <NavBar klipartz={<Klipartz width={55} height={55} />} />
       </View>
     </SafeAreaView>
@@ -49,23 +112,32 @@ const Revision = () => {
 };
 
 const styles = StyleSheet.create({
-  multipleChoiceContainerContent: {
-    flexDirection: "column",
-    paddingHorizontal: 20,
-    paddingVertical: 30,
-    alignItems: "flex-start",
-    justifyContent: "flex-start",
-    gap: 16,
-    height: 309,
+  viewBg: {
+    backgroundColor: Color.colorGray200,
+    flex: 1,
   },
-  multipleChoiceContainer1Content: {
-    flexDirection: "column",
-    paddingHorizontal: 20,
-    paddingVertical: 30,
-    alignItems: "flex-start",
-    justifyContent: "flex-start",
-    gap: 16,
-    height: 309,
+  view: {
+    width: "100%",
+    height: "100%",
+    overflow: "hidden",
+  },
+  puntuacionContainer: {
+    padding: 20,
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 20,
+  },
+  puntuacionText: {
+    fontSize: FontSize.size_32,
+    color: Color.colorWhite,
+    fontFamily: FontFamily.interBold,
+    fontWeight: "700",
+    textAlign: "center",
+  },
+  respuestas: {
+    alignSelf: "stretch",
+    maxWidth: "100%",
+    flex: 1,
   },
   respuestasContainerContent: {
     flexDirection: "column",
@@ -73,38 +145,64 @@ const styles = StyleSheet.create({
     paddingVertical: 0,
     alignItems: "center",
     justifyContent: "flex-start",
+    paddingBottom: 20,
   },
-  revision: {
-    flex: 1,
-    backgroundColor: "#05181f",
+  preguntaContainer: {
+    width: '90%',
+    maxWidth: 500,
+    backgroundColor: 'rgba(0, 0, 0, 0.2)',
+    borderRadius: 10,
+    padding: 15,
+    marginVertical: 10,
   },
-  viewBg: {
-    backgroundColor: Color.colorGray200,
-    flex: 1,
-  },
-  view: {
-    width: "100%",
-    height: 917,
-    overflow: "hidden",
-  },
-  respuestas: {
-    alignSelf: "stretch",
-    maxWidth: "100%",
-    flex: 1,
-  },
-  multiplechoice: {
-    width: 412,
-    maxWidth: 412,
-    flex: 1,
-  },
-  quePlantaEs: {
-    width: 359,
-    height: 49,
-    fontSize: FontSize.size_40,
-    fontWeight: "700",
+  preguntaNumero: {
+    fontSize: FontSize.size_24,
     fontFamily: FontFamily.interBold,
     color: Color.colorWhite,
-    textAlign: "left",
+    marginBottom: 15,
+  },
+  respuestaContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 10,
+  },
+  respuestaLabel: {
+    fontSize: FontSize.size_20,
+    fontFamily: FontFamily.interRegular,
+    color: Color.colorWhite,
+    marginRight: 10,
+    minWidth: 150,
+  },
+  respuestaText: {
+    fontSize: FontSize.size_20,
+    fontFamily: FontFamily.interBold,
+    flex: 1,
+  },
+  respuestaCorrecta: {
+    color: '#4CAF50',
+  },
+  respuestaIncorrecta: {
+    color: '#F44336',
+  },
+  explicacionText: {
+    fontSize: FontSize.size_20,
+    fontFamily: FontFamily.interRegular,
+    color: Color.colorWhite,
+    marginTop: 10,
+    fontStyle: 'italic',
+  },
+  volverBtn: {
+    backgroundColor: Color.colorSteelblue,
+    padding: 15,
+    margin: 20,
+    borderRadius: 10,
+    alignItems: "center",
+    marginBottom: 80,
+  },
+  volverBtnText: {
+    color: Color.colorWhite,
+    fontSize: FontSize.size_24,
+    fontFamily: FontFamily.interBold,
   },
 });
 

@@ -5,6 +5,9 @@ import TopBar from "../components/TopBar";
 import MapaIcon from "../components/MapaIcon";
 import NavBar from "../components/NavBar";
 import Klipartz from "../assets/Klipartz.svg";
+import { useRoute, useNavigation } from "@react-navigation/native";
+import { RouteProp } from "@react-navigation/native";
+import { plazasPorId } from "../data";
 import {
   Color,
   FontSize,
@@ -14,16 +17,36 @@ import {
   Border,
 } from "../GlobalStyles";
 
+// Define el tipo para la ruta
+type MapaRouteProp = RouteProp<{
+  MapaDeLaPlazaMapa: { plazaId: string };
+}, 'MapaDeLaPlazaMapa'>;
+
 const MapaDeLaPlazaMapa = () => {
+  const navigation = useNavigation<any>();
+  const route = useRoute<MapaRouteProp>();
+  
+  // Obtenemos el plazaId de los parámetros de la ruta
+  const { plazaId = 'plaza-san-martin' } = route.params || {};
+  
+  // Obtenemos los datos de la plaza
+  const plaza = plazasPorId[plazaId];
+  const plazaNombre = plaza?.nombre || "Plaza San Martín";
+  
+  // Navegación al modelo
+  const navigateToModelo = () => {
+    navigation.navigate("MapaDeLaPlazaModelo", { plazaId });
+  };
+
   return (
     <ScrollView
       style={styles.mapaDeLaPlazaMapa}
       contentContainerStyle={styles.mapaDeLaPlazaMapaContent}
     >
-      <TopBar text="San Martin" textoWidth={131} />
+      <TopBar text={plazaNombre} textoWidth={131} />
       <View style={[styles.list, styles.listFlexBox]}>
         <Text style={[styles.plazaSanMartin, styles.mapaTypo]}>
-          Plaza San Martin
+          {plazaNombre}
         </Text>
         <MapaIcon />
         <LinearGradient
@@ -31,7 +54,10 @@ const MapaDeLaPlazaMapa = () => {
           locations={[0, 1]}
           colors={["rgba(25, 164, 223, 0)", "#19a4df"]}
         >
-          <Pressable style={[styles.pressable, styles.listFlexBox]}>
+          <Pressable 
+            style={[styles.pressable, styles.listFlexBox]}
+            onPress={navigateToModelo}
+          >
             <Text style={[styles.mapa, styles.mapaTypo]}>Mapa</Text>
             <View style={styles.divisor} />
             <Text style={[styles.mapa, styles.mapaTypo]}>Modelo</Text>
