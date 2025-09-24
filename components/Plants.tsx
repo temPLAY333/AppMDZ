@@ -1,32 +1,49 @@
 import React from "react";
-import { TextInput, StyleSheet, View } from "react-native";
+import { TextInput, StyleSheet, View, Image } from "react-native";
 import PlantaDescripcion from "./PlantaDescripcion";
-import { DescripcionesPlanta } from "../data/types";
-import { useLanguage } from "../contexts/LanguageContext";
+import { PlantaAtributos } from "../data/types";
+
 import { FontFamily, Gap, FontSize, Color, Padding } from "../GlobalStyles";
 
 export type PlantsType = {
-  descripcion?: string;  // Opcional (solo para compatibilidad con versiones anteriores)
-  descripcionesMultilingue: DescripcionesPlanta;  // Requerido
-  // Eliminamos las propiedades de emojis ya que no se usan más
+  nombre: string;
+  nombreCientifico: string;
+  descripcionesMultilingue: PlantaAtributos['descripcionesMultilingue'];
+  imagenPath: any; // Imagen de la planta
+  // Las referencias (emojis) ahora se manejan a través de otro componente
 };
 
 const Plants = ({
-  descripcion, // Ya no establecemos un valor por defecto porque vamos a priorizar descripcionesMultilingue
+  nombre,
+  nombreCientifico,
   descripcionesMultilingue,
+  imagenPath,
 }: PlantsType) => {
-  const { language } = useLanguage(); // Acceder al idioma seleccionado
 
   return (
     <View style={[styles.plants, styles.plantsFlexBox]}>
       <TextInput
-        style={[styles.abeliaSp, styles.abeliaSpTypo]}
-        placeholder="Arbusto Nativo"
-        placeholderTextColor="#fff"
+        style={[styles.nombrePlanta, styles.nombrePlantaTypo]}
+        value={nombre}
+        editable={false}
       />
-      {/* Eliminamos la sección de emojis */}
+      <TextInput
+        style={[styles.nombreCientifico, styles.nombreCientificoTypo]}
+        value={nombreCientifico}
+        editable={false}
+      />
+      
+      {/* Imagen de la planta */}
+      {imagenPath && (
+        <Image 
+          source={imagenPath} 
+          style={styles.imagenPlanta}
+          resizeMode="contain"
+        />
+      )}
+      
+      {/* Descripción de la planta */}
       <PlantaDescripcion 
-        descripcion={descripcion}
         descripcionesMultilingue={descripcionesMultilingue}
         style={styles.descripcion}
       />
@@ -39,39 +56,51 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     alignSelf: "stretch",
   },
-  abeliaSpTypo: {
+  nombrePlantaTypo: {
     fontFamily: FontFamily.interBold,
     fontWeight: "700",
+    color: Color.colorWhite,
+  },
+  nombreCientificoTypo: {
+    fontFamily: FontFamily.interRegular,
+    fontStyle: "italic",
+    color: Color.colorWhite,
   },
   plants: {
-    minHeight: 400, // Altura mínima en lugar de fija
+    minHeight: 400,
     gap: Gap.gap_10,
-    flex: 1, // Permite que crezca según el contenido
+    flex: 1,
+    padding: Padding.p_10,
   },
-  abeliaSp: {
-    width: '100%', // Ancho flexible
-    maxWidth: 500, // Máximo ancho para pantallas muy grandes
+  nombrePlanta: {
+    width: '100%',
+    maxWidth: 500,
     height: 58,
-    fontSize: FontSize.size_48,
+    fontSize: FontSize.size_36,
+    marginBottom: 5,
   },
-  referencia: {
-    minHeight: 80, // Altura mínima
-    flexDirection: "row",
-    alignItems: "center",
-    paddingHorizontal: 0,
-    paddingVertical: Padding.p_18,
-    gap: 27,
-    flexWrap: 'wrap', // Permite que los emojis se envuelvan en pantallas pequeñas
-    justifyContent: 'center', // Centra los emojis
+  nombreCientifico: {
+    width: '100%',
+    maxWidth: 500,
+    height: 35,
+    fontSize: FontSize.size_24,
+    marginBottom: 10,
+  },
+  imagenPlanta: {
+    width: '100%',
+    height: 200,
+    marginVertical: 10,
+    backgroundColor: 'rgba(255,255,255,0.1)',
+    borderRadius: 10,
   },
   descripcion: {
     fontSize: FontSize.size_24,
     color: Color.colorWhite,
     textAlign: "left",
     alignSelf: "stretch",
-    fontFamily: FontFamily.interBold,
-    fontWeight: "700",
-    flexShrink: 1, // Permite que el texto se encoja si es necesario
+    fontFamily: FontFamily.interRegular,
+    flexShrink: 1,
+    marginTop: 10,
   },
 });
 

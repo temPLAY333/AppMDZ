@@ -12,7 +12,7 @@ const MapaIcon = () => {
       source={require("../assets/PSanMartin-Aerea-Normal1-1.png")}
     >
       <Image
-        style={styles.psanmartinAereaNormal11Icon}
+        style={styles.psanmartinAereaNormal11Icon as any}
         contentFit="cover"
         source={require("../assets/PSanMartin-Aerea-Normal1-1.png")}
       />
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
   frameParent: {
     height: 222,
     width: 128,
-    zIndex: null,
+    zIndex: 0,
     paddingLeft: Padding.p_15,
     gap: 38,
   },

@@ -1,12 +1,17 @@
 import React from 'react';
 import { Text, StyleSheet } from 'react-native';
-import { Planta, DescripcionesPlanta } from '../data/types';
+import { Planta } from '../data/types';
 import { useLanguage } from '../contexts/LanguageContext';
+
+interface PlantaDescripcionMultilingue {
+  es: string;
+  en: string;
+}
 
 interface PlantaDescripcionProps {
   planta?: Planta;
   descripcion?: string;
-  descripcionesMultilingue?: DescripcionesPlanta;
+  descripcionesMultilingue?: PlantaDescripcionMultilingue;
   style?: any;
 }
 
@@ -27,13 +32,13 @@ const PlantaDescripcion: React.FC<PlantaDescripcionProps> = ({
     // Si se proporciona una planta completa
     if (planta) {
       // Ahora todas las plantas deberían tener descripcionesMultilingue
-      return planta.atributos.descripcionesMultilingue[language as keyof DescripcionesPlanta] || 
+      return planta.atributos.descripcionesMultilingue[language as 'es' | 'en'] || 
              planta.atributos.descripcionesMultilingue.es;
     }
     
     // Si se proporcionan descripciones multilingües directamente
     if (descripcionesMultilingue) {
-      return descripcionesMultilingue[language as keyof DescripcionesPlanta] || 
+      return descripcionesMultilingue[language as 'es' | 'en'] || 
              descripcionesMultilingue.es;
     }
     

@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import TopBar from "../components/TopBar";
-import Component from "../assets/";
+import Component from "../assets/Respuestas.svg";
 import Opcion from "../components/Opcion";
 import NavBar from "../components/NavBar";
 import { Color, FontSize, FontFamily } from "../GlobalStyles";

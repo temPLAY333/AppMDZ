@@ -12,7 +12,7 @@ const ModeloIcon = () => {
       source={require("../assets/Modelo-PSanMartin-1.png")}
     >
       <Image
-        style={[styles.modeloPsanmartin1Icon, styles.modeloIconLayout]}
+        style={[styles.modeloPsanmartin1Icon, styles.modeloIconLayout] as any}
         contentFit="cover"
         source={require("../assets/Modelo-PSanMartin-1.png")}
       />
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
   },
   markerContainerThreeParent: {
     width: 222,
-    zIndex: null,
+    zIndex: 0,
     alignItems: "flex-end",
     gap: 44,
     height: 121,

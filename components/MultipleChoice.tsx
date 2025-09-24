@@ -14,7 +14,7 @@ export type MultipleChoiceType = {
   opcionEllipse53?: ImageSourcePropType;
 
   /** Variant props */
-  cantidad?: 4;
+  cantidad?: 2 | 4;
 
   /** Style props */
   multipleChoiceAlignSelf?: string;
