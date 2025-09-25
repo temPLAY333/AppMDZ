@@ -29,7 +29,7 @@ const JuegosPregunta2 = () => {
         >
           <Text style={styles.quePlantaEs}>2) Es una planta?</Text>
           <Opcion check="Clicked" text="Verdadero" />
-          <Opcion check="None" text="Falso" />
+          <Opcion check="NotSelected" text="Falso" />
         </ScrollView>
         <NavBar />
       </View>

@@ -8,9 +8,9 @@ const plazaSanMartin: Plaza = {
   nombre: 'Plaza San Martin',
   descripcion: 'La Plaza San Martín es una de las plazas más importantes de Mendoza, ubicada en el centro de la ciudad. Honra al General José de San Martín, héroe de la independencia argentina.',
   bandera: '🎖️', // Medalla como símbolo para San Martín
-  imagenPortada: require('../../assets/PSanMartin-Aerea-Normal1-1@3x.png'),
-  mapaImagenPath: require('../../assets/PSanMartin-Aerea-Normal1-1@3x.png'),
-  modeloImagenPath: require('../../assets/Modelo-PSanMartin-1@3x.png'),
+  imagenPortada: require('../../assets/PSanMartin-Aerea-Normal.png'),
+  mapaImagenPath: require('../../assets/PSanMartin-Aerea-Normal.png'),
+  modeloImagenPath: require('../../assets/Modelo-PSanMartin.png'),
   paradas: [
     {
       id: 'parada-1',
@@ -19,11 +19,11 @@ const plazaSanMartin: Plaza = {
       ubicacionY: 100,
       plantas: [
         {
-          plantaId: '2', // Acacia Negra
+          plantaId: '1', // Acacia Negra
           ubicacionEspecifica: 'Sector norte de la plaza'
         },
         {
-          plantaId: '5', // Araucaria Australiana
+          plantaId: '2', // Acacia Negra
           ubicacionEspecifica: 'Cerca de la entrada principal'
         }
       ]

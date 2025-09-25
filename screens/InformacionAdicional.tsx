@@ -1,51 +1,55 @@
 import * as React from "react";
-import { ScrollView, Pressable, Text, StyleSheet, View } from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
+import { useState } from "react";
+import { ScrollView, StyleSheet, View } from "react-native";
 import TopBar from "../components/TopBar";
 import NavBar from "../components/NavBar";
+import Item from "../components/Item";
 import Klipartz from "../assets/Klipartz.svg";
 import { useNavigation } from "@react-navigation/native";
-import { Color, Padding, Border, FontSize, FontFamily } from "../GlobalStyles";
+import { Color, Padding } from "../GlobalStyles";
+import { useLanguage } from "../contexts/LanguageContext";
 
 const InformacionAdicional = () => {
   const navigation = useNavigation<any>();
+  const { translate } = useLanguage();
+  const [selectedOption, setSelectedOption] = useState<string | null>(null);
 
   // Navegación a Referencias
   const navigateToReferencias = () => {
+    setSelectedOption('referencias');
     navigation.navigate("Referencias");
   };
 
   // Navegación a Glosario
   const navigateToGlosario = () => {
+    setSelectedOption('glosario');
     navigation.navigate("Glosario");
   };
-
+  
   return (
     <ScrollView
       style={styles.informacionAdicional}
       contentContainerStyle={styles.informacionAdicionalScrollViewContent}
     >
-      <TopBar text="Informacion Adicional" textoWidth={260} />
-      <View style={[styles.list, styles.listFlexBox]}>
-        <LinearGradient
-          style={styles.idiomavariant3}
-          locations={[0, 1]}
-          colors={["rgba(25, 164, 223, 0)", "#19a4df"]}
-        >
-          <Pressable 
-            style={[styles.pressable, styles.listFlexBox]}
-            onPress={navigateToReferencias}
-          >
-            <Text style={styles.espaol}>Referencia</Text>
-          </Pressable>
-        </LinearGradient>
+      <TopBar translationKey="info.title" textoWidth={260} />
+      <View style={styles.list}>
+        <Item 
+          text={translate("references.title")}
+          isSelected={selectedOption === 'referencias'}
+          onPress={navigateToReferencias}
+          height={80}
+          width={340}
+          textSize={36}
+        />
         
-        <Pressable 
-          style={styles.glosarioButton}
+        <Item 
+          text={translate("glossary.title")}
+          isSelected={selectedOption === 'glosario'}
           onPress={navigateToGlosario}
-        >
-          <Text style={styles.glosarioText}>Glosario</Text>
-        </Pressable>
+          height={80}
+          width={340}
+          textSize={36}
+        />
       </View>
       <NavBar klipartz={<Klipartz width={55} height={55} />} />
     </ScrollView>
@@ -59,11 +63,6 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     height: 917,
   },
-  listFlexBox: {
-    justifyContent: "center",
-    alignItems: "center",
-    overflow: "hidden",
-  },
   informacionAdicional: {
     backgroundColor: Color.colorGray200,
     maxWidth: "100%",
@@ -74,50 +73,10 @@ const styles = StyleSheet.create({
     alignSelf: "stretch",
     paddingHorizontal: Padding.p_36,
     paddingTop: 45,
-    paddingBottom: 93,
+    paddingBottom: 105, // Aumentado para compensar la NavBar más alta
     gap: 25,
     flex: 1,
-  },
-  idiomavariant3: {
-    width: 340,
-    height: 80,
-  },
-  pressable: {
-    borderRadius: Border.br_5,
-    backgroundColor: "transparent",
-    height: "100%",
-    flexDirection: "row",
-    padding: Padding.p_10,
-    width: "100%",
-  },
-  espaol: {
-    height: 44,
-    width: 223,
-    fontSize: FontSize.size_36,
-    fontWeight: "700",
-    fontFamily: FontFamily.interBold,
-    color: Color.colorWhite,
-    textAlign: "center",
-  },
-  glosarioButton: {
-    width: 340,
-    borderRadius: Border.br_10,
-    backgroundColor: Color.colorSteelblue,
-    height: 80,
-    overflow: "hidden",
-    flexDirection: "row",
     alignItems: "center",
-    justifyContent: "center",
-    padding: Padding.p_10,
-  },
-  glosarioText: {
-    height: 44,
-    width: 223,
-    fontSize: FontSize.size_36,
-    fontWeight: "700",
-    fontFamily: FontFamily.interBold,
-    color: Color.colorWhite,
-    textAlign: "center",
   },
 });
 

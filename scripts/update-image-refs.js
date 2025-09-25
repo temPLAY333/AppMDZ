@@ -6,9 +6,9 @@ const path = require('path');
 const filePath = path.join(__dirname, '..', 'data', 'plantas', 'index.ts');
 let content = fs.readFileSync(filePath, 'utf8');
 
-// Reemplazar todas las ocurrencias de require('../../assets/image-1@3x') por getPlantaImagen con el ID correspondiente
+// Reemplazar todas las ocurrencias de require('../../assets/image') por getPlantaImagen con el ID correspondiente
 for (let id = 4; id <= 33; id++) {
-    const regex = new RegExp(`id: '${id}',[\\s\\S]*?imagenPath: require\\('../../assets/image-1@3x'\\),`, 'g');
+    const regex = new RegExp(`id: '${id}',[\\s\\S]*?imagenPath: require\\('../../assets/image'\\),`, 'g');
     content = content.replace(regex, `id: '${id}',\\s\\S]*?imagenPath: getPlantaImagen('${id}'),`);
 }
 

@@ -5,6 +5,7 @@ import { useRoute, useNavigation } from "@react-navigation/native";
 import TopBar from "../components/TopBar";
 import Opcion from "../components/Opcion";
 import NavBar from "../components/NavBar";
+import Item from "../components/Item";
 import Klipartz from "../assets/Klipartz.svg";
 import { Color, FontSize, FontFamily } from "../GlobalStyles";
 import { Pregunta } from "../data/types";
@@ -101,11 +102,17 @@ const Revision = () => {
           })}
         </ScrollView>
         
-        <Pressable style={styles.volverBtn} onPress={volverAlMenu}>
-          <Text style={styles.volverBtnText}>Volver al Menú</Text>
-        </Pressable>
+        <View style={styles.volverBtnContainer}>
+          <Item 
+            text="Volver al Menú"
+            onPress={volverAlMenu}
+            width={340}
+            height={80}
+            textSize={24}
+          />
+        </View>
         
-        <NavBar klipartz={<Klipartz width={55} height={55} />} />
+        <NavBar klipartz={<Klipartz width={60} height={60} />} />
       </View>
     </SafeAreaView>
   );
@@ -191,18 +198,11 @@ const styles = StyleSheet.create({
     marginTop: 10,
     fontStyle: 'italic',
   },
-  volverBtn: {
-    backgroundColor: Color.colorSteelblue,
-    padding: 15,
-    margin: 20,
-    borderRadius: 10,
+  volverBtnContainer: {
     alignItems: "center",
-    marginBottom: 80,
-  },
-  volverBtnText: {
-    color: Color.colorWhite,
-    fontSize: FontSize.size_24,
-    fontFamily: FontFamily.interBold,
+    justifyContent: "center",
+    marginVertical: 20,
+    marginBottom: 95, // Aumentado para compensar la NavBar más alta
   },
 });
 

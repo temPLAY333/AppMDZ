@@ -9,29 +9,29 @@ const MapaIcon = () => {
     <ImageBackground
       style={styles.mapaIcon}
       resizeMode="cover"
-      source={require("../assets/PSanMartin-Aerea-Normal1-1.png")}
+      source={require("../assets/PSanMartin-Aerea-Normal.png")}
     >
       <Image
         style={styles.psanmartinAereaNormal11Icon as any}
         contentFit="cover"
-        source={require("../assets/PSanMartin-Aerea-Normal1-1.png")}
+        source={require("../assets/PSanMartin-Aerea-Normal.png")}
       />
       <View style={styles.markParent}>
-        <Mark status1="None" number="6" markWidth={35} markHeight={35} />
+        <Mark status1="NotSelected" number="6" plantaId="6" markWidth={35} markHeight={35} />
         <View style={styles.markGroup}>
-          <Mark status1="None" number="5" markWidth={35} markHeight={35} />
+          <Mark status1="NotSelected" number="5" plantaId="5" markWidth={35} markHeight={35} />
           <View style={styles.markWrapper}>
-            <Mark status1="None" number="4" markWidth={35} markHeight={35} />
+            <Mark status1="NotSelected" number="4" plantaId="4" markWidth={35} markHeight={35} />
           </View>
         </View>
       </View>
       <View style={styles.frameParent}>
         <View style={styles.markContainer}>
-          <Mark status1="Pinned" number="1" markWidth={63} markHeight={63} />
+          <Mark status1="Pinned" number="1" plantaId="1" markWidth={63} markHeight={63} />
         </View>
         <View style={styles.frameView}>
-          <Mark status1="None" number="2" markWidth={35} markHeight={35} />
-          <Mark status1="None" number="3" markWidth={35} markHeight={35} />
+          <Mark status1="NotSelected" number="2" plantaId="2" markWidth={35} markHeight={35} />
+          <Mark status1="NotSelected" number="3" plantaId="3" markWidth={35} markHeight={35} />
         </View>
       </View>
     </ImageBackground>

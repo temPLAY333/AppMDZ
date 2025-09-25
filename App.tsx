@@ -3,25 +3,18 @@ import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { useFonts } from "expo-font";
 import JuegosPregunta2 from "./screens/JuegosPregunta2";
-import ParadaPlanta1 from "./screens/ParadaPlanta1";
+import DetallePlanta from "./screens/DetallePlanta";
 import JuegosPregunta1 from "./screens/JuegosPregunta1";
 import Home from "./screens/Home";
 import MenuPlaza from "./screens/MenuPlaza";
 import LoadScreen from "./screens/LoadScreen";
 import Revision from "./screens/Revision";
 import Idioma from "./screens/Idioma";
-import MapaDeLaPlazaModelo from "./screens/MapaDeLaPlazaModelo";
-import MapaDeLaPlazaMapa from "./screens/MapaDeLaPlazaMapa";
+import MapaDeLaPlaza from "./screens/MapaDeLaPlaza";
 import InformacionAdicional from "./screens/InformacionAdicional";
 import Referencias from "./screens/Referencias";
 import Glosario from "./screens/Glosario";
-import Item from "./components/Item";
-import Variant from "./components/Variant";
-import Mark from "./components/Mark";
-import ModeloIcon from "./components/ModeloIcon";
-import MapaIcon from "./components/MapaIcon";
-import Variant1 from "./components/Variant1";
-import TerminoEspecifico from "./components/TerminoEspecifico";
+// Los componentes UI no se importan aquí porque no son pantallas navegables
 import { LanguageProvider } from "./contexts/LanguageContext";
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -71,8 +64,8 @@ const App = () => {
               options={{ headerShown: false }}
             />
             <Stack.Screen
-              name="Emojis"
-              component={ParadaPlanta1}
+              name="DetallePlanta"
+              component={DetallePlanta}
               options={{ headerShown: false }}
             />
             <Stack.Screen
@@ -106,15 +99,11 @@ const App = () => {
               options={{ headerShown: false }}
             />
             <Stack.Screen
-              name="MapaDeLaPlazaModelo"
-              component={MapaDeLaPlazaModelo}
+              name="MapaDeLaPlaza"
+              component={MapaDeLaPlaza}
               options={{ headerShown: false }}
             />
-            <Stack.Screen
-              name="MapaDeLaPlazaMapa"
-              component={MapaDeLaPlazaMapa}
-              options={{ headerShown: false }}
-            />
+
             <Stack.Screen
               name="InformacionAdicional"
               component={InformacionAdicional}
@@ -130,41 +119,7 @@ const App = () => {
               component={Glosario}
               options={{ headerShown: false }}
             />
-            <Stack.Screen
-              name="Item"
-              component={Item}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="Variant"
-              component={Variant}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="Mark"
-              component={Mark}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="ModeloIcon"
-              component={ModeloIcon}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="MapaIcon"
-              component={MapaIcon}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="Variant1"
-              component={Variant1}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="TerminoEspecifico"
-              component={TerminoEspecifico}
-              options={{ headerShown: false }}
-            />
+            {/* Componentes que no son pantallas no deben ser registrados aquí */}
           </Stack.Navigator>
           )}
         </NavigationContainer>

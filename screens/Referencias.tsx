@@ -1,58 +1,73 @@
 import * as React from "react";
-import { ScrollView, Text, StyleSheet, View } from "react-native";
+import { ScrollView, Text, StyleSheet, View, Dimensions } from "react-native";
 import TopBar from "../components/TopBar";
 import NavBar from "../components/NavBar";
 import Klipartz from "../assets/Klipartz.svg";
+import Emojis from "../components/Emojis";
 import { Gap, Color, FontSize, FontFamily, Padding } from "../GlobalStyles";
+import { useLanguage } from "../contexts/LanguageContext";
 
 const Referencias = () => {
+  const { translate } = useLanguage();
   return (
     <ScrollView
       style={styles.referencias}
       contentContainerStyle={styles.referenciasScrollViewContent}
     >
-      <TopBar text="Referencia" textoWidth={130} />
+      <TopBar translationKey="references.title" textoWidth={130} />
       <View style={styles.referencia}>
         <View style={[styles.parent, styles.parentFlexBox]}>
-          <Text style={[styles.text, styles.textTypo]}>{`🌲 `}</Text>
+          <View style={styles.emojiContainer}>
+            <Emojis emoji="🌲" size={48} />
+          </View>
           <Text style={styles.separatorElements}>{`: `}</Text>
-          <Text style={[styles.naturalizada, styles.usoEconmicoTypo]}>
-            Naturalizada
+          <Text style={[styles.descripcionTexto, styles.usoEconmicoTypo]}>
+            {translate("naturalized")}
           </Text>
         </View>
         <View style={[styles.parent, styles.parentFlexBox]}>
-          <Text style={[styles.referenciasText, styles.textTypo]}>{`🪵 `}</Text>
+          <View style={styles.emojiContainer}>
+            <Emojis emoji="🪵" size={48} />
+          </View>
           <Text style={styles.separatorElements}>{`: `}</Text>
-          <Text style={[styles.usoEconmico, styles.usoEconmicoTypo]}>
-            Uso Económico
+          <Text style={[styles.descripcionTexto, styles.usoEconmicoTypo]}>
+            {translate("economic.use")}
           </Text>
         </View>
         <View style={styles.parentFlexBox}>
-          <Text style={[styles.text, styles.textTypo]}>{`💧 `}</Text>
+          <View style={styles.emojiContainer}>
+            <Emojis emoji="💧" size={48} />
+          </View>
           <Text style={styles.separatorElements}>{`: `}</Text>
-          <Text style={[styles.usoEconmico, styles.usoEconmicoTypo]}>
-            Resistente a sequía
+          <Text style={[styles.descripcionTexto, styles.usoEconmicoTypo]}>
+            {translate("drought.resistant")}
           </Text>
         </View>
         <View style={[styles.parent, styles.parentFlexBox]}>
-          <Text style={[styles.text, styles.textTypo]}>{`🌳 `}</Text>
+          <View style={styles.emojiContainer}>
+            <Emojis emoji="🌳" size={48} />
+          </View>
           <Text style={styles.separatorElements}>{`: `}</Text>
-          <Text style={[styles.naturalizada, styles.usoEconmicoTypo]}>
-            Exótica
+          <Text style={[styles.descripcionTexto, styles.usoEconmicoTypo]}>
+            {translate("exotic")}
           </Text>
         </View>
         <View style={[styles.parent, styles.parentFlexBox]}>
-          <Text style={[styles.text, styles.textTypo]}>{`❄️ `}</Text>
+          <View style={styles.emojiContainer}>
+            <Emojis emoji="❄️" size={48} />
+          </View>
           <Text style={styles.separatorElements}>{`: `}</Text>
-          <Text style={[styles.usoEconmico, styles.usoEconmicoTypo]}>
-            Resistente al frío
+          <Text style={[styles.descripcionTexto, styles.usoEconmicoTypo]}>
+            {translate("cold.resistant")}
           </Text>
         </View>
         <View style={[styles.parent, styles.parentFlexBox]}>
-          <Text style={[styles.text, styles.textTypo]}>{`🌱 `}</Text>
+          <View style={styles.emojiContainer}>
+            <Emojis emoji="🌱" size={48} />
+          </View>
           <Text style={styles.separatorElements}>{`: `}</Text>
-          <Text style={[styles.usoEconmico, styles.usoEconmicoTypo]}>
-            Resistente a suelo salino
+          <Text style={[styles.descripcionTexto, styles.usoEconmicoTypo]}>
+            {translate("salt.resistant")}
           </Text>
         </View>
       </View>
@@ -66,7 +81,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     alignItems: "flex-start",
     justifyContent: "flex-start",
-    height: 917,
+    minHeight: Dimensions.get('window').height,
   },
   parentFlexBox: {
     gap: Gap.gap_10,
@@ -75,17 +90,10 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     alignSelf: "stretch",
   },
-  textTypo: {
-    textAlign: "left",
-    color: Color.colorWhite,
-    fontSize: FontSize.size_64,
-    width: 67,
-    height: 77,
-  },
   usoEconmicoTypo: {
-    textAlign: "center",
-    width: 289,
-    fontSize: FontSize.size_40,
+    textAlign: "left",
+    flex: 1,
+    fontSize: FontSize.size_36,
     color: Color.colorWhite,
     fontFamily: FontFamily.interBold,
     fontWeight: "700",
@@ -100,49 +108,36 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     paddingHorizontal: Padding.p_10,
     paddingVertical: 20,
-    gap: 15,
+    gap: 20,
     alignItems: "center",
     overflow: "hidden",
     alignSelf: "stretch",
     flex: 1,
   },
   parent: {
-    height: 90,
+    minHeight: 70,
     flexWrap: "wrap",
     alignContent: "center",
   },
-  text: {
-    fontFamily: FontFamily.interBold,
-    fontWeight: "700",
-    textAlign: "left",
-    color: Color.colorWhite,
-    fontSize: FontSize.size_64,
-    width: 67,
-    height: 77,
+  emojiContainer: {
+    width: 70,
+    height: 70,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.1)',
+    borderRadius: 35,
+    overflow: 'hidden',
   },
   separatorElements: {
-    width: 15,
     fontSize: FontSize.size_40,
-    height: 48,
-    textAlign: "left",
+    textAlign: "center",
     color: Color.colorWhite,
     fontFamily: FontFamily.interBold,
     fontWeight: "700",
   },
-  naturalizada: {
-    height: 48,
-    width: 289,
-  },
-  referenciasText: {
-    fontFamily: FontFamily.interRegular,
-    textAlign: "left",
-    color: Color.colorWhite,
-    fontSize: FontSize.size_64,
-    width: 67,
-    height: 77,
-  },
-  usoEconmico: {
-    height: 96,
+  descripcionTexto: {
+    flexShrink: 1,
+    paddingVertical: 5,
   },
 });
 

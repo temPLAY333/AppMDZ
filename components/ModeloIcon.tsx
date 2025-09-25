@@ -9,29 +9,29 @@ const ModeloIcon = () => {
     <ImageBackground
       style={[styles.modeloIcon, styles.modeloIconLayout]}
       resizeMode="cover"
-      source={require("../assets/Modelo-PSanMartin-1.png")}
+      source={require("../assets/Modelo-PSanMartin.png")}
     >
       <Image
         style={[styles.modeloPsanmartin1Icon, styles.modeloIconLayout] as any}
         contentFit="cover"
-        source={require("../assets/Modelo-PSanMartin-1.png")}
+        source={require("../assets/Modelo-PSanMartin.png")}
       />
       <View style={styles.markerContainerOneParent}>
         <View style={styles.markerContainerOne}>
-          <Mark status1="None" number="6" />
+          <Mark status1="NotSelected" number="6" plantaId="6" />
         </View>
-        <Mark status1="Pinned" number="1" markWidth={63} markHeight={63} />
+        <Mark status1="Pinned" number="1" plantaId="1" markWidth={63} markHeight={63} />
       </View>
       <View style={styles.markerContainerThreeParent}>
         <View style={styles.markerContainerThree}>
-          <Mark status1="None" number="5" markWidth={35} markHeight={35} />
+          <Mark status1="NotSelected" number="5" plantaId="5" markWidth={35} markHeight={35} />
         </View>
         <View style={styles.markerContainerFour}>
-          <Mark status1="None" number="4" markWidth={35} markHeight={35} />
+          <Mark status1="NotSelected" number="4" plantaId="4" markWidth={35} markHeight={35} />
         </View>
         <View style={styles.markParent}>
-          <Mark status1="None" number="2" markWidth={35} markHeight={35} />
-          <Mark status1="None" number="3" markWidth={35} markHeight={35} />
+          <Mark status1="NotSelected" number="2" plantaId="2" markWidth={35} markHeight={35} />
+          <Mark status1="NotSelected" number="3" plantaId="3" markWidth={35} markHeight={35} />
         </View>
       </View>
     </ImageBackground>

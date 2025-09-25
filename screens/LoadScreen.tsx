@@ -13,17 +13,17 @@ const LoadScreen = () => {
         <Image
           style={styles.image1Icon}
           contentFit="cover"
-          source={require("../assets/image-1.png")}
+          source={require("../assets/CiudadDeMDZ.png")}
         />
         <Image
           style={styles.bpYouthClimateActionFundLIcon}
           contentFit="cover"
-          source={require("../assets/BP-Youth-Climate-Action-Fund-Logo-Options-040824-V1-FNL-YCAF-Logo-with-Tagline-as-Outlined-Text-White-1.png")}
+          source={require("../assets/BP-Youth-Climate-Action-Fund-Logo-Options-040824-V1-FNL-YCAF-Logo-with-Tagline-as-Outlined-Text-White.png")}
         />
         <Image
           style={styles.bpSocialYouthclimateactionfuIcon}
           contentFit="cover"
-          source={require("../assets/BP-Social-YouthClimateActionFund-1.png")}
+          source={require("../assets/BP-Social-YouthClimateActionFund.png")}
         />
       </View>
     </ScrollView>

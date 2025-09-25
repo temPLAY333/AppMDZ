@@ -39,24 +39,26 @@ const TopBar = ({ text = "Parada N°1", translationKey, textoWidth }: TopBarType
 
 const styles = StyleSheet.create({
   topbar: {
-    width: '100%', // Ancho flexible
+    width: '100%', // Ancho flexible que cubre toda la pantalla
     backgroundColor: Color.colorGray100,
-    height: 60, // Alto fijo
+    height: 70, // Alto aumentado en 10px
     overflow: "hidden",
     alignItems: "center",
     justifyContent: "center",
     paddingHorizontal: 27,
-    paddingVertical: Padding.p_19,
+    paddingVertical: Padding.p_10, // Ajustado para centrar mejor el texto
   },
   texto: {
     // El ancho ahora se pasa como prop (textoWidth) en lugar de fijarlo aquí
-    height: 29,
+    minHeight: 40, // Altura mínima para textos largos
     fontSize: FontSize.size_24,
     fontWeight: "700",
     fontFamily: FontFamily.interBold,
     color: Color.colorWhite,
-    textAlign: "left",
+    textAlign: "center", // Centrar horizontalmente el texto
+    alignSelf: "center", // Centrar el componente de texto
     flexShrink: 1, // Permite que el texto se encoja si es necesario
+    textAlignVertical: 'center', // Centrar verticalmente el texto
   },
 });
 

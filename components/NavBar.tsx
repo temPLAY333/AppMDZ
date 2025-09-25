@@ -46,20 +46,20 @@ const NavBar = ({ navBarElevation, klipartz }: NavBarType) => {
       <Pressable onPress={handleGoBack}>
         <Klipartz
           style={[styles.klipartzIcon, styles.iconLayout]}
-          width={55}
-          height={55}
+          width={60}
+          height={60}
         />
       </Pressable>
       
       <Pressable onPress={navigateToHome}>
-        <Ellipse6 style={styles.navbarChild} width={50} height={50} />
+        <Ellipse6 style={styles.navbarChild} width={55} height={55} />
       </Pressable>
       
       <Pressable onPress={navigateToInformacionAdicional}>
         <Image
           style={styles.iconLayout}
           contentFit="cover"
-          source={require("../assets/klipartz-com-1.png")}
+          source={require("../assets/SignoPregunta.png")}
         />
       </Pressable>
     </View>
@@ -68,8 +68,8 @@ const NavBar = ({ navBarElevation, klipartz }: NavBarType) => {
 
 const styles = StyleSheet.create({
   iconLayout: {
-    height: 55,
-    width: 55,
+    height: 60,
+    width: 60,
   },
   navbar: {
     width: '100%', // Ancho flexible
@@ -83,19 +83,20 @@ const styles = StyleSheet.create({
     elevation: 4,
     shadowOpacity: 1,
     backgroundColor: Color.colorGray100,
-    height: 60, // Alto fijo
+    height: 85, // Alto aumentado a 85px
     overflow: "hidden",
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "center",
-    gap: Gap.gap_60,
+    justifyContent: "space-evenly", // Distribuir el espacio uniformemente
+    paddingHorizontal: 20, // Padding horizontal para evitar que se peguen a los bordes
+    paddingVertical: 10, // Añadido padding vertical para mejorar espaciado
   },
   klipartzIcon: {
     borderRadius: Border.br_3,
   },
   navbarChild: {
-    width: 50,
-    height: 50,
+    width: 55,
+    height: 55,
   },
 });
 

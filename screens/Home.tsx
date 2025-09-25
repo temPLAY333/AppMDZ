@@ -1,56 +1,25 @@
-import React, { useState, useEffect } from "react";
-import { ScrollView, Pressable, Text, StyleSheet, View } from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
+import * as React from "react";
+import { useState } from "react";
+import { ScrollView, StyleSheet, View, Text } from "react-native";
 import TopBar from "../components/TopBar";
 import NavBar from "../components/NavBar";
+import Item from "../components/Item";
 import Klipartz from "../assets/Klipartz.svg";
-import { plazas } from "../data";  // Importamos los datos de plazas
 import { useNavigation } from "@react-navigation/native";
-import {
-  Color,
-  FontFamily,
-  Padding,
-  Border,
-  Gap,
-  FontSize,
-} from "../GlobalStyles";
+import { Color, Padding, Gap, FontSize, FontFamily } from "../GlobalStyles";
+import plazas from "../data/plazas";
+import { useLanguage } from "../contexts/LanguageContext";
 
 const Home = () => {
   const navigation = useNavigation<any>();
-  
-  // Definimos el tipo para los items
-  type ItemType = {
-    id: string;
-    clicked: string;
-    text: string;
-    bandera: string;
-    plazaHeight: number | string;
-  };
+  const { language, translate } = useLanguage();
+  const [selectedPlaza, setSelectedPlaza] = useState<string | null>(null);
 
-  // Usamos los datos importados con el tipo correcto
-  const [itemItems, setItemItems] = useState<ItemType[]>([]);
-  
-  // Cargamos los datos de las plazas
-  useEffect(() => {
-    // Filtramos la Plaza San Martín que se renderiza aparte
-    const plazaItems = plazas
-      .filter(plaza => plaza.id !== 'plaza-san-martin')
-      .map(plaza => ({
-        id: plaza.id,
-        clicked: "Visual",
-        text: plaza.nombre,
-        bandera: plaza.bandera,
-        plazaHeight: plaza.nombre.length > 15 ? 58 : 29,
-      }));
-    
-    setItemItems(plazaItems);
-  }, []);
-  
-  // Buscamos la Plaza San Martín para mostrarla destacada
-  const plazaSanMartin = plazas.find(plaza => plaza.id === 'plaza-san-martin');
-
-  // Función para navegar a la plaza seleccionada
-  const navigateToPlaza = (plazaId: string) => {
+  // Manejador de navegación a la plaza seleccionada
+  const handlePlazaPress = (plazaId: string) => {
+    // Actualizamos el estado para mostrar cuál fue la última plaza seleccionada
+    setSelectedPlaza(plazaId);
+    // Navegamos a la pantalla de menú de la plaza
     navigation.navigate("MenuPlaza", { plazaId });
   };
 
@@ -59,35 +28,60 @@ const Home = () => {
       style={styles.home}
       contentContainerStyle={styles.homeScrollViewContent}
     >
-      <TopBar text="Menu Principal" textoWidth={178} />
-      <View style={[styles.list, styles.listFlexBox]}>
-        {itemItems.map((item, index) => (
-          <Pressable
-            key={index}
-            style={styles.item}
-            onPress={() => navigateToPlaza(item.id)}
-          >
-            <Text style={[styles.plaza, styles.textTypo]}>{item.text}</Text>
-            <Text style={[styles.text, styles.textTypo]}>{item.bandera}</Text>
-          </Pressable>
-        ))}
-        <LinearGradient
-          style={styles.item}
-          locations={[0, 1]}
-          colors={["rgba(25, 164, 223, 0)", "#19a4df"]}
-        >
-          <Pressable 
-            style={[styles.pressable, styles.listFlexBox]}
-            onPress={() => navigateToPlaza('plaza-san-martin')}
-          >
-            <Text style={[styles.plaza, styles.textTypo]}>
-              {plazaSanMartin?.nombre || "Plaza San Martin"}
-            </Text>
-            <Text style={[styles.text, styles.textTypo]}>
-              {plazaSanMartin?.bandera || "🎖️"}
-            </Text>
-          </Pressable>
-        </LinearGradient>
+      <TopBar 
+        translationKey="main.menu" 
+        textoWidth={200} 
+      />
+      <View style={styles.list}>
+        {/* Plaza San Martín */}
+        <Item 
+          text={translate("plaza.san.martin")}
+          emoji="🎖️"
+          onPress={() => handlePlazaPress('plaza-san-martin')}
+          width={340}
+          height={80}
+          isSelected={selectedPlaza === 'plaza-san-martin'}
+        />
+        
+        {/* Plaza Independencia */}
+        <Item 
+          text={translate("plaza.independencia")}
+          emoji="🏛️"
+          onPress={() => handlePlazaPress('plaza-independencia')}
+          width={340}
+          height={80}
+          isSelected={selectedPlaza === 'plaza-independencia'}
+        />
+        
+        {/* Plaza España */}
+        <Item 
+          text={translate("plaza.espana")}
+          emoji="🇪🇸"
+          onPress={() => handlePlazaPress('plaza-espana')}
+          width={340}
+          height={80}
+          isSelected={selectedPlaza === 'plaza-espana'}
+        />
+        
+        {/* Plaza Italia */}
+        <Item 
+          text={translate("plaza.italia")}
+          emoji="🇮🇹"
+          onPress={() => handlePlazaPress('plaza-italia')}
+          width={340}
+          height={80}
+          isSelected={selectedPlaza === 'plaza-italia'}
+        />
+        
+        {/* Plaza Chile */}
+        <Item 
+          text={translate("plaza.chile")}
+          emoji="🇨🇱"
+          onPress={() => handlePlazaPress('plaza-chile')}
+          width={340}
+          height={80}
+          isSelected={selectedPlaza === 'plaza-chile'}
+        />
       </View>
       <NavBar klipartz={<Klipartz width={55} height={55} />} />
     </ScrollView>
@@ -95,61 +89,29 @@ const Home = () => {
 };
 
 const styles = StyleSheet.create({
-  homeScrollViewContent: {
-    flexDirection: "column",
-    alignItems: "flex-start",
-    justifyContent: "flex-start",
-    minHeight: 917, // Altura mínima en lugar de fija
-  },
-  listFlexBox: {
-    justifyContent: "center",
-    alignItems: "center",
-    overflow: "hidden",
-  },
-  textTypo: {
-    color: Color.colorWhite,
-    fontFamily: FontFamily.interBold,
-    fontWeight: "700",
-  },
   home: {
+    width: "100%",
     backgroundColor: Color.colorGray200,
     maxWidth: "100%",
     flex: 1,
-    width: "100%",
   },
+  homeScrollViewContent: {
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "flex-start",
+    minHeight: "100%",
+  },
+  // Estilos eliminados para el título
   list: {
     alignSelf: "stretch",
-    paddingHorizontal: '5%', // Padding relativo
-    paddingTop: 45,
-    paddingBottom: 93,
-    gap: 25,
+    overflow: "hidden",
+    alignItems: "center",
+    justifyContent: "center",
+    paddingHorizontal: Padding.p_36,
+    paddingTop: 20,
+    paddingBottom: 105, // Aumentado para compensar la NavBar más alta
+    gap: Gap.gap_22,
     flex: 1,
-  },
-  item: {
-    width: '100%', // Ancho relativo
-    maxWidth: 500, // Máximo ancho para pantallas grandes
-    minHeight: 80, // Altura mínima
-  },
-  pressable: {
-    borderRadius: Border.br_5,
-    backgroundColor: "transparent",
-    height: "100%",
-    flexDirection: "row",
-    padding: Padding.p_10,
-    gap: Gap.gap_30,
-    width: "100%",
-  },
-  plaza: {
-    minHeight: 29,
-    flex: 1, // Permite crecer según el contenido
-    fontSize: FontSize.size_24,
-    textAlign: "center",
-  },
-  text: {
-    height: 64,
-    width: 69,
-    fontSize: FontSize.size_64,
-    textAlign: "left",
   },
 });
 

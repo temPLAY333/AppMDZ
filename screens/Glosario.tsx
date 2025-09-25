@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import TopBar from "../components/TopBar";
@@ -6,9 +6,13 @@ import TerminoEspecifico from "../components/TerminoEspecifico";
 import NavBar from "../components/NavBar";
 import Klipartz from "../assets/Klipartz.svg";
 import { Color, Padding } from "../GlobalStyles";
+import { useLanguage } from "../contexts/LanguageContext";
 
 const Glosario = () => {
-  const [terminoEspecificoItems] = useState([
+  const { language, translate } = useLanguage();
+  
+  // Definición de términos en español
+  const terminosEspanol = [
     {
       texto:
         "Filodio: es una modificación de la hoja, donde el “tallo” de la hoja (llamado pecíolo) se encuentra ensanchado y aplanado para sustituir a la lámina de la hoja en sus funciones.",
@@ -34,12 +38,51 @@ const Glosario = () => {
         "Baya: fruto carnoso, sin carozo o hueso, con semillas en su interior.  \nCápsula: fruto seco que se abre al madurar, expulsando las semillas. Puede presentar distintas formas. \nVaina o legumbre: fruto seco, alargado, que contiene varias semillas. Puede abrirse por los costados o no. \nSámara: fruto seco, con alas para facilitar su dispersión por el viento, contiene una única semilla",
       nombre: "Tipos de Fruto",
     },
-  ]);
+  ];
+  
+  // Definición de términos en inglés
+  const terminosIngles = [
+    {
+      texto:
+        "Phyllode: a modification of the leaf, where the leaf 'stem' (called petiole) is widened and flattened to substitute the leaf blade in its functions.",
+      nombre: "Adaptations",
+    },
+    {
+      texto:
+        "Simple: composed of a single blade, without subdivisions.  \nPinnate or compound: when the leaf blade is subdivided into smaller parts called leaflets, aligned along a central axis. \nBipinnate or twice compound: similar to the previous case, but the leaflets also present subdivisions. \nDigitate: a compound leaf where all leaflets emerge from the same point instead of being arranged along an axis.  \nCordiform: a simple leaf where the blade has a heart shape.",
+      nombre: "Leaf Types",
+    },
+    {
+      texto:
+        "Alternate: leaves are inserted one by one along the branch, alternating sides. \nOpposite: leaves are inserted facing each other, at the same level. \nWhorled: three or more leaves emerge from the same point.",
+      nombre: "Leaf Arrangement",
+    },
+    {
+      texto:
+        "Raceme: flowers grow on an axis and are arranged laterally in an alternate pattern.",
+      nombre: "Flower Arrangement",
+    },
+    {
+      texto:
+        "Berry: fleshy fruit, without stone or pit, with seeds inside.  \nCapsule: dry fruit that opens when ripe, ejecting seeds. It can have different shapes. \nPod or legume: dry, elongated fruit that contains several seeds. It may open on the sides or not. \nSamara: dry fruit with wings to facilitate wind dispersal, contains a single seed.",
+      nombre: "Fruit Types",
+    },
+  ];
+  
+  // Estado para almacenar los términos según el idioma actual
+  const [terminoEspecificoItems, setTerminoEspecificoItems] = useState<{texto: string; nombre: string}[]>(
+    language === 'es' ? terminosEspanol : terminosIngles
+  );
+  
+  // Actualizar los términos cuando cambia el idioma
+  useEffect(() => {
+    setTerminoEspecificoItems(language === 'es' ? terminosEspanol : terminosIngles);
+  }, [language]);
 
   return (
     <SafeAreaView style={styles.viewBg}>
       <View style={[styles.view, styles.viewBg]}>
-        <TopBar text="Glosario" textoWidth={101} />
+        <TopBar translationKey="glossary.title" textoWidth={180} />
         <ScrollView
           style={styles.list}
           contentContainerStyle={styles.listContainerContent}

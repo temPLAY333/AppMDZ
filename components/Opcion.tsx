@@ -7,7 +7,7 @@ export type OpcionType = {
   text?: string;
 
   /** Variant props */
-  check?: "None" | "Clicked" | "Bad" | "Good";
+  check?: "NotSelected" | "Clicked" | "Bad" | "Good";
 };
 
 const getOpcinText1Style = (styleKey: string) => {
@@ -26,7 +26,7 @@ const getOpcinText1Style = (styleKey: string) => {
       };
   }
 };
-const Opcion = ({ check = "None", text = "Arbusto" }: OpcionType) => {
+const Opcion = ({ check = "NotSelected", text = "Arbusto" }: OpcionType) => {
   const variantKey = `${check}`;
 
   return (

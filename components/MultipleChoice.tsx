@@ -9,7 +9,7 @@ import Opcion from "./Opcion";
 import { FontSize, FontFamily, Color } from "../GlobalStyles";
 
 export type MultipleChoiceType = {
-  opcionCheck3?: "None" | "Clicked" | "Bad" | "Good";
+  opcionCheck3?: "NotSelected" | "Clicked" | "Bad" | "Good";
   opcionText3?: string;
   opcionEllipse53?: ImageSourcePropType;
 
@@ -29,7 +29,7 @@ const MultipleChoice = ({
   cantidad = 2,
   multipleChoiceAlignSelf,
   multipleChoiceWidth,
-  opcionCheck3 = "None",
+  opcionCheck3 = "NotSelected",
   opcionText3,
   opcionEllipse53,
 }: MultipleChoiceType) => {
@@ -42,9 +42,9 @@ const MultipleChoice = ({
 
   const [opcionItems] = useState([
     { check: "Clicked" as const, text: "Pasto" },
-    { check: "None" as const, text: "Arbusto" },
-    { check: "None" as const, text: "Arbol" },
-    { check: "None" as const, text: "Ninguna" },
+    { check: "NotSelected" as const, text: "Arbusto" },
+    { check: "NotSelected" as const, text: "Arbol" },
+    { check: "NotSelected" as const, text: "Ninguna" },
   ]);
 
   return (

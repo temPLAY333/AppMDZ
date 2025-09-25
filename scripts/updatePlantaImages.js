@@ -21,8 +21,8 @@ if (!fileContent.includes('import { getPlantaImagen } from ')) {
   );
 }
 
-// Reemplazar todas las referencias a require('../../assets/image-1@3x')
-fileContent = fileContent.replace(/imagenPath: require\('\.\.\/\.\.\/assets\/image-1@3x'\)/g, 
+// Reemplazar todas las referencias a require('../../assets/image')
+fileContent = fileContent.replace(/imagenPath: require\('\.\.\/\.\.\/assets\/image'\)/g, 
   function(match, offset, string) {
     // Buscar el ID anterior en el texto
     const prevText = string.substring(0, offset);

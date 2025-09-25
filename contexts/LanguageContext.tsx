@@ -11,7 +11,33 @@ type TranslationKey =
   | "map.title" 
   | "info.title" 
   | "references.title" 
-  | "glossary.title";
+  | "glossary.title"
+  | "main.menu"
+  | "mendoza.squares"
+  | "start.tour"
+  | "play.trivia"
+  | "additional.info"
+  | "reference"
+  | "adaptation"
+  | "leaf.types"
+  | "leaf.arrangement"
+  | "flower.arrangement"
+  | "fruit.types"
+  | "naturalized"
+  | "economic.use"
+  | "drought.resistant"
+  | "exotic"
+  | "cold.resistant"
+  | "salt.resistant"
+  | "plaza.san.martin"
+  | "plaza.independencia"
+  | "plaza.espana"
+  | "plaza.italia"
+  | "plaza.chile"
+  | "stop.title"
+  | "flora.title"
+  | "button.map"
+  | "button.model";
 
 type TranslationsType = {
   [key in LanguageKey]: {
@@ -25,7 +51,7 @@ type LanguageContextType = {
   translate: (key: TranslationKey) => string;
 };
 
-// Traducciones básicas
+// Traducciones completas para la aplicación
 const translations: TranslationsType = {
   es: {
     "home.title": "Inicio",
@@ -37,7 +63,32 @@ const translations: TranslationsType = {
     "info.title": "Información Adicional",
     "references.title": "Referencias",
     "glossary.title": "Glosario",
-    // Añadir más traducciones según sea necesario
+    "main.menu": "Menú Principal",
+    "mendoza.squares": "Plazas de Mendoza",
+    "start.tour": "Iniciar Recorrido",
+    "play.trivia": "Jugar Trivia",
+    "additional.info": "Información Adicional",
+    "reference": "Referencia",
+    "adaptation": "Adaptaciones",
+    "leaf.types": "Tipos de Hojas",
+    "leaf.arrangement": "Disposición de las Hojas",
+    "flower.arrangement": "Disposición de Flores",
+    "fruit.types": "Tipos de Fruto",
+    "naturalized": "Naturalizada",
+    "economic.use": "Uso Económico",
+    "drought.resistant": "Resistente a sequía",
+    "exotic": "Exótica",
+    "cold.resistant": "Resistente al frío",
+    "salt.resistant": "Resistente a suelo salino",
+    "plaza.san.martin": "Plaza San Martín",
+    "plaza.independencia": "Plaza Independencia",
+    "plaza.espana": "Plaza España",
+    "plaza.italia": "Plaza Italia",
+    "plaza.chile": "Plaza Chile",
+    "stop.title": "Parada",
+    "flora.title": "Flora de la Parada",
+    "button.map": "Mapa",
+    "button.model": "Modelo"
   },
   en: {
     "home.title": "Home",
@@ -49,7 +100,32 @@ const translations: TranslationsType = {
     "info.title": "Additional Information",
     "references.title": "References",
     "glossary.title": "Glossary",
-    // Añadir más traducciones según sea necesario
+    "main.menu": "Main Menu",
+    "mendoza.squares": "Mendoza Squares",
+    "start.tour": "Start Tour",
+    "play.trivia": "Play Trivia",
+    "additional.info": "Additional Information",
+    "reference": "Reference",
+    "adaptation": "Adaptations",
+    "leaf.types": "Leaf Types",
+    "leaf.arrangement": "Leaf Arrangement",
+    "flower.arrangement": "Flower Arrangement",
+    "fruit.types": "Fruit Types",
+    "naturalized": "Naturalized",
+    "economic.use": "Economic Use",
+    "drought.resistant": "Drought Resistant",
+    "exotic": "Exotic",
+    "cold.resistant": "Cold Resistant",
+    "salt.resistant": "Salt Resistant Soil",
+    "plaza.san.martin": "San Martin Square",
+    "plaza.independencia": "Independence Square",
+    "plaza.espana": "Spain Square",
+    "plaza.italia": "Italy Square",
+    "plaza.chile": "Chile Square",
+    "stop.title": "Stop",
+    "flora.title": "Flora at Stop",
+    "button.map": "Map",
+    "button.model": "Model"
   }
 };
 

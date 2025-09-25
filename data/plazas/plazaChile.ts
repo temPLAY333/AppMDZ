@@ -8,9 +8,9 @@ const plazaChile: Plaza = {
   nombre: 'Plaza Chile',
   descripcion: 'La Plaza Chile es un espacio dedicado a fortalecer los lazos de hermandad entre Argentina y Chile. Esta plaza representa la amistad entre ambas naciones y contiene especies vegetales representativas.',
   bandera: '🇨🇱', // Bandera de Chile
-  imagenPortada: require('../../assets/image-3@3x.png'), // Usar una imagen existente temporalmente
-  mapaImagenPath: require('../../assets/image-3@3x.png'), // Usar una imagen existente temporalmente
-  modeloImagenPath: require('../../assets/Modelo-PSanMartin-1@3x.png'), // Usar una imagen existente temporalmente
+  imagenPortada: require('../../assets/CiudadDeMDZ.png'), // Usar una imagen existente temporalmente
+  mapaImagenPath: require('../../assets/CiudadDeMDZ.png'), // Usar una imagen existente temporalmente
+  modeloImagenPath: require('../../assets/Modelo-PSanMartin.png'), // Usar una imagen existente temporalmente
   paradas: [
     {
       id: 'parada-1',

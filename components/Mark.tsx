@@ -1,16 +1,20 @@
 import React, { useMemo } from "react";
-import { Text, StyleSheet, View } from "react-native";
+import { Text, StyleSheet, View, TouchableOpacity } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import { FontSize, Border, Color, Padding, FontFamily } from "../GlobalStyles";
 
 export type MarkType = {
   number?: string;
 
   /** Variant props */
-  status1?: "None" | "Pinned";
+  status1?: "NotSelected" | "Pinned";
 
   /** Style props */
   markWidth?: number | string;
   markHeight?: number | string;
+  
+  /** Navigation props */
+  plantaId?: string;
 };
 
 const getMarkContainerStyle = (styleKey: string) => {
@@ -37,11 +41,13 @@ const getStyleValue = (key: string, value: string | number | undefined) => {
   return { [key]: value === "unset" ? undefined : value };
 };
 const Mark = ({
-  status1 = "None",
+  status1 = "NotSelected",
   number = "6",
   markWidth,
   markHeight,
+  plantaId,
 }: MarkType) => {
+  const navigation = useNavigation<any>();
   const variantKey = `${status1}`;
 
   const markStyle = useMemo(() => {
@@ -50,11 +56,24 @@ const Mark = ({
       ...getStyleValue("height", markHeight),
     };
   }, [markWidth, markHeight]);
+  
+  // Función para navegar a la pantalla de detalle de planta
+  const handlePress = () => {
+    // El ID de la planta será el número del marcador si no se proporciona plantaId
+    const idPlanta = plantaId || number;
+    navigation.navigate("DetallePlanta", { 
+      plantaId: idPlanta,
+      paradaNumero: number
+    });
+  };
 
   return (
-    <View style={[styles.root, getMarkContainerStyle(variantKey), markStyle]}>
+    <TouchableOpacity 
+      style={[styles.root, getMarkContainerStyle(variantKey), markStyle]}
+      onPress={handlePress}
+    >
       <Text style={[styles.text, getText4Style(variantKey)]}>{number}</Text>
-    </View>
+    </TouchableOpacity>
   );
 };
 

@@ -8,9 +8,9 @@ const plazaEspana: Plaza = {
   nombre: 'Plaza España',
   descripcion: 'La Plaza España es un importante espacio público en Mendoza que representa los lazos históricos y culturales entre Argentina y España. Destaca por su fuente central y su vegetación mediterránea.',
   bandera: '🇪🇸', // Bandera de España
-  imagenPortada: require('../../assets/BP-Social-YouthClimateActionFund-1@3x.png'), // Usar una imagen existente temporalmente
-  mapaImagenPath: require('../../assets/BP-Social-YouthClimateActionFund-1@3x.png'), // Usar una imagen existente temporalmente
-  modeloImagenPath: require('../../assets/BP-Youth-Climate-Action-Fund-Logo-Options-040824-V1-FNL-YCAF-Logo-with-Tagline-as-Outlined-Text-White-1@3x.png'), // Usar una imagen existente temporalmente
+  imagenPortada: require('../../assets/BP-Social-YouthClimateActionFund.png'), // Usar una imagen existente temporalmente
+  mapaImagenPath: require('../../assets/BP-Social-YouthClimateActionFund.png'), // Usar una imagen existente temporalmente
+  modeloImagenPath: require('../../assets/BP-Youth-Climate-Action-Fund-Logo-Options-040824-V1-FNL-YCAF-Logo-with-Tagline-as-Outlined-Text-White.png'), // Usar una imagen existente temporalmente
   paradas: [
     {
       id: 'parada-1',

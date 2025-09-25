@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
   descripcion: {
     fontFamily: 'Inter-Regular',
     fontSize: 14,
-    lineHeight: 20,
+    lineHeight: 26, // Aumentado el espaciado entre líneas
     color: '#000000',
   },
 });

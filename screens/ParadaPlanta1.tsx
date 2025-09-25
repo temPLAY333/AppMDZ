@@ -2,21 +2,68 @@ import * as React from "react";
 import {
   ScrollView,
   StyleSheet,
-  ImageBackground,
   View,
   Platform,
   KeyboardAvoidingView,
+  Text,
 } from "react-native";
-import { Image } from "expo-image";
 import { SafeAreaView } from "react-native-safe-area-context";
 import TopBar from "../components/TopBar";
-import Ellipse4 from "../assets/Ellipse-4.svg";
 import Plants from "../components/Plants";
 import NavBar from "../components/NavBar";
 import Klipartz from "../assets/Klipartz.svg";
-import { Color, Padding } from "../GlobalStyles";
+import { Color, Padding, FontFamily } from "../GlobalStyles";
+import { plantasPorId, plazasPorId, obtenerPlantasConUbicacion } from "../data";
+import { useRoute, RouteProp } from '@react-navigation/native';
+import { useLanguage } from "../contexts/LanguageContext";
+import { PlantaConUbicacion } from "../data";
+
+// Definimos el tipo para los parámetros de la ruta
+type ParadaPlantaParams = {
+  paradaId?: string;
+  plazaId?: string;
+};
 
 const ParadaPlanta1 = () => {
+  // Obtenemos el contexto de idioma
+  const { language, translate } = useLanguage();
+  
+  // Obtenemos los parámetros de la ruta con tipado
+  const route = useRoute<RouteProp<Record<string, ParadaPlantaParams>, string>>();
+  const { paradaId = 'parada-1', plazaId = 'plaza-san-martin' } = route.params || {};
+  
+  // Obtenemos la plaza y la parada correspondiente
+  const plaza = plazasPorId[plazaId];
+  const parada = plaza?.paradas.find(p => p.id === paradaId) || plaza?.paradas[0];
+  
+  // Si no hay paradas, mostramos un fallback
+  if (!parada || !parada.plantas || parada.plantas.length === 0) {
+    console.warn('No se encontraron plantas para esta parada');
+  }
+  
+  // Obtenemos las plantas con su información de ubicación usando la función de utilidad
+  let plantasConUbicacion: PlantaConUbicacion[] = [];
+  try {
+    if (parada) {
+      plantasConUbicacion = obtenerPlantasConUbicacion(parada);
+    }
+  } catch (error) {
+    console.error('Error al obtener plantas de la parada:', error);
+  }
+  
+  // Obtenemos las dos primeras plantas o usamos fallbacks si es necesario
+  const planta1 = plantasConUbicacion[0] || plantasPorId['1']; // Fallback a planta con ID 1
+  const planta2 = plantasConUbicacion[1] || plantasPorId['2']; // Fallback a planta con ID 2
+  
+  // Obtenemos el número de la parada (si está disponible)
+  const paradaNumero = parada?.numero || '1';
+  
+  // Título de la parada según el idioma
+  const paradaTitle = `${translate("stop.title")} ${paradaNumero}`;
+  
+  // Texto de sección según el idioma
+  const floraTitle = `${translate("flora.title")} ${paradaNumero}`;
+    
   return (
     <SafeAreaView style={styles.viewBg}>
       <KeyboardAvoidingView
@@ -24,36 +71,53 @@ const ParadaPlanta1 = () => {
         behavior={Platform.OS === "ios" ? "padding" : undefined}
       >
         <View style={[styles.view, styles.viewBg]}>
-          <TopBar text="Parada N°1" />
+          <TopBar text={paradaTitle} textoWidth="auto" />
           <ScrollView
             style={styles.contenedor}
             contentContainerStyle={styles.contenedorContainerContent}
           >
-            <ImageBackground
-              style={styles.imagenIcon}
-              resizeMode="cover"
-              source={require("../assets/image-3.png")}
-            >
-              <Image
-                style={styles.image3Icon}
-                contentFit="cover"
-                source={require("../assets/image-3.png")}
-              />
-              <Ellipse4 style={styles.imagenChild} width={171} height={207} />
-            </ImageBackground>
             <View style={styles.items}>
-              <Plants
-                nombre="Viscote"
-                nombreCientifico="Acacia visco"
-                descripcionesMultilingue={{
-                  es: "Se encuentra en las plazas Independencia, Chile y España. Es un árbol que llega a medir 6-12 m de altura. Hojas alternas bipinnadas. Flores amarillas pequeñas agrupadas en cabezuelas. Su fruto es una vaina glabra, delgada, de color castaño, dehiscente (se abre al madurar). Perteneciente a la familia Fabáceas",
-                  en: "Found in Independence, Chile, and Spain squares. It's a tree that grows to 6-12 m tall. Alternate bipinnate leaves. Small yellow flowers clustered in heads. Its fruit is a glabrous, thin, brown pod that splits open when ripe. Belongs to the Fabaceae family."
-                }}
-                imagenPath={require("../assets/image-3@3x.png")}
-              />
+              <Text style={styles.sectionTitle}>{floraTitle}</Text>
+              {/* Primera planta */}
+              {planta1 && (
+                <View style={styles.plantContainer}>
+                  {'ubicacionEspecifica' in planta1 && planta1.ubicacionEspecifica && (
+                    <Text style={styles.ubicacionText}>
+                      {`${translate("reference")}: ${planta1.ubicacionEspecifica}`}
+                    </Text>
+                  )}
+                  <Plants
+                    nombre={planta1.atributos.nombre}
+                    nombreCientifico={planta1.atributos.nombreCientifico}
+                    descripcionesMultilingue={planta1.atributos.descripcionesMultilingue}
+                    imagenPath={planta1.atributos.imagenPath}
+                    referencias={planta1.atributos.referencias}
+                  />
+                </View>
+              )}
+              
+              <View style={styles.separator} />
+              
+              {/* Segunda planta */}
+              {planta2 && (
+                <View style={styles.plantContainer}>
+                  {'ubicacionEspecifica' in planta2 && planta2.ubicacionEspecifica && (
+                    <Text style={styles.ubicacionText}>
+                      {`${translate("reference")}: ${planta2.ubicacionEspecifica}`}
+                    </Text>
+                  )}
+                  <Plants
+                    nombre={planta2.atributos.nombre}
+                    nombreCientifico={planta2.atributos.nombreCientifico}
+                    descripcionesMultilingue={planta2.atributos.descripcionesMultilingue}
+                    imagenPath={planta2.atributos.imagenPath}
+                    referencias={planta2.atributos.referencias}
+                  />
+                </View>
+              )}
             </View>
           </ScrollView>
-          <NavBar klipartz={<Klipartz width={55} height={55} />} />
+          <NavBar klipartz={<Klipartz width={60} height={60} />} />
         </View>
       </KeyboardAvoidingView>
     </SafeAreaView>
@@ -65,6 +129,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     alignItems: "flex-start",
     justifyContent: "flex-start",
+    paddingBottom: 20, // Añadido espacio en la parte inferior
   },
   paradaPlanta1: {
     flex: 1,
@@ -79,7 +144,7 @@ const styles = StyleSheet.create({
   },
   view: {
     width: "100%",
-    height: 917,
+    height: "100%", // Cambiado a altura flexible
     overflow: "hidden",
   },
   contenedor: {
@@ -87,30 +152,44 @@ const styles = StyleSheet.create({
     alignSelf: "stretch",
     flex: 1,
   },
-  imagenIcon: {
-    width: '100%', // Ancho flexible
-    flexDirection: "row",
-    paddingHorizontal: 45,
-    paddingBottom: 69,
-    aspectRatio: 1.5, // Usa relación de aspecto en lugar de altura fija
-    maxHeight: 276, // Altura máxima
-  },
-  image3Icon: {
-    width: '100%', // Ancho flexible
-    display: "none",
-    aspectRatio: 1.5, // Usa relación de aspecto en lugar de altura fija
-  },
-  imagenChild: {
-    width: '42%', // Ancho relativo
-    aspectRatio: 0.82, // Mantiene la relación de aspecto
-    zIndex: 1,
-  },
   items: {
     flex: 1, // Permite que crezca según el contenido
-    padding: Padding.p_10,
+    padding: Padding.p_15, // Aumentamos el padding para dar más espacio
     alignSelf: "stretch",
     overflow: "hidden",
   },
+  sectionTitle: {
+    fontSize: 22,
+    fontWeight: "bold",
+    color: Color.colorWhite,
+    textAlign: "center",
+    marginVertical: 15,
+    backgroundColor: 'rgba(0, 0, 0, 0.2)',
+    padding: 10,
+    borderRadius: 10,
+    width: '100%',
+  },
+  plantContainer: {
+    width: '100%',
+    marginBottom: 15,
+  },
+  ubicacionText: {
+    fontSize: 16,
+    fontFamily: FontFamily.interRegular,
+    color: '#A6D451',
+    marginBottom: 10,
+    backgroundColor: 'rgba(0, 0, 0, 0.2)',
+    padding: 8,
+    borderRadius: 5,
+    alignSelf: 'flex-start',
+  },
+  separator: {
+    height: 2,
+    backgroundColor: '#A6D451',
+    width: '100%',
+    marginVertical: 25,
+    opacity: 0.7,
+  }
 });
 
 export default ParadaPlanta1;

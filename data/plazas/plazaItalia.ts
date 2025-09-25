@@ -8,9 +8,9 @@ const plazaItalia: Plaza = {
   nombre: 'Plaza Italia',
   descripcion: 'La Plaza Italia es un espacio público importante en Mendoza que honra los vínculos históricos con Italia y su influencia en la cultura local. Se caracteriza por su vegetación típica y elementos decorativos distintivos.',
   bandera: '🇮🇹', // Bandera de Italia
-  imagenPortada: require('../../assets/image-1@3x.png'), // Usar una imagen existente temporalmente
-  mapaImagenPath: require('../../assets/image-1@3x.png'), // Usar una imagen existente temporalmente
-  modeloImagenPath: require('../../assets/image-3@3x.png'), // Usar una imagen existente temporalmente
+  imagenPortada: require('../../assets/CiudadDeMDZ.png'), // Usar una imagen existente temporalmente
+  mapaImagenPath: require('../../assets/CiudadDeMDZ.png'), // Usar una imagen existente temporalmente
+  modeloImagenPath: require('../../assets/CiudadDeMDZ.png'), // Usar una imagen existente temporalmente
   paradas: [
     {
       id: 'parada-1',

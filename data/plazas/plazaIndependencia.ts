@@ -8,9 +8,9 @@ const plazaIndependencia: Plaza = {
   nombre: 'Plaza Independencia',
   descripcion: 'La Plaza Independencia es la plaza principal de Mendoza, ubicada en el centro de la ciudad. Fue diseñada después del terremoto de 1861 y representa el corazón cívico y cultural de la ciudad, con una gran variedad de especies vegetales.',
   bandera: '🇦🇷', // Bandera de Argentina
-  imagenPortada: require('../../assets/BP-Social-YouthClimateActionFund-1@3x.png'), // Usar una imagen existente temporalmente
-  mapaImagenPath: require('../../assets/BP-Social-YouthClimateActionFund-1@3x.png'), // Usar una imagen existente temporalmente
-  modeloImagenPath: require('../../assets/Modelo-PSanMartin-1@3x.png'), // Usar una imagen existente temporalmente
+  imagenPortada: require('../../assets/BP-Social-YouthClimateActionFund.png'), // Usar una imagen existente temporalmente
+  mapaImagenPath: require('../../assets/BP-Social-YouthClimateActionFund.png'), // Usar una imagen existente temporalmente
+  modeloImagenPath: require('../../assets/Modelo-PSanMartin.png'), // Usar una imagen existente temporalmente
   paradas: [
     {
       id: 'parada-1',
