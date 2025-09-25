@@ -67,8 +67,7 @@ const plantas: Planta[] = [
         EmojiReferencia.Exotica
       ]
     }
-  },
-  {
+  },{
     id: '5',
     atributos: {
       nombre: 'Araucaria Austrailiana',
@@ -83,8 +82,23 @@ const plantas: Planta[] = [
         EmojiReferencia.Naturalizada
       ]
     }
-  },{
+  },{    
     id: '6',
+    atributos: {
+      nombre: 'Pezuña de Vaca',
+      nombreCientifico: 'Bauhinia variegata',
+      descripcionesMultilingue: {
+        es: 'Se ubica en plaza Independencia, Chile y España. Es un árbol o arbusto con hojas que alcanzan 10 a 20 cm, redondeadas y bilobuladas, es decir, con dos secciones salientes. Las flores son rosas o blancas de 5 pétalos y su fruto es una legumbre. Se utiliza principalmente como ornamental. Pertenece a la familia Fabáceas.',
+        en: 'Located in Independence, Chile and Spain squares. It\'s a tree or shrub with leaves that reach 10 to 20 cm, rounded and bilobed, that is, with two protruding sections. The flowers are pink or white with 5 petals and its fruit is a legume. It is mainly used as an ornamental plant. Belongs to the Fabaceae family.'
+      },
+      imagenPath: getPlantaImagen('6'),
+      referencias: [
+        EmojiReferencia.Exotica,
+        EmojiReferencia.Naturalizada
+      ]
+    }
+  },{
+    id: '7',
     atributos: {
       nombre: 'Boj',
       nombreCientifico: 'Buxus sp',
@@ -94,12 +108,11 @@ const plantas: Planta[] = [
       },
       imagenPath: getPlantaImagen('6'),
       referencias: [
-        EmojiReferencia.Exotica,
         EmojiReferencia.UsoEconomico
       ]
     }
   },{
-    id: '7',
+    id: '8',
     atributos: {
       nombre: 'Casuarina',
       nombreCientifico: 'Casuarina cunninghamiana',
@@ -115,7 +128,7 @@ const plantas: Planta[] = [
       ]
     }
   },{
-    id: '8',
+    id: '9',
     atributos: {
       nombre: 'Cedro del Himalaya',
       nombreCientifico: 'Cedrus deodara',
@@ -131,7 +144,7 @@ const plantas: Planta[] = [
       ]
     }
   },{
-    id: '9',
+    id: '10',
     atributos: {
       nombre: 'Palao Borracho',
       nombreCientifico: 'Ceiba speciosa y C. chodatii',
@@ -145,7 +158,7 @@ const plantas: Planta[] = [
       ]
     }
   },{
-    id: '10',
+    id: '11',
     atributos: {
       nombre: 'Árbol de Judea',
       nombreCientifico: 'Cercis siliquastrum',
@@ -159,13 +172,13 @@ const plantas: Planta[] = [
       ]
     }
   },{
-    id: '11',
+    id: '12',
     atributos: {
-      nombre: 'Ceibo',
-      nombreCientifico: 'Erythrina crista-galli',
+      nombre: 'Cóculo',
+      nombreCientifico: 'Cocculus laurifolius',
       descripcionesMultilingue: {
-        es: 'Se ubica en plaza Independencia, Chile, Italia y San Martín. Es un árbol de porte mediano que puede alcanzar entre 5 a 8 m de altura, llegando raramente hasta los 20 m y con un diámetro de tronco de más de 50 cm. El tronco es tortuoso e irregular, con ramas espinosas que crecen de forma desordenada y mueren tras la floración; las hojas son caducas, compuestas de tres láminas oblongo-lanceoladas con textura coriácea. Perteneciente a la familia Fabáceas.',
-        en: 'Located in square Independence, Chile, Italy and San Martín. It\'s a medium-sized tree that can reach between 5 and 8 m in height, rarely reaching up to 20 m, with a trunk diameter of more than 50 cm. The trunk is twisted and irregular, with spiny branches that grow in a disorderly manner and die after flowering; the leaves are deciduous, composed of three oblong-lanceolate leaflets with a leathery texture. Belongs to the Fabaceae family.'
+        es: 'Se encuentra en las plazas Independencia y Chile. Es un árbol perenne de crecimiento lento y longevo, originario del Este de Asia, puede alcanzar los 12 a 18 metros de altura, de copa globosa y frondosa. Tronco en general corto y tortuoso, de corteza grisácea, fina y rugosa. Sus hojas coriáceas (duras), alternas, simples y alargadas se asemejan a las de un laurel, posee tres nervaduras prominentes. Se trata de una especie dioica, por lo cual posee flores masculinas y femeninas en distintos individuos. Su fruto es una drupa pequeña ligeramente aplastada, de color negro al madurar. Tolera temperaturas de hasta -10°C. Perteneciente a la familia Menispermáceas.',
+        en: 'Found in Independence and Chile squares. It\'s a perennial tree of slow growth and longevity, native to East Asia, can reach 12 to 18 meters in height, with a globose and leafy crown. The trunk is generally short and twisted, with grayish, thin, and rough bark. Its leathery (hard), alternate, simple, and elongated leaves resemble those of a laurel, with three prominent veins. It is a dioecious species, meaning it has male and female flowers on different individuals. Its fruit is a small, slightly flattened drupe, turning black when ripe. Tolerates temperatures down to -10°C. Belongs to the Menispermaceae family.'
       },
       imagenPath: getPlantaImagen('1'),
       referencias: [
@@ -173,7 +186,7 @@ const plantas: Planta[] = [
       ]
     }
   },{
-    id: '12',
+    id: '13',
     atributos: {
       nombre: 'Cipres',
       nombreCientifico: 'Cupressus sp',
@@ -190,7 +203,7 @@ const plantas: Planta[] = [
       ]
     }
   },{
-    id: '13',
+    id: '14',
     atributos: {
       nombre: 'Evonimo',
       nombreCientifico: 'Evonimus japonicus',
@@ -207,7 +220,21 @@ const plantas: Planta[] = [
       ]
     }
   },{
-    id: '14',
+    id: '15',
+    atributos: {
+      nombre: 'Ceibo',
+      nombreCientifico: 'Erythrina crista-galli',
+      descripcionesMultilingue: {
+        es: 'Se ubica en plaza Independencia, Chile, Italia y San Martín. Es un árbol de porte mediano que puede alcanzar entre 5 a 8 m de altura, llegando raramente hasta los 20 m y con un diámetro de tronco de más de 50 cm. El tronco es tortuoso e irregular, con ramas espinosas que crecen de forma desordenada y mueren tras la floración; las hojas son caducas, compuestas de tres láminas oblongo-lanceoladas con textura coriácea. Perteneciente a la familia Fabáceas.',
+        en: 'Located in Independence, Chile, Italy and San Martín squares. It\'s a medium-sized tree that can reach between 5 to 8 m in height, rarely reaching up to 20 m and with a trunk diameter of more than 50 cm. The trunk is twisted and irregular, with thorny branches that grow in a disorderly manner and die after flowering; the leaves are deciduous, composed of three oblong-lanceolate blades with a leathery texture. Belongs to the Fabaceae family.'
+      },
+      imagenPath: getPlantaImagen('1'),
+      referencias: [
+        EmojiReferencia.Naturalizada
+      ]
+    }
+  },{
+    id: '16',
     atributos: {
       nombre: 'Acacia de tres Espinas',
       nombreCientifico: 'Gleditsia triacanthos',
@@ -223,7 +250,7 @@ const plantas: Planta[] = [
       ]
     }
   },{
-    id: '15',
+    id: '17',
     atributos: {
       nombre: 'Parasol Chino',
       nombreCientifico: 'Firmiana Simplex',
@@ -240,7 +267,7 @@ const plantas: Planta[] = [
       ]
     }
   },{
-    id: '16',
+    id: '18',
     atributos: {
       nombre: 'Fresno',
       nombreCientifico: 'Fraxinus excelsior y F. pennsylvanica',
@@ -256,7 +283,7 @@ const plantas: Planta[] = [
       ]
     }
   },{
-    id: '17',
+    id: '19',
     atributos: {
       nombre: 'Jacaranda',
       nombreCientifico: 'Jacaranda mimosifolia',
@@ -271,9 +298,9 @@ const plantas: Planta[] = [
       ]
     }
   },{
-    id: '18',
+    id: '20',
     atributos: {
-      nombre: 'ÁRbol de Júpiter',
+      nombre: 'Árbol de Júpiter',
       nombreCientifico: 'Lagerstroemia indica',
       descripcionesMultilingue: {
         es: 'Se ubica en plaza España. Es un árbol o arbusto caducifolio que habitualmente mide de 2 a 8 m, llegando incluso hasta los 15 m aunque tarda muchos años en tener esta presencia tan significativa; con el tronco retorcido y la copa redondeada. Perteneciente a la familia Litráceas',
@@ -287,7 +314,7 @@ const plantas: Planta[] = [
       ]
     }
   },{
-    id: '19',
+    id: '21',
     atributos: {
       nombre: 'Ligustro',
       nombreCientifico: 'Ligustrum lucidum',
@@ -303,7 +330,7 @@ const plantas: Planta[] = [
       ]
     }
   },{
-    id: '20',
+    id: '22',
     atributos: {
       nombre: 'Liquidambar Americano',
       nombreCientifico: 'Liquidambar styraciflua',
@@ -318,7 +345,21 @@ const plantas: Planta[] = [
       ]
     }
   },{
-    id: '21',
+    id: '23',
+    atributos: {
+      nombre: 'Magnolia',
+      nombreCientifico: 'Magnolia grandiflora',
+      descripcionesMultilingue: {
+        es: 'Se ubica en plaza Independencia, Italia y España. Es un árbol o arbusto norteamericano, que puede alcanzar entre 18 y 24 metros de altura. Sus hojas perennes, coriáceas, de forma ovalada a elíptica, de hasta 25 cm de largo, son de color verde oscuro brillante por encima y de color verde pálido a marrón grisáceo por debajo. Posee grandes flores blancas-crema, de 6 pétalos, carnosas, vistosas y fragantes. Fruto, de 6 12 cm de largo, tiene forma de piña alargada, cubierto de pelos rojizos, con semillas de color rojo. Perteneciente a la familia Magnoliáceas.',
+        en: 'Located in Independence, Italy and Spain squares. It\'s a North American tree or shrub that can reach between 18 and 24 meters in height. Its evergreen, leathery leaves, oval to elliptical in shape, can be up to 25 cm long, are dark shiny green above and pale green to brownish-gray below. It has large white-cream flowers with 6 fleshy, showy, and fragrant petals. The fruit, 6-12 cm long, is elongated and covered with reddish hairs, containing red seeds. Belongs to the Magnoliaceae family.'
+      },
+      imagenPath: getPlantaImagen('1'),
+      referencias: [
+        EmojiReferencia.Exotica
+      ]
+    }
+  },{
+    id: '24',
     atributos: {
       nombre: 'Paraíso',
       nombreCientifico: 'Melia azedarach',
@@ -334,7 +375,7 @@ const plantas: Planta[] = [
       ]
     }
   },{
-    id: '22',
+    id: '25',
     atributos: {
       nombre: 'Morera',
       nombreCientifico: 'Morus alba y M. nigra',
@@ -351,7 +392,22 @@ const plantas: Planta[] = [
       ]
     }
   },{
-    id: '23',
+    id: '26',
+    atributos: {
+      nombre: 'Algarrobo',
+      nombreCientifico: 'Neltuma sp.',
+      descripcionesMultilingue: {
+        es: 'Se ubica en plaza Independencia y Chile. Son árboles o grandes arbustos espinosos, de 3 a 10 metros de altura, nativos de nuestra provincia. El tronco es en general corto, con ramas largas, decumbentes (tienden a estar cerca del suelo). Posee hojas bipinnadas con los folíolos separados entre sí. Flores pequeñas, poco llamativas, de color amarillo pálido, agrupadas en racimos. Su fruto es una legumbre recta, indehiscente (no se abre al madurar). Tiene valor forrajero para ganadería y puede aprovecharse su madera. Perteneciente a la familia Fabáceas.',
+        en: 'Located in Independence and Chile squares. They are trees or large thorny shrubs, 3 to 10 meters tall, native to our province. The trunk is generally short, with long, decumbent branches (tending to be close to the ground). It has bipinnate leaves with leaflets separated from each other. Small, inconspicuous flowers, pale yellow in color, grouped in clusters. Its fruit is a straight legume, indehiscent (does not open when ripe). It has forage value for livestock and its wood can be used. Belongs to the Fabaceae family.'
+      },
+      imagenPath: getPlantaImagen('1'),
+      referencias: [
+        EmojiReferencia.UsoEconomico,
+        EmojiReferencia.ResistenteSequia
+      ]
+    }
+  },{
+    id: '27',
     atributos: {
       nombre: 'Adelfa',
       nombreCientifico: 'Nerium oleander',
@@ -367,7 +423,7 @@ const plantas: Planta[] = [
       ]
     }
   },{
-    id: '24',
+    id: '28',
     atributos: {
       nombre: 'Pino del Himalaya',
       nombreCientifico: 'Pinus griffithii',
@@ -384,7 +440,7 @@ const plantas: Planta[] = [
       ]
     }
   },{
-    id: '25',
+    id: '29',
     atributos: {
       nombre: 'Azarero',
       nombreCientifico: 'Pittosporum tobira',
@@ -400,7 +456,7 @@ const plantas: Planta[] = [
       ]
     }
   },{
-    id: '26',
+    id: '30',
     atributos: {
       nombre: 'Plátano',
       nombreCientifico: 'Platanus x acerifolia',
@@ -416,7 +472,7 @@ const plantas: Planta[] = [
       ]
     }
   },{
-    id: '27',
+    id: '31',
     atributos: {
       nombre: 'Palma Fénix',
       nombreCientifico: 'Phoenix canariensis',
@@ -431,7 +487,22 @@ const plantas: Planta[] = [
       ]
     }
   },{
-    id: '28',
+    id: '32',
+    atributos: {
+      nombre: 'Ombú',
+      nombreCientifico: 'Phytolacca dioica',
+      descripcionesMultilingue: {
+        es: 'Se ubica en plaza Chile e Italia. Es un árbol de tronco muy engrosado, del NE argentino hasta Buenos Aires, puede alcanzar varios metros de altura y gran diámetro, de madera blanda y esponjosa. Las hojas son elípticas, alternas y perennes, a veces utilizadas como purgantes. Las flores son unisexuales, ubicadas las femeninas y masculinas en distintos individuos. Perteneciente a la familia Fitolacáceas.',
+        en: 'Located in Chile and Italy squares. It\'s a tree with a very thick trunk, from northeastern Argentina to Buenos Aires, it can reach several meters in height and large diameter, with soft and spongy wood. The leaves are elliptical, alternate, and evergreen, sometimes used as purgatives. The flowers are unisexual, with the female and male located on different individuals. Belongs to the Phytolaccaceae family.'
+      },
+      imagenPath: getPlantaImagen('1'),
+      referencias: [
+        EmojiReferencia.Exotica,
+        EmojiReferencia.UsoEconomico
+      ]
+    }
+  },{
+    id: '33',
     atributos: {
       nombre: 'Granado',
       nombreCientifico: 'Punica granatum',
@@ -446,12 +517,43 @@ const plantas: Planta[] = [
       ]
     }
   },{
-    id: '29',
+    id: '33',
+    atributos: {
+      nombre: 'Roble',
+      nombreCientifico: 'Quercus robur',
+      descripcionesMultilingue: {
+        es: 'Se ubica en plaza Independencia y San Martín. Es un árbol robusto de copa ancha que puede alcanzar los 40 metros de altura. Hojas alternas, simples y lobuladas, caducas, de color verde intenso con las nervaduras marcadas. Su fruto seco, envuelto en una cáscara dura con una cúpula leñosa en su parte superior, se conoce como bellota. Tiene valor como forestal. Perteneciente a la familia Fagáceas.',
+        en: 'Located in square Independencia and San Martín. It\'s a robust tree with a wide crown that can reach 40 meters in height. Alternate, simple, and lobed leaves, deciduous, with a dark green color and marked veins. Its dry fruit, wrapped in a hard shell with a woody cup on top, is known as an acorn. It has value as a timber tree. Belongs to the Fagaceae family.'
+      },
+      imagenPath: getPlantaImagen('1'),
+      referencias: [
+        EmojiReferencia.Exotica,
+        EmojiReferencia.ResistenteFrio,
+        EmojiReferencia.UsoEconomico
+      ]
+    }
+  },{
+    id: '34',
+    atributos: {
+      nombre: 'Árbol del Corcho', // Alcornoque
+      nombreCientifico: 'Quercus suber ',
+      descripcionesMultilingue: {
+        es: 'Se ubica en plaza Independencia. Es un árbol de porte medio, perenne, de copa irregular. Sus hojas son alternas, simples, de forma ovado-oblongas, coriáceas, con la cara superior de un verde oscuro y el envés gris. Al igual que Q. robur, su frutos son bellotas. Se aprovecha económicamente su corteza gruesa y rugosa para la fabricación de corchos. No tolera mucho el frío y es sensible a suelos calizos. Perteneciente a la familia Fagáceas.',
+        en: 'Located in square Independencia. It\'s a medium-sized, evergreen tree with an irregular crown. Its leaves are alternate, simple, ovate-oblong, leathery, with a dark green upper surface and a gray underside. Like Q. robur, its fruits are acorns. Its thick, rough bark is economically valuable for cork production. It does not tolerate cold well and is sensitive to calcareous soils. Belongs to the Fagaceae family.'
+      },
+      imagenPath: getPlantaImagen('1'),
+      referencias: [
+        EmojiReferencia.Exotica,
+        EmojiReferencia.UsoEconomico
+      ]
+    }
+  },{
+    id: '35',
     atributos: {
       nombre: 'Falsa Acacia',
       nombreCientifico: 'Robinia pseudoacacia',
       descripcionesMultilingue: {
-        es: 'Se ubica en plaza Independencia, Chile y San Martín. Es un árbol de follaje caducifolio, de unos 25 m de altura con un tronco de diámetro inferior al metro -excepcionalmente hasta 50 m de altura y 16 dm de diámetro en muy viejos individuos- con una espesa corteza negruzca profundamente fisurada; no se recomienda su ingesta porque puede ser perjudicial. Posee hojas compuestas con espinas en la base del pecíolo. Perteneciente a la familia Fabáceas',
+        es: 'Se ubica en plaza Independencia, Chile y San Martín. Es un árbol de follaje caducifolio, de unos 25 m de altura con un tronco de diámetro inferior al metro -excepcionalmente hasta 50 m de altura y 16 dm de diámetro en muy viejos individuos- con una espesa corteza negruzca profundamente fisurada; no se recomienda su ingesta porque puede ser perjudicial. Posee hojas compuestas con espinas en la base del pecíolo. Perteneciente a la familia Fabáceas.',
         en: 'Located in square Independence, Chile and San Martín. It\'s a tree with deciduous foliage, about 25 m tall with a trunk diameter of less than one meter -exceptionally up to 50 m tall and 16 dm in diameter in very old individuals- with a thick dark brown deeply fissured bark; not recommended for consumption because it can be harmful. It has compound leaves with spines at the base of the petiole. Belongs to the Fabaceae family.'
       },
       imagenPath: getPlantaImagen('1'),
@@ -462,13 +564,43 @@ const plantas: Planta[] = [
       ]
     }
   },{
-    id: '30',
+    id: '36',
+    atributos: {
+      nombre: 'Aguaribay',
+      nombreCientifico: 'Schinus molle',
+      descripcionesMultilingue: {
+        es: 'Se ubica en plaza Independencia y Chile. Son árboles perennes de hasta 8 a 15 metros, con canales resiníferos en la corteza, de color pardo oscura a grisácea, escamosa, con hojas pinnadas. Son comunes en el NO argentino hasta México. Las flores unisexuales se agrupan en panículas y sus frutos son drupas globosas de color rosa a rojo, los cuales se usan para adulterar la pimienta, como condimento y como antiinflamatorio. Resiste bien altas temperaturas y heladas esporádicas y breves, no tolera suelo anegado. Perteneciente a la familia Anacardiáceas.',
+        en: 'Located in Independence and Chile squares. They are evergreen trees up to 8 to 15 meters tall, with resin canals in the bark, dark brown to grayish in color, scaly, with pinnate leaves. They are common in northeastern Argentina to Mexico. The unisexual flowers are grouped in panicles and their fruits are globular drupes ranging from pink to red, which are used to adulterate pepper, as a condiment, and as an anti-inflammatory. It tolerates high temperatures and sporadic and brief frosts well, but does not tolerate waterlogged soil. Belongs to the Anacardiaceae family.'
+      },
+      imagenPath: getPlantaImagen('1'),
+      referencias: [
+        EmojiReferencia.Naturalizada,
+        EmojiReferencia.ResistenteSequia
+      ]
+    }
+  },{
+    id: '37',
+    atributos: {
+      nombre: 'Pindó',
+      nombreCientifico: 'Syagrus romanzoffiana',
+      descripcionesMultilingue: {
+        es: 'Se ubica en plaza San Martín. Es una palmera nativa del Sur de Brasil, Paraguay, Uruguay y NE de Argentina, en la provincia fitogeográfica Paranaense. Puede alcanzar los 25 metros de altura, con estípite grisáceo, desnudo y anillado debido a las cicatrices foliares que dejan las vainas no persistentes. Sus hojas de aspecto plumoso son palmas, pinnadas, con folíolos alargados de hasta 1 metro. En comparación a otras palmeras, tolera suelos pobres y temperaturas frescas. Perteneciente a la familia Arecáceas.',
+        en: 'Located in square San Martín. It\'s a palm tree native to southern Brazil, Paraguay, Uruguay, and northeastern Argentina, in the Paranaense phytogeographic province. It can reach up to 25 meters in height, with a grayish, bare, and ringed stipe due to the foliar scars left by the non-persistent sheaths. Its feathery-looking leaves are palmate, pinnate, with elongated leaflets up to 1 meter long. Compared to other palm trees, it tolerates poor soils and cool temperatures. Belongs to the Arecaceae family.'
+      },
+      imagenPath: getPlantaImagen('1'),
+      referencias: [
+        EmojiReferencia.Exotica,
+        EmojiReferencia.ResistenteFrio
+      ]
+    }
+  },{
+    id: '38',
     atributos: {
       nombre: 'Tilo',
       nombreCientifico: 'Tilia sp.',
       descripcionesMultilingue: {
         es: 'Se ubican en plaza Independencia, Chile e Italia. Son árboles de buen volumen de crecimiento y que llegan a vivir hasta 900 años, y alcanzan entre 20 y 40 m de altura, con fustes rectos de hasta un metro de diámetro, caducifolios. Las hojas son cordiformes, con borde aserrado, de hasta 20 cm de ancho, de color verde oscuro en el haz y verde claro plateado en el envés, fuertemente aromáticas. Las flores de este árbol son muy aromáticas, en forma de pequeños racimos amarillos con una bráctea alargada y presentan propiedades medicinales. Perteneciente a la familia Malváceas',
-        en: ''
+        en: 'Located in square Independence, Chile and Italy. They are trees with good growth volume that can live up to 900 years, reaching between 20 and 40 m in height, with straight trunks of up to one meter in diameter, deciduous. The leaves are heart-shaped, with serrated edges, up to 20 cm wide, dark green on the upper side and silvery light green on the underside, strongly aromatic. The flowers of this tree are very aromatic, in the form of small yellow clusters with an elongated bract, and have medicinal properties. Belongs to the Malvaceae family.'
       },
       imagenPath: getPlantaImagen('1'),
       referencias: [
@@ -478,7 +610,22 @@ const plantas: Planta[] = [
       ]
     }
   },{
-    id: '31',
+    id: '39',
+    atributos: {
+      nombre: 'Tipa',
+      nombreCientifico: 'Tipuana tipu',
+      descripcionesMultilingue: {
+        es: 'Se ubica en plaza Independencia, Chile, Italia y San Martín. Es un árbol de hasta 10-25 m de altura, de corteza gruesa, resquebrajada, de color pardo grisáceo. Hojas pinnadas caducas. Flores amarillas reunidas en racimos. Su fruto es una legumbre alada, semejante a una sámara, con una sola semilla en su interior. Especie característica de la Selva Tucumano-Oranense. Perteneciente a la familia Fabáceas.',
+        en: 'Located in square Independence, Chile, Italy and San Martín. It\'s a tree that can reach heights of 10-25 m, with thick, cracked bark that is brownish-gray in color. The leaves are deciduous and pinnate. The flowers are yellow and clustered. Its fruit is a winged legume, similar to a samara, containing a single seed. This species is characteristic of the Tucumano-Oranense Forest. Belongs to the Fabaceae family.'
+      },
+      imagenPath: getPlantaImagen('1'),
+      referencias: [
+        EmojiReferencia.Naturalizada,
+        EmojiReferencia.ResistenteSequia
+      ]
+    }
+  },{
+    id: '40',
     atributos: {
       nombre: 'Sauzgatillo',
       nombreCientifico: 'Vitex angus-castus',
@@ -495,7 +642,7 @@ const plantas: Planta[] = [
       ]
     }
   },{
-    id: '32',
+    id: '41',
     atributos: {
       nombre: 'Palmera China',
       nombreCientifico: 'Trachycarpus fortunei',
@@ -512,7 +659,7 @@ const plantas: Planta[] = [
       ]
     }
   },{
-    id: '33',
+    id: '42',
     atributos: {
       nombre: 'Palmera Abanico',
       nombreCientifico: 'Washingtonia robusta y W. filiformis',
@@ -526,22 +673,7 @@ const plantas: Planta[] = [
         EmojiReferencia.ResistenteSequia
       ]
     }
-  },{
-    id: '34',
-    atributos: {
-      nombre: 'Tipa',
-      nombreCientifico: 'Tipuana tipu',
-      descripcionesMultilingue: {
-        es: 'Se ubica en plaza Independencia, Chile, Italia y San Martín. Es un árbol de hasta 10 25 m de altura, de corteza gruesa, resquebrajada, de color pardo grisáceo. Hojas pinnadas caducas. Flores amarillas reunidas en racimos. Su fruto es una legumbre alada, semejante a una sámara, con una sola semilla en su interior. Especie característica de la Selva Tucumano-Oranense. Perteneciente a la familia Fabáceas.',
-        en: 'Located in square Independence, Chile, Italy and San Martín. It\'s a tree up to 10-25 m tall, with thick, cracked bark of grayish-brown color. Deciduous pinnate leaves. Yellow flowers gathered in clusters. Its fruit is a winged legume, similar to a samara, with a single seed inside. A characteristic species of the Tucumano-Oranense Forest. Belongs to the Fabaceae family.'
-      },
-      imagenPath: getPlantaImagen('1'),
-      referencias: [
-        EmojiReferencia.Exotica,
-        EmojiReferencia.ResistenteSequia
-      ]
-    }
-  },
+  }
 ];
 
 // Exportamos un objeto con todas las plantas indexadas por ID para acceso rápido
