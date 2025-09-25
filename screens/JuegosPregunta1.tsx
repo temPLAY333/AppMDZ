@@ -42,7 +42,7 @@ const JuegosPregunta1 = () => {
     }
   }, [plazaId]);
 
-  // Función para seleccionar preguntas aleatorias
+  // Función para seleccionar preguntas aleatorias y barajar sus opciones
   const seleccionarPreguntasAleatorias = (preguntas: Pregunta[], cantidad: number): Pregunta[] => {
     const preguntasCopiadas = [...preguntas];
     const resultado: Pregunta[] = [];
@@ -52,11 +52,25 @@ const JuegosPregunta1 = () => {
     
     for (let i = 0; i < cantidadReal; i++) {
       const indiceAleatorio = Math.floor(Math.random() * preguntasCopiadas.length);
-      resultado.push(preguntasCopiadas[indiceAleatorio]);
+      const pregunta = { ...preguntasCopiadas[indiceAleatorio] };
+      
+      // Barajar las opciones de la pregunta
+      pregunta.opciones = barajarOpciones([...pregunta.opciones]);
+      
+      resultado.push(pregunta);
       preguntasCopiadas.splice(indiceAleatorio, 1);
     }
     
     return resultado;
+  };
+  
+  // Función para barajar un array (algoritmo Fisher-Yates)
+  const barajarOpciones = (opciones: Opcion[]): Opcion[] => {
+    for (let i = opciones.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [opciones[i], opciones[j]] = [opciones[j], opciones[i]];
+    }
+    return opciones;
   };
 
   // Función para manejar la selección de respuesta
@@ -73,6 +87,11 @@ const JuegosPregunta1 = () => {
 
   // Función para pasar a la siguiente pregunta
   const siguientePregunta = () => {
+    // Verificar si se ha seleccionado una opción
+    if (!selectedOption) {
+      return; // No hacer nada si no hay una opción seleccionada
+    }
+    
     if (indicePreguntaActual < preguntasSeleccionadas.length - 1) {
       setIndicePreguntaActual(indicePreguntaActual + 1);
       setSelectedOption(null); // Resetear la opción seleccionada
@@ -89,13 +108,11 @@ const JuegosPregunta1 = () => {
   // Si no hay preguntas seleccionadas, mostrar un mensaje de carga
   if (preguntasSeleccionadas.length === 0) {
     return (
-      <SafeAreaView style={styles.viewBg}>
-        <View style={[styles.view, styles.viewBg]}>
-          <TopBar text={`Trivia`} textoWidth={157} />
-          <Text style={styles.loadingText}>Cargando preguntas...</Text>
-          <NavBar klipartz={<Klipartz width={55} height={55} />} />
-        </View>
-      </SafeAreaView>
+      <View style={styles.container}>
+        <TopBar text={`Trivia`} textoWidth={157} translationKey="" />
+        <Text style={styles.loadingText}>Cargando preguntas...</Text>
+        <NavBar klipartz={<Klipartz width={55} height={55} />} />
+      </View>
     );
   }
 
@@ -103,43 +120,45 @@ const JuegosPregunta1 = () => {
   const preguntaActual = preguntasSeleccionadas[indicePreguntaActual];
   
   return (
-    <SafeAreaView style={styles.viewBg}>
-      <View style={[styles.view, styles.viewBg]}>
-        <TopBar text={`Pregunta ${indicePreguntaActual + 1} de ${preguntasSeleccionadas.length}`} textoWidth={250} />
-        
-        <View style={styles.preguntaContainer}>
-          <Text style={styles.preguntaText}>{preguntaActual.texto}</Text>
-        </View>
-        
-        <View style={styles.opcionesContainer}>
-          {preguntaActual.opciones.map((opcion, index) => (
-            <Pressable 
-              key={index}
-              style={[
-                styles.opcionBtn,
-                selectedOption === opcion.texto && styles.opcionSeleccionada
-              ]}
-              onPress={() => handleSeleccionRespuesta(index)}
-            >
-              <Text style={styles.opcionText}>{opcion.texto}</Text>
-            </Pressable>
-          ))}
-        </View>
-        
-        <Pressable 
-          style={styles.siguienteBtn}
-          onPress={siguientePregunta}
-        >
-          <Text style={styles.siguienteBtnText}>
-            {indicePreguntaActual < preguntasSeleccionadas.length - 1 
-              ? "Siguiente" 
-              : "Ver Resultados"}
-          </Text>
-        </Pressable>
-        
-        <NavBar klipartz={<Klipartz width={55} height={55} />} />
+    <View style={styles.container}>
+      <TopBar text={`Pregunta ${indicePreguntaActual + 1} de ${preguntasSeleccionadas.length}`} textoWidth={250} translationKey="" />
+      
+      <View style={styles.preguntaContainer}>
+        <Text style={styles.preguntaText}>{preguntaActual.texto}</Text>
       </View>
-    </SafeAreaView>
+      
+      <View style={styles.opcionesContainer}>
+        {preguntaActual.opciones.map((opcion, index) => (
+          <Pressable 
+            key={index}
+            style={[
+              styles.opcionBtn,
+              selectedOption === opcion.texto && styles.opcionSeleccionada
+            ]}
+            onPress={() => handleSeleccionRespuesta(index)}
+          >
+            <Text style={styles.opcionText}>{opcion.texto}</Text>
+          </Pressable>
+        ))}
+      </View>
+      
+      <Pressable 
+        style={[
+          styles.siguienteBtn,
+          !selectedOption && styles.siguienteBtnDisabled
+        ]}
+        onPress={siguientePregunta}
+        disabled={!selectedOption}
+      >
+        <Text style={styles.siguienteBtnText}>
+          {indicePreguntaActual < preguntasSeleccionadas.length - 1 
+            ? "Siguiente" 
+            : "Ver Resultados"}
+        </Text>
+      </Pressable>
+      
+      <NavBar klipartz={<Klipartz width={55} height={55} />} />
+    </View>
   );
 };
 
@@ -147,6 +166,15 @@ const styles = StyleSheet.create({
   juegosPregunta1: {
     flex: 1,
     backgroundColor: "#05181f",
+  },
+  container: {
+    flex: 1,
+    backgroundColor: Color.colorGray200,
+    width: "100%",
+    height: "100%",
+    overflow: "hidden",
+    display: "flex",
+    flexDirection: "column",
   },
   viewBg: {
     backgroundColor: Color.colorGray200,
@@ -212,6 +240,10 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     alignItems: "center",
     marginBottom: 80,
+  },
+  siguienteBtnDisabled: {
+    backgroundColor: '#445b6a',  // Un color más apagado cuando está deshabilitado
+    opacity: 0.7,
   },
   siguienteBtnText: {
     color: Color.colorWhite,

@@ -29,7 +29,18 @@ const MenuPlaza = () => {
   
   // Obtenemos los datos de la plaza
   const plaza = plazasPorId[plazaId];
-  const plazaNombre = plaza?.nombre || "Plaza San Martín";
+  
+  // Determinar la clave de traducción para el nombre de la plaza según su ID
+  let plazaTranslationKey = "plaza.san.martin"; // Por defecto
+  if (plazaId === 'plaza-independencia') {
+    plazaTranslationKey = "plaza.independencia";
+  } else if (plazaId === 'plaza-espana') {
+    plazaTranslationKey = "plaza.espana";
+  } else if (plazaId === 'plaza-italia') {
+    plazaTranslationKey = "plaza.italia";
+  } else if (plazaId === 'plaza-chile') {
+    plazaTranslationKey = "plaza.chile";
+  }
 
   // Manejadores de navegación
   const handleIniciarRecorrido = () => {
@@ -47,8 +58,7 @@ const MenuPlaza = () => {
       style={styles.menuPlaza}
       contentContainerStyle={styles.menuPlazaScrollViewContent}
     >
-      <TopBar translationKey="plaza.title" textoWidth="auto" />
-      <Text style={styles.plazaTitle}>{plazaNombre}</Text>
+      <TopBar translationKey={plazaTranslationKey} textoWidth="auto" />
       <View style={styles.list}>
         <Item 
           text={translate("start.tour")}

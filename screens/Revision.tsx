@@ -9,6 +9,7 @@ import Item from "../components/Item";
 import Klipartz from "../assets/Klipartz.svg";
 import { Color, FontSize, FontFamily } from "../GlobalStyles";
 import { Pregunta } from "../data/types";
+import { useLanguage } from "../contexts/LanguageContext";
 
 // Define los tipos para los parámetros de la ruta
 type RouteParamList = {
@@ -25,6 +26,7 @@ type RevisionScreenRouteProp = RouteProp<RouteParamList, 'Revision'>;
 const Revision = () => {
   const route = useRoute<RevisionScreenRouteProp>();
   const navigation = useNavigation<any>();
+  const { translate } = useLanguage();
   const { plazaId, respuestas, preguntas } = route.params || { 
     plazaId: '', 
     respuestas: {}, 
@@ -54,20 +56,19 @@ const Revision = () => {
   };
 
   return (
-    <SafeAreaView style={styles.viewBg}>
-      <View style={[styles.view, styles.viewBg]}>
-        <TopBar text="Resultados" textoWidth={142} />
-        
-        <View style={styles.puntuacionContainer}>
-          <Text style={styles.puntuacionText}>
-            Tu puntuación: {puntuacion} de {preguntas.length} ({porcentajeAciertos.toFixed(0)}%)
-          </Text>
-        </View>
-        
-        <ScrollView
-          style={styles.respuestas}
-          contentContainerStyle={styles.respuestasContainerContent}
-        >
+    <View style={styles.container}>
+      <TopBar text="Resultados" textoWidth={142} translationKey="results.title" />
+      
+      <View style={styles.puntuacionContainer}>
+        <Text style={styles.puntuacionText}>
+          Tu puntuación: {puntuacion} de {preguntas.length} ({porcentajeAciertos.toFixed(0)}%)
+        </Text>
+      </View>
+      
+      <ScrollView
+        style={styles.respuestas}
+        contentContainerStyle={styles.respuestasContainerContent}
+      >
           {preguntas.map((pregunta, index) => {
             const respuestaUsuario = respuestas[pregunta.id];
             const opcionCorrecta = pregunta.opciones.find(opcion => opcion.esCorrecta)?.texto || '';
@@ -104,7 +105,7 @@ const Revision = () => {
         
         <View style={styles.volverBtnContainer}>
           <Item 
-            text="Volver al Menú"
+            text={translate("back.to.menu")}
             onPress={volverAlMenu}
             width={340}
             height={80}
@@ -114,11 +115,17 @@ const Revision = () => {
         
         <NavBar klipartz={<Klipartz width={60} height={60} />} />
       </View>
-    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: Color.colorGray200,
+    width: "100%",
+    height: "100%",
+    overflow: "hidden",
+  },
   viewBg: {
     backgroundColor: Color.colorGray200,
     flex: 1,

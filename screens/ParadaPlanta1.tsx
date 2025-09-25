@@ -13,10 +13,10 @@ import Plants from "../components/Plants";
 import NavBar from "../components/NavBar";
 import Klipartz from "../assets/Klipartz.svg";
 import { Color, Padding, FontFamily } from "../GlobalStyles";
-import { plantasPorId, plazasPorId, obtenerPlantasConUbicacion } from "../data";
+import { plantasPorId, plazasPorId, obtenerPlantasEnParada } from "../data";
 import { useRoute, RouteProp } from '@react-navigation/native';
 import { useLanguage } from "../contexts/LanguageContext";
-import { PlantaConUbicacion } from "../data";
+import { Planta } from "../data/types";
 
 // Definimos el tipo para los parámetros de la ruta
 type ParadaPlantaParams = {
@@ -26,92 +26,123 @@ type ParadaPlantaParams = {
 
 const ParadaPlanta1 = () => {
   // Obtenemos el contexto de idioma
-  const { language, translate } = useLanguage();
+  const { translate } = useLanguage();
   
   // Obtenemos los parámetros de la ruta con tipado
   const route = useRoute<RouteProp<Record<string, ParadaPlantaParams>, string>>();
   const { paradaId = 'parada-1', plazaId = 'plaza-san-martin' } = route.params || {};
   
-  // Obtenemos la plaza y la parada correspondiente
-  const plaza = plazasPorId[plazaId];
-  const parada = plaza?.paradas.find(p => p.id === paradaId) || plaza?.paradas[0];
+  // Estado para almacenar las plantas
+  const [plantas, setPlantas] = React.useState<Planta[]>([]);
   
-  // Si no hay paradas, mostramos un fallback
-  if (!parada || !parada.plantas || parada.plantas.length === 0) {
-    console.warn('No se encontraron plantas para esta parada');
-  }
-  
-  // Obtenemos las plantas con su información de ubicación usando la función de utilidad
-  let plantasConUbicacion: PlantaConUbicacion[] = [];
-  try {
-    if (parada) {
-      plantasConUbicacion = obtenerPlantasConUbicacion(parada);
+  // Estado para indicar si hay un error al cargar los datos
+  const [errorCarga, setErrorCarga] = React.useState<string | null>(null);
+
+  // Cargar plantas al inicio o cuando cambian los parámetros
+  React.useEffect(() => {
+    // Reseteamos el error al iniciar una nueva carga
+    setErrorCarga(null);
+    
+    try {
+      // 1. Obtener el diccionario de la plaza
+      const plaza = plazasPorId[plazaId];
+      if (!plaza) {
+        const errorMsg = `Plaza no encontrada: ${plazaId}`;
+        console.error(errorMsg);
+        setErrorCarga(errorMsg);
+        return;
+      }
+      
+      // 2. Entrar en el diccionario de la parada correspondiente
+      const parada = plaza.paradas.find(p => p.id === paradaId);
+      if (!parada) {
+        const errorMsg = `Parada no encontrada: ${paradaId} en plaza ${plazaId}`;
+        console.error(errorMsg);
+        setErrorCarga(errorMsg);
+        return;
+      }
+      
+      // 3. Obtener los datos de las plantas
+      const plantasEnParada = obtenerPlantasEnParada(parada);
+      console.log(`Encontradas ${plantasEnParada.length} plantas en parada ${parada.id}`);
+      
+      // Verificar si se encontraron plantas
+      if (plantasEnParada.length === 0) {
+        const errorMsg = `No se encontraron plantas en la parada ${paradaId}`;
+        console.warn(errorMsg);
+        setErrorCarga(errorMsg);
+      }
+      
+      // Establecer las plantas en el estado
+      setPlantas(plantasEnParada);
+    } catch (error) {
+      const errorMsg = error instanceof Error ? error.message : 'Error desconocido al obtener plantas';
+      console.error('Error al obtener plantas:', error);
+      setErrorCarga(errorMsg);
+      
+      // Fallback a plantas por defecto si ocurre un error
+      const plantasDefault = [plantasPorId['1'], plantasPorId['2']].filter(Boolean);
+      if (plantasDefault.length > 0) {
+        setPlantas(plantasDefault);
+      }
     }
-  } catch (error) {
-    console.error('Error al obtener plantas de la parada:', error);
-  }
+  }, [paradaId, plazaId]);
   
-  // Obtenemos las dos primeras plantas o usamos fallbacks si es necesario
-  const planta1 = plantasConUbicacion[0] || plantasPorId['1']; // Fallback a planta con ID 1
-  const planta2 = plantasConUbicacion[1] || plantasPorId['2']; // Fallback a planta con ID 2
+  // Obtenemos la información de la plaza y parada para los títulos
+  const plaza = plazasPorId[plazaId];
+  const parada = plaza?.paradas.find(p => p.id === paradaId);
+  const paradaNumero = parada?.numero || 1;
   
-  // Obtenemos el número de la parada (si está disponible)
-  const paradaNumero = parada?.numero || '1';
-  
-  // Título de la parada según el idioma
+  // Títulos para mostrar
   const paradaTitle = `${translate("stop.title")} ${paradaNumero}`;
-  
-  // Texto de sección según el idioma
   const floraTitle = `${translate("flora.title")} ${paradaNumero}`;
     
   return (
-    <SafeAreaView style={styles.viewBg}>
+    <View style={styles.container}>
       <KeyboardAvoidingView
         style={styles.keyboardavoidingview}
         behavior={Platform.OS === "ios" ? "padding" : undefined}
       >
         <View style={[styles.view, styles.viewBg]}>
           <TopBar text={paradaTitle} textoWidth="auto" />
-          <ScrollView
-            style={styles.contenedor}
-            contentContainerStyle={styles.contenedorContainerContent}
-          >
+            <ScrollView
+              style={styles.contenedor}
+              contentContainerStyle={styles.contenedorContainerContent}
+            >
             <View style={styles.items}>
-              <Text style={styles.sectionTitle}>{floraTitle}</Text>
+              {/* Mensaje de error si existe */}
+              {errorCarga && (
+                <View style={styles.errorContainer}>
+                  <Text style={styles.errorText}>{errorCarga}</Text>
+                  <Text style={styles.errorHelp}>{translate("error.retry")}</Text>
+                </View>
+              )}
+              
               {/* Primera planta */}
-              {planta1 && (
+              {plantas.length > 0 && (
                 <View style={styles.plantContainer}>
-                  {'ubicacionEspecifica' in planta1 && planta1.ubicacionEspecifica && (
-                    <Text style={styles.ubicacionText}>
-                      {`${translate("reference")}: ${planta1.ubicacionEspecifica}`}
-                    </Text>
-                  )}
                   <Plants
-                    nombre={planta1.atributos.nombre}
-                    nombreCientifico={planta1.atributos.nombreCientifico}
-                    descripcionesMultilingue={planta1.atributos.descripcionesMultilingue}
-                    imagenPath={planta1.atributos.imagenPath}
-                    referencias={planta1.atributos.referencias}
+                    nombre={plantas[0].atributos?.nombre || translate("unknown.plant")}
+                    nombreCientifico={plantas[0].atributos?.nombreCientifico || ""}
+                    descripcionesMultilingue={plantas[0].atributos?.descripcionesMultilingue || {}}
+                    imagenPath={plantas[0].atributos?.imagenPath || null}
+                    referencias={plantas[0].atributos?.referencias || []}
                   />
                 </View>
               )}
               
-              <View style={styles.separator} />
+              {/* Espacio entre plantas */}
+              {plantas.length > 1 && <View style={{height: 20}} />}
               
               {/* Segunda planta */}
-              {planta2 && (
+              {plantas.length > 1 && (
                 <View style={styles.plantContainer}>
-                  {'ubicacionEspecifica' in planta2 && planta2.ubicacionEspecifica && (
-                    <Text style={styles.ubicacionText}>
-                      {`${translate("reference")}: ${planta2.ubicacionEspecifica}`}
-                    </Text>
-                  )}
                   <Plants
-                    nombre={planta2.atributos.nombre}
-                    nombreCientifico={planta2.atributos.nombreCientifico}
-                    descripcionesMultilingue={planta2.atributos.descripcionesMultilingue}
-                    imagenPath={planta2.atributos.imagenPath}
-                    referencias={planta2.atributos.referencias}
+                    nombre={plantas[1].atributos?.nombre || translate("unknown.plant")}
+                    nombreCientifico={plantas[1].atributos?.nombreCientifico || ""}
+                    descripcionesMultilingue={plantas[1].atributos?.descripcionesMultilingue || {}}
+                    imagenPath={plantas[1].atributos?.imagenPath || null}
+                    referencias={plantas[1].atributos?.referencias || []}
                   />
                 </View>
               )}
@@ -120,7 +151,7 @@ const ParadaPlanta1 = () => {
           <NavBar klipartz={<Klipartz width={60} height={60} />} />
         </View>
       </KeyboardAvoidingView>
-    </SafeAreaView>
+    </View>
   );
 };
 
@@ -138,6 +169,10 @@ const styles = StyleSheet.create({
   viewBg: {
     backgroundColor: Color.colorGray200,
     flex: 1,
+  },
+  container: {
+    flex: 1,
+    backgroundColor: Color.colorGray200, // Color de fondo para toda la pantalla
   },
   keyboardavoidingview: {
     flex: 1,
@@ -173,22 +208,32 @@ const styles = StyleSheet.create({
     width: '100%',
     marginBottom: 15,
   },
-  ubicacionText: {
-    fontSize: 16,
-    fontFamily: FontFamily.interRegular,
-    color: '#A6D451',
-    marginBottom: 10,
-    backgroundColor: 'rgba(0, 0, 0, 0.2)',
-    padding: 8,
-    borderRadius: 5,
-    alignSelf: 'flex-start',
-  },
   separator: {
     height: 2,
     backgroundColor: '#A6D451',
     width: '100%',
     marginVertical: 25,
     opacity: 0.7,
+  },
+  errorContainer: {
+    backgroundColor: 'rgba(255, 0, 0, 0.1)',
+    borderRadius: 10,
+    padding: 15,
+    marginVertical: 10,
+    width: '100%',
+    alignItems: 'center',
+  },
+  errorText: {
+    color: '#FF6B6B',
+    fontSize: 16,
+    fontWeight: 'bold',
+    marginBottom: 8,
+    textAlign: 'center',
+  },
+  errorHelp: {
+    color: Color.colorWhite,
+    fontSize: 14,
+    textAlign: 'center',
   }
 });
 

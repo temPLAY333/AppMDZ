@@ -8,9 +8,9 @@ const plazaEspana: Plaza = {
   nombre: 'Plaza España',
   descripcion: 'La Plaza España es un importante espacio público en Mendoza que representa los lazos históricos y culturales entre Argentina y España. Destaca por su fuente central y su vegetación mediterránea.',
   bandera: '🇪🇸', // Bandera de España
-  imagenPortada: require('../../assets/BP-Social-YouthClimateActionFund.png'), // Usar una imagen existente temporalmente
-  mapaImagenPath: require('../../assets/BP-Social-YouthClimateActionFund.png'), // Usar una imagen existente temporalmente
-  modeloImagenPath: require('../../assets/BP-Youth-Climate-Action-Fund-Logo-Options-040824-V1-FNL-YCAF-Logo-with-Tagline-as-Outlined-Text-White.png'), // Usar una imagen existente temporalmente
+  imagenPortada: require('../../assets/CiudadDeMDZ.png'), // Usar una imagen existente temporalmente
+  mapaImagenPath: require('../../assets/PSanMartin-Aerea-Normal.png'), // Usar una imagen existente temporalmente
+  modeloImagenPath: require('../../assets/Modelo-PSanMartin.png'), // Usar una imagen existente temporalmente
   paradas: [
     {
       id: 'parada-1',
@@ -20,11 +20,9 @@ const plazaEspana: Plaza = {
       plantas: [
         {
           plantaId: '27', // Phoenix canariensis (Palma Fénix)
-          ubicacionEspecifica: 'Sector noreste de la plaza'
         },
         {
           plantaId: 'planta-sin-indice-1', // Vitex agnus-castus (No está en el índice)
-          ubicacionEspecifica: 'Planta SIN INDICE - Sauzgatillo (Vitex agnus-castus)'
         }
       ]
     },
@@ -36,11 +34,9 @@ const plazaEspana: Plaza = {
       plantas: [
         {
           plantaId: 'planta-sin-indice-2', // Platanus acerifolia (No está en el índice)
-          ubicacionEspecifica: 'Planta SIN INDICE - Plátano (Platanus acerifolia)'
         },
         {
           plantaId: '14', // Jacaranda mimosifolia
-          ubicacionEspecifica: 'Lado oeste de la plaza, formando una alineación'
         }
       ]
     },
@@ -52,11 +48,9 @@ const plazaEspana: Plaza = {
       plantas: [
         {
           plantaId: '28', // Punica granatum (Granado)
-          ubicacionEspecifica: 'Sector sureste, cerca del monumento'
         },
         {
-          plantaId: 'planta-sin-indice-3', // Hibiscus rosa-sinensis (No está en el índice)
-          ubicacionEspecifica: 'Planta SIN INDICE - Hibisco (Hibiscus rosa-sinensis)'
+          plantaId: 'planta-sin-indice-3' // Hibiscus rosa-sinensis (No está en el índice)
         }
       ]
     },
@@ -67,12 +61,10 @@ const plazaEspana: Plaza = {
       ubicacionY: 230,
       plantas: [
         {
-          plantaId: '14', // Jacaranda mimosifolia
-          ubicacionEspecifica: 'Esquina sur de la plaza'
+          plantaId: '14' // Jacaranda mimosifolia
         },
         {
-          plantaId: '27', // Phoenix canariensis (Palma Fénix)
-          ubicacionEspecifica: 'Centro de la plaza, junto a la fuente'
+          plantaId: '27' // Phoenix canariensis (Palma Fénix)
         }
       ]
     },
@@ -83,12 +75,10 @@ const plazaEspana: Plaza = {
       ubicacionY: 190,
       plantas: [
         {
-          plantaId: '28', // Punica granatum (Granado)
-          ubicacionEspecifica: 'Sector oeste, cerca de los bancos'
+          plantaId: '28' // Punica granatum (Granado)
         },
         {
-          plantaId: 'planta-sin-indice-1', // Vitex agnus-castus (No está en el índice)
-          ubicacionEspecifica: 'Planta SIN INDICE - Sauzgatillo (Vitex agnus-castus)'
+          plantaId: 'planta-sin-indice-1' // Vitex agnus-castus (No está en el índice)
         }
       ]
     }

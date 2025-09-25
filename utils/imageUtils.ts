@@ -4,7 +4,7 @@ import { ImageSourcePropType } from 'react-native';
 // Mapeo de rutas de imágenes a require
 const imageMapping: Record<string, ImageSourcePropType> = {
   // Imágenes de plazas
-  'PSanMartin-Aerea-Normal1.png': require('../assets/PSanMartin-Aerea-Normal1.png'),
+  'PSanMartin-Aerea-Normal.png': require('../assets/PSanMartin-Aerea-Normal.png'),
   'Modelo-PSanMartin.png': require('../assets/Modelo-PSanMartin.png'),
   
   // Puedes agregar más imágenes según sea necesario

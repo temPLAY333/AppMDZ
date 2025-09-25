@@ -8,8 +8,8 @@ const plazaIndependencia: Plaza = {
   nombre: 'Plaza Independencia',
   descripcion: 'La Plaza Independencia es la plaza principal de Mendoza, ubicada en el centro de la ciudad. Fue diseñada después del terremoto de 1861 y representa el corazón cívico y cultural de la ciudad, con una gran variedad de especies vegetales.',
   bandera: '🇦🇷', // Bandera de Argentina
-  imagenPortada: require('../../assets/BP-Social-YouthClimateActionFund.png'), // Usar una imagen existente temporalmente
-  mapaImagenPath: require('../../assets/BP-Social-YouthClimateActionFund.png'), // Usar una imagen existente temporalmente
+  imagenPortada: require('../../assets/CiudadDeMDZ.png'), // Usar una imagen existente temporalmente
+  mapaImagenPath: require('../../assets/PSanMartin-Aerea-Normal.png'), // Usar una imagen existente temporalmente
   modeloImagenPath: require('../../assets/Modelo-PSanMartin.png'), // Usar una imagen existente temporalmente
   paradas: [
     {
@@ -19,12 +19,10 @@ const plazaIndependencia: Plaza = {
       ubicacionY: 120,
       plantas: [
         {
-          plantaId: '29', // Tipuana tipu
-          ubicacionEspecifica: 'Entrada principal, sector norte de la plaza'
+          plantaId: '29' // Tipuana tipu
         },
         {
-          plantaId: '1', // Acacia visco
-          ubicacionEspecifica: 'Cerca del monumento central'
+          plantaId: '1' // Acacia visco
         }
       ]
     },
@@ -35,12 +33,10 @@ const plazaIndependencia: Plaza = {
       ubicacionY: 180,
       plantas: [
         {
-          plantaId: 'planta-sin-indice-1', // Cupresus sp (no está en el índice)
-          ubicacionEspecifica: 'Planta SIN INDICE - Ciprés (Cupresus sp)'
+          plantaId: 'planta-sin-indice-1' // Cupresus sp (no está en el índice)
         },
         {
-          plantaId: '27', // Phoenix canariensis
-          ubicacionEspecifica: 'Alineaciones centrales de la plaza'
+          plantaId: '27' // Phoenix canariensis
         }
       ]
     },
@@ -51,12 +47,10 @@ const plazaIndependencia: Plaza = {
       ubicacionY: 150,
       plantas: [
         {
-          plantaId: 'planta-sin-indice-2', // Pinus sp (no está en el índice)
-          ubicacionEspecifica: 'Planta SIN INDICE - Pino (Pinus sp)'
+          plantaId: 'planta-sin-indice-2' // Pinus sp (no está en el índice)
         },
         {
-          plantaId: 'planta-sin-indice-3', // Vitex agnus-castus (no está en el índice)
-          ubicacionEspecifica: 'Planta SIN INDICE - Sauzgatillo (Vitex agnus-castus)'
+          plantaId: 'planta-sin-indice-3' // Vitex agnus-castus (no está en el índice)
         }
       ]
     },
@@ -67,12 +61,10 @@ const plazaIndependencia: Plaza = {
       ubicacionY: 250,
       plantas: [
         {
-          plantaId: 'planta-sin-indice-4', // Eucalyptus sp. (no está en el índice)
-          ubicacionEspecifica: 'Planta SIN INDICE - Eucalipto (Eucalyptus sp.)'
+          plantaId: 'planta-sin-indice-4' // Eucalyptus sp. (no está en el índice)
         },
         {
-          plantaId: 'planta-sin-indice-5', // Morus nigra (no está en el índice)
-          ubicacionEspecifica: 'Planta SIN INDICE - Morera (Morus nigra)'
+          plantaId: 'planta-sin-indice-5' // Morus nigra (no está en el índice)
         }
       ]
     },
@@ -83,12 +75,10 @@ const plazaIndependencia: Plaza = {
       ubicacionY: 210,
       plantas: [
         {
-          plantaId: '12', // Gleditsia triacanthos
-          ubicacionEspecifica: 'Sector sur de la plaza'
+          plantaId: '12' // Gleditsia triacanthos
         },
         {
-          plantaId: 'planta-sin-indice-6', // Robinia pseudoacacia (no está en el índice)
-          ubicacionEspecifica: 'Planta SIN INDICE - Acacia blanca (Robinia pseudoacacia)'
+          plantaId: 'planta-sin-indice-6' // Robinia pseudoacacia (no está en el índice)
         }
       ]
     },
@@ -99,12 +89,10 @@ const plazaIndependencia: Plaza = {
       ubicacionY: 170,
       plantas: [
         {
-          plantaId: 'planta-sin-indice-7', // Pinus griffithi (no está en el índice)
-          ubicacionEspecifica: 'Planta SIN INDICE - Pino del Himalaya (Pinus griffithi)'
+          plantaId: 'planta-sin-indice-7' // Pinus griffithi (no está en el índice)
         },
         {
-          plantaId: 'planta-sin-indice-8', // Washingtonia sp. (no está en el índice)
-          ubicacionEspecifica: 'Planta SIN INDICE - Palmera de abanico (Washingtonia sp.)'
+          plantaId: 'planta-sin-indice-8' // Washingtonia sp. (no está en el índice)
         }
       ]
     },
@@ -115,12 +103,10 @@ const plazaIndependencia: Plaza = {
       ubicacionY: 140,
       plantas: [
         {
-          plantaId: '8', // Cedrus deodara
-          ubicacionEspecifica: 'Sector noreste de la plaza'
+          plantaId: '8' // Cedrus deodara
         },
         {
-          plantaId: '7', // Casuarina cunninghamiana
-          ubicacionEspecifica: 'Cerca de la fuente ornamental'
+          plantaId: '7' // Casuarina cunninghamiana
         }
       ]
     },
@@ -131,12 +117,10 @@ const plazaIndependencia: Plaza = {
       ubicacionY: 230,
       plantas: [
         {
-          plantaId: 'planta-sin-indice-9', // Fraxinus sp. (no está en el índice)
-          ubicacionEspecifica: 'Planta SIN INDICE - Fresno (Fraxinus sp.)'
+          plantaId: 'planta-sin-indice-9' // Fraxinus sp. (no está en el índice)
         },
         {
-          plantaId: 'planta-sin-indice-10', // Quercus suber (no está en el índice)
-          ubicacionEspecifica: 'Planta SIN INDICE - Alcornoque (Quercus suber)'
+          plantaId: 'planta-sin-indice-10' // Quercus suber (no está en el índice)
         }
       ]
     },
@@ -147,12 +131,10 @@ const plazaIndependencia: Plaza = {
       ubicacionY: 200,
       plantas: [
         {
-          plantaId: 'planta-sin-indice-11', // Magnolia grandiflora (no está en el índice)
-          ubicacionEspecifica: 'Planta SIN INDICE - Magnolia (Magnolia grandiflora)'
+          plantaId: 'planta-sin-indice-11' // Magnolia grandiflora (no está en el índice)
         },
         {
-          plantaId: '5', // Araucaria bidwilli
-          ubicacionEspecifica: 'Centro-este de la plaza'
+          plantaId: '5' // Araucaria bidwilli
         }
       ]
     },
@@ -163,12 +145,10 @@ const plazaIndependencia: Plaza = {
       ubicacionY: 160,
       plantas: [
         {
-          plantaId: 'planta-sin-indice-12', // Schinus sp (no está en el índice)
-          ubicacionEspecifica: 'Planta SIN INDICE - Aguaribay (Schinus sp)'
+          plantaId: 'planta-sin-indice-12' // Schinus sp (no está en el índice)
         },
         {
-          plantaId: 'planta-sin-indice-13', // Quercus robur (no está en el índice)
-          ubicacionEspecifica: 'Planta SIN INDICE - Roble (Quercus robur)'
+          plantaId: 'planta-sin-indice-13' // Quercus robur (no está en el índice)
         }
       ]
     }

@@ -527,7 +527,7 @@ const plantas: Planta[] = [
       ]
     }
   },{
-    id: '33',
+    id: '34',
     atributos: {
       nombre: 'Tipa',
       nombreCientifico: 'Tipuana tipu',

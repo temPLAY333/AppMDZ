@@ -10,12 +10,20 @@ export type EmojisType = {
 };
 
 const Emojis = ({ emoji = "🌲", size }: EmojisType) => {
+  // Ajuste vertical para el emoji
+  // Si necesitas subirlo: usa valores negativos (ej: -2, -5)
+  // Si necesitas bajarlo: usa valores positivos (ej: 2, 5)
+  const ajusteVertical = 2; // <-- MODIFICA ESTE VALOR para ajustar la posición
+
   return (
     <View style={styles.emojis}>
       <Text 
         style={[
           styles.text, 
-          size ? { fontSize: size } : null
+          size ? { 
+            fontSize: size,
+          } : null,
+          { marginTop: ajusteVertical } // Aplicamos el ajuste vertical
         ]}
       >
         {emoji}
@@ -32,16 +40,17 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignContent: "center",
     width: "100%",
-    height: "100%", 
+    height: "100%", // Aseguramos que ocupe todo el alto disponible
   },
   text: {
-    fontSize: FontSize.size_64,
+    fontSize: 72, // Tamaño personalizado mucho más grande que el predefinido
     fontWeight: "700",
     fontFamily: FontFamily.interBold,
     color: Color.colorWhite,
     textAlign: "center",
     includeFontPadding: false, // Elimina el padding extra que a veces añaden algunos sistemas
     textAlignVertical: 'center', // Centra verticalmente el texto (para Android)
+    // No incluimos marginTop aquí para controlarlo desde la variable ajusteVertical
   },
 });
 

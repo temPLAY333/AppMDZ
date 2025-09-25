@@ -2,11 +2,18 @@ import { Plaza } from '../types';
 
 // Importamos las plazas
 import plazaSanMartin from './plazaSanMartin';
+import plazaIndependencia from './plazaIndependencia';
+import plazaItalia from './plazaItalia';
+import plazaEspana from './plazaEspana';
+import plazaChile from './plazaChile';
 
 // Lista de todas las plazas
 const plazas: Plaza[] = [
   plazaSanMartin,
-  // Aquí se pueden agregar más plazas
+  plazaIndependencia,
+  plazaItalia,
+  plazaEspana,
+  plazaChile
 ];
 
 // Objeto con las plazas indexadas por ID para acceso rápido

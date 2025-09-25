@@ -14,6 +14,7 @@ import MapaDeLaPlaza from "./screens/MapaDeLaPlaza";
 import InformacionAdicional from "./screens/InformacionAdicional";
 import Referencias from "./screens/Referencias";
 import Glosario from "./screens/Glosario";
+import ParadaPlanta1 from "./screens/ParadaPlanta1";
 // Los componentes UI no se importan aquí porque no son pantallas navegables
 import { LanguageProvider } from "./contexts/LanguageContext";
 
@@ -35,10 +36,10 @@ const App = () => {
     // Inicializar traducciones de plantas
     actualizarDescripcionesPlantasMultilingues();
     
-    // Mostrar pantalla de carga por 2.5 segundos
+    // Mostrar pantalla de carga por 4 segundos
     const timer = setTimeout(() => {
       setHideSplashScreen(true);
-    }, 2500);
+    }, 4000);
     
     return () => clearTimeout(timer);
   }, []);
@@ -117,6 +118,11 @@ const App = () => {
             <Stack.Screen
               name="Glosario"
               component={Glosario}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="ParadaPlanta1"
+              component={ParadaPlanta1}
               options={{ headerShown: false }}
             />
             {/* Componentes que no son pantallas no deben ser registrados aquí */}

@@ -40,37 +40,24 @@ export const obtenerPlanta = (plantaId: string): Planta => {
   return planta;
 };
 
-// Función para expandir los datos de plantas en una parada
+// Función para obtener plantas en una parada
 export const obtenerPlantasEnParada = (parada: Parada): Planta[] => {
+  console.log('Procesando parada:', parada.id, 'con plantas:', JSON.stringify(parada.plantas));
+  
+  if (!parada.plantas || parada.plantas.length === 0) {
+    console.warn('La parada no tiene plantas asociadas');
+    return [];
+  }
+  
   return parada.plantas.map(plantaEnParada => {
     const planta = plantasPorId[plantaEnParada.plantaId];
     
     if (!planta) {
+      console.error(`No se encontró la planta con ID: ${plantaEnParada.plantaId}`);
       throw new Error(`No se encontró la planta con ID: ${plantaEnParada.plantaId}`);
     }
     
     return planta;
-  });
-};
-
-// Tipo para la planta con su ubicación específica en la parada
-export interface PlantaConUbicacion extends Planta {
-  ubicacionEspecifica?: string;
-}
-
-// Función para obtener plantas con su información de ubicación específica
-export const obtenerPlantasConUbicacion = (parada: Parada): PlantaConUbicacion[] => {
-  return parada.plantas.map(plantaEnParada => {
-    const planta = plantasPorId[plantaEnParada.plantaId];
-    
-    if (!planta) {
-      throw new Error(`No se encontró la planta con ID: ${plantaEnParada.plantaId}`);
-    }
-    
-    return {
-      ...planta,
-      ubicacionEspecifica: plantaEnParada.ubicacionEspecifica
-    };
   });
 };
 

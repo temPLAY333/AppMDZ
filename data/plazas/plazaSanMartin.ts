@@ -19,12 +19,10 @@ const plazaSanMartin: Plaza = {
       ubicacionY: 100,
       plantas: [
         {
-          plantaId: '1', // Acacia Negra
-          ubicacionEspecifica: 'Sector norte de la plaza'
+          plantaId: '1' // Viscote
         },
         {
-          plantaId: '2', // Acacia Negra
-          ubicacionEspecifica: 'Cerca de la entrada principal'
+          plantaId: '2' // Acacia Negra
         }
       ]
     },
@@ -35,12 +33,10 @@ const plazaSanMartin: Plaza = {
       ubicacionY: 150,
       plantas: [
         {
-          plantaId: '5', // Palo Borracho
-          ubicacionEspecifica: 'Sector central, junto al monumento'
+          plantaId: '5' // Araucaria Austrailiana
         },
         {
-          plantaId: '33', // Washingtonia robusta 
-          ubicacionEspecifica: 'Cerca de los bancos del sector este'
+          plantaId: '33' // Palmera Abanico
         }
       ]
     },
@@ -51,12 +47,10 @@ const plazaSanMartin: Plaza = {
       ubicacionY: 200,
       plantas: [
         {
-          plantaId: '5', // Araucaria bidwilli 
-          ubicacionEspecifica: 'Sector sur de la plaza'
+          plantaId: '5' // Araucaria Austrailiana 
         },
         {
-          plantaId: '19', // Ligustro
-          ubicacionEspecifica: 'Formando parte del cerco perimetral'
+          plantaId: '19' // Ligustro
         }
       ]
     },
@@ -67,12 +61,10 @@ const plazaSanMartin: Plaza = {
       ubicacionY: 250,
       plantas: [
         {
-          plantaId: '22', // Morera
-          ubicacionEspecifica: 'Área recreativa oeste'
+          plantaId: '22' // Morera
         },
         {
-          plantaId: '26', // Plátano
-          ubicacionEspecifica: 'Junto al sendero principal'
+          plantaId: '26' // Plátano
         }
       ]
     },
@@ -83,12 +75,10 @@ const plazaSanMartin: Plaza = {
       ubicacionY: 120,
       plantas: [
         {
-          plantaId: '27', // Palma Fénix
-          ubicacionEspecifica: 'Sector noreste de la plaza'
+          plantaId: '27' // Palma Fénix
         },
         {
-          plantaId: '33', // Palmera Abanico
-          ubicacionEspecifica: 'Bordeando la fuente decorativa'
+          plantaId: '33' // Palmera Abanico
         }
       ]
     }

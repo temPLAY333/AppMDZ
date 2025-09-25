@@ -34,7 +34,6 @@ export interface Planta {
 // Estructura de planta en una parada (referencia a una planta del catálogo)
 export interface PlantaEnParada {
   plantaId: string;  // Referencia al ID de la planta en el catálogo
-  ubicacionEspecifica?: string;  // Información específica de ubicación dentro de la parada (opcional)
 }
 
 // Estructura de una parada
@@ -43,6 +42,8 @@ export interface Parada {
   numero: number;  // Solo número, van por orden
   ubicacionX: number;  // Coordenadas para el mapa
   ubicacionY: number;
+  modeloX?: number;  // Coordenadas opcionales específicas para el modelo 3D
+  modeloY?: number;  // Si no se especifican, se usan las mismas del mapa
   plantas: PlantaEnParada[];  // Referencias a plantas del catálogo
 }
 

@@ -12,6 +12,8 @@ type TranslationKey =
   | "info.title" 
   | "references.title" 
   | "glossary.title"
+  | "results.title"
+  | "back.to.menu"
   | "main.menu"
   | "mendoza.squares"
   | "start.tour"
@@ -37,7 +39,9 @@ type TranslationKey =
   | "stop.title"
   | "flora.title"
   | "button.map"
-  | "button.model";
+  | "button.model"
+  | "error.retry"
+  | "unknown.plant";
 
 type TranslationsType = {
   [key in LanguageKey]: {
@@ -88,7 +92,11 @@ const translations: TranslationsType = {
     "stop.title": "Parada",
     "flora.title": "Flora de la Parada",
     "button.map": "Mapa",
-    "button.model": "Modelo"
+    "button.model": "Modelo",
+    "error.retry": "Por favor, intente nuevamente",
+    "unknown.plant": "Planta desconocida",
+    "results.title": "Resultados",
+    "back.to.menu": "Volver al Menú"
   },
   en: {
     "home.title": "Home",
@@ -125,7 +133,11 @@ const translations: TranslationsType = {
     "stop.title": "Stop",
     "flora.title": "Flora at Stop",
     "button.map": "Map",
-    "button.model": "Model"
+    "button.model": "Model",
+    "error.retry": "Please try again",
+    "unknown.plant": "Unknown plant",
+    "results.title": "Results",
+    "back.to.menu": "Back to Menu"
   }
 };
 

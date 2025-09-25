@@ -177,9 +177,11 @@ const styles = StyleSheet.create({
   emojiText: {
     minHeight: 60,
     minWidth: 60,
-    fontSize: FontSize.size_48, // Reducir el tamaño del emoji
+    fontSize: FontSize.size_48,
     textAlign: "center",
     alignSelf: "center",
+    marginTop: -5, // Ajustamos hacia arriba para mejorar el centrado visual
+    lineHeight: 60, // Asegura que la línea sea lo suficientemente alta
   },
   pressable: {
     width: "100%",

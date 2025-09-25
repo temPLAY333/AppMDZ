@@ -29,6 +29,7 @@ const Home = () => {
       contentContainerStyle={styles.homeScrollViewContent}
     >
       <TopBar 
+        text="Menú Principal"
         translationKey="main.menu" 
         textoWidth={200} 
       />

@@ -34,7 +34,7 @@ const Idioma = () => {
       style={styles.idioma}
       contentContainerStyle={styles.idiomaScrollViewContent}
     >
-      <TopBar translationKey="language.title" textoWidth={200} />
+      <TopBar text="Idioma" translationKey="language.title" textoWidth={200} />
       <View style={styles.list}>
         <Item
           text="Español"

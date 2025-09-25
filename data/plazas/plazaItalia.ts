@@ -19,12 +19,10 @@ const plazaItalia: Plaza = {
       ubicacionY: 120,
       plantas: [
         {
-          plantaId: 'planta-sin-indice-1', // Trachicarpus fortunei (no está en el índice)
-          ubicacionEspecifica: 'Planta SIN INDICE - Palmito (Trachicarpus fortunei)'
+          plantaId: 'planta-sin-indice-1' // Trachicarpus fortunei (no está en el índice)
         },
         {
-          plantaId: '7', // Casuarina cunninghamiana
-          ubicacionEspecifica: 'Sector norte de la plaza'
+          plantaId: '7' // Casuarina cunninghamiana
         }
       ]
     },
@@ -35,12 +33,10 @@ const plazaItalia: Plaza = {
       ubicacionY: 180,
       plantas: [
         {
-          plantaId: '10', // Erythrina crista-galli
-          ubicacionEspecifica: 'Área central, cerca del monumento principal'
+          plantaId: '10' // Erythrina crista-galli
         },
         {
-          plantaId: '27', // Phoenix canariensis
-          ubicacionEspecifica: 'Lado sur, formando parte de la ornamentación principal'
+          plantaId: '27' // Phoenix canariensis
         }
       ]
     },
@@ -51,12 +47,10 @@ const plazaItalia: Plaza = {
       ubicacionY: 150,
       plantas: [
         {
-          plantaId: 'planta-sin-indice-2', // Evonimus europaeus (no está en el índice)
-          ubicacionEspecifica: 'Planta SIN INDICE - Bonetero (Evonimus europaeus)'
+          plantaId: 'planta-sin-indice-2' // Evonimus europaeus (no está en el índice)
         },
         {
-          plantaId: '17', // Liquidambar styraciflua
-          ubicacionEspecifica: 'Área este de la plaza, junto a los senderos'
+          plantaId: '17' // Liquidambar styraciflua
         }
       ]
     },
@@ -67,12 +61,10 @@ const plazaItalia: Plaza = {
       ubicacionY: 250,
       plantas: [
         {
-          plantaId: '8', // Cedrus deodara
-          ubicacionEspecifica: 'Esquina noroeste de la plaza'
+          plantaId: '8' // Cedrus deodara
         },
         {
-          plantaId: 'planta-sin-indice-3', // Phytolaca dioica (no está en el índice)
-          ubicacionEspecifica: 'Planta SIN INDICE - Ombú (Phytolaca dioica)'
+          plantaId: 'planta-sin-indice-3' // Phytolaca dioica (no está en el índice)
         }
       ]
     },
@@ -83,12 +75,10 @@ const plazaItalia: Plaza = {
       ubicacionY: 120,
       plantas: [
         {
-          plantaId: 'planta-sin-indice-4', // Cupressus sp. (no está en el índice)
-          ubicacionEspecifica: 'Planta SIN INDICE - Ciprés (Cupressus sp.)'
+          plantaId: 'planta-sin-indice-4' // Cupressus sp. (no está en el índice)
         },
         {
-          plantaId: 'planta-sin-indice-5', // Brachychiton populneus (no está en el índice)
-          ubicacionEspecifica: 'Planta SIN INDICE - Braquiquito (Brachychiton populneus)'
+          plantaId: 'planta-sin-indice-5' // Brachychiton populneus (no está en el índice)
         }
       ]
     }

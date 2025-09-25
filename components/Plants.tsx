@@ -29,6 +29,9 @@ const Plants = ({
           style={[styles.nombrePlanta, styles.nombrePlantaTypo]}
           value={nombre}
           editable={false}
+          multiline={true} 
+          numberOfLines={2} // Permitir hasta 2 líneas
+          textAlignVertical="center" // Centrar verticalmente
         />
         <View style={styles.underline}></View>
       </View>
@@ -49,22 +52,53 @@ const Plants = ({
         />
       )}
       
-      {/* Referencias (emojis) */}
-      {referencias.length > 0 && (
-        <View style={styles.referenciasContainer}>
-          {referencias.map((emoji, index) => (
-            <View key={index} style={styles.emojiContainer}>
-              <Emojis emoji={emoji} size={32} />
-            </View>
-          ))}
+      {/* Referencias (emojis) - ajuste automático de tamaño según cantidad */}
+      {referencias && referencias.length > 0 && (
+        <View style={[
+          styles.referenciasContainer,
+          // Si hay más de 4 referencias, activamos el scroll horizontal
+          referencias.length > 4 ? { flexWrap: 'nowrap' } : {}
+        ]}>
+          {referencias.map((emoji, index) => {
+            // Escala de tamaño según la cantidad de referencias
+            let tamanoEmoji, tamanoContenedor;
+            
+            if (referencias.length <= 3) {
+              // Para 1-3 emojis, tamaño grande
+              tamanoEmoji = 56;
+              tamanoContenedor = { height: 80, width: 80, borderRadius: 14 };
+            } else if (referencias.length === 4) {
+              // Para exactamente 4 emojis, tamaño medio
+              tamanoEmoji = 46;
+              tamanoContenedor = { height: 68, width: 68, borderRadius: 12 };
+            } else {
+              // Para 5+ emojis, tamaño pequeño
+              tamanoEmoji = 38;
+              tamanoContenedor = { height: 60, width: 60, borderRadius: 10 };
+            }
+            
+            return (
+              <View 
+                key={index} 
+                style={[
+                  styles.emojiContainer,
+                  tamanoContenedor
+                ]}
+              >
+                <Emojis emoji={emoji} size={tamanoEmoji} />
+              </View>
+            );
+          })}
         </View>
       )}
       
-      {/* Descripción de la planta */}
-      <PlantaDescripcion 
-        descripcionesMultilingue={descripcionesMultilingue}
-        style={styles.descripcion}
-      />
+      {/* Descripción de la planta - Solo se muestra si hay descripción */}
+      {descripcionesMultilingue && Object.keys(descripcionesMultilingue).length > 0 && (
+        <PlantaDescripcion 
+          descripcionesMultilingue={descripcionesMultilingue}
+          style={styles.descripcion}
+        />
+      )}
     </View>
   );
 };
@@ -98,9 +132,10 @@ const styles = StyleSheet.create({
   nombrePlanta: {
     width: '100%',
     maxWidth: 500,
-    height: 58,
+    minHeight: 58, // Cambiado de height a minHeight para permitir múltiples líneas
     fontSize: FontSize.size_36,
     paddingBottom: 8, // Espacio para el subrayado
+    textAlign: 'center', // Centrar el texto
   },
   underline: {
     height: 3,
@@ -120,28 +155,31 @@ const styles = StyleSheet.create({
   },
   imagenPlanta: {
     width: '100%',
-    height: 250, // Aumentamos la altura de la imagen
-    marginVertical: 10,
+    height: 200, // Reducimos un poco la altura de la imagen
+    marginVertical: 8,
     backgroundColor: 'rgba(255,255,255,0.1)',
     borderRadius: 10,
   },
   referenciasContainer: {
     flexDirection: 'row',
-    justifyContent: 'center',
-    flexWrap: 'wrap',
-    marginVertical: 10,
+    justifyContent: 'center', // Centramos horizontalmente
+    alignItems: 'center', // Aseguramos que los items estén centrados verticalmente también
+    flexWrap: 'wrap', // Permitimos wrap pero lo controlaremos según la cantidad de emojis
+    marginVertical: 10, // Aumentamos el margen vertical para dar más espacio
     width: '100%',
-    paddingHorizontal: 10,
+    paddingHorizontal: 5, // Reducimos padding para dar más espacio a los emojis
   },
   emojiContainer: {
-    marginHorizontal: 5,
-    height: 40,
-    width: 40,
+    marginHorizontal: 4, // Reducido para que quepan mejor en una fila
+    height: 80,
+    width: 80,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'rgba(255,255,255,0.1)',
-    borderRadius: 20,
-    marginBottom: 5,
+    borderRadius: 14,
+    marginBottom: 8,
+    padding: 0,
+    overflow: 'visible',
   },
   descripcion: {
     fontSize: FontSize.size_24,
@@ -150,8 +188,9 @@ const styles = StyleSheet.create({
     alignSelf: "stretch",
     fontFamily: FontFamily.interRegular,
     flexShrink: 1,
-    marginTop: 10,
-    lineHeight: 34, // Aumentado el espaciado entre líneas
+    marginTop: 5,
+    marginBottom: 15,
+    lineHeight: 32, // Ligeramente ajustado el espaciado entre líneas
   },
 });
 

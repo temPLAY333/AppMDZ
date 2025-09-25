@@ -15,9 +15,10 @@ const getStyleValue = (key: string, value: string | number | undefined) => {
   if (value === undefined) return;
   return { [key]: value === "unset" ? undefined : value };
 };
-const TopBar = ({ text = "Parada N°1", translationKey, textoWidth }: TopBarType) => {
+const TopBar = ({ text = "", translationKey, textoWidth }: TopBarType) => {
   // Usar el contexto de idioma si está disponible
   const languageContext = useContext(LanguageContext);
+  const { language } = languageContext || { language: 'es' };
   
   const textoStyle = useMemo(() => {
     return {
@@ -25,10 +26,29 @@ const TopBar = ({ text = "Parada N°1", translationKey, textoWidth }: TopBarType
     };
   }, [textoWidth]);
   
-  // Si hay una clave de traducción y el contexto está disponible, usar la traducción
-  const displayText = translationKey && languageContext?.translate ? 
-    languageContext.translate(translationKey as any) : 
-    text;
+  // Comenzamos con el texto proporcionado o cadena vacía si no hay texto
+  let displayText = text || "";
+  
+  // Si se proporciona translationKey (y no está vacía), usar la traducción
+  if (translationKey && languageContext?.translate && translationKey !== "") {
+    displayText = languageContext.translate(translationKey as any);
+    return (
+      <View style={styles.topbar}>
+        <Text style={[styles.texto, textoStyle]}>{displayText}</Text>
+      </View>
+    );
+  }
+  
+  // Si ya tenemos un texto explícito (sin translationKey), mantenerlo tal cual está
+  if (text) {
+    // Caso especial para Parada: traduce "Parada" a "Stop" en inglés si estamos en inglés
+    if (text.includes("Parada") && language === 'en') {
+      displayText = text.replace("Parada", "Stop");
+    } else {
+      // Para cualquier otro texto, lo dejamos tal cual
+      displayText = text;
+    }
+  }
 
   return (
     <View style={styles.topbar}>
