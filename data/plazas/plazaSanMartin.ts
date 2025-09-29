@@ -8,35 +8,34 @@ const plazaSanMartin: Plaza = {
   nombre: 'Plaza San Martin',
   descripcion: 'La Plaza San Martín es una de las plazas más importantes de Mendoza, ubicada en el centro de la ciudad. Honra al General José de San Martín, héroe de la independencia argentina.',
   bandera: '🎖️', // Medalla como símbolo para San Martín
-  imagenPortada: require('../../assets/PSanMartin-Aerea-Normal.png'),
-  mapaImagenPath: require('../../assets/PSanMartin-Aerea-Normal.png'),
-  modeloImagenPath: require('../../assets/Modelo-PSanMartin.png'),
+  imagenPortada: require('../../assets/plazas/Modelo-PSanMartin.png'),
+  modeloImagenPath: require('../../assets/plazas/Modelo-PSanMartin.png'),
   paradas: [
     {
       id: 'parada-1',
       numero: 1,
-      ubicacionX: 120,
-      ubicacionY: 100,
+      ubicacionX: 280,
+      ubicacionY: 110,
       plantas: [
         {
-          plantaId: '1' // Viscote
+          plantaId: '1' // Rowinia pseudoacacia (no esta en el índice)
         },
         {
-          plantaId: '2' // Acacia Negra
+          plantaId: '30' // Platanus x acerifolia
         }
       ]
     },
     {
       id: 'parada-2',
       numero: 2,
-      ubicacionX: 200,
-      ubicacionY: 150,
+      ubicacionX: 240,
+      ubicacionY: 270,
       plantas: [
         {
-          plantaId: '5' // Araucaria Austrailiana
+          plantaId: '5' // Salix nigra (no esta en el índice)
         },
         {
-          plantaId: '33' // Palmera Abanico
+          plantaId: '42' // Washingtonia robusta
         }
       ]
     },
@@ -44,41 +43,41 @@ const plazaSanMartin: Plaza = {
       id: 'parada-3',
       numero: 3,
       ubicacionX: 280,
-      ubicacionY: 200,
+      ubicacionY: 340,
       plantas: [
         {
-          plantaId: '5' // Araucaria Austrailiana 
+          plantaId: '5' // Araucaria bidwilli 
         },
         {
-          plantaId: '19' // Ligustro
+          plantaId: '37' //  Syagrus romanzoffiana  
         }
       ]
     },
     {
       id: 'parada-4',
       numero: 4,
-      ubicacionX: 170,
-      ubicacionY: 250,
+      ubicacionX: 210,
+      ubicacionY: 320,
       plantas: [
         {
-          plantaId: '22' // Morera
+          plantaId: '31' // Phoenix canariensis
         },
         {
-          plantaId: '26' // Plátano
+          plantaId: '19' // Jacaranda mimosifolia 
         }
       ]
     },
     {
       id: 'parada-5',
       numero: 5,
-      ubicacionX: 230,
-      ubicacionY: 120,
+      ubicacionX: 50,
+      ubicacionY: 160,
       plantas: [
         {
-          plantaId: '27' // Palma Fénix
+          plantaId: '2' // Acacia melanoxylon
         },
         {
-          plantaId: '33' // Palmera Abanico
+          plantaId: '9' // Cedrus deodara 
         }
       ]
     }

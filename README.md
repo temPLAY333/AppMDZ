@@ -67,8 +67,7 @@ npm list --depth=0
 
 ### Pantallas
 - `Home`: Pantalla principal
-- `MapaDeLaPlazaMapa`: Vista de mapa
-- `MapaDeLaPlazaModelo`: Vista de modelo 3D
+- `MapaDeLaPlazaModelo`: Vista de modelo 3D de plazas
 - `ParadaPlanta1`: Información sobre plantas
 - `Glosario`: Glosario de términos
 - `JuegosPregunta1` y `JuegosPregunta2`: Juegos interactivos

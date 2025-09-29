@@ -8,77 +8,76 @@ const plazaEspana: Plaza = {
   nombre: 'Plaza España',
   descripcion: 'La Plaza España es un importante espacio público en Mendoza que representa los lazos históricos y culturales entre Argentina y España. Destaca por su fuente central y su vegetación mediterránea.',
   bandera: '🇪🇸', // Bandera de España
-  imagenPortada: require('../../assets/CiudadDeMDZ.png'), // Usar una imagen existente temporalmente
-  mapaImagenPath: require('../../assets/PSanMartin-Aerea-Normal.png'), // Usar una imagen existente temporalmente
-  modeloImagenPath: require('../../assets/Modelo-PSanMartin.png'), // Usar una imagen existente temporalmente
+  imagenPortada: require('../../assets/plazas/Modelo-PEspaña.png'), // Usamos la imagen del modelo como portada
+  modeloImagenPath: require('../../assets/plazas/Modelo-PEspaña.png'),
   paradas: [
     {
       id: 'parada-1',
       numero: 1,
-      ubicacionX: 150,
-      ubicacionY: 120,
+      ubicacionX: 250,
+      ubicacionY: 110,
       plantas: [
         {
-          plantaId: '27', // Phoenix canariensis (Palma Fénix)
+          plantaId: '33', // Punica granatum
         },
         {
-          plantaId: 'planta-sin-indice-1', // Vitex agnus-castus (No está en el índice)
+          plantaId: '40', // Vitex agnus-castus
         }
       ]
     },
     {
       id: 'parada-2',
       numero: 2,
-      ubicacionX: 220,
-      ubicacionY: 180,
+      ubicacionX: 250,
+      ubicacionY: 230,
       plantas: [
         {
-          plantaId: 'planta-sin-indice-2', // Platanus acerifolia (No está en el índice)
+          plantaId: '4', // Aesculus hipocastanum 
         },
         {
-          plantaId: '14', // Jacaranda mimosifolia
+          plantaId: '11', // Cercis siliquastrum
         }
       ]
     },
     {
       id: 'parada-3',
       numero: 3,
-      ubicacionX: 280,
-      ubicacionY: 150,
+      ubicacionX: 250,
+      ubicacionY: 310,
       plantas: [
         {
-          plantaId: '28', // Punica granatum (Granado)
+          plantaId: '9', // Cedrus deodara 
         },
         {
-          plantaId: 'planta-sin-indice-3' // Hibiscus rosa-sinensis (No está en el índice)
+          plantaId: '8' // Casuarina cunninghamiana
         }
       ]
     },
     {
       id: 'parada-4',
       numero: 4,
-      ubicacionX: 190,
-      ubicacionY: 230,
+      ubicacionX: 80,
+      ubicacionY: 240,
       plantas: [
         {
-          plantaId: '14' // Jacaranda mimosifolia
+          plantaId: '27' // Nerium oleander
         },
         {
-          plantaId: '27' // Phoenix canariensis (Palma Fénix)
+          plantaId: '29' // Pittosporum tobira
         }
       ]
     },
     {
       id: 'parada-5',
       numero: 5,
-      ubicacionX: 130,
-      ubicacionY: 190,
+      ubicacionX: 190,
+      ubicacionY: 120,
       plantas: [
         {
-          plantaId: '28' // Punica granatum (Granado)
+          plantaId: '17' // Firmiana simplex
         },
         {
-          plantaId: 'planta-sin-indice-1' // Vitex agnus-castus (No está en el índice)
+          plantaId: '22' // Liquidambar styraciflua
         }
       ]
     }

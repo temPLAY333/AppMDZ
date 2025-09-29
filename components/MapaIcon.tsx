@@ -9,13 +9,8 @@ const MapaIcon = () => {
     <ImageBackground
       style={styles.mapaIcon}
       resizeMode="cover"
-      source={require("../assets/PSanMartin-Aerea-Normal.png")}
+      source={require("../assets/plazas/Modelo-PSanMartin.png")}
     >
-      <Image
-        style={styles.psanmartinAereaNormal11Icon as any}
-        contentFit="cover"
-        source={require("../assets/PSanMartin-Aerea-Normal.png")}
-      />
       <View style={styles.markParent}>
         <Mark status1="NotSelected" number="6" plantaId="6" markWidth={35} markHeight={35} />
         <View style={styles.markGroup}>
@@ -41,7 +36,7 @@ const MapaIcon = () => {
 const styles = StyleSheet.create({
   mapaIcon: {
     alignSelf: "stretch",
-    height: 339,
+    height: 450,  // Increased height to make the model larger
     overflow: "hidden",
     alignItems: "flex-end",
     paddingLeft: 27,
@@ -50,11 +45,6 @@ const styles = StyleSheet.create({
     paddingBottom: 107,
     gap: 73,
     flexDirection: "row",
-  },
-  psanmartinAereaNormal11Icon: {
-    width: 340,
-    height: 340,
-    display: "none",
   },
   markParent: {
     marginLeft: -15,

@@ -3,9 +3,12 @@ import { ImageSourcePropType } from 'react-native';
 
 // Mapeo de rutas de imágenes a require
 const imageMapping: Record<string, ImageSourcePropType> = {
-  // Imágenes de plazas
-  'PSanMartin-Aerea-Normal.png': require('../assets/PSanMartin-Aerea-Normal.png'),
-  'Modelo-PSanMartin.png': require('../assets/Modelo-PSanMartin.png'),
+  // Imágenes de plazas (solo modelos 3D)
+  'Modelo-PSanMartin.png': require('../assets/plazas/Modelo-PSanMartin.png'),
+  'Modelo-PChile.png': require('../assets/plazas/Modelo-PChile.png'),
+  'Modelo-PEspaña.png': require('../assets/plazas/Modelo-PEspaña.png'),
+  'Modelo-PIndependencia.png': require('../assets/plazas/Modelo-PIndependencia.png'),
+  'Modelo-PItalia.png': require('../assets/plazas/Model-PItalia.png'),
   
   // Puedes agregar más imágenes según sea necesario
 };

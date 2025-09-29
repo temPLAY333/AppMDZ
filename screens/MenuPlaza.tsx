@@ -50,7 +50,7 @@ const MenuPlaza = () => {
 
   const handleJugarTrivia = () => {
     setSelectedOption('trivia');
-    navigation.navigate("JuegosPregunta1", { plazaId });
+    navigation.navigate("JuegoPreguntas", { plazaId });
   };
 
   return (

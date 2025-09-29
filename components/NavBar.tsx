@@ -8,6 +8,7 @@ import { useNavigation, CommonActions } from "@react-navigation/native";
 
 export type NavBarType = {
   klipartz?: React.ReactNode;
+  activeItem?: string;
 
   /** Style props */
   navBarElevation?: number | string;
@@ -17,7 +18,7 @@ const getStyleValue = (key: string, value: string | number | undefined) => {
   if (value === undefined) return;
   return { [key]: value === "unset" ? undefined : value };
 };
-const NavBar = ({ navBarElevation, klipartz }: NavBarType) => {
+const NavBar = ({ navBarElevation, klipartz, activeItem }: NavBarType) => {
   const navigation = useNavigation<any>();
   
   const navBarStyle = useMemo(() => {

@@ -15,6 +15,8 @@ import InformacionAdicional from "./screens/InformacionAdicional";
 import Referencias from "./screens/Referencias";
 import Glosario from "./screens/Glosario";
 import ParadaPlanta1 from "./screens/ParadaPlanta1";
+import JuegoPreguntas from "./screens/JuegoPreguntas";
+import ResultadosTrivia from "./screens/ResultadosTrivia";
 // Los componentes UI no se importan aquí porque no son pantallas navegables
 import { LanguageProvider } from "./contexts/LanguageContext";
 
@@ -123,6 +125,16 @@ const App = () => {
             <Stack.Screen
               name="ParadaPlanta1"
               component={ParadaPlanta1}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="JuegoPreguntas"
+              component={JuegoPreguntas as React.ComponentType<any>}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="ResultadosTrivia"
+              component={ResultadosTrivia as React.ComponentType<any>}
               options={{ headerShown: false }}
             />
             {/* Componentes que no son pantallas no deben ser registrados aquí */}

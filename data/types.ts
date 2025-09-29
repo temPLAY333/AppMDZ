@@ -54,22 +54,28 @@ export interface Plaza {
   descripcion: string;
   bandera: string;     // Emoji de la bandera del país
   imagenPortada: string;
-  mapaImagenPath: string;
-  modeloImagenPath: string;
+  modeloImagenPath: string;  // Solo mantenemos la referencia al modelo 3D
   paradas: Parada[];
+}
+
+// Textos multilingües para preguntas y opciones
+export interface TextoMultilingue {
+  es: string; // Texto en español
+  en: string; // Texto en inglés
 }
 
 // Estructura para preguntas
 export interface Opcion {
-  texto: string;
+  texto: TextoMultilingue;
   esCorrecta: boolean;
 }
 
 export interface Pregunta {
   id: string;
-  texto: string;
+  texto: TextoMultilingue;
+  imagen?: string;     // Ruta opcional a una imagen para la pregunta
   opciones: Opcion[];
-  explicacion: string;  // Explicación de la respuesta correcta
+  explicacion: TextoMultilingue;  // Explicación de la respuesta correcta
 }
 
 export interface BancoPreguntas {

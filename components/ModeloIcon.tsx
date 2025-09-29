@@ -9,12 +9,12 @@ const ModeloIcon = () => {
     <ImageBackground
       style={[styles.modeloIcon, styles.modeloIconLayout]}
       resizeMode="cover"
-      source={require("../assets/Modelo-PSanMartin.png")}
+      source={require("../assets/plazas/Modelo-PSanMartin.png")}
     >
       <Image
         style={[styles.modeloPsanmartin1Icon, styles.modeloIconLayout] as any}
         contentFit="cover"
-        source={require("../assets/Modelo-PSanMartin.png")}
+        source={require("../assets/plazas/Modelo-PSanMartin.png")}
       />
       <View style={styles.markerContainerOneParent}>
         <View style={styles.markerContainerOne}>

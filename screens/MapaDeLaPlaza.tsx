@@ -1,11 +1,9 @@
 import * as React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { ScrollView, Text, StyleSheet, View, Image, Dimensions } from "react-native";
 import TopBar from "../components/TopBar";
-import MapaIcon from "../components/MapaIcon";
 import ModeloIcon from "../components/ModeloIcon";
 import NavBar from "../components/NavBar";
-import DobleButton, { DobleBtnSeleccionado } from "../components/DobleButton";
 import Klipartz from "../assets/Klipartz.svg";
 import Pin from "../components/Pin";
 import { useRoute, useNavigation, useFocusEffect } from "@react-navigation/native";
@@ -26,18 +24,10 @@ type MapaModeloRouteProp = RouteProp<{
   MapaDeLaPlaza: { plazaId: string };
 }, 'MapaDeLaPlaza'>;
 
-enum ModoVisualizacion {
-  MAPA = 'mapa',
-  MODELO = 'modelo'
-}
-
 const MapaDeLaPlaza = () => {
   const navigation = useNavigation<any>();
   const route = useRoute<MapaModeloRouteProp>();
   const { translate } = useLanguage();
-  
-  // Estado para controlar qué imagen se muestra (mapa o modelo)
-  const [modo, setModo] = useState<ModoVisualizacion>(ModoVisualizacion.MAPA);
   
   // Estado para controlar qué pin está destacado (grande)
   const [highlightedPinId, setHighlightedPinId] = useState<string>('parada-1');
@@ -81,26 +71,11 @@ const MapaDeLaPlaza = () => {
         const currentIndex = paradas.findIndex(p => p.id === previousParadaId);
         
         // Si venimos de una parada, destacar esa parada 
-        // (ya no intentamos avanzar automáticamente a la siguiente)
         setHighlightedPinId(previousParadaId);
       }
       // Ya no reseteamos a parada-1 si venimos de otra pantalla para mantener el estado
     }, [navigation, plazaId, plaza])
   );
-  
-  // Cambiar entre mapa y modelo
-  const mostrarMapa = () => {
-    setModo(ModoVisualizacion.MAPA);
-  };
-  
-  const mostrarModelo = () => {
-    setModo(ModoVisualizacion.MODELO);
-  };
-
-  // Determinar el estado del botón dual
-  const estadoBoton = modo === ModoVisualizacion.MAPA 
-    ? DobleBtnSeleccionado.Izquierdo 
-    : DobleBtnSeleccionado.Derecho;
   
   // Navegar a la pantalla de ParadaPlanta1 cuando se presiona un pin
   const handlePinPress = (paradaId: string) => {
@@ -121,25 +96,21 @@ const MapaDeLaPlaza = () => {
         
         {/* Contenedor de imagen y pines */}
         <View style={styles.imageContainer}>
-          {/* Imagen del mapa o modelo según el modo seleccionado */}
+          {/* Imagen del modelo 3D */}
           <Image
             style={styles.imagenPlaza}
             resizeMode="contain"
-            source={
-              modo === ModoVisualizacion.MAPA 
-              ? (plaza?.mapaImagenPath || require("../assets/PSanMartin-Aerea-Normal.png"))
-              : (plaza?.modeloImagenPath || require("../assets/Modelo-PSanMartin.png"))
-            }
+            source={plaza?.modeloImagenPath || require("../assets/plazas/Modelo-PSanMartin.png")}
           />
           
-          {/* Pines de las paradas - Se muestran en ambos modos */}
+          {/* Pines de las paradas */}
           {plaza?.paradas.some(parada => typeof parada.ubicacionX === 'number' && typeof parada.ubicacionY === 'number') ? (
             plaza.paradas.map((parada) => {
               // Comprobamos que las coordenadas existan y sean válidas
               if (typeof parada.ubicacionX === 'number' && typeof parada.ubicacionY === 'number') {
-                // Determinar qué coordenadas usar según el modo
-                const posX = modo === ModoVisualizacion.MODELO && parada.modeloX !== undefined ? parada.modeloX : parada.ubicacionX;
-                const posY = modo === ModoVisualizacion.MODELO && parada.modeloY !== undefined ? parada.modeloY : parada.ubicacionY;
+                // Usar coordenadas del modelo si están disponibles, de lo contrario usar las coordenadas estándar
+                const posX = parada.modeloX !== undefined ? parada.modeloX : parada.ubicacionX;
+                const posY = parada.modeloY !== undefined ? parada.modeloY : parada.ubicacionY;
                 
                 return (
                   <Pin
@@ -167,17 +138,6 @@ const MapaDeLaPlaza = () => {
             </View>
           )}
         </View>
-        
-        {/* Botón para alternar entre mapa y modelo */}
-        <DobleButton
-          textoIzquierdo={translate("button.map")}
-          textoDerecho={translate("button.model")}
-          seleccionado={estadoBoton}
-          onIzquierdoPress={mostrarMapa}
-          onDerechoPress={mostrarModelo}
-          width={344}
-          height={80}
-        />
       </View>
       <NavBar klipartz={<Klipartz width={55} height={55} />} />
     </ScrollView>
@@ -223,24 +183,24 @@ const styles = StyleSheet.create({
   imageContainer: {
     position: 'relative',
     width: '100%',
-    height: 350,
-    marginVertical: 20,
-    borderRadius: 10,
+    height: 450, // Altura aumentada
+    marginVertical: 30, // Mayor margen vertical
+    borderRadius: 12,
     overflow: 'hidden',
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
-      height: 4,
+      height: 6,
     },
-    shadowOpacity: 0.3,
-    shadowRadius: 5,
-    elevation: 8,
+    shadowOpacity: 0.4,
+    shadowRadius: 8,
+    elevation: 10,
   },
   imagenPlaza: {
     width: "100%",
     height: '100%',
     backgroundColor: "rgba(0, 0, 0, 0.2)",
-    borderRadius: 10,
+    borderRadius: 12,
   },
   noPinsContainer: {
     position: 'absolute',

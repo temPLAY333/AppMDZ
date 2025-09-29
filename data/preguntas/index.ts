@@ -1,14 +1,14 @@
 import { BancoPreguntas } from '../types';
 
 // Importamos los bancos de preguntas
-import bancoPlazaSanMartin from './bancoPlazaSanMartin';
+import nuevasPlazaSanMartin from './nuevasPlazaSanMartin';
 import bancoPlazaEspana from './bancoPlazaEspana';
 import bancoPlazaItalia from './bancoPlazaItalia';
 import bancoPlazaChile from './bancoPlazaChile';
 import bancoPlazaIndependencia from './bancoPlazaIndependencia';
 
 const bancosPreguntas: BancoPreguntas[] = [
-  bancoPlazaSanMartin,
+  nuevasPlazaSanMartin,
   bancoPlazaEspana,
   bancoPlazaItalia,
   bancoPlazaChile,

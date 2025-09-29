@@ -6,6 +6,9 @@ export const FontFamily = {
 };
 /* Font sizes */
 export const FontSize = {
+  size_sm: 14,
+  size_md: 16,
+  size_lg: 18,
   size_20: 20,
   size_24: 24,
   size_32: 32,
@@ -24,6 +27,15 @@ export const Color = {
   colorGray300: "rgba(0, 0, 0, 0.25)",
   colorGray200: "#05181f",
   colorGray100: "#05222e",
+  
+  // Colores para quiz y trivia
+  primary: "#018b9f", // colorDarkcyan como primario
+  primaryLight: "#e1f5f7",
+  textDark: "#333333",
+  white: "#ffffff",
+  borderLight: "#dee2e6",
+  backgroundLight: "#f8f9fa",
+  backgroundInfo: "#e2f3f5",
 };
 /* Gaps */
 export const Gap = {
@@ -52,4 +64,6 @@ export const Border = {
   br_10: 10,
   br_40: 40,
   br_100: 100,
+  br_sm: 8,
+  br_md: 12,
 };

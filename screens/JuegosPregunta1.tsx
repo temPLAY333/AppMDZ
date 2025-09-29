@@ -9,7 +9,7 @@ import MultipleChoice from "../components/MultipleChoice";
 import NavBar from "../components/NavBar";
 import Klipartz from "../assets/Klipartz.svg";
 import { Color, FontFamily, FontSize } from "../GlobalStyles";
-import { preguntasPorPlazaId } from "../data/preguntas";
+import { preguntasPorPlazaId } from "../data/preguntas/index";
 import { Pregunta, Opcion } from "../data/types";
 
 // Define los tipos para los parámetros de la ruta
