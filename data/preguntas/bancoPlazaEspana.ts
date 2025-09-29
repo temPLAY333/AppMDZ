@@ -6,113 +6,413 @@ const bancoPlazaEspana: BancoPreguntas = {
   preguntas: [
     {
       id: 'pregunta-espana-1',
-      texto: '¿Cuál de estos árboles es originario de la región mediterránea?',
+      texto: {
+        es: '¿Cuál de estas especies es originaria de la región mediterránea?',
+        en: 'Which of these species is native to the Mediterranean region?'
+      },
       opciones: [
-        { texto: 'Jacaranda', esCorrecta: false },
-        { texto: 'Granado', esCorrecta: true },
-        { texto: 'Araucaria', esCorrecta: false },
-        { texto: 'Cedro', esCorrecta: false }
+        { 
+          texto: { 
+            es: 'Jacaranda mimosifolia', 
+            en: 'Jacaranda mimosifolia' 
+          }, 
+          esCorrecta: false 
+        },
+        { 
+          texto: { 
+            es: 'Punica granatum', 
+            en: 'Punica granatum' 
+          }, 
+          esCorrecta: true 
+        },
+        { 
+          texto: { 
+            es: 'Araucaria bidwillii', 
+            en: 'Araucaria bidwillii' 
+          }, 
+          esCorrecta: false 
+        },
+        { 
+          texto: { 
+            es: 'Cedrus deodara', 
+            en: 'Cedrus deodara' 
+          }, 
+          esCorrecta: false 
+        }
       ],
-      explicacion: 'El Granado (Punica granatum) es originario de la región mediterránea y se ha cultivado desde la antigüedad.'
+      explicacion: {
+        es: 'Punica granatum es originaria de la región mediterránea y se ha cultivado desde la antigüedad.',
+        en: 'Punica granatum is native to the Mediterranean region and has been cultivated since ancient times.'
+      }
     },
     {
       id: 'pregunta-espana-2',
-      texto: '¿Qué árbol de la plaza España produce flores de color azul-violáceo?',
+      texto: {
+        es: '¿Qué especie de la Plaza España produce flores de color azul-violáceo?',
+        en: 'Which species in Plaza España produces blue-purple flowers?'
+      },
       opciones: [
-        { texto: 'Jacaranda', esCorrecta: true },
-        { texto: 'Palma Fénix', esCorrecta: false },
-        { texto: 'Sauzgatillo', esCorrecta: false },
-        { texto: 'Granado', esCorrecta: false }
+        { 
+          texto: { 
+            es: 'Jacaranda mimosifolia', 
+            en: 'Jacaranda mimosifolia' 
+          }, 
+          esCorrecta: true 
+        },
+        { 
+          texto: { 
+            es: 'Phoenix canariensis', 
+            en: 'Phoenix canariensis' 
+          }, 
+          esCorrecta: false 
+        },
+        { 
+          texto: { 
+            es: 'Vitex agnus-castus', 
+            en: 'Vitex agnus-castus' 
+          }, 
+          esCorrecta: false 
+        },
+        { 
+          texto: { 
+            es: 'Punica granatum', 
+            en: 'Punica granatum' 
+          }, 
+          esCorrecta: false 
+        }
       ],
-      explicacion: 'La Jacaranda (Jacaranda mimosifolia) produce hermosas flores de color azul-violáceo durante su floración.'
+      explicacion: {
+        es: 'Jacaranda mimosifolia produce hermosas flores de color azul-violáceo durante su floración.',
+        en: 'Jacaranda mimosifolia produces beautiful blue-purple flowers during its blooming season.'
+      }
     },
     {
       id: 'pregunta-espana-3',
-      texto: '¿Qué planta de la Plaza España es conocida por su uso medicinal tradicional?',
+      texto: {
+        es: '¿Qué especie de la Plaza España es conocida por su uso medicinal tradicional?',
+        en: 'Which species in Plaza España is known for its traditional medicinal use?'
+      },
       opciones: [
-        { texto: 'Phoenix canariensis', esCorrecta: false },
-        { texto: 'Vitex agnus-castus', esCorrecta: true },
-        { texto: 'Platanus acerifolia', esCorrecta: false },
-        { texto: 'Punica granatum', esCorrecta: false }
+        { 
+          texto: { 
+            es: 'Phoenix canariensis', 
+            en: 'Phoenix canariensis' 
+          }, 
+          esCorrecta: false 
+        },
+        { 
+          texto: { 
+            es: 'Vitex agnus-castus', 
+            en: 'Vitex agnus-castus' 
+          }, 
+          esCorrecta: true 
+        },
+        { 
+          texto: { 
+            es: 'Platanus acerifolia', 
+            en: 'Platanus acerifolia' 
+          }, 
+          esCorrecta: false 
+        },
+        { 
+          texto: { 
+            es: 'Punica granatum', 
+            en: 'Punica granatum' 
+          }, 
+          esCorrecta: false 
+        }
       ],
-      explicacion: 'El Sauzgatillo (Vitex agnus-castus) ha sido utilizado tradicionalmente como planta medicinal para regular problemas hormonales.'
+      explicacion: {
+        es: 'Vitex agnus-castus ha sido utilizado tradicionalmente como planta medicinal para regular problemas hormonales.',
+        en: 'Vitex agnus-castus has traditionally been used as a medicinal plant to regulate hormonal issues.'
+      }
     },
     {
       id: 'pregunta-espana-4',
-      texto: '¿Cuál de estas plantas produce frutos comestibles?',
+      texto: {
+        es: '¿Cuál de estas especies produce frutos comestibles?',
+        en: 'Which of these species produces edible fruits?'
+      },
       opciones: [
-        { texto: 'Platanus acerifolia', esCorrecta: false },
-        { texto: 'Hibiscus rosa-sinensis', esCorrecta: false },
-        { texto: 'Punica granatum', esCorrecta: true },
-        { texto: 'Phoenix canariensis', esCorrecta: false }
+        { 
+          texto: { 
+            es: 'Platanus acerifolia', 
+            en: 'Platanus acerifolia' 
+          }, 
+          esCorrecta: false 
+        },
+        { 
+          texto: { 
+            es: 'Jacaranda mimosifolia', 
+            en: 'Jacaranda mimosifolia' 
+          }, 
+          esCorrecta: false 
+        },
+        { 
+          texto: { 
+            es: 'Punica granatum', 
+            en: 'Punica granatum' 
+          }, 
+          esCorrecta: true 
+        },
+        { 
+          texto: { 
+            es: 'Phoenix canariensis', 
+            en: 'Phoenix canariensis' 
+          }, 
+          esCorrecta: false 
+        }
       ],
-      explicacion: 'El Granado (Punica granatum) produce la fruta conocida como granada, que es comestible y muy apreciada por sus propiedades nutricionales.'
+      explicacion: {
+        es: 'Punica granatum produce frutos comestibles muy apreciados por sus propiedades nutricionales.',
+        en: 'Punica granatum produces edible fruits that are highly valued for their nutritional properties.'
+      }
     },
     {
       id: 'pregunta-espana-5',
-      texto: '¿Qué característica distingue a la Phoenix canariensis?',
+      texto: {
+        es: '¿Qué característica morfológica distingue a Phoenix canariensis?',
+        en: 'What morphological characteristic distinguishes Phoenix canariensis?'
+      },
       opciones: [
-        { texto: 'Flores rojas brillantes', esCorrecta: false },
-        { texto: 'Frutos en forma de piña', esCorrecta: false },
-        { texto: 'Tronco delgado y flexible', esCorrecta: false },
-        { texto: 'Hojas en forma de abanico', esCorrecta: true }
+        { 
+          texto: { 
+            es: 'Flores rojas brillantes', 
+            en: 'Bright red flowers' 
+          }, 
+          esCorrecta: false 
+        },
+        { 
+          texto: { 
+            es: 'Frutos en forma de piña', 
+            en: 'Pineapple-shaped fruits' 
+          }, 
+          esCorrecta: false 
+        },
+        { 
+          texto: { 
+            es: 'Tronco delgado y flexible', 
+            en: 'Thin and flexible trunk' 
+          }, 
+          esCorrecta: false 
+        },
+        { 
+          texto: { 
+            es: 'Hojas pinnadas en forma de abanico', 
+            en: 'Fan-shaped pinnate leaves' 
+          }, 
+          esCorrecta: true 
+        }
       ],
-      explicacion: 'La Palma Fénix (Phoenix canariensis) se distingue por sus grandes hojas pinnadas que crecen en forma de abanico en la parte superior del tronco.'
+      explicacion: {
+        es: 'Phoenix canariensis se distingue por sus grandes hojas pinnadas que crecen en forma de abanico en la parte superior del tronco.',
+        en: 'Phoenix canariensis is distinguished by its large pinnate leaves that grow in a fan shape at the top of the trunk.'
+      }
     },
     {
       id: 'pregunta-espana-6',
-      texto: '¿De qué región es nativo el Hibiscus rosa-sinensis?',
+      texto: {
+        es: '¿De qué región es originaria Jacaranda mimosifolia?',
+        en: 'From which region does Jacaranda mimosifolia originate?'
+      },
       opciones: [
-        { texto: 'Europa', esCorrecta: false },
-        { texto: 'África', esCorrecta: false },
-        { texto: 'Asia tropical', esCorrecta: true },
-        { texto: 'América del Sur', esCorrecta: false }
+        { 
+          texto: { 
+            es: 'Europa', 
+            en: 'Europe' 
+          }, 
+          esCorrecta: false 
+        },
+        { 
+          texto: { 
+            es: 'África', 
+            en: 'Africa' 
+          }, 
+          esCorrecta: false 
+        },
+        { 
+          texto: { 
+            es: 'América del Sur', 
+            en: 'South America' 
+          }, 
+          esCorrecta: true 
+        },
+        { 
+          texto: { 
+            es: 'Asia', 
+            en: 'Asia' 
+          }, 
+          esCorrecta: false 
+        }
       ],
-      explicacion: 'El Hibisco (Hibiscus rosa-sinensis) es nativo de Asia tropical, específicamente de regiones como China e India.'
+      explicacion: {
+        es: 'Jacaranda mimosifolia es nativa de Sudamérica, principalmente de Argentina, Bolivia y Brasil.',
+        en: 'Jacaranda mimosifolia is native to South America, mainly from Argentina, Bolivia, and Brazil.'
+      }
     },
     {
       id: 'pregunta-espana-7',
-      texto: '¿Qué árbol de la Plaza España es conocido por su sombra fresca?',
+      texto: {
+        es: '¿Qué especie de la Plaza España es conocida por proporcionar sombra abundante?',
+        en: 'Which species in Plaza España is known for providing abundant shade?'
+      },
       opciones: [
-        { texto: 'Platanus acerifolia', esCorrecta: true },
-        { texto: 'Vitex agnus-castus', esCorrecta: false },
-        { texto: 'Phoenix canariensis', esCorrecta: false },
-        { texto: 'Hibiscus rosa-sinensis', esCorrecta: false }
+        { 
+          texto: { 
+            es: 'Platanus acerifolia', 
+            en: 'Platanus acerifolia' 
+          }, 
+          esCorrecta: true 
+        },
+        { 
+          texto: { 
+            es: 'Vitex agnus-castus', 
+            en: 'Vitex agnus-castus' 
+          }, 
+          esCorrecta: false 
+        },
+        { 
+          texto: { 
+            es: 'Phoenix canariensis', 
+            en: 'Phoenix canariensis' 
+          }, 
+          esCorrecta: false 
+        },
+        { 
+          texto: { 
+            es: 'Jacaranda mimosifolia', 
+            en: 'Jacaranda mimosifolia' 
+          }, 
+          esCorrecta: false 
+        }
       ],
-      explicacion: 'El Plátano (Platanus acerifolia) es muy valorado en parques y plazas por la excelente sombra que proporciona gracias a su amplia copa.'
+      explicacion: {
+        es: 'Platanus acerifolia es muy valorado en parques y plazas por la excelente sombra que proporciona gracias a su amplia copa.',
+        en: 'Platanus acerifolia is highly valued in parks and plazas for the excellent shade it provides thanks to its wide canopy.'
+      }
     },
     {
       id: 'pregunta-espana-8',
-      texto: '¿Qué planta se caracteriza por sus hojas trilobuladas?',
+      texto: {
+        es: '¿Qué caracteriza a la madera de Jacaranda mimosifolia?',
+        en: 'What characterizes Jacaranda mimosifolia wood?'
+      },
       opciones: [
-        { texto: 'Jacaranda mimosifolia', esCorrecta: false },
-        { texto: 'Hibiscus rosa-sinensis', esCorrecta: true },
-        { texto: 'Punica granatum', esCorrecta: false },
-        { texto: 'Phoenix canariensis', esCorrecta: false }
+        { 
+          texto: { 
+            es: 'Es blanda y ligera', 
+            en: 'It is soft and light' 
+          }, 
+          esCorrecta: false 
+        },
+        { 
+          texto: { 
+            es: 'Es muy resistente al fuego', 
+            en: 'It is highly fire resistant' 
+          }, 
+          esCorrecta: false 
+        },
+        { 
+          texto: { 
+            es: 'Es aromática y duradera', 
+            en: 'It is aromatic and durable' 
+          }, 
+          esCorrecta: true 
+        },
+        { 
+          texto: { 
+            es: 'Es flexible y elástica', 
+            en: 'It is flexible and elastic' 
+          }, 
+          esCorrecta: false 
+        }
       ],
-      explicacion: 'El Hibisco (Hibiscus rosa-sinensis) presenta hojas con tres lóbulos bien definidos, especialmente en algunas variedades.'
+      explicacion: {
+        es: 'La madera de Jacaranda mimosifolia es conocida por ser aromática, duradera y de buena calidad, utilizada en ebanistería fina.',
+        en: 'Jacaranda mimosifolia wood is known for being aromatic, durable, and of good quality, used in fine cabinetmaking.'
+      }
     },
     {
       id: 'pregunta-espana-9',
-      texto: '¿Qué caracteriza a la madera de Jacaranda?',
+      texto: {
+        es: '¿Qué especie no es originaria de España pero está presente en la plaza?',
+        en: 'Which species is not native to Spain but is present in the plaza?'
+      },
       opciones: [
-        { texto: 'Es blanda y ligera', esCorrecta: false },
-        { texto: 'Es muy resistente al fuego', esCorrecta: false },
-        { texto: 'Es aromática y duradera', esCorrecta: true },
-        { texto: 'Es flexible y elástica', esCorrecta: false }
+        { 
+          texto: { 
+            es: 'Punica granatum', 
+            en: 'Punica granatum' 
+          }, 
+          esCorrecta: false 
+        },
+        { 
+          texto: { 
+            es: 'Vitex agnus-castus', 
+            en: 'Vitex agnus-castus' 
+          }, 
+          esCorrecta: false 
+        },
+        { 
+          texto: { 
+            es: 'Jacaranda mimosifolia', 
+            en: 'Jacaranda mimosifolia' 
+          }, 
+          esCorrecta: true 
+        },
+        { 
+          texto: { 
+            es: 'Platanus acerifolia', 
+            en: 'Platanus acerifolia' 
+          }, 
+          esCorrecta: false 
+        }
       ],
-      explicacion: 'La madera de Jacaranda es conocida por ser aromática, duradera y de buena calidad, utilizada en ebanistería fina.'
+      explicacion: {
+        es: 'Jacaranda mimosifolia es nativa de Sudamérica (principalmente Argentina, Bolivia y Brasil), a pesar de encontrarse en la Plaza España.',
+        en: 'Jacaranda mimosifolia is native to South America (mainly Argentina, Bolivia, and Brazil), despite being found in Plaza España.'
+      }
     },
     {
       id: 'pregunta-espana-10',
-      texto: '¿Qué planta no es originaria de España pero lleva su nombre en la plaza?',
+      texto: {
+        es: '¿Qué especie suele ser la más longeva en la Plaza España?',
+        en: 'Which species tends to be the longest-lived in Plaza España?'
+      },
       opciones: [
-        { texto: 'Punica granatum', esCorrecta: false },
-        { texto: 'Vitex agnus-castus', esCorrecta: false },
-        { texto: 'Jacaranda mimosifolia', esCorrecta: true },
-        { texto: 'Platanus acerifolia', esCorrecta: false }
+        { 
+          texto: { 
+            es: 'Phoenix canariensis', 
+            en: 'Phoenix canariensis' 
+          }, 
+          esCorrecta: true 
+        },
+        { 
+          texto: { 
+            es: 'Jacaranda mimosifolia', 
+            en: 'Jacaranda mimosifolia' 
+          }, 
+          esCorrecta: false 
+        },
+        { 
+          texto: { 
+            es: 'Platanus acerifolia', 
+            en: 'Platanus acerifolia' 
+          }, 
+          esCorrecta: false 
+        },
+        { 
+          texto: { 
+            es: 'Punica granatum', 
+            en: 'Punica granatum' 
+          }, 
+          esCorrecta: false 
+        }
       ],
-      explicacion: 'La Jacaranda es nativa de Sudamérica (principalmente Argentina, Bolivia y Brasil), a pesar de encontrarse en la Plaza España.'
+      explicacion: {
+        es: 'Phoenix canariensis son generalmente los ejemplares más longevos de la Plaza España, algunos con más de 80 años.',
+        en: 'Phoenix canariensis are generally the longest-lived specimens in Plaza España, some over 80 years old.'
+      }
     }
   ]
 };

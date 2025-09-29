@@ -32,7 +32,7 @@ const plazaIndependencia: Plaza = {
       ubicacionY: 300,
       plantas: [
         {
-          plantaId: 'planta-sin-indice-1' // Cupresus sp (no está en el índice)
+          plantaId: '13' // Cupressus sp.
         },
         {
           plantaId: '27' // Phoenix canariensis
@@ -91,7 +91,7 @@ const plazaIndependencia: Plaza = {
           plantaId: '28' // Pinus griffithi
         },
         {
-          plantaId: '42' // Washingtonia sp. (???)
+          plantaId: '42' // Washingtonia robusta 
         }
       ]
     },

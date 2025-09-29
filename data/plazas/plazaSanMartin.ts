@@ -18,7 +18,7 @@ const plazaSanMartin: Plaza = {
       ubicacionY: 110,
       plantas: [
         {
-          plantaId: '1' // Rowinia pseudoacacia (no esta en el índice)
+          plantaId: '35' // Robinia pseudoacacia
         },
         {
           plantaId: '30' // Platanus x acerifolia

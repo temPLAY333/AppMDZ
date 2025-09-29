@@ -60,7 +60,7 @@ const plazaChile: Plaza = {
       ubicacionY: 330,
       plantas: [
         {
-          plantaId: '26', // Neltuma sp. 
+          plantaId: '26', // Prosopis sp. 
         },
         {
           plantaId: '21', // Ligustrum lucidum
@@ -74,7 +74,7 @@ const plazaChile: Plaza = {
       ubicacionY: 290,
       plantas: [
         {
-          plantaId: 'planta-sin-indice-6', // Schinus sp. (no está en el índice) o 36 (molle)
+          plantaId: '36', // Schinus molle
         },
         {
           plantaId: '16', // Gleditsia triacanthos

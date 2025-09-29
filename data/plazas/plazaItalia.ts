@@ -18,7 +18,7 @@ const plazaItalia: Plaza = {
       ubicacionY: 150,
       plantas: [
         {
-          plantaId: 'planta-sin-indice-1' // Trachicarpus fortunei (no está en el índice)
+          plantaId: '41' // Trachycarpus fortunei
         },
         {
           plantaId: '8' // Casuarina cunninghamiana
@@ -46,7 +46,7 @@ const plazaItalia: Plaza = {
       ubicacionY: 320,
       plantas: [
         {
-          plantaId: 'planta-sin-indice-2' // Evonimus europaeus (no está en el índice)
+          plantaId: '14' // Evonimus japonicus
         },
         {
           plantaId: '22' // Liquidambar styraciflua
@@ -63,7 +63,7 @@ const plazaItalia: Plaza = {
           plantaId: '9' // Cedrus deodara
         },
         {
-          plantaId: 'planta-sin-indice-3' // Phytolaca dioica (no está en el índice)
+          plantaId: '32' // Phytolacca dioica
         }
       ]
     },
@@ -74,7 +74,7 @@ const plazaItalia: Plaza = {
       ubicacionY: 190,
       plantas: [
         {
-          plantaId: 'planta-sin-indice-4' // Cupressus sp. (no está en el índice)
+          plantaId: '13' // Cupressus sp.
         },
         {
           plantaId: 'planta-sin-indice-5' // Brachychiton populneus (no está en el índice)

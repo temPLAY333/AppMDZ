@@ -395,7 +395,7 @@ const plantas: Planta[] = [
     id: '26',
     atributos: {
       nombre: 'Algarrobo',
-      nombreCientifico: 'Neltuma sp.',
+      nombreCientifico: 'Prosopis sp.', 
       descripcionesMultilingue: {
         es: 'Se ubica en plaza Independencia y Chile. Son árboles o grandes arbustos espinosos, de 3 a 10 metros de altura, nativos de nuestra provincia. El tronco es en general corto, con ramas largas, decumbentes (tienden a estar cerca del suelo). Posee hojas bipinnadas con los folíolos separados entre sí. Flores pequeñas, poco llamativas, de color amarillo pálido, agrupadas en racimos. Su fruto es una legumbre recta, indehiscente (no se abre al madurar). Tiene valor forrajero para ganadería y puede aprovecharse su madera. Perteneciente a la familia Fabáceas.',
         en: 'Located in Independence and Chile squares. They are trees or large thorny shrubs, 3 to 10 meters tall, native to our province. The trunk is generally short, with long, decumbent branches (tending to be close to the ground). It has bipinnate leaves with leaflets separated from each other. Small, inconspicuous flowers, pale yellow in color, grouped in clusters. Its fruit is a straight legume, indehiscent (does not open when ripe). It has forage value for livestock and its wood can be used. Belongs to the Fabaceae family.'
@@ -655,6 +655,66 @@ const plantas: Planta[] = [
         EmojiReferencia.Exotica,
         EmojiReferencia.UsoEconomico,
         EmojiReferencia.ResistenteFrio,
+        EmojiReferencia.ResistenteSequia
+      ]
+    }
+  },{
+    id: '42',
+    atributos: {
+      nombre: 'Palmera Abanico',
+      nombreCientifico: 'Washingtonia robusta y W. filiformis',
+      descripcionesMultilingue: {
+        es: 'Se ubica en plaza Independencia, Italia y San Martín. Es una palmera con tronco robusto, esbelto y simple de hasta 35 metros de altura, engrosado en la base, revestido por los restos de las hojas ya secas que forman un característico aditamento, aunque desaparece con el tiempo; presenta hojas en abanico, con hilos blancos y largos en la juventud que desaparecen con la edad. Perteneciente a la familia Arecáceas. ',
+        en: 'Located in square Independence, Italy and San Martín. It\'s a palm tree with a robust, slender, and simple trunk up to 35 meters tall, thickened at the base, covered by the remains of dried leaves that form a characteristic adornment, although it disappears over time; it has fan-shaped leaves, with long white threads in youth that disappear with age. Belongs to the Arecaceae family.'
+      },
+      imagenPath: getPlantaImagen('42'),
+      referencias: [
+        EmojiReferencia.Exotica,
+        EmojiReferencia.ResistenteSequia
+      ]
+    }
+  },{
+    id: '44',
+    atributos: {
+      nombre: 'Palmera Abanico',
+      nombreCientifico: 'Washingtonia robusta y W. filiformis',
+      descripcionesMultilingue: {
+        es: 'Se ubica en plaza Independencia, Italia y San Martín. Es una palmera con tronco robusto, esbelto y simple de hasta 35 metros de altura, engrosado en la base, revestido por los restos de las hojas ya secas que forman un característico aditamento, aunque desaparece con el tiempo; presenta hojas en abanico, con hilos blancos y largos en la juventud que desaparecen con la edad. Perteneciente a la familia Arecáceas. ',
+        en: 'Located in square Independence, Italy and San Martín. It\'s a palm tree with a robust, slender, and simple trunk up to 35 meters tall, thickened at the base, covered by the remains of dried leaves that form a characteristic adornment, although it disappears over time; it has fan-shaped leaves, with long white threads in youth that disappear with age. Belongs to the Arecaceae family.'
+      },
+      imagenPath: getPlantaImagen('42'),
+      referencias: [
+        EmojiReferencia.Exotica,
+        EmojiReferencia.ResistenteSequia
+      ]
+    }
+  },{
+    id: '42',
+    atributos: {
+      nombre: 'Palmera Abanico',
+      nombreCientifico: 'Washingtonia robusta y W. filiformis',
+      descripcionesMultilingue: {
+        es: 'Se ubica en plaza Independencia, Italia y San Martín. Es una palmera con tronco robusto, esbelto y simple de hasta 35 metros de altura, engrosado en la base, revestido por los restos de las hojas ya secas que forman un característico aditamento, aunque desaparece con el tiempo; presenta hojas en abanico, con hilos blancos y largos en la juventud que desaparecen con la edad. Perteneciente a la familia Arecáceas. ',
+        en: 'Located in square Independence, Italy and San Martín. It\'s a palm tree with a robust, slender, and simple trunk up to 35 meters tall, thickened at the base, covered by the remains of dried leaves that form a characteristic adornment, although it disappears over time; it has fan-shaped leaves, with long white threads in youth that disappear with age. Belongs to the Arecaceae family.'
+      },
+      imagenPath: getPlantaImagen('42'),
+      referencias: [
+        EmojiReferencia.Exotica,
+        EmojiReferencia.ResistenteSequia
+      ]
+    }
+  },{
+    id: '42',
+    atributos: {
+      nombre: 'Palmera Abanico',
+      nombreCientifico: 'Washingtonia robusta y W. filiformis',
+      descripcionesMultilingue: {
+        es: 'Se ubica en plaza Independencia, Italia y San Martín. Es una palmera con tronco robusto, esbelto y simple de hasta 35 metros de altura, engrosado en la base, revestido por los restos de las hojas ya secas que forman un característico aditamento, aunque desaparece con el tiempo; presenta hojas en abanico, con hilos blancos y largos en la juventud que desaparecen con la edad. Perteneciente a la familia Arecáceas. ',
+        en: 'Located in square Independence, Italy and San Martín. It\'s a palm tree with a robust, slender, and simple trunk up to 35 meters tall, thickened at the base, covered by the remains of dried leaves that form a characteristic adornment, although it disappears over time; it has fan-shaped leaves, with long white threads in youth that disappear with age. Belongs to the Arecaceae family.'
+      },
+      imagenPath: getPlantaImagen('42'),
+      referencias: [
+        EmojiReferencia.Exotica,
         EmojiReferencia.ResistenteSequia
       ]
     }

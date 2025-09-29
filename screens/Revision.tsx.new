@@ -28,16 +28,14 @@ type RevisionScreenRouteProp = RouteProp<RouteParamList, 'Revision'>;
 const Revision = () => {
   const route = useRoute<RevisionScreenRouteProp>();
   const navigation = useNavigation<any>();
-  const { language: contextLanguage, translate } = useLanguage();
-  const { plazaId, respuestas, preguntas, modo, language: routeLanguage } = route.params || { 
+  const { language, translate } = useLanguage();
+  const { plazaId, respuestas, preguntas, modo, language: passedLanguage } = route.params || { 
     plazaId: '', 
     respuestas: {}, 
     preguntas: [],
-    modo: 'revision'
+    modo: 'revision',
+    language: undefined
   };
-  
-  // Si se pasó un idioma en la ruta, lo usamos, de lo contrario usamos el del contexto
-  const language = routeLanguage || contextLanguage;
   
   // Calcular puntuación
   const calcularPuntuacion = () => {
@@ -60,17 +58,19 @@ const Revision = () => {
     navigation.navigate("MenuPlaza", { plazaId });
   };
 
+  // Determinar qué idioma usar (el pasado desde la pantalla anterior o el actual del contexto)
+  const currentLanguage = passedLanguage || language;
+
   return (
     <View style={styles.backgroundContainer}>
       <View style={styles.container}>
-        <TopBar text="Resultados" textoWidth={142} translationKey="results.title" />
+        <TopBar text={translate("results.title")} textoWidth={142} translationKey="results.title" />
         
         <View style={styles.puntuacionContainer}>
           <Text style={styles.puntuacionText}>
-            {language === 'es' 
+            {currentLanguage === 'es' 
               ? `Tu puntuación: ${puntuacion} de ${preguntas.length} (${porcentajeAciertos.toFixed(0)}%)`
-              : `Your score: ${puntuacion} of ${preguntas.length} (${porcentajeAciertos.toFixed(0)}%)`
-            }
+              : `Your score: ${puntuacion} out of ${preguntas.length} (${porcentajeAciertos.toFixed(0)}%)`}
           </Text>
         </View>
         
@@ -82,7 +82,7 @@ const Revision = () => {
             return (
               <View key={preguntaIndex} style={styles.preguntaContainer}>
                 <Text style={styles.preguntaText}>
-                  {preguntaIndex + 1}. {pregunta.texto[language as keyof typeof pregunta.texto]}
+                  {preguntaIndex + 1}. {pregunta.texto[currentLanguage]}
                 </Text>
                 
                 <View style={styles.opcionesContainer}>
@@ -112,11 +112,11 @@ const Revision = () => {
                     return (
                       <QuestionOption
                         key={opcionIndex}
-                        text={opcion.texto[language as keyof typeof opcion.texto]}
+                        text={opcion.texto[currentLanguage]}
                         state={estado}
                         onPress={() => {}} // No hacer nada en modo revisión
                         disabled={modo === 'revision'}
-                        explanation={estado === "Correcto" && pregunta.explicacion ? pregunta.explicacion[language as keyof typeof pregunta.explicacion] : ""}
+                        explanation={estado === "Correcto" ? (pregunta.explicacion ? pregunta.explicacion[currentLanguage] : "") : ""}
                         showExplanation={modo === 'revision' && estado === "Correcto"}
                       />
                     );
@@ -210,57 +210,7 @@ const styles = StyleSheet.create({
     width: "100%",
     alignItems: "center",
     paddingVertical: 20,
-    marginBottom: 120, // Aumentado de 80 a 120 para mover el botón más abajo
-  },
-  // Mantenemos algunos estilos por compatibilidad
-  respuestas: {
-    alignSelf: "stretch",
-    maxWidth: "100%",
-    flex: 1,
-  },
-  respuestasContainerContent: {
-    flexDirection: "column",
-    paddingHorizontal: 15,
-    paddingVertical: 0,
-    alignItems: "center",
-    justifyContent: "flex-start",
-    paddingBottom: 20,
-  },
-  respuestaContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginBottom: 10,
-  },
-  respuestaLabel: {
-    fontSize: FontSize.size_20,
-    fontFamily: FontFamily.interRegular,
-    color: Color.colorWhite,
-    marginRight: 10,
-    minWidth: 150,
-  },
-  respuestaText: {
-    fontSize: FontSize.size_20,
-    fontFamily: FontFamily.interBold,
-    flex: 1,
-  },
-  respuestaCorrecta: {
-    color: '#4CAF50',
-  },
-  respuestaIncorrecta: {
-    color: '#F44336',
-  },
-  explicacionText: {
-    fontSize: FontSize.size_20,
-    fontFamily: FontFamily.interRegular,
-    color: Color.colorWhite,
-    marginTop: 10,
-    fontStyle: 'italic',
-  },
-  volverBtnContainer: {
-    alignItems: "center",
-    justifyContent: "center",
-    marginVertical: 20,
-    marginBottom: 95,
+    marginBottom: 60,
   },
 });
 

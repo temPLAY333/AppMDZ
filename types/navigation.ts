@@ -9,15 +9,12 @@ export type RootStackParamList = {
   MapaDeLaPlaza: { plazaId: string };
   ParadaPlanta1: { paradaId: string; plazaId: string };
   DetallePlanta: { plantaId: string; plazaId?: string; paradaId?: string };
-  JuegosPregunta1: undefined;
-  JuegosPregunta2: undefined;
-  Revision: undefined;
+  JuegosPregunta1: { plazaId: string };
+  Revision: { plazaId: string; respuestas: { [key: string]: string }; preguntas: any[]; modo: string };
   InformacionAdicional: undefined;
   Referencias: undefined;
   Glosario: undefined;
   LoadScreen: undefined;
-  JuegoPreguntas: { plazaId: string };
-  ResultadosTrivia: { puntaje: number; total: number; plazaId: string };
 };
 
 // Tipo para navegación en las pantallas

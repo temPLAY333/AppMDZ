@@ -6,113 +6,413 @@ const bancoPlazaItalia: BancoPreguntas = {
   preguntas: [
     {
       id: 'pregunta-italia-1',
-      texto: '¿Qué especie de palmera es la Trachycarpus fortunei?',
+      texto: {
+        es: '¿Qué especie de palmera es la Trachycarpus fortunei?',
+        en: 'What species of palm tree is Trachycarpus fortunei?'
+      },
       opciones: [
-        { texto: 'Palmera datilera', esCorrecta: false },
-        { texto: 'Palmera de abanico china', esCorrecta: true },
-        { texto: 'Palmera canaria', esCorrecta: false },
-        { texto: 'Palmera real', esCorrecta: false }
+        { 
+          texto: { 
+            es: 'Palmera datilera', 
+            en: 'Date palm' 
+          }, 
+          esCorrecta: false 
+        },
+        { 
+          texto: { 
+            es: 'Palmera de abanico china', 
+            en: 'Chinese windmill palm' 
+          }, 
+          esCorrecta: true 
+        },
+        { 
+          texto: { 
+            es: 'Palmera canaria', 
+            en: 'Canary Island palm' 
+          }, 
+          esCorrecta: false 
+        },
+        { 
+          texto: { 
+            es: 'Palmera real', 
+            en: 'Royal palm' 
+          }, 
+          esCorrecta: false 
+        }
       ],
-      explicacion: 'Trachycarpus fortunei es comúnmente conocida como palmera de abanico china o palmito elevado, originaria de China central y oriental.'
+      explicacion: {
+        es: 'Trachycarpus fortunei es una especie de palmera originaria de China central y oriental.',
+        en: 'Trachycarpus fortunei is a palm species native to central and eastern China.'
+      }
     },
     {
       id: 'pregunta-italia-2',
-      texto: '¿Cuál es la característica distintiva de la Casuarina cunninghamiana?',
+      texto: {
+        es: '¿Cuál es la característica distintiva de la Casuarina cunninghamiana?',
+        en: 'What is the distinctive characteristic of Casuarina cunninghamiana?'
+      },
       opciones: [
-        { texto: 'Hojas anchas', esCorrecta: false },
-        { texto: 'Ramas que parecen agujas de pino', esCorrecta: true },
-        { texto: 'Flores vistosas', esCorrecta: false },
-        { texto: 'Frutos comestibles', esCorrecta: false }
+        { 
+          texto: { 
+            es: 'Hojas anchas', 
+            en: 'Broad leaves' 
+          }, 
+          esCorrecta: false 
+        },
+        { 
+          texto: { 
+            es: 'Ramas que parecen agujas de pino', 
+            en: 'Branches that look like pine needles' 
+          }, 
+          esCorrecta: true 
+        },
+        { 
+          texto: { 
+            es: 'Flores vistosas', 
+            en: 'Showy flowers' 
+          }, 
+          esCorrecta: false 
+        },
+        { 
+          texto: { 
+            es: 'Frutos comestibles', 
+            en: 'Edible fruits' 
+          }, 
+          esCorrecta: false 
+        }
       ],
-      explicacion: 'La Casuarina tiene ramas finas con articulaciones que se parecen a las agujas de los pinos, aunque botánicamente son muy diferentes.'
+      explicacion: {
+        es: 'La Casuarina tiene ramas finas con articulaciones que se parecen a las agujas de los pinos, aunque botánicamente son muy diferentes.',
+        en: 'Casuarina has fine branches with joints that resemble pine needles, although botanically they are very different.'
+      }
     },
     {
       id: 'pregunta-italia-3',
-      texto: '¿Qué color de flor presenta la Erythrina crista-galli?',
+      texto: {
+        es: '¿Qué color de flor presenta la Erythrina crista-galli?',
+        en: 'What color are the flowers of Erythrina crista-galli?'
+      },
       opciones: [
-        { texto: 'Blanco', esCorrecta: false },
-        { texto: 'Amarillo', esCorrecta: false },
-        { texto: 'Rojo intenso', esCorrecta: true },
-        { texto: 'Azul', esCorrecta: false }
+        { 
+          texto: { 
+            es: 'Blanco', 
+            en: 'White' 
+          }, 
+          esCorrecta: false 
+        },
+        { 
+          texto: { 
+            es: 'Amarillo', 
+            en: 'Yellow' 
+          }, 
+          esCorrecta: false 
+        },
+        { 
+          texto: { 
+            es: 'Rojo intenso', 
+            en: 'Bright red' 
+          }, 
+          esCorrecta: true 
+        },
+        { 
+          texto: { 
+            es: 'Azul', 
+            en: 'Blue' 
+          }, 
+          esCorrecta: false 
+        }
       ],
-      explicacion: 'La Erythrina crista-galli, conocida como ceibo o seibo, presenta flores de color rojo intenso muy características.'
+      explicacion: {
+        es: 'La Erythrina crista-galli presenta flores de color rojo intenso muy características.',
+        en: 'Erythrina crista-galli has very characteristic bright red flowers.'
+      }
     },
     {
       id: 'pregunta-italia-4',
-      texto: '¿Para qué se utiliza principalmente el fruto del Liquidambar styraciflua?',
+      texto: {
+        es: '¿Para qué se utiliza principalmente el fruto del Liquidambar styraciflua?',
+        en: 'What is the main use of the fruit of Liquidambar styraciflua?'
+      },
       opciones: [
-        { texto: 'Consumo humano', esCorrecta: false },
-        { texto: 'Extracción de resinas aromáticas', esCorrecta: true },
-        { texto: 'Fabricación de tejidos', esCorrecta: false },
-        { texto: 'Alimentación animal', esCorrecta: false }
+        { 
+          texto: { 
+            es: 'Consumo humano', 
+            en: 'Human consumption' 
+          }, 
+          esCorrecta: false 
+        },
+        { 
+          texto: { 
+            es: 'Extracción de resinas aromáticas', 
+            en: 'Extraction of aromatic resins' 
+          }, 
+          esCorrecta: true 
+        },
+        { 
+          texto: { 
+            es: 'Fabricación de tejidos', 
+            en: 'Fabric manufacturing' 
+          }, 
+          esCorrecta: false 
+        },
+        { 
+          texto: { 
+            es: 'Alimentación animal', 
+            en: 'Animal feed' 
+          }, 
+          esCorrecta: false 
+        }
       ],
-      explicacion: 'Del Liquidambar se extrae una resina aromática utilizada en perfumería y medicina tradicional.'
+      explicacion: {
+        es: 'Del Liquidambar se extrae una resina aromática utilizada en perfumería y medicina tradicional.',
+        en: 'An aromatic resin used in perfumery and traditional medicine is extracted from the Liquidambar.'
+      }
     },
     {
       id: 'pregunta-italia-5',
-      texto: '¿Qué característica tiene el Cedrus deodara que lo distingue?',
+      texto: {
+        es: '¿Qué característica tiene el Cedrus deodara que lo distingue?',
+        en: 'What characteristic distinguishes Cedrus deodara?'
+      },
       opciones: [
-        { texto: 'Hojas perennes y forma piramidal', esCorrecta: true },
-        { texto: 'Tronco retorcido', esCorrecta: false },
-        { texto: 'Flores vistosas', esCorrecta: false },
-        { texto: 'Frutos carnosos', esCorrecta: false }
+        { 
+          texto: { 
+            es: 'Hojas perennes y forma piramidal', 
+            en: 'Evergreen leaves and pyramidal shape' 
+          }, 
+          esCorrecta: true 
+        },
+        { 
+          texto: { 
+            es: 'Tronco retorcido', 
+            en: 'Twisted trunk' 
+          }, 
+          esCorrecta: false 
+        },
+        { 
+          texto: { 
+            es: 'Flores vistosas', 
+            en: 'Showy flowers' 
+          }, 
+          esCorrecta: false 
+        },
+        { 
+          texto: { 
+            es: 'Frutos carnosos', 
+            en: 'Fleshy fruits' 
+          }, 
+          esCorrecta: false 
+        }
       ],
-      explicacion: 'El Cedrus deodara o cedro del Himalaya se distingue por su forma piramidal y sus hojas perennes de color verde azulado.'
+      explicacion: {
+        es: 'El Cedrus deodara se distingue por su forma piramidal y sus hojas perennes de color verde azulado.',
+        en: 'Cedrus deodara is distinguished by its pyramidal shape and blue-green evergreen leaves.'
+      }
     },
     {
       id: 'pregunta-italia-6',
-      texto: '¿De qué región es nativo el Phytolacca dioica (Ombú)?',
+      texto: {
+        es: '¿De qué región es nativo el Phytolacca dioica?',
+        en: 'From which region is Phytolacca dioica native?'
+      },
       opciones: [
-        { texto: 'Europa', esCorrecta: false },
-        { texto: 'Sudamérica', esCorrecta: true },
-        { texto: 'Asia', esCorrecta: false },
-        { texto: 'África', esCorrecta: false }
+        { 
+          texto: { 
+            es: 'Europa', 
+            en: 'Europe' 
+          }, 
+          esCorrecta: false 
+        },
+        { 
+          texto: { 
+            es: 'Sudamérica', 
+            en: 'South America' 
+          }, 
+          esCorrecta: true 
+        },
+        { 
+          texto: { 
+            es: 'Asia', 
+            en: 'Asia' 
+          }, 
+          esCorrecta: false 
+        },
+        { 
+          texto: { 
+            es: 'África', 
+            en: 'Africa' 
+          }, 
+          esCorrecta: false 
+        }
       ],
-      explicacion: 'El Ombú es nativo de las regiones pampeanas de Sudamérica, principalmente Argentina, Uruguay y sur de Brasil.'
+      explicacion: {
+        es: 'El Phytolacca dioica es nativo de las regiones pampeanas de Sudamérica, principalmente Argentina, Uruguay y sur de Brasil.',
+        en: 'Phytolacca dioica is native to the Pampas regions of South America, mainly Argentina, Uruguay, and southern Brazil.'
+      }
     },
     {
       id: 'pregunta-italia-7',
-      texto: '¿Qué tipo de copa forma el Cupressus sp. (Ciprés)?',
+      texto: {
+        es: '¿Qué tipo de copa forma el Cupressus sp.?',
+        en: 'What type of crown does Cupressus sp. form?'
+      },
       opciones: [
-        { texto: 'Extendida y horizontal', esCorrecta: false },
-        { texto: 'Irregular y asimétrica', esCorrecta: false },
-        { texto: 'Cónica y estrecha', esCorrecta: true },
-        { texto: 'Redondeada y densa', esCorrecta: false }
+        { 
+          texto: { 
+            es: 'Extendida y horizontal', 
+            en: 'Extended and horizontal' 
+          }, 
+          esCorrecta: false 
+        },
+        { 
+          texto: { 
+            es: 'Irregular y asimétrica', 
+            en: 'Irregular and asymmetrical' 
+          }, 
+          esCorrecta: false 
+        },
+        { 
+          texto: { 
+            es: 'Cónica y estrecha', 
+            en: 'Conical and narrow' 
+          }, 
+          esCorrecta: true 
+        },
+        { 
+          texto: { 
+            es: 'Redondeada y densa', 
+            en: 'Round and dense' 
+          }, 
+          esCorrecta: false 
+        }
       ],
-      explicacion: 'Los cipreses (Cupressus sp.) se caracterizan por formar copas cónicas y estrechas, con un perfil columnar muy distintivo.'
+      explicacion: {
+        es: 'Los cipreses (Cupressus sp.) se caracterizan por formar copas cónicas y estrechas, con un perfil columnar muy distintivo.',
+        en: 'Cypress trees (Cupressus sp.) are characterized by forming conical and narrow crowns, with a very distinctive columnar profile.'
+      }
     },
     {
       id: 'pregunta-italia-8',
-      texto: '¿Qué característica tiene la corteza del Brachychiton populneus?',
+      texto: {
+        es: '¿Qué tipo de hoja presenta Tilia sp. presente en la Plaza Italia?',
+        en: 'What type of leaf does Tilia sp. present in Plaza Italia have?'
+      },
       opciones: [
-        { texto: 'Rugosa y oscura', esCorrecta: false },
-        { texto: 'Lisa y grisácea', esCorrecta: true },
-        { texto: 'Rojiza y descamante', esCorrecta: false },
-        { texto: 'Con espinas prominentes', esCorrecta: false }
+        { 
+          texto: { 
+            es: 'Hojas aciculares', 
+            en: 'Needle-like leaves' 
+          }, 
+          esCorrecta: false 
+        },
+        { 
+          texto: { 
+            es: 'Hojas cordiformes (forma de corazón)', 
+            en: 'Cordate (heart-shaped) leaves' 
+          }, 
+          esCorrecta: true 
+        },
+        { 
+          texto: { 
+            es: 'Hojas compuestas pinnadas', 
+            en: 'Compound pinnate leaves' 
+          }, 
+          esCorrecta: false 
+        },
+        { 
+          texto: { 
+            es: 'Hojas escamosas', 
+            en: 'Scaly leaves' 
+          }, 
+          esCorrecta: false 
+        }
       ],
-      explicacion: 'El Brachychiton populneus, conocido como braquiquito, tiene una corteza lisa de color gris claro muy característica.'
+      explicacion: {
+        es: 'Tilia sp. se caracteriza por sus hojas cordiformes o con forma de corazón, con bordes aserrados y de un color verde intenso en el haz.',
+        en: 'Tilia sp. is characterized by its cordate or heart-shaped leaves, with serrated edges and bright green on the upper surface.'
+      }
     },
     {
       id: 'pregunta-italia-9',
-      texto: '¿Qué color tienen los frutos maduros de la Phoenix canariensis?',
+      texto: {
+        es: '¿Qué color tienen los frutos maduros de la Phoenix canariensis?',
+        en: 'What color are the ripe fruits of Phoenix canariensis?'
+      },
       opciones: [
-        { texto: 'Verde', esCorrecta: false },
-        { texto: 'Amarillo', esCorrecta: false },
-        { texto: 'Naranja-rojizo', esCorrecta: true },
-        { texto: 'Morado', esCorrecta: false }
+        { 
+          texto: { 
+            es: 'Verde', 
+            en: 'Green' 
+          }, 
+          esCorrecta: false 
+        },
+        { 
+          texto: { 
+            es: 'Amarillo', 
+            en: 'Yellow' 
+          }, 
+          esCorrecta: false 
+        },
+        { 
+          texto: { 
+            es: 'Naranja-rojizo', 
+            en: 'Orange-reddish' 
+          }, 
+          esCorrecta: true 
+        },
+        { 
+          texto: { 
+            es: 'Morado', 
+            en: 'Purple' 
+          }, 
+          esCorrecta: false 
+        }
       ],
-      explicacion: 'La Palma Canaria produce dátiles de color naranja-rojizo cuando están maduros, aunque no son tan comestibles como los de otras especies.'
+      explicacion: {
+        es: 'La Phoenix canariensis produce dátiles de color naranja-rojizo cuando están maduros, aunque no son tan comestibles como los de otras especies.',
+        en: 'Phoenix canariensis produces orange-reddish dates when ripe, although they are not as edible as those of other species.'
+      }
     },
     {
       id: 'pregunta-italia-10',
-      texto: '¿Por qué se llama "Plaza Italia"?',
+      texto: {
+        es: '¿Qué utilidad tradicional tiene la madera del Fraxinus presente en la Plaza Italia?',
+        en: 'What traditional use does the wood of Fraxinus in Plaza Italia have?'
+      },
       opciones: [
-        { texto: 'Por estar diseñada por un arquitecto italiano', esCorrecta: false },
-        { texto: 'Por contener plantas nativas de Italia', esCorrecta: false },
-        { texto: 'Por honrar a la comunidad italiana en Mendoza', esCorrecta: true },
-        { texto: 'Por tener forma de bota italiana', esCorrecta: false }
+        { 
+          texto: { 
+            es: 'Elaboración de muebles y pisos', 
+            en: 'Furniture and flooring manufacturing' 
+          }, 
+          esCorrecta: true 
+        },
+        { 
+          texto: { 
+            es: 'Elaboración de papel', 
+            en: 'Paper production' 
+          }, 
+          esCorrecta: false 
+        },
+        { 
+          texto: { 
+            es: 'Extracción de resinas aromáticas', 
+            en: 'Extraction of aromatic resins' 
+          }, 
+          esCorrecta: false 
+        },
+        { 
+          texto: { 
+            es: 'Fabricación de medicamentos', 
+            en: 'Pharmaceutical manufacturing' 
+          }, 
+          esCorrecta: false 
+        }
       ],
-      explicacion: 'La Plaza Italia fue nombrada en honor a la importante comunidad de inmigrantes italianos que se estableció en Mendoza y contribuyó significativamente a su desarrollo.'
+      explicacion: {
+        es: 'La madera del Fraxinus es muy apreciada por su durabilidad, flexibilidad y resistencia, siendo tradicionalmente utilizada en la fabricación de muebles de alta calidad y pisos duraderos.',
+        en: 'Fraxinus wood is highly valued for its durability, flexibility, and strength, being traditionally used in the manufacture of high-quality furniture and durable flooring.'
+      }
     }
   ]
 };

@@ -7,10 +7,10 @@ PARADA 5: Firmiana simplex - Liquidambar styraciflua
 
 PLAZA ITALIA 
 
-PARADA 1: Trachicarpus fortunei – Casuarina cunninghamiana 
+PARADA 1: Trachycarpus fortunei – Casuarina cunninghamiana 
 PARADA 2: Erythrina crista-galli – Phoenix canariensis 
-PARADA 3: Evonimus europaeus – Liquidambar sp. 
-PARADA 4: Cedrus deodara - Phytolaca dioica 
+PARADA 3: Evonimus japonicus – Liquidambar sp. 
+PARADA 4: Cedrus deodara - Phytolacca dioica 
 PARADA 5: Cupressus sp. – Brachychiton populneus 
 
 PLAZA CHILE  
@@ -18,12 +18,12 @@ PLAZA CHILE
 PARADA 1: Cedrus deodara – Pinus griffithi 
 PARADA 2: Eucalyptus sp. – Cocculus laurifolius 
 PARADA 3: Tilia cordata – Phoenix canariensis 
-PARADA 4: Neltuma sp. – Ligustrum lucidum 
-PARADA 5: Schinus sp. – Gleditsia triachantos 
+PARADA 4: Prosopis sp. – Ligustrum lucidum 
+PARADA 5: Schinus molle – Gleditsia triachantos 
 
 PLAZA SAN MARTÍN 
 
-PARADA 1: Rowinia pseudoacacia – Platanus x acerifolia 
+PARADA 1: Robinia pseudoacacia – Platanus x acerifolia 
 PARADA 2: Salix nigra – Washingtonia robusta 
 PARADA 3: Araucaria bidwilli – Syagrus romanzoffiana 
 PARADA 4: Phoenix canariensis– Jacaranda mimosifolia 
@@ -40,4 +40,4 @@ PARADA 6 Pinus griffithi – Washingtonia sp.
 PARADA 7 Cedrus deodara – Casuarina cunninghamiana
 PARADA 8 Fraxinus sp. – Quercus suber 
 PARADA 9 Magnolia grandiflora – Araucaria bidwilii 
-PARADA 10 Schinus sp - Quercus robur
+PARADA 10 Schinus molle - Quercus robur

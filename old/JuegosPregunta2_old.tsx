@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Image } from "expo-image";
 import { StyleSheet, ImageBackground, View, Text, Pressable, ScrollView, ImageSourcePropType } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -12,92 +12,32 @@ import Klipartz from "../assets/Klipartz.svg";
 import { Color, FontFamily, FontSize } from "../GlobalStyles";
 import { preguntasPorPlazaId } from "../data/preguntas/index";
 import { Pregunta, Opcion } from "../data/types";
-import { useLanguage } from "../contexts/LanguageContext";
-import { getPlantaImagen } from "../data/imagenes/index";
 
-// Mapeo de IDs de preguntas a IDs de plantas
-const preguntaToPlantaId: { [key: string]: string } = {
-  // Plaza San Martín
-  'psm-pregunta-1': '30',         // Platanus x acerifolia (platano)
-  'psm-pregunta-2': '19',         // Jacaranda mimosifolia
-  'psm-pregunta-3': '10',         // Ceiba speciosa (palo borracho)
-  'psm-pregunta-4': '31',         // Phoenix canariensis (palmera fénix)
-  'psm-pregunta-5': '39',         // Quercus robur (roble)
-  'psm-pregunta-6': '9',          // Cedrus deodara (cedro del Himalaya)
-  'psm-pregunta-7': '17',         // Parasol chino
-  'psm-pregunta-8': '23',         // Magnolia grandiflora
-  'psm-pregunta-9': '20',         // Árbol de Júpiter
-      'psm-pregunta-10': '37',        // Pindó (Syagrus romanzoffiana)
-  
-  // Plaza España
-  'pregunta-espana-1': '33',      // Punica granatum (granado)
-  'pregunta-espana-2': '19',      // Jacaranda mimosifolia
-  'pregunta-espana-3': '40',      // Vitex agnus-castus (sauzgatillo)
-  'pregunta-espana-4': '33',      // Punica granatum (granado)
-  'pregunta-espana-5': '31',      // Phoenix canariensis (palmera fénix)
-  'pregunta-espana-6': '19',      // Jacaranda mimosifolia
-  'pregunta-espana-7': '30',      // Platanus acerifolia (plátano)
-  'pregunta-espana-8': '19',      // Jacaranda mimosifolia
-  'pregunta-espana-9': '19',      // Jacaranda mimosifolia
-  'pregunta-espana-10': '31',     // Phoenix canariensis (palmera fénix)
-  
-  // Plaza Chile
-  'pregunta-chile-1': '9',        // Cedrus deodara (cedro del Himalaya)
-  'pregunta-chile-2': '28',       // Pinus wallichiana (pino del Himalaya)
-  'pregunta-chile-3': '34',       // Árbol del corcho
-  'pregunta-chile-4': '12',       // Cocculus laurifolius (cóculo)
-  'pregunta-chile-5': '38',       // Tilia cordata (tilo)
-  'pregunta-chile-6': '31',       // Phoenix canariensis (palmera fénix)
-  'pregunta-chile-7': '26',       // Prosopis sp. (algarrobo)
-  'pregunta-chile-8': '21',       // Ligustrum lucidum (ligustro)
-  'pregunta-chile-9': '36',       // Schinus sp. (aguaribay)
-  'pregunta-chile-10': '16',      // Gleditsia triacanthos (acacia de tres espinas)
-  
-  // Plaza Italia
-  'pregunta-italia-1': '41',      // Trachycarpus fortunei (palmera china)
-  'pregunta-italia-2': '8',       // Casuarina cunninghamiana
-  'pregunta-italia-3': '15',      // Erythrina crista-galli (ceibo)
-  'pregunta-italia-4': '22',      // Liquidambar styraciflua (liquidámbar americano)
-  'pregunta-italia-5': '9',       // Cedrus deodara (cedro del Himalaya)
-  'pregunta-italia-6': '32',      // Phytolacca dioica (ombú)
-  'pregunta-italia-7': '13',      // Cupressus sp. (ciprés)
-  'pregunta-italia-8': '17',      // Parasol chino
-  'pregunta-italia-9': '31',      // Phoenix canariensis (palmera fénix)
-  'pregunta-italia-10': '30',     // Plátano
-  
-  // Plaza Independencia
-  'pregunta-independencia-1': '39',   // Tipuana tipu (tipa)
-  'pregunta-independencia-2': '1',    // Acacia visco (viscote)
-  'pregunta-independencia-3': '13',   // Cupressus sp. (ciprés)
-  'pregunta-independencia-4': '40',   // Vitex agnus-castus (sauzgatillo)
-  'pregunta-independencia-5': '34',   // Árbol del corcho
-  'pregunta-independencia-6': '25',   // Morus nigra (morera)
-  'pregunta-independencia-7': '35',   // Robinia pseudoacacia (falsa acacia)
-  'pregunta-independencia-8': '9',    // Cedrus deodara (cedro del Himalaya)
-  'pregunta-independencia-9': '34',   // Quercus suber (árbol del corcho)
-  'pregunta-independencia-10': '30',  // Plátano
+// Mapeo de imágenes de plantas
+const plantImages: { [key: number]: ImageSourcePropType } = {
+  0: require("../assets/plants/jacaranda-19.png"),
+  1: require("../assets/plants/aguaribay-36.png"),
+  2: require("../assets/plants/algarrobo-26.png"),
+  3: require("../assets/plants/magnollia-23.png"),
+  4: require("../assets/plants/paraiso-24.png"),
 };
 
-// Función para obtener la imagen de la planta según la pregunta ID
-const getPlantImage = (preguntaId: string): ImageSourcePropType => {
-  // Obtener el ID de la planta asociada a la pregunta
-  const plantaId = preguntaToPlantaId[preguntaId];
-  // Usar la función centralizada para obtener la imagen
-  return plantaId ? getPlantaImagen(plantaId) : getPlantaImagen('19'); // Fallback a jacarandá
+// Función para obtener la imagen de la planta según el índice
+const getPlantImage = (index: number): ImageSourcePropType => {
+  return plantImages[index] || plantImages[0]; // Usar la primera imagen como respaldo
 };
 
-// Define los tipos para los parÃ¡metros de la ruta
+// Define los tipos para los parámetros de la ruta
 type RouteParamList = {
-  JuegosPregunta1: { plazaId: string };
+  JuegosPregunta2: { plazaId: string };
 };
 
 import { RouteProp } from "@react-navigation/native";
-type JuegosPregunta1ScreenRouteProp = RouteProp<RouteParamList, 'JuegosPregunta1'>;
+type JuegosPregunta2ScreenRouteProp = RouteProp<RouteParamList, 'JuegosPregunta2'>;
 
-const JuegosPregunta1 = () => {
-  const route = useRoute<JuegosPregunta1ScreenRouteProp>();
+const JuegosPregunta2 = () => {
+  const route = useRoute<JuegosPregunta2ScreenRouteProp>();
   const navigation = useNavigation<any>();
-  const { language } = useLanguage();
   const { plazaId } = route.params || { plazaId: 'plaza-san-martin' }; // Valor por defecto
   
   const [preguntasSeleccionadas, setPreguntasSeleccionadas] = useState<Pregunta[]>([]);
@@ -117,12 +57,12 @@ const JuegosPregunta1 = () => {
     }
   }, [plazaId]);
 
-  // FunciÃ³n para seleccionar preguntas aleatorias y barajar sus opciones
+  // Función para seleccionar preguntas aleatorias y barajar sus opciones
   const seleccionarPreguntasAleatorias = (preguntas: Pregunta[], cantidad: number): Pregunta[] => {
     const preguntasCopiadas = [...preguntas];
     const resultado: Pregunta[] = [];
     
-    // Asegurarse de no seleccionar mÃ¡s preguntas de las disponibles
+    // Asegurarse de no seleccionar más preguntas de las disponibles
     const cantidadReal = Math.min(cantidad, preguntasCopiadas.length);
     
     for (let i = 0; i < cantidadReal; i++) {
@@ -139,7 +79,7 @@ const JuegosPregunta1 = () => {
     return resultado;
   };
   
-  // FunciÃ³n para barajar un array (algoritmo Fisher-Yates)
+  // Función para barajar un array (algoritmo Fisher-Yates)
   const barajarOpciones = (opciones: Opcion[]): Opcion[] => {
     for (let i = opciones.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -148,11 +88,11 @@ const JuegosPregunta1 = () => {
     return opciones;
   };
 
-  // FunciÃ³n para manejar la selecciÃ³n de respuesta
+  // Función para manejar la selección de respuesta
   const handleSeleccionRespuesta = (opcionIndex: number) => {
     const preguntaActual = preguntasSeleccionadas[indicePreguntaActual];
     if (preguntaActual) {
-      setSelectedOption(String(opcionIndex)); // Guardamos el Ã­ndice como identificador
+      setSelectedOption(String(opcionIndex)); // Guardamos el índice como identificador
       setRespuestas({
         ...respuestas,
         [preguntaActual.id]: String(opcionIndex)
@@ -160,19 +100,18 @@ const JuegosPregunta1 = () => {
     }
   };
 
-  // FunciÃ³n para pasar a la siguiente pregunta
+  // Función para pasar a la siguiente pregunta
   const siguientePregunta = () => {
     if (indicePreguntaActual < preguntasSeleccionadas.length - 1) {
       setIndicePreguntaActual(indicePreguntaActual + 1);
-      setSelectedOption(null); // Resetear la opciÃ³n seleccionada
+      setSelectedOption(null); // Resetear la opción seleccionada
     } else {
-      // Si es la Ãºltima pregunta, navegar a la pantalla de revisiÃ³n
+      // Si es la última pregunta, navegar a la pantalla de revisión
       navigation.navigate("Revision", {
         plazaId,
         respuestas,
         preguntas: preguntasSeleccionadas,
-        modo: "revision",
-        language: language // Pasar el idioma actual a la pantalla de revisiÃ³n
+        modo: "revision"
       });
     }
   };
@@ -180,15 +119,16 @@ const JuegosPregunta1 = () => {
   // Si no hay preguntas seleccionadas, mostrar un mensaje de carga
   if (preguntasSeleccionadas.length === 0) {
     return (
-      <View style={styles.backgroundContainer}>
+      <ImageBackground 
+        source={require("../assets/CiudadDeMDZ.png")} 
+        style={styles.backgroundImage}
+      >
         <View style={styles.container}>
           <TopBar text={`Trivia`} textoWidth={157} translationKey="" />
-          <Text style={styles.loadingText}>
-            {language === 'es' ? "Cargando preguntas..." : "Loading questions..."}
-          </Text>
+          <Text style={styles.loadingText}>Cargando preguntas...</Text>
           <NavBar klipartz={<Klipartz width={55} height={55} />} />
         </View>
-      </View>
+      </ImageBackground>
     );
   }
 
@@ -196,23 +136,22 @@ const JuegosPregunta1 = () => {
   const preguntaActual = preguntasSeleccionadas[indicePreguntaActual];
   
   return (
-    <View style={styles.backgroundContainer}>
+    <ImageBackground 
+      source={require("../assets/CiudadDeMDZ.png")} 
+      style={styles.backgroundImage}
+    >
       <View style={styles.container}>
-        <TopBar 
-          text={`${language === 'es' ? 'Pregunta' : 'Question'} ${indicePreguntaActual + 1} ${language === 'es' ? 'de' : 'of'} ${preguntasSeleccionadas.length}`} 
-          textoWidth={250} 
-          translationKey="" 
-        />
+        <TopBar text={`Pregunta ${indicePreguntaActual + 1} de ${preguntasSeleccionadas.length}`} textoWidth={250} translationKey="" />
         
         <ScrollView style={styles.scrollView}>
           <View style={styles.preguntaContainer}>
-            <Text style={styles.preguntaText}>{preguntaActual.texto[language]}</Text>
+            <Text style={styles.preguntaText}>{preguntaActual.texto.es}</Text>
           </View>
           
           {/* Imagen de la planta */}
           <View style={styles.imageContainer}>
             <Image
-              source={getPlantImage(preguntaActual.id)}
+              source={getPlantImage(indicePreguntaActual)}
               style={styles.plantImage}
               contentFit="contain"
             />
@@ -222,7 +161,7 @@ const JuegosPregunta1 = () => {
             {preguntaActual.opciones.map((opcion, index) => (
               <QuestionOption
                 key={index}
-                text={opcion.texto[language]}
+                text={opcion.texto.es}
                 state={selectedOption === String(index) ? "Seleccionado" : "SinMarcar"}
                 onPress={() => handleSeleccionRespuesta(index)}
               />
@@ -232,9 +171,7 @@ const JuegosPregunta1 = () => {
         
         <View style={styles.buttonContainer}>
           <Item
-            text={indicePreguntaActual < preguntasSeleccionadas.length - 1 ? 
-              (language === 'es' ? "Siguiente" : "Next") : 
-              (language === 'es' ? "Ver Resultados" : "See Results")}
+            text={indicePreguntaActual < preguntasSeleccionadas.length - 1 ? "Siguiente" : "Ver Resultados"}
             onPress={siguientePregunta}
             width="90%"
             height={70}
@@ -244,24 +181,23 @@ const JuegosPregunta1 = () => {
         
         <NavBar klipartz={<Klipartz width={55} height={55} />} />
       </View>
-    </View>
+    </ImageBackground>
   );
 };
 
 const styles = StyleSheet.create({
-  backgroundContainer: {
+  backgroundImage: {
     flex: 1,
     width: "100%",
     height: "100%",
-    backgroundColor: Color.colorGray200, // Fondo azul oscuro
   },
-  juegosPregunta1: {
+  juegosPregunta2: {
     flex: 1,
-    backgroundColor: Color.colorGray200,
+    backgroundColor: "transparent", // Cambiado para usar la imagen de fondo
   },
   container: {
     flex: 1,
-    backgroundColor: Color.colorGray200,
+    backgroundColor: "transparent", // Cambiado para usar la imagen de fondo
     width: "100%",
     height: "100%",
     overflow: "hidden",
@@ -328,4 +264,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default JuegosPregunta1;
+export default JuegosPregunta2;

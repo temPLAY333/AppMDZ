@@ -2,7 +2,6 @@ const Stack = createNativeStackNavigator();
 import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { useFonts } from "expo-font";
-import JuegosPregunta2 from "./screens/JuegosPregunta2";
 import DetallePlanta from "./screens/DetallePlanta";
 import JuegosPregunta1 from "./screens/JuegosPregunta1";
 import Home from "./screens/Home";
@@ -15,8 +14,6 @@ import InformacionAdicional from "./screens/InformacionAdicional";
 import Referencias from "./screens/Referencias";
 import Glosario from "./screens/Glosario";
 import ParadaPlanta1 from "./screens/ParadaPlanta1";
-import JuegoPreguntas from "./screens/JuegoPreguntas";
-import ResultadosTrivia from "./screens/ResultadosTrivia";
 // Los componentes UI no se importan aquí porque no son pantallas navegables
 import { LanguageProvider } from "./contexts/LanguageContext";
 
@@ -62,11 +59,6 @@ const App = () => {
               screenOptions={{ headerShown: false }}
             >
             <Stack.Screen
-              name="JuegosPregunta2"
-              component={JuegosPregunta2}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
               name="DetallePlanta"
               component={DetallePlanta}
               options={{ headerShown: false }}
@@ -106,7 +98,6 @@ const App = () => {
               component={MapaDeLaPlaza}
               options={{ headerShown: false }}
             />
-
             <Stack.Screen
               name="InformacionAdicional"
               component={InformacionAdicional}
@@ -125,16 +116,6 @@ const App = () => {
             <Stack.Screen
               name="ParadaPlanta1"
               component={ParadaPlanta1}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="JuegoPreguntas"
-              component={JuegoPreguntas as React.ComponentType<any>}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="ResultadosTrivia"
-              component={ResultadosTrivia as React.ComponentType<any>}
               options={{ headerShown: false }}
             />
             {/* Componentes que no son pantallas no deben ser registrados aquí */}
