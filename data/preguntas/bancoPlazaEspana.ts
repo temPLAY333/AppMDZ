@@ -7,42 +7,43 @@ const bancoPlazaEspana: BancoPreguntas = {
     {
       id: 'pregunta-espana-1',
       texto: {
-        es: '¿Cuál de estas especies es originaria de la región mediterránea?',
-        en: 'Which of these species is native to the Mediterranean region?'
+        es: '¿Qué tipo de árbol frutal es Punica granatum?',
+        en: 'What type of fruit tree is Punica granatum?'
       },
+      plantaId: '33', // ID de Punica granatum
       opciones: [
         { 
           texto: { 
-            es: 'Jacaranda mimosifolia', 
-            en: 'Jacaranda mimosifolia' 
+            es: 'Árbol de copa amplia y tronco recto', 
+            en: 'Tree with wide crown and straight trunk' 
           }, 
           esCorrecta: false 
         },
         { 
           texto: { 
-            es: 'Punica granatum', 
-            en: 'Punica granatum' 
+            es: 'Árbol frutal caducifolio que puede crecer como arbusto', 
+            en: 'Deciduous fruit tree that can grow as a shrub' 
           }, 
           esCorrecta: true 
         },
         { 
           texto: { 
-            es: 'Araucaria bidwillii', 
-            en: 'Araucaria bidwillii' 
+            es: 'Árbol perennifolio de gran altura', 
+            en: 'Tall evergreen tree' 
           }, 
           esCorrecta: false 
         },
         { 
           texto: { 
-            es: 'Cedrus deodara', 
-            en: 'Cedrus deodara' 
+            es: 'Palmera con tronco único', 
+            en: 'Palm tree with single trunk' 
           }, 
           esCorrecta: false 
         }
       ],
       explicacion: {
-        es: 'Punica granatum es originaria de la región mediterránea y se ha cultivado desde la antigüedad.',
-        en: 'Punica granatum is native to the Mediterranean region and has been cultivated since ancient times.'
+        es: 'Punica granatum es un árbol frutal de hasta 5 m de altura, que puede desarrollarse de forma arbustiva, caducifolio, más o menos espinoso y muy ramificado.',
+        en: 'Punica granatum is a fruit tree up to 5 m tall, which can develop in a shrubby form, deciduous, more or less spiny and very branched.'
       }
     },
     {
@@ -51,6 +52,7 @@ const bancoPlazaEspana: BancoPreguntas = {
         es: '¿Qué especie de la Plaza España produce flores de color azul-violáceo?',
         en: 'Which species in Plaza España produces blue-purple flowers?'
       },
+      plantaId: '19', // ID de Jacaranda mimosifolia
       opciones: [
         { 
           texto: { 
@@ -92,6 +94,7 @@ const bancoPlazaEspana: BancoPreguntas = {
         es: '¿Qué especie de la Plaza España es conocida por su uso medicinal tradicional?',
         en: 'Which species in Plaza España is known for its traditional medicinal use?'
       },
+      plantaId: '41', // ID de Vitex agnus-castus
       opciones: [
         { 
           texto: { 
@@ -133,6 +136,7 @@ const bancoPlazaEspana: BancoPreguntas = {
         es: '¿Cuál de estas especies produce frutos comestibles?',
         en: 'Which of these species produces edible fruits?'
       },
+      plantaId: '33', // ID de Punica granatum
       opciones: [
         { 
           texto: { 
@@ -174,6 +178,7 @@ const bancoPlazaEspana: BancoPreguntas = {
         es: '¿Qué característica morfológica distingue a Phoenix canariensis?',
         en: 'What morphological characteristic distinguishes Phoenix canariensis?'
       },
+      plantaId: '31', // ID de Phoenix canariensis
       opciones: [
         { 
           texto: { 
@@ -212,206 +217,211 @@ const bancoPlazaEspana: BancoPreguntas = {
     {
       id: 'pregunta-espana-6',
       texto: {
-        es: '¿De qué región es originaria Jacaranda mimosifolia?',
-        en: 'From which region does Jacaranda mimosifolia originate?'
+        es: '¿Qué característica destaca de Nerium oleander presente en la Plaza España?',
+        en: 'What characteristic stands out about Nerium oleander present in Plaza España?'
       },
+      plantaId: '27', // ID de Nerium oleander (adelfa)
       opciones: [
         { 
           texto: { 
-            es: 'Europa', 
-            en: 'Europe' 
+            es: 'Sus hojas caducas', 
+            en: 'Its deciduous leaves' 
           }, 
           esCorrecta: false 
         },
         { 
           texto: { 
-            es: 'África', 
-            en: 'Africa' 
-          }, 
-          esCorrecta: false 
-        },
-        { 
-          texto: { 
-            es: 'América del Sur', 
-            en: 'South America' 
+            es: 'Sus hojas agrupadas en verticilos de tres', 
+            en: 'Its leaves arranged in whorls of three' 
           }, 
           esCorrecta: true 
         },
         { 
           texto: { 
-            es: 'Asia', 
-            en: 'Asia' 
+            es: 'Sus frutos comestibles', 
+            en: 'Its edible fruits' 
+          }, 
+          esCorrecta: false 
+        },
+        { 
+          texto: { 
+            es: 'Su corteza exfoliante', 
+            en: 'Its exfoliating bark' 
           }, 
           esCorrecta: false 
         }
       ],
       explicacion: {
-        es: 'Jacaranda mimosifolia es nativa de Sudamérica, principalmente de Argentina, Bolivia y Brasil.',
-        en: 'Jacaranda mimosifolia is native to South America, mainly from Argentina, Bolivia, and Brazil.'
+        es: 'Nerium oleander se caracteriza por sus hojas linear-lanceoladas o estrechamente elípticas, dispuestas en verticilos de 3, con nervios muy marcados. Es importante destacar que esta planta es tóxica y no debe ingerirse.',
+        en: 'Nerium oleander is characterized by its linear-lanceolate or narrowly elliptical leaves, arranged in whorls of 3, with very marked veins. It is important to note that this plant is toxic and should not be ingested.'
       }
     },
     {
       id: 'pregunta-espana-7',
       texto: {
-        es: '¿Qué especie de la Plaza España es conocida por proporcionar sombra abundante?',
-        en: 'Which species in Plaza España is known for providing abundant shade?'
+        es: '¿Qué característica tiene la Firmiana Simplex presente en la Plaza España?',
+        en: 'What characteristic does the Firmiana Simplex have in Plaza España?'
       },
+      plantaId: '17', // ID de Firmiana Simplex (parasol chino)
       opciones: [
         { 
           texto: { 
-            es: 'Platanus acerifolia', 
-            en: 'Platanus acerifolia' 
+            es: 'Hojas simples y redondeadas', 
+            en: 'Simple and rounded leaves' 
           }, 
           esCorrecta: true 
         },
         { 
           texto: { 
-            es: 'Vitex agnus-castus', 
-            en: 'Vitex agnus-castus' 
+            es: 'Hojas bipinnadas similares a un helecho', 
+            en: 'Bipinnate fern-like leaves' 
           }, 
           esCorrecta: false 
         },
         { 
           texto: { 
-            es: 'Phoenix canariensis', 
-            en: 'Phoenix canariensis' 
+            es: 'Hojas en forma de aguja', 
+            en: 'Needle-shaped leaves' 
           }, 
           esCorrecta: false 
         },
         { 
           texto: { 
-            es: 'Jacaranda mimosifolia', 
-            en: 'Jacaranda mimosifolia' 
+            es: 'Hojas palmadas con 5 lóbulos', 
+            en: 'Palmate leaves with 5 lobes' 
           }, 
           esCorrecta: false 
         }
       ],
       explicacion: {
-        es: 'Platanus acerifolia es muy valorado en parques y plazas por la excelente sombra que proporciona gracias a su amplia copa.',
-        en: 'Platanus acerifolia is highly valued in parks and plazas for the excellent shade it provides thanks to its wide canopy.'
+        es: 'Grevillea robusta posee hojas bipinnadas muy ornamentales, similares a las de un helecho. Este árbol puede alcanzar más de 25 metros de altura y produce llamativas flores de color amarillo-anaranjado.',
+        en: 'Grevillea robusta has highly ornamental bipinnate leaves, similar to those of a fern. This tree can reach over 25 meters in height and produces striking yellow-orange flowers.'
       }
     },
     {
       id: 'pregunta-espana-8',
       texto: {
-        es: '¿Qué caracteriza a la madera de Jacaranda mimosifolia?',
-        en: 'What characterizes Jacaranda mimosifolia wood?'
+        es: '¿Qué característica presentan las hojas de Cercis siliquastrum?',
+        en: 'What characteristic do the leaves of Cercis siliquastrum have?'
       },
+      plantaId: '11', // ID de Cercis siliquastrum (árbol de Judea)
       opciones: [
         { 
           texto: { 
-            es: 'Es blanda y ligera', 
-            en: 'It is soft and light' 
+            es: 'Forma de aguja', 
+            en: 'Needle-like shape' 
           }, 
           esCorrecta: false 
         },
         { 
           texto: { 
-            es: 'Es muy resistente al fuego', 
-            en: 'It is highly fire resistant' 
-          }, 
-          esCorrecta: false 
-        },
-        { 
-          texto: { 
-            es: 'Es aromática y duradera', 
-            en: 'It is aromatic and durable' 
+            es: 'Forma acorazonada o reniforme', 
+            en: 'Heart-shaped or reniform' 
           }, 
           esCorrecta: true 
         },
         { 
           texto: { 
-            es: 'Es flexible y elástica', 
-            en: 'It is flexible and elastic' 
+            es: 'Compuestas con múltiples folíolos', 
+            en: 'Compound with multiple leaflets' 
+          }, 
+          esCorrecta: false 
+        },
+        { 
+          texto: { 
+            es: 'Lineales y muy estrechas', 
+            en: 'Linear and very narrow' 
           }, 
           esCorrecta: false 
         }
       ],
       explicacion: {
-        es: 'La madera de Jacaranda mimosifolia es conocida por ser aromática, duradera y de buena calidad, utilizada en ebanistería fina.',
-        en: 'Jacaranda mimosifolia wood is known for being aromatic, durable, and of good quality, used in fine cabinetmaking.'
+        es: 'Cercis siliquastrum tiene hojas simples, alternas, caducas, de forma acorazonada o reniforme, lo que le da un aspecto muy ornamental. Sus flores rosadas aparecen antes que las hojas, emergiendo directamente del tronco y las ramas.',
+        en: 'Cercis siliquastrum has simple, alternate, deciduous, heart-shaped or reniform leaves, which gives it a very ornamental appearance. Its pink flowers appear before the leaves, emerging directly from the trunk and branches.'
       }
     },
     {
       id: 'pregunta-espana-9',
       texto: {
-        es: '¿Qué especie no es originaria de España pero está presente en la plaza?',
-        en: 'Which species is not native to Spain but is present in the plaza?'
+        es: '¿Qué característica destaca del tronco de Cercis siliquastrum en la Plaza España?',
+        en: 'What characteristic stands out about the trunk of Cercis siliquastrum in Plaza España?'
       },
+      plantaId: '11', // ID de Cercis siliquastrum (árbol de Judea)
       opciones: [
         { 
           texto: { 
-            es: 'Punica granatum', 
-            en: 'Punica granatum' 
-          }, 
-          esCorrecta: false 
-        },
-        { 
-          texto: { 
-            es: 'Vitex agnus-castus', 
-            en: 'Vitex agnus-castus' 
-          }, 
-          esCorrecta: false 
-        },
-        { 
-          texto: { 
-            es: 'Jacaranda mimosifolia', 
-            en: 'Jacaranda mimosifolia' 
+            es: 'Su corteza lisa que se vuelve tortuosa y oscura con la edad', 
+            en: 'Its smooth bark that becomes twisted and dark with age' 
           }, 
           esCorrecta: true 
         },
         { 
           texto: { 
-            es: 'Platanus acerifolia', 
-            en: 'Platanus acerifolia' 
+            es: 'Su altura superior a 15 metros', 
+            en: 'Its height over 15 meters' 
+          }, 
+          esCorrecta: false 
+        },
+        { 
+          texto: { 
+            es: 'Sus frutos espinosos venenosos', 
+            en: 'Its poisonous spiny fruits' 
+          }, 
+          esCorrecta: false 
+        },
+        { 
+          texto: { 
+            es: 'Su resistencia a suelos salinos', 
+            en: 'Its resistance to saline soils' 
           }, 
           esCorrecta: false 
         }
       ],
       explicacion: {
-        es: 'Jacaranda mimosifolia es nativa de Sudamérica (principalmente Argentina, Bolivia y Brasil), a pesar de encontrarse en la Plaza España.',
-        en: 'Jacaranda mimosifolia is native to South America (mainly Argentina, Bolivia, and Brazil), despite being found in Plaza España.'
+        es: 'Cercis siliquastrum se caracteriza por su tronco de madera lisa y clara que con la edad se vuelve tortuoso y negro, con una copa abierta e irregular.',
+        en: 'Cercis siliquastrum is characterized by its trunk of smooth, light wood that becomes twisted and black with age, with an open and irregular crown.'
       }
     },
     {
       id: 'pregunta-espana-10',
       texto: {
-        es: '¿Qué especie suele ser la más longeva en la Plaza España?',
-        en: 'Which species tends to be the longest-lived in Plaza España?'
+        es: '¿Qué característica tiene Cupressus arizonica presente en la Plaza España?',
+        en: 'What characteristic does Cupressus arizonica have in Plaza España?'
       },
+      plantaId: '13', // ID de Cupressus sp.
       opciones: [
         { 
           texto: { 
-            es: 'Phoenix canariensis', 
-            en: 'Phoenix canariensis' 
+            es: 'Corteza rojiza que se desprende en láminas', 
+            en: 'Reddish bark that peels in sheets' 
           }, 
           esCorrecta: true 
         },
         { 
           texto: { 
-            es: 'Jacaranda mimosifolia', 
-            en: 'Jacaranda mimosifolia' 
+            es: 'Hojas caducas en invierno', 
+            en: 'Deciduous leaves in winter' 
           }, 
           esCorrecta: false 
         },
         { 
           texto: { 
-            es: 'Platanus acerifolia', 
-            en: 'Platanus acerifolia' 
+            es: 'Frutos carnosos y comestibles', 
+            en: 'Fleshy and edible fruits' 
           }, 
           esCorrecta: false 
         },
         { 
           texto: { 
-            es: 'Punica granatum', 
-            en: 'Punica granatum' 
+            es: 'Flores de color púrpura intenso', 
+            en: 'Deep purple flowers' 
           }, 
           esCorrecta: false 
         }
       ],
       explicacion: {
-        es: 'Phoenix canariensis son generalmente los ejemplares más longevos de la Plaza España, algunos con más de 80 años.',
-        en: 'Phoenix canariensis are generally the longest-lived specimens in Plaza España, some over 80 years old.'
+        es: 'Cupressus arizonica se caracteriza por su corteza rojiza que se desprende en láminas y por sus hojas escamiformes de color verde grisáceo con glándulas resiníferas. Este árbol perennifolio puede alcanzar los 20 metros de altura y tiene una copa cónica muy densa.',
+        en: 'Cupressus arizonica is characterized by its reddish bark that peels in sheets and its grayish-green scale-like leaves with resin glands. This evergreen tree can reach 20 meters in height and has a very dense conical crown.'
       }
     }
   ]

@@ -74,6 +74,7 @@ export interface Pregunta {
   id: string;
   texto: TextoMultilingue;
   imagen?: string;     // Ruta opcional a una imagen para la pregunta
+  plantaId?: string;   // ID opcional de la planta asociada a la pregunta
   opciones: Opcion[];
   explicacion: TextoMultilingue;  // Explicación de la respuesta correcta
 }

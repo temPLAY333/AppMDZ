@@ -10,6 +10,7 @@ const bancoPlazaChile: BancoPreguntas = {
         es: "¿Qué color de corteza presenta el Cedrus deodara?",
         en: "What color is the bark of Cedrus deodara?"
       },
+      plantaId: "9", // ID de Cedrus deodara
       opciones: [
         { 
           texto: { 
@@ -48,55 +49,57 @@ const bancoPlazaChile: BancoPreguntas = {
     {
       id: "pregunta-chile-2",
       texto: {
-        es: "¿De qué región es originario el Pinus wallichiana?",
-        en: "From which region does Pinus wallichiana originate?"
+        es: "¿Qué característica tienen las acículas de Pinus griffithii?",
+        en: "What characteristic do the needles of Pinus griffithii have?"
       },
+      plantaId: "28", // ID de Pinus griffithii
       opciones: [
         { 
           texto: { 
-            es: "América del Norte", 
-            en: "North America" 
+            es: "Son cortas y rígidas", 
+            en: "They are short and rigid" 
           }, 
           esCorrecta: false 
         },
         { 
           texto: { 
-            es: "Europa", 
-            en: "Europe" 
+            es: "Son azuladas y gruesas", 
+            en: "They are bluish and thick" 
           }, 
           esCorrecta: false 
         },
         { 
           texto: { 
-            es: "Asia (Himalaya)", 
-            en: "Asia (Himalaya)" 
+            es: "Son largas y flexibles", 
+            en: "They are long and flexible" 
           }, 
           esCorrecta: true 
         },
         { 
           texto: { 
-            es: "Australia", 
-            en: "Australia" 
+            es: "Son escamosas", 
+            en: "They are scaly" 
           }, 
           esCorrecta: false 
         }
       ],
       explicacion: {
-        es: "Pinus wallichiana (anteriormente clasificado como Pinus griffithi) es originario de la región del Himalaya en Asia.",
-        en: "Pinus wallichiana (formerly classified as Pinus griffithi) is native to the Himalayan region in Asia."
+        es: "Pinus griffithii se caracteriza por tener acículas largas, flexibles y de color verde azulado que cuelgan elegantemente de las ramas.",
+        en: "Pinus griffithii is characterized by having long, flexible, blue-green needles that hang elegantly from the branches."
       }
     },
     {
       id: "pregunta-chile-3",
       texto: {
-        es: "¿Qué característica destaca del género Eucalyptus?",
-        en: "What characteristic stands out about the genus Eucalyptus?"
+        es: "¿Qué característica destaca de Cupressus sp.?",
+        en: "What characteristic stands out about Cupressus sp.?"
       },
+      plantaId: "13", // ID de Cupressus sp.
       opciones: [
         { 
           texto: { 
-            es: "Aroma mentolado", 
-            en: "Menthol aroma" 
+            es: "Porte piramidal", 
+            en: "Pyramidal shape" 
           }, 
           esCorrecta: true 
         },
@@ -109,8 +112,8 @@ const bancoPlazaChile: BancoPreguntas = {
         },
         { 
           texto: { 
-            es: "Hojas siempre rojas", 
-            en: "Always red leaves" 
+            es: "Hojas caducas", 
+            en: "Deciduous leaves" 
           }, 
           esCorrecta: false 
         },
@@ -123,16 +126,17 @@ const bancoPlazaChile: BancoPreguntas = {
         }
       ],
       explicacion: {
-        es: "Las especies del género Eucalyptus se caracterizan por el aroma mentolado de sus hojas debido a los aceites esenciales que contienen.",
-        en: "Eucalyptus species are characterized by the menthol aroma of their leaves due to the essential oils they contain."
+        es: "Cupressus sp. se caracteriza por su porte piramidal, con un tronco recto y corteza delgada en la que se forman fisuras longitudinales.",
+        en: "Cupressus sp. is characterized by its pyramidal shape, with a straight trunk and thin bark that forms longitudinal fissures."
       }
     },
     {
       id: "pregunta-chile-4",
       texto: {
-        es: "¿Qué tipo de hojas presenta el Cocculus laurifolius?",
+        es: "¿Qué tipo de hojas presenta Cocculus laurifolius?",
         en: "What type of leaves does Cocculus laurifolius have?"
       },
+      plantaId: "12", // ID de Cocculus laurifolius
       opciones: [
         { 
           texto: { 
@@ -164,16 +168,17 @@ const bancoPlazaChile: BancoPreguntas = {
         }
       ],
       explicacion: {
-        es: "El Cocculus laurifolius presenta hojas simples, brillantes y lanceoladas que recuerdan a las del laurel.",
+        es: "Cocculus laurifolius presenta hojas simples, brillantes y lanceoladas que recuerdan a las del laurel.",
         en: "Cocculus laurifolius has simple, glossy, and lanceolate leaves that resemble those of laurel."
       }
     },
     {
       id: "pregunta-chile-5",
       texto: {
-        es: "¿Para qué se utiliza tradicionalmente la madera del Tilia cordata?",
-        en: "What is Tilia cordata wood traditionally used for?"
+        es: "¿Para qué se utiliza tradicionalmente la madera de Tilia sp.?",
+        en: "What is Tilia sp. wood traditionally used for?"
       },
+      plantaId: "39", // ID de Tilia sp.
       opciones: [
         { 
           texto: { 
@@ -205,8 +210,8 @@ const bancoPlazaChile: BancoPreguntas = {
         }
       ],
       explicacion: {
-        es: "La madera del Tilia cordata es apreciada en la fabricación de instrumentos musicales y tallas por ser ligera y no astillarse.",
-        en: "Tilia cordata wood is valued in the manufacture of musical instruments and carvings because it is light and does not splinter."
+        es: "La madera de Tilia sp. es apreciada en la fabricación de instrumentos musicales y tallas por ser ligera y no astillarse.",
+        en: "Tilia sp. wood is valued in the manufacture of musical instruments and carvings because it is light and does not splinter."
       }
     },
     {
@@ -215,6 +220,7 @@ const bancoPlazaChile: BancoPreguntas = {
         es: "¿Qué altura puede alcanzar una Phoenix canariensis madura?",
         en: "What height can a mature Phoenix canariensis reach?"
       },
+      plantaId: "31", // ID de Phoenix canariensis
       opciones: [
         { 
           texto: { 
@@ -256,6 +262,7 @@ const bancoPlazaChile: BancoPreguntas = {
         es: "¿Qué fruto produce el Prosopis sp.?",
         en: "What fruit does Prosopis sp. produce?"
       },
+      plantaId: "26", // ID de Prosopis sp.
       opciones: [
         { 
           texto: { 
@@ -297,6 +304,7 @@ const bancoPlazaChile: BancoPreguntas = {
         es: "¿Qué característica tiene el Ligustrum lucidum que lo hace problemático en algunos ecosistemas?",
         en: "What characteristic does Ligustrum lucidum have that makes it problematic in some ecosystems?"
       },
+      plantaId: "21", // ID de Ligustrum lucidum
       opciones: [
         { 
           texto: { 
@@ -335,14 +343,15 @@ const bancoPlazaChile: BancoPreguntas = {
     {
       id: "pregunta-chile-9",
       texto: {
-        es: "¿Qué uso medicinal tradicional tiene el Schinus sp.?",
-        en: "What traditional medicinal use does Schinus sp. have?"
+        es: "¿Qué uso tiene tradicionalmente el fruto de Schinus molle?",
+        en: "What traditional use does the fruit of Schinus molle have?"
       },
+      plantaId: "37", // ID de Schinus molle
       opciones: [
         { 
           texto: { 
-            es: "Tratamiento de problemas respiratorios", 
-            en: "Treatment of respiratory problems" 
+            es: "Como condimento similar a la pimienta", 
+            en: "As a condiment similar to pepper" 
           }, 
           esCorrecta: true 
         },
@@ -355,22 +364,22 @@ const bancoPlazaChile: BancoPreguntas = {
         },
         { 
           texto: { 
-            es: "Para bajar la fiebre", 
-            en: "To reduce fever" 
+            es: "Para teñir telas", 
+            en: "For dyeing fabrics" 
           }, 
           esCorrecta: false 
         },
         { 
           texto: { 
-            es: "Como cicatrizante", 
-            en: "As a healing agent" 
+            es: "Como repelente de insectos", 
+            en: "As an insect repellent" 
           }, 
           esCorrecta: false 
         }
       ],
       explicacion: {
-        es: "Schinus sp. ha sido utilizado tradicionalmente para tratar problemas respiratorios debido a sus propiedades balsámicas.",
-        en: "Schinus sp. has traditionally been used to treat respiratory problems due to its balsamic properties."
+        es: "Los frutos de Schinus molle son drupas globosas de color rosa a rojo, los cuales se usan para adulterar la pimienta, como condimento y como antiinflamatorio.",
+        en: "The fruits of Schinus molle are globular drupes ranging from pink to red, which are used to adulterate pepper, as a condiment, and as an anti-inflammatory."
       }
     },
     {
@@ -379,6 +388,7 @@ const bancoPlazaChile: BancoPreguntas = {
         es: "¿Qué característica morfológica distingue a Gleditsia triacanthos?",
         en: "What morphological characteristic distinguishes Gleditsia triacanthos?"
       },
+      plantaId: "16", // ID de Gleditsia triacanthos
       opciones: [
         { 
           texto: { 

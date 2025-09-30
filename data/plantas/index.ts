@@ -517,7 +517,7 @@ const plantas: Planta[] = [
       ]
     }
   },{
-    id: '33',
+    id: '34',
     atributos: {
       nombre: 'Roble',
       nombreCientifico: 'Quercus robur',
@@ -525,7 +525,7 @@ const plantas: Planta[] = [
         es: 'Se ubica en plaza Independencia y San Martín. Es un árbol robusto de copa ancha que puede alcanzar los 40 metros de altura. Hojas alternas, simples y lobuladas, caducas, de color verde intenso con las nervaduras marcadas. Su fruto seco, envuelto en una cáscara dura con una cúpula leñosa en su parte superior, se conoce como bellota. Tiene valor como forestal. Perteneciente a la familia Fagáceas.',
         en: 'Located in square Independencia and San Martín. It\'s a robust tree with a wide crown that can reach 40 meters in height. Alternate, simple, and lobed leaves, deciduous, with a dark green color and marked veins. Its dry fruit, wrapped in a hard shell with a woody cup on top, is known as an acorn. It has value as a timber tree. Belongs to the Fagaceae family.'
       },
-      imagenPath: getPlantaImagen('33'),
+      imagenPath: getPlantaImagen('34'),
       referencias: [
         EmojiReferencia.Exotica,
         EmojiReferencia.ResistenteFrio,
@@ -533,7 +533,7 @@ const plantas: Planta[] = [
       ]
     }
   },{
-    id: '34',
+    id: '35',
     atributos: {
       nombre: 'Árbol del Corcho', // Alcornoque
       nombreCientifico: 'Quercus suber ',
@@ -541,14 +541,14 @@ const plantas: Planta[] = [
         es: 'Se ubica en plaza Independencia. Es un árbol de porte medio, perenne, de copa irregular. Sus hojas son alternas, simples, de forma ovado-oblongas, coriáceas, con la cara superior de un verde oscuro y el envés gris. Al igual que Q. robur, su frutos son bellotas. Se aprovecha económicamente su corteza gruesa y rugosa para la fabricación de corchos. No tolera mucho el frío y es sensible a suelos calizos. Perteneciente a la familia Fagáceas.',
         en: 'Located in square Independencia. It\'s a medium-sized, evergreen tree with an irregular crown. Its leaves are alternate, simple, ovate-oblong, leathery, with a dark green upper surface and a gray underside. Like Q. robur, its fruits are acorns. Its thick, rough bark is economically valuable for cork production. It does not tolerate cold well and is sensitive to calcareous soils. Belongs to the Fagaceae family.'
       },
-      imagenPath: getPlantaImagen('34'),
+      imagenPath: getPlantaImagen('35'),
       referencias: [
         EmojiReferencia.Exotica,
         EmojiReferencia.UsoEconomico
       ]
     }
   },{
-    id: '35',
+    id: '36',
     atributos: {
       nombre: 'Falsa Acacia',
       nombreCientifico: 'Robinia pseudoacacia',
@@ -556,7 +556,7 @@ const plantas: Planta[] = [
         es: 'Se ubica en plaza Independencia, Chile y San Martín. Es un árbol de follaje caducifolio, de unos 25 m de altura con un tronco de diámetro inferior al metro -excepcionalmente hasta 50 m de altura y 16 dm de diámetro en muy viejos individuos- con una espesa corteza negruzca profundamente fisurada; no se recomienda su ingesta porque puede ser perjudicial. Posee hojas compuestas con espinas en la base del pecíolo. Perteneciente a la familia Fabáceas.',
         en: 'Located in square Independence, Chile and San Martín. It\'s a tree with deciduous foliage, about 25 m tall with a trunk diameter of less than one meter -exceptionally up to 50 m tall and 16 dm in diameter in very old individuals- with a thick dark brown deeply fissured bark; not recommended for consumption because it can be harmful. It has compound leaves with spines at the base of the petiole. Belongs to the Fabaceae family.'
       },
-      imagenPath: getPlantaImagen('35'),
+      imagenPath: getPlantaImagen('36'),
       referencias: [
         EmojiReferencia.Exotica,
         EmojiReferencia.ResistenteSequia,
@@ -564,7 +564,7 @@ const plantas: Planta[] = [
       ]
     }
   },{
-    id: '36',
+    id: '37',
     atributos: {
       nombre: 'Aguaribay',
       nombreCientifico: 'Schinus molle',
@@ -572,14 +572,14 @@ const plantas: Planta[] = [
         es: 'Se ubica en plaza Independencia y Chile. Son árboles perennes de hasta 8 a 15 metros, con canales resiníferos en la corteza, de color pardo oscura a grisácea, escamosa, con hojas pinnadas. Son comunes en el NO argentino hasta México. Las flores unisexuales se agrupan en panículas y sus frutos son drupas globosas de color rosa a rojo, los cuales se usan para adulterar la pimienta, como condimento y como antiinflamatorio. Resiste bien altas temperaturas y heladas esporádicas y breves, no tolera suelo anegado. Perteneciente a la familia Anacardiáceas.',
         en: 'Located in Independence and Chile squares. They are evergreen trees up to 8 to 15 meters tall, with resin canals in the bark, dark brown to grayish in color, scaly, with pinnate leaves. They are common in northeastern Argentina to Mexico. The unisexual flowers are grouped in panicles and their fruits are globular drupes ranging from pink to red, which are used to adulterate pepper, as a condiment, and as an anti-inflammatory. It tolerates high temperatures and sporadic and brief frosts well, but does not tolerate waterlogged soil. Belongs to the Anacardiaceae family.'
       },
-      imagenPath: getPlantaImagen('36'),
+      imagenPath: getPlantaImagen('37'),
       referencias: [
         EmojiReferencia.Naturalizada,
         EmojiReferencia.ResistenteSequia
       ]
     }
   },{
-    id: '37',
+    id: '38',
     atributos: {
       nombre: 'Pindó',
       nombreCientifico: 'Syagrus romanzoffiana',
@@ -587,14 +587,14 @@ const plantas: Planta[] = [
         es: 'Se ubica en plaza San Martín. Es una palmera nativa del Sur de Brasil, Paraguay, Uruguay y NE de Argentina, en la provincia fitogeográfica Paranaense. Puede alcanzar los 25 metros de altura, con estípite grisáceo, desnudo y anillado debido a las cicatrices foliares que dejan las vainas no persistentes. Sus hojas de aspecto plumoso son palmas, pinnadas, con folíolos alargados de hasta 1 metro. En comparación a otras palmeras, tolera suelos pobres y temperaturas frescas. Perteneciente a la familia Arecáceas.',
         en: 'Located in square San Martín. It\'s a palm tree native to southern Brazil, Paraguay, Uruguay, and northeastern Argentina, in the Paranaense phytogeographic province. It can reach up to 25 meters in height, with a grayish, bare, and ringed stipe due to the foliar scars left by the non-persistent sheaths. Its feathery-looking leaves are palmate, pinnate, with elongated leaflets up to 1 meter long. Compared to other palm trees, it tolerates poor soils and cool temperatures. Belongs to the Arecaceae family.'
       },
-      imagenPath: getPlantaImagen('37'),
+      imagenPath: getPlantaImagen('38'),
       referencias: [
         EmojiReferencia.Exotica,
         EmojiReferencia.ResistenteFrio
       ]
     }
   },{
-    id: '38',
+    id: '39',
     atributos: {
       nombre: 'Tilo',
       nombreCientifico: 'Tilia sp.',
@@ -602,7 +602,7 @@ const plantas: Planta[] = [
         es: 'Se ubican en plaza Independencia, Chile e Italia. Son árboles de buen volumen de crecimiento y que llegan a vivir hasta 900 años, y alcanzan entre 20 y 40 m de altura, con fustes rectos de hasta un metro de diámetro, caducifolios. Las hojas son cordiformes, con borde aserrado, de hasta 20 cm de ancho, de color verde oscuro en el haz y verde claro plateado en el envés, fuertemente aromáticas. Las flores de este árbol son muy aromáticas, en forma de pequeños racimos amarillos con una bráctea alargada y presentan propiedades medicinales. Perteneciente a la familia Malváceas',
         en: 'Located in square Independence, Chile and Italy. They are trees with good growth volume that can live up to 900 years, reaching between 20 and 40 m in height, with straight trunks of up to one meter in diameter, deciduous. The leaves are heart-shaped, with serrated edges, up to 20 cm wide, dark green on the upper side and silvery light green on the underside, strongly aromatic. The flowers of this tree are very aromatic, in the form of small yellow clusters with an elongated bract, and have medicinal properties. Belongs to the Malvaceae family.'
       },
-      imagenPath: getPlantaImagen('38'),
+      imagenPath: getPlantaImagen('39'),
       referencias: [
         EmojiReferencia.Exotica,
         EmojiReferencia.UsoEconomico,
@@ -610,7 +610,7 @@ const plantas: Planta[] = [
       ]
     }
   },{
-    id: '39',
+    id: '40',
     atributos: {
       nombre: 'Tipa',
       nombreCientifico: 'Tipuana tipu',
@@ -618,14 +618,14 @@ const plantas: Planta[] = [
         es: 'Se ubica en plaza Independencia, Chile, Italia y San Martín. Es un árbol de hasta 10-25 m de altura, de corteza gruesa, resquebrajada, de color pardo grisáceo. Hojas pinnadas caducas. Flores amarillas reunidas en racimos. Su fruto es una legumbre alada, semejante a una sámara, con una sola semilla en su interior. Especie característica de la Selva Tucumano-Oranense. Perteneciente a la familia Fabáceas.',
         en: 'Located in square Independence, Chile, Italy and San Martín. It\'s a tree that can reach heights of 10-25 m, with thick, cracked bark that is brownish-gray in color. The leaves are deciduous and pinnate. The flowers are yellow and clustered. Its fruit is a winged legume, similar to a samara, containing a single seed. This species is characteristic of the Tucumano-Oranense Forest. Belongs to the Fabaceae family.'
       },
-      imagenPath: getPlantaImagen('39'),
+      imagenPath: getPlantaImagen('40'),
       referencias: [
         EmojiReferencia.Naturalizada,
         EmojiReferencia.ResistenteSequia
       ]
     }
   },{
-    id: '40',
+    id: '41',
     atributos: {
       nombre: 'Sauzgatillo',
       nombreCientifico: 'Vitex angus-castus',
@@ -633,7 +633,7 @@ const plantas: Planta[] = [
         es: 'Se ubica en plaza Independencia, Chile, Italia, España y San Martín. Es un arbusto de ramas abundantes, mimbreñas, cuadrangulares y de corteza blanquecina; hojas digitadas con pecíolo muy largo y cinco o siete hojuelas lanceoladas; flores pequeñas y azules en racimos terminales, y fruto redondo, pequeño y negro. Perteneciente a la familia Lamiáceas.',
         en: 'Located in square Independence, Chile, Italy, Spain and San Martín. It\'s a shrub with abundant, square, whitish branches; digitated leaves with very long petioles and five or seven lanceolate leaflets; small blue flowers in terminal clusters, and round, small black fruit. Belongs to the Lamiaceae family.'
       },
-      imagenPath: getPlantaImagen('40'),
+      imagenPath: getPlantaImagen('41'),
       referencias: [
         EmojiReferencia.Exotica,
         EmojiReferencia.UsoEconomico,
@@ -642,7 +642,7 @@ const plantas: Planta[] = [
       ]
     }
   },{
-    id: '41',
+    id: '42',
     atributos: {
       nombre: 'Palmera China',
       nombreCientifico: 'Trachycarpus fortunei',
@@ -650,7 +650,7 @@ const plantas: Planta[] = [
         es: 'Se ubica en plaza Chile e Italia. Es una palmera que alcanza hasta 12 m de altura, y queda recubierto (total o sólo la parte superior) por las vainas de las hojas caídas, lo que le da un aspecto "peludo"). Las hojas son palmadas, con un limbo de unos 50 cm de largo por 75 de ancho, con peciolos con los márgenes serrados y un poco más largos que el limbo. Perteneciente a la familia Arecáceas.',
         en: 'Located in square Chile e Italy. It\'s a palm tree that can reach up to 12 m in height, and is covered (either totally or just the upper part) by the sheaths of fallen leaves, giving it a "hairy" appearance. The leaves are palmate, with a blade about 50 cm long and 75 cm wide, with petioles that have serrated edges and are slightly longer than the blade. Belongs to the Arecaceae family.'
       },
-      imagenPath: getPlantaImagen('41'),
+      imagenPath: getPlantaImagen('42'),
       referencias: [
         EmojiReferencia.Exotica,
         EmojiReferencia.UsoEconomico,
@@ -659,7 +659,7 @@ const plantas: Planta[] = [
       ]
     }
   },{
-    id: '42',
+    id: '43',
     atributos: {
       nombre: 'Palmera Abanico',
       nombreCientifico: 'Washingtonia robusta y W. filiformis',
@@ -667,67 +667,7 @@ const plantas: Planta[] = [
         es: 'Se ubica en plaza Independencia, Italia y San Martín. Es una palmera con tronco robusto, esbelto y simple de hasta 35 metros de altura, engrosado en la base, revestido por los restos de las hojas ya secas que forman un característico aditamento, aunque desaparece con el tiempo; presenta hojas en abanico, con hilos blancos y largos en la juventud que desaparecen con la edad. Perteneciente a la familia Arecáceas. ',
         en: 'Located in square Independence, Italy and San Martín. It\'s a palm tree with a robust, slender, and simple trunk up to 35 meters tall, thickened at the base, covered by the remains of dried leaves that form a characteristic adornment, although it disappears over time; it has fan-shaped leaves, with long white threads in youth that disappear with age. Belongs to the Arecaceae family.'
       },
-      imagenPath: getPlantaImagen('42'),
-      referencias: [
-        EmojiReferencia.Exotica,
-        EmojiReferencia.ResistenteSequia
-      ]
-    }
-  },{
-    id: '44',
-    atributos: {
-      nombre: 'Palmera Abanico',
-      nombreCientifico: 'Washingtonia robusta y W. filiformis',
-      descripcionesMultilingue: {
-        es: 'Se ubica en plaza Independencia, Italia y San Martín. Es una palmera con tronco robusto, esbelto y simple de hasta 35 metros de altura, engrosado en la base, revestido por los restos de las hojas ya secas que forman un característico aditamento, aunque desaparece con el tiempo; presenta hojas en abanico, con hilos blancos y largos en la juventud que desaparecen con la edad. Perteneciente a la familia Arecáceas. ',
-        en: 'Located in square Independence, Italy and San Martín. It\'s a palm tree with a robust, slender, and simple trunk up to 35 meters tall, thickened at the base, covered by the remains of dried leaves that form a characteristic adornment, although it disappears over time; it has fan-shaped leaves, with long white threads in youth that disappear with age. Belongs to the Arecaceae family.'
-      },
-      imagenPath: getPlantaImagen('42'),
-      referencias: [
-        EmojiReferencia.Exotica,
-        EmojiReferencia.ResistenteSequia
-      ]
-    }
-  },{
-    id: '42',
-    atributos: {
-      nombre: 'Palmera Abanico',
-      nombreCientifico: 'Washingtonia robusta y W. filiformis',
-      descripcionesMultilingue: {
-        es: 'Se ubica en plaza Independencia, Italia y San Martín. Es una palmera con tronco robusto, esbelto y simple de hasta 35 metros de altura, engrosado en la base, revestido por los restos de las hojas ya secas que forman un característico aditamento, aunque desaparece con el tiempo; presenta hojas en abanico, con hilos blancos y largos en la juventud que desaparecen con la edad. Perteneciente a la familia Arecáceas. ',
-        en: 'Located in square Independence, Italy and San Martín. It\'s a palm tree with a robust, slender, and simple trunk up to 35 meters tall, thickened at the base, covered by the remains of dried leaves that form a characteristic adornment, although it disappears over time; it has fan-shaped leaves, with long white threads in youth that disappear with age. Belongs to the Arecaceae family.'
-      },
-      imagenPath: getPlantaImagen('42'),
-      referencias: [
-        EmojiReferencia.Exotica,
-        EmojiReferencia.ResistenteSequia
-      ]
-    }
-  },{
-    id: '42',
-    atributos: {
-      nombre: 'Palmera Abanico',
-      nombreCientifico: 'Washingtonia robusta y W. filiformis',
-      descripcionesMultilingue: {
-        es: 'Se ubica en plaza Independencia, Italia y San Martín. Es una palmera con tronco robusto, esbelto y simple de hasta 35 metros de altura, engrosado en la base, revestido por los restos de las hojas ya secas que forman un característico aditamento, aunque desaparece con el tiempo; presenta hojas en abanico, con hilos blancos y largos en la juventud que desaparecen con la edad. Perteneciente a la familia Arecáceas. ',
-        en: 'Located in square Independence, Italy and San Martín. It\'s a palm tree with a robust, slender, and simple trunk up to 35 meters tall, thickened at the base, covered by the remains of dried leaves that form a characteristic adornment, although it disappears over time; it has fan-shaped leaves, with long white threads in youth that disappear with age. Belongs to the Arecaceae family.'
-      },
-      imagenPath: getPlantaImagen('42'),
-      referencias: [
-        EmojiReferencia.Exotica,
-        EmojiReferencia.ResistenteSequia
-      ]
-    }
-  },{
-    id: '42',
-    atributos: {
-      nombre: 'Palmera Abanico',
-      nombreCientifico: 'Washingtonia robusta y W. filiformis',
-      descripcionesMultilingue: {
-        es: 'Se ubica en plaza Independencia, Italia y San Martín. Es una palmera con tronco robusto, esbelto y simple de hasta 35 metros de altura, engrosado en la base, revestido por los restos de las hojas ya secas que forman un característico aditamento, aunque desaparece con el tiempo; presenta hojas en abanico, con hilos blancos y largos en la juventud que desaparecen con la edad. Perteneciente a la familia Arecáceas. ',
-        en: 'Located in square Independence, Italy and San Martín. It\'s a palm tree with a robust, slender, and simple trunk up to 35 meters tall, thickened at the base, covered by the remains of dried leaves that form a characteristic adornment, although it disappears over time; it has fan-shaped leaves, with long white threads in youth that disappear with age. Belongs to the Arecaceae family.'
-      },
-      imagenPath: getPlantaImagen('42'),
+      imagenPath: getPlantaImagen('43'),
       referencias: [
         EmojiReferencia.Exotica,
         EmojiReferencia.ResistenteSequia

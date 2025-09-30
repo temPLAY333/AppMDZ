@@ -7,42 +7,43 @@ const bancoPlazaIndependencia: BancoPreguntas = {
     {
       id: 'pregunta-independencia-1',
       texto: {
-        es: '¿Cuál es el origen de la Tipuana tipu?',
-        en: 'What is the origin of Tipuana tipu?'
+        es: '¿Qué tipo de fruto produce la Tipuana tipu?',
+        en: 'What type of fruit does Tipuana tipu produce?'
       },
+      plantaId: '40', // ID de Tipuana tipu (tipa)
       opciones: [
         { 
           texto: { 
-            es: 'Europa', 
-            en: 'Europe' 
+            es: 'Drupa carnosa', 
+            en: 'Fleshy drupe' 
           }, 
           esCorrecta: false 
         },
         { 
           texto: { 
-            es: 'África', 
-            en: 'Africa' 
+            es: 'Legumbre simple', 
+            en: 'Simple legume' 
           }, 
           esCorrecta: false 
         },
         { 
           texto: { 
-            es: 'Sudamérica', 
-            en: 'South America' 
+            es: 'Legumbre alada (sámara)', 
+            en: 'Winged legume (samara)' 
           }, 
           esCorrecta: true 
         },
         { 
           texto: { 
-            es: 'Asia', 
-            en: 'Asia' 
+            es: 'Baya jugosa', 
+            en: 'Juicy berry' 
           }, 
           esCorrecta: false 
         }
       ],
       explicacion: {
-        es: 'La Tipuana tipu es originaria de Sudamérica, específicamente de Bolivia y el norte de Argentina.',
-        en: 'Tipuana tipu is native to South America, specifically Bolivia and northern Argentina.'
+        es: 'La Tipuana tipu produce un fruto característico en forma de legumbre alada, semejante a una sámara, con una sola semilla en su interior.',
+        en: 'Tipuana tipu produces a characteristic fruit in the form of a winged legume, similar to a samara, with a single seed inside.'
       }
     },
     {
@@ -51,6 +52,7 @@ const bancoPlazaIndependencia: BancoPreguntas = {
         es: '¿Qué característica tiene la Acacia visco?',
         en: 'What characteristic does Acacia visco have?'
       },
+      plantaId: '1', // ID de Acacia visco (viscote)
       opciones: [
         { 
           texto: { 
@@ -89,9 +91,10 @@ const bancoPlazaIndependencia: BancoPreguntas = {
     {
       id: 'pregunta-independencia-3',
       texto: {
-        es: '¿Qué tipo de hojas tiene el Cupressus sp.?',
+        es: '¿Qué tipo de hojas tiene Cupressus sp.?',
         en: 'What type of leaves does Cupressus sp. have?'
       },
+      plantaId: '13', // ID de Cupressus sp.
       opciones: [
         { 
           texto: { 
@@ -123,8 +126,8 @@ const bancoPlazaIndependencia: BancoPreguntas = {
         }
       ],
       explicacion: {
-        es: 'Los cipreses tienen hojas escamosas, pequeñas y superpuestas que cubren completamente las ramillas.',
-        en: 'Cypress trees have small, overlapping scaly leaves that completely cover the twigs.'
+        es: 'Cupressus sp. tiene hojas escamosas, pequeñas y superpuestas que cubren completamente las ramillas.',
+        en: 'Cupressus sp. has small, overlapping scaly leaves that completely cover the twigs.'
       }
     },
     {
@@ -133,6 +136,7 @@ const bancoPlazaIndependencia: BancoPreguntas = {
         es: '¿Qué uso medicinal tradicional tiene el Vitex agnus-castus?',
         en: 'What traditional medicinal use does Vitex agnus-castus have?'
       },
+      plantaId: '41', // ID de Vitex agnus-castus (sauzgatillo)
       opciones: [
         { 
           texto: { 
@@ -171,42 +175,43 @@ const bancoPlazaIndependencia: BancoPreguntas = {
     {
       id: 'pregunta-independencia-5',
       texto: {
-        es: '¿Para qué se utilizan principalmente los árboles de Eucalyptus sp.?',
-        en: 'What are Eucalyptus sp. trees mainly used for?'
+        es: '¿Qué características presenta el tronco de Ailanthus altissima?',
+        en: 'What characteristics does the trunk of Ailanthus altissima have?'
       },
+      plantaId: '3', // ID de Ailanthus altissima (árbol del cielo)
       opciones: [
         { 
           texto: { 
-            es: 'Producción de papel', 
-            en: 'Paper production' 
+            es: 'Tronco corto y retorcido', 
+            en: 'Short and twisted trunk' 
+          }, 
+          esCorrecta: false 
+        },
+        { 
+          texto: { 
+            es: 'Fuste recto de hasta un metro de diámetro', 
+            en: 'Straight trunk up to one meter in diameter' 
           }, 
           esCorrecta: true 
         },
         { 
           texto: { 
-            es: 'Extracción de aceites esenciales', 
-            en: 'Essential oil extraction' 
+            es: 'Tronco inclinado con contrafuertes', 
+            en: 'Leaning trunk with buttresses' 
           }, 
           esCorrecta: false 
         },
         { 
           texto: { 
-            es: 'Fabricación de muebles finos', 
-            en: 'Fine furniture manufacturing' 
-          }, 
-          esCorrecta: false 
-        },
-        { 
-          texto: { 
-            es: 'Alimento para ganado', 
-            en: 'Livestock feed' 
+            es: 'Tronco hueco y esponjoso', 
+            en: 'Hollow and spongy trunk' 
           }, 
           esCorrecta: false 
         }
       ],
       explicacion: {
-        es: 'Los eucaliptos son ampliamente utilizados en la industria papelera debido a su rápido crecimiento y fibra de celulosa.',
-        en: 'Eucalyptus trees are widely used in the paper industry due to their rapid growth and cellulose fiber.'
+        es: 'Ailanthus altissima se caracteriza por sus fustes rectos que pueden alcanzar hasta un metro de diámetro, con un crecimiento rápido que le permite alcanzar entre 17 y 27 metros de altura.',
+        en: 'Ailanthus altissima is characterized by its straight trunks that can reach up to one meter in diameter, with rapid growth that allows it to reach between 17 and 27 meters in height.'
       }
     },
     {
@@ -215,6 +220,7 @@ const bancoPlazaIndependencia: BancoPreguntas = {
         es: '¿Qué tipo de fruto produce la Morus nigra?',
         en: 'What type of fruit does Morus nigra produce?'
       },
+      plantaId: '25', // ID de Morus nigra (morera)
       opciones: [
         { 
           texto: { 
@@ -256,6 +262,7 @@ const bancoPlazaIndependencia: BancoPreguntas = {
         es: '¿Qué características posee la madera de la Robinia pseudoacacia?',
         en: 'What characteristics does the wood of Robinia pseudoacacia have?'
       },
+      plantaId: '36', // ID de Robinia pseudoacacia (falsa acacia)
       opciones: [
         { 
           texto: { 
@@ -297,6 +304,7 @@ const bancoPlazaIndependencia: BancoPreguntas = {
         es: '¿Qué altura puede alcanzar el Cedrus deodara?',
         en: 'What height can Cedrus deodara reach?'
       },
+      plantaId: '9', // ID de Cedrus deodara (cedro del Himalaya)
       opciones: [
         { 
           texto: { 
@@ -328,8 +336,8 @@ const bancoPlazaIndependencia: BancoPreguntas = {
         }
       ],
       explicacion: {
-        es: 'El Cedrus deodara puede alcanzar entre 30 y 50 metros de altura en condiciones óptimas, siendo uno de los cedros más altos.',
-        en: 'Cedrus deodara can reach between 30 and 50 meters in height under optimal conditions, making it one of the tallest cedars.'
+        es: 'Cedrus deodara puede alcanzar entre 30 y 50 metros de altura en condiciones óptimas, siendo una de las especies más altas de su género.',
+        en: 'Cedrus deodara can reach between 30 and 50 meters in height under optimal conditions, making it one of the tallest species in its genus.'
       }
     },
     {
@@ -338,6 +346,7 @@ const bancoPlazaIndependencia: BancoPreguntas = {
         es: '¿Qué tipo de hojas presenta el Quercus suber?',
         en: 'What type of leaves does Quercus suber have?'
       },
+      plantaId: '35', // ID de Quercus suber (árbol del corcho)
       opciones: [
         { 
           texto: { 
@@ -369,7 +378,7 @@ const bancoPlazaIndependencia: BancoPreguntas = {
         }
       ],
       explicacion: {
-        es: 'El Quercus suber tiene hojas perennes, coriáceas, ovales y dentadas, que permanecen en el árbol durante varios años.',
+        es: 'Quercus suber tiene hojas perennes, coriáceas, ovales y dentadas, que permanecen en el árbol durante varios años.',
         en: 'Quercus suber has evergreen, leathery, oval, and toothed leaves that remain on the tree for several years.'
       }
     },
@@ -379,6 +388,7 @@ const bancoPlazaIndependencia: BancoPreguntas = {
         es: '¿Qué característica presenta la corteza de Quercus suber que lo hace económicamente valioso?',
         en: 'What characteristic does the bark of Quercus suber present that makes it economically valuable?'
       },
+      plantaId: '35', // ID de Quercus suber
       opciones: [
         { 
           texto: { 

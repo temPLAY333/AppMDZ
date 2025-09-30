@@ -46,7 +46,7 @@ const plazaChile: Plaza = {
       ubicacionY: 260,
       plantas: [
         {
-          plantaId: '38', // Tilia cordata 
+          plantaId: '39', // Tilia cordata 
         },
         {
           plantaId: '31', // Phoenix canariensis
@@ -74,7 +74,7 @@ const plazaChile: Plaza = {
       ubicacionY: 290,
       plantas: [
         {
-          plantaId: '36', // Schinus molle
+          plantaId: '37', // Schinus molle
         },
         {
           plantaId: '16', // Gleditsia triacanthos

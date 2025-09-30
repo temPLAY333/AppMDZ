@@ -7,42 +7,43 @@ const bancoPlazaItalia: BancoPreguntas = {
     {
       id: 'pregunta-italia-1',
       texto: {
-        es: '¿Qué especie de palmera es la Trachycarpus fortunei?',
-        en: 'What species of palm tree is Trachycarpus fortunei?'
+        es: '¿Qué característica distintiva presenta el tronco de Trachycarpus fortunei?',
+        en: 'What distinctive characteristic does the trunk of Trachycarpus fortunei have?'
       },
+      plantaId: '42', // ID de Trachycarpus fortunei (palmera china)
       opciones: [
         { 
           texto: { 
-            es: 'Palmera datilera', 
-            en: 'Date palm' 
+            es: 'Tronco liso y sin marcas', 
+            en: 'Smooth trunk without marks' 
           }, 
           esCorrecta: false 
         },
         { 
           texto: { 
-            es: 'Palmera de abanico china', 
-            en: 'Chinese windmill palm' 
+            es: 'Aspecto "peludo" por las vainas de hojas caídas', 
+            en: '"Hairy" appearance due to fallen leaf sheaths' 
           }, 
           esCorrecta: true 
         },
         { 
           texto: { 
-            es: 'Palmera canaria', 
-            en: 'Canary Island palm' 
+            es: 'Tronco con espinas', 
+            en: 'Trunk with thorns' 
           }, 
           esCorrecta: false 
         },
         { 
           texto: { 
-            es: 'Palmera real', 
-            en: 'Royal palm' 
+            es: 'Tronco con anillos muy separados', 
+            en: 'Trunk with widely spaced rings' 
           }, 
           esCorrecta: false 
         }
       ],
       explicacion: {
-        es: 'Trachycarpus fortunei es una especie de palmera originaria de China central y oriental.',
-        en: 'Trachycarpus fortunei is a palm species native to central and eastern China.'
+        es: 'Trachycarpus fortunei se caracteriza por su tronco que queda recubierto (total o parcialmente) por las vainas de las hojas caídas, lo que le da un aspecto "peludo" muy distintivo.',
+        en: 'Trachycarpus fortunei is characterized by its trunk that is covered (totally or partially) by the sheaths of fallen leaves, giving it a very distinctive "hairy" appearance.'
       }
     },
     {
@@ -51,6 +52,7 @@ const bancoPlazaItalia: BancoPreguntas = {
         es: '¿Cuál es la característica distintiva de la Casuarina cunninghamiana?',
         en: 'What is the distinctive characteristic of Casuarina cunninghamiana?'
       },
+      plantaId: '8', // ID de Casuarina cunninghamiana (casuarina)
       opciones: [
         { 
           texto: { 
@@ -82,8 +84,8 @@ const bancoPlazaItalia: BancoPreguntas = {
         }
       ],
       explicacion: {
-        es: 'La Casuarina tiene ramas finas con articulaciones que se parecen a las agujas de los pinos, aunque botánicamente son muy diferentes.',
-        en: 'Casuarina has fine branches with joints that resemble pine needles, although botanically they are very different.'
+        es: 'Casuarina cunninghamiana tiene ramas finas con articulaciones que se parecen a las agujas de los pinos, aunque botánicamente son muy diferentes.',
+        en: 'Casuarina cunninghamiana has fine branches with joints that resemble pine needles, although botanically they are very different.'
       }
     },
     {
@@ -92,6 +94,7 @@ const bancoPlazaItalia: BancoPreguntas = {
         es: '¿Qué color de flor presenta la Erythrina crista-galli?',
         en: 'What color are the flowers of Erythrina crista-galli?'
       },
+      plantaId: '15', // ID de Erythrina crista-galli (ceibo)
       opciones: [
         { 
           texto: { 
@@ -123,7 +126,7 @@ const bancoPlazaItalia: BancoPreguntas = {
         }
       ],
       explicacion: {
-        es: 'La Erythrina crista-galli presenta flores de color rojo intenso muy características.',
+        es: 'Erythrina crista-galli presenta flores de color rojo intenso muy características.',
         en: 'Erythrina crista-galli has very characteristic bright red flowers.'
       }
     },
@@ -133,6 +136,7 @@ const bancoPlazaItalia: BancoPreguntas = {
         es: '¿Para qué se utiliza principalmente el fruto del Liquidambar styraciflua?',
         en: 'What is the main use of the fruit of Liquidambar styraciflua?'
       },
+      plantaId: '22', // ID de Liquidambar styraciflua (liquidámbar americano)
       opciones: [
         { 
           texto: { 
@@ -164,8 +168,8 @@ const bancoPlazaItalia: BancoPreguntas = {
         }
       ],
       explicacion: {
-        es: 'Del Liquidambar se extrae una resina aromática utilizada en perfumería y medicina tradicional.',
-        en: 'An aromatic resin used in perfumery and traditional medicine is extracted from the Liquidambar.'
+        es: 'De Liquidambar styraciflua se extrae una resina aromática utilizada en perfumería y medicina tradicional.',
+        en: 'An aromatic resin used in perfumery and traditional medicine is extracted from Liquidambar styraciflua.'
       }
     },
     {
@@ -174,6 +178,7 @@ const bancoPlazaItalia: BancoPreguntas = {
         es: '¿Qué característica tiene el Cedrus deodara que lo distingue?',
         en: 'What characteristic distinguishes Cedrus deodara?'
       },
+      plantaId: '9', // ID de Cedrus deodara (cedro del Himalaya)
       opciones: [
         { 
           texto: { 
@@ -212,42 +217,43 @@ const bancoPlazaItalia: BancoPreguntas = {
     {
       id: 'pregunta-italia-6',
       texto: {
-        es: '¿De qué región es nativo el Phytolacca dioica?',
-        en: 'From which region is Phytolacca dioica native?'
+        es: '¿Qué característica distintiva presenta el tronco de Phytolacca dioica?',
+        en: 'What distinctive characteristic does the trunk of Phytolacca dioica have?'
       },
+      plantaId: '32', // ID de Phytolacca dioica (ombú)
       opciones: [
         { 
           texto: { 
-            es: 'Europa', 
-            en: 'Europe' 
+            es: 'Tronco delgado y flexible', 
+            en: 'Thin and flexible trunk' 
           }, 
           esCorrecta: false 
         },
         { 
           texto: { 
-            es: 'Sudamérica', 
-            en: 'South America' 
+            es: 'Tronco muy engrosado con madera blanda y esponjosa', 
+            en: 'Very thickened trunk with soft and spongy wood' 
           }, 
           esCorrecta: true 
         },
         { 
           texto: { 
-            es: 'Asia', 
-            en: 'Asia' 
+            es: 'Tronco con corteza exfoliante', 
+            en: 'Trunk with exfoliating bark' 
           }, 
           esCorrecta: false 
         },
         { 
           texto: { 
-            es: 'África', 
-            en: 'Africa' 
+            es: 'Tronco con espinas ramificadas', 
+            en: 'Trunk with branched thorns' 
           }, 
           esCorrecta: false 
         }
       ],
       explicacion: {
-        es: 'El Phytolacca dioica es nativo de las regiones pampeanas de Sudamérica, principalmente Argentina, Uruguay y sur de Brasil.',
-        en: 'Phytolacca dioica is native to the Pampas regions of South America, mainly Argentina, Uruguay, and southern Brazil.'
+        es: 'Phytolacca dioica se caracteriza por su tronco muy engrosado, que puede alcanzar gran diámetro, con madera blanda y esponjosa que le permite un rápido crecimiento.',
+        en: 'Phytolacca dioica is characterized by its very thickened trunk, which can reach a large diameter, with soft and spongy wood that allows rapid growth.'
       }
     },
     {
@@ -256,6 +262,7 @@ const bancoPlazaItalia: BancoPreguntas = {
         es: '¿Qué tipo de copa forma el Cupressus sp.?',
         en: 'What type of crown does Cupressus sp. form?'
       },
+      plantaId: '13', // ID de Cupressus sp. (ciprés)
       opciones: [
         { 
           texto: { 
@@ -287,8 +294,8 @@ const bancoPlazaItalia: BancoPreguntas = {
         }
       ],
       explicacion: {
-        es: 'Los cipreses (Cupressus sp.) se caracterizan por formar copas cónicas y estrechas, con un perfil columnar muy distintivo.',
-        en: 'Cypress trees (Cupressus sp.) are characterized by forming conical and narrow crowns, with a very distinctive columnar profile.'
+        es: 'Cupressus sp. se caracteriza por formar copas cónicas y estrechas, con un perfil columnar muy distintivo.',
+        en: 'Cupressus sp. is characterized by forming conical and narrow crowns, with a very distinctive columnar profile.'
       }
     },
     {
@@ -297,6 +304,7 @@ const bancoPlazaItalia: BancoPreguntas = {
         es: '¿Qué tipo de hoja presenta Tilia sp. presente en la Plaza Italia?',
         en: 'What type of leaf does Tilia sp. present in Plaza Italia have?'
       },
+      plantaId: '39', // ID de Tilia sp. (tilo)
       opciones: [
         { 
           texto: { 
@@ -338,6 +346,7 @@ const bancoPlazaItalia: BancoPreguntas = {
         es: '¿Qué color tienen los frutos maduros de la Phoenix canariensis?',
         en: 'What color are the ripe fruits of Phoenix canariensis?'
       },
+      plantaId: '31', // ID de Phoenix canariensis (palma fénix)
       opciones: [
         { 
           texto: { 
@@ -379,6 +388,7 @@ const bancoPlazaItalia: BancoPreguntas = {
         es: '¿Qué utilidad tradicional tiene la madera del Fraxinus presente en la Plaza Italia?',
         en: 'What traditional use does the wood of Fraxinus in Plaza Italia have?'
       },
+      plantaId: '18', // ID de Fraxinus sp. (fresno)
       opciones: [
         { 
           texto: { 

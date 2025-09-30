@@ -49,7 +49,7 @@ const plazaIndependencia: Plaza = {
           plantaId: 'planta-sin-indice-2' // Pinus sp (no está en el índice)
         },
         {
-          plantaId: '40' // Vitex agnus-castus
+          plantaId: '41' // Vitex agnus-castus
         }
       ]
     },
@@ -77,7 +77,7 @@ const plazaIndependencia: Plaza = {
           plantaId: '16' // Gleditsia triacanthos
         },
         {
-          plantaId: '35' // Robinia pseudoacacia
+          plantaId: '36' // Robinia pseudoacacia
         }
       ]
     },
@@ -91,7 +91,7 @@ const plazaIndependencia: Plaza = {
           plantaId: '28' // Pinus griffithi
         },
         {
-          plantaId: '42' // Washingtonia robusta 
+          plantaId: '43' // Washingtonia robusta 
         }
       ]
     },
@@ -119,7 +119,7 @@ const plazaIndependencia: Plaza = {
           plantaId: '18' // Fraxinus sp.
         },
         {
-          plantaId: '34' // Quercus suber 
+          plantaId: '35' // Quercus suber 
         }
       ]
     },
@@ -144,10 +144,10 @@ const plazaIndependencia: Plaza = {
       ubicacionY: 130,
       plantas: [
         {
-          plantaId: '36' // Schinus sp (o 36 - Schinus molle)
+          plantaId: '37' // Schinus molle
         },
         {
-          plantaId: '33' // Quercus robur
+          plantaId: '34' // Quercus robur
         }
       ]
     }

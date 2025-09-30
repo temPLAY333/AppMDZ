@@ -15,75 +15,17 @@ import { Pregunta, Opcion } from "../data/types";
 import { useLanguage } from "../contexts/LanguageContext";
 import { getPlantaImagen } from "../data/imagenes/index";
 
-// Mapeo de IDs de preguntas a IDs de plantas
-const preguntaToPlantaId: { [key: string]: string } = {
-  // Plaza San Martín
-  'psm-pregunta-1': '30',         // Platanus x acerifolia (platano)
-  'psm-pregunta-2': '19',         // Jacaranda mimosifolia
-  'psm-pregunta-3': '10',         // Ceiba speciosa (palo borracho)
-  'psm-pregunta-4': '31',         // Phoenix canariensis (palmera fénix)
-  'psm-pregunta-5': '39',         // Quercus robur (roble)
-  'psm-pregunta-6': '9',          // Cedrus deodara (cedro del Himalaya)
-  'psm-pregunta-7': '17',         // Parasol chino
-  'psm-pregunta-8': '23',         // Magnolia grandiflora
-  'psm-pregunta-9': '20',         // Árbol de Júpiter
-      'psm-pregunta-10': '37',        // Pindó (Syagrus romanzoffiana)
+// Función para obtener la imagen de la planta según la pregunta
+const getPlantImage = (pregunta: Pregunta): ImageSourcePropType => {
+  // Si la pregunta tiene un plantaId definido, usarlo para obtener la imagen
+  if (pregunta.plantaId) {
+    return getPlantaImagen(pregunta.plantaId);
+  }
   
-  // Plaza España
-  'pregunta-espana-1': '33',      // Punica granatum (granado)
-  'pregunta-espana-2': '19',      // Jacaranda mimosifolia
-  'pregunta-espana-3': '40',      // Vitex agnus-castus (sauzgatillo)
-  'pregunta-espana-4': '33',      // Punica granatum (granado)
-  'pregunta-espana-5': '31',      // Phoenix canariensis (palmera fénix)
-  'pregunta-espana-6': '19',      // Jacaranda mimosifolia
-  'pregunta-espana-7': '30',      // Platanus acerifolia (plátano)
-  'pregunta-espana-8': '19',      // Jacaranda mimosifolia
-  'pregunta-espana-9': '19',      // Jacaranda mimosifolia
-  'pregunta-espana-10': '31',     // Phoenix canariensis (palmera fénix)
-  
-  // Plaza Chile
-  'pregunta-chile-1': '9',        // Cedrus deodara (cedro del Himalaya)
-  'pregunta-chile-2': '28',       // Pinus wallichiana (pino del Himalaya)
-  'pregunta-chile-3': '34',       // Árbol del corcho
-  'pregunta-chile-4': '12',       // Cocculus laurifolius (cóculo)
-  'pregunta-chile-5': '38',       // Tilia cordata (tilo)
-  'pregunta-chile-6': '31',       // Phoenix canariensis (palmera fénix)
-  'pregunta-chile-7': '26',       // Prosopis sp. (algarrobo)
-  'pregunta-chile-8': '21',       // Ligustrum lucidum (ligustro)
-  'pregunta-chile-9': '36',       // Schinus sp. (aguaribay)
-  'pregunta-chile-10': '16',      // Gleditsia triacanthos (acacia de tres espinas)
-  
-  // Plaza Italia
-  'pregunta-italia-1': '41',      // Trachycarpus fortunei (palmera china)
-  'pregunta-italia-2': '8',       // Casuarina cunninghamiana
-  'pregunta-italia-3': '15',      // Erythrina crista-galli (ceibo)
-  'pregunta-italia-4': '22',      // Liquidambar styraciflua (liquidámbar americano)
-  'pregunta-italia-5': '9',       // Cedrus deodara (cedro del Himalaya)
-  'pregunta-italia-6': '32',      // Phytolacca dioica (ombú)
-  'pregunta-italia-7': '13',      // Cupressus sp. (ciprés)
-  'pregunta-italia-8': '17',      // Parasol chino
-  'pregunta-italia-9': '31',      // Phoenix canariensis (palmera fénix)
-  'pregunta-italia-10': '30',     // Plátano
-  
-  // Plaza Independencia
-  'pregunta-independencia-1': '39',   // Tipuana tipu (tipa)
-  'pregunta-independencia-2': '1',    // Acacia visco (viscote)
-  'pregunta-independencia-3': '13',   // Cupressus sp. (ciprés)
-  'pregunta-independencia-4': '40',   // Vitex agnus-castus (sauzgatillo)
-  'pregunta-independencia-5': '34',   // Árbol del corcho
-  'pregunta-independencia-6': '25',   // Morus nigra (morera)
-  'pregunta-independencia-7': '35',   // Robinia pseudoacacia (falsa acacia)
-  'pregunta-independencia-8': '9',    // Cedrus deodara (cedro del Himalaya)
-  'pregunta-independencia-9': '34',   // Quercus suber (árbol del corcho)
-  'pregunta-independencia-10': '30',  // Plátano
-};
-
-// Función para obtener la imagen de la planta según la pregunta ID
-const getPlantImage = (preguntaId: string): ImageSourcePropType => {
-  // Obtener el ID de la planta asociada a la pregunta
-  const plantaId = preguntaToPlantaId[preguntaId];
-  // Usar la función centralizada para obtener la imagen
-  return plantaId ? getPlantaImagen(plantaId) : getPlantaImagen('19'); // Fallback a jacarandá
+  // Si no hay plantaId, usar una imagen predeterminada
+  // No podemos usar require() con variables dinámicas en tiempo de ejecución
+  // Ya que require() necesita una ruta estática en tiempo de compilación
+  return getPlantaImagen('19'); // Fallback a jacarandá (ID 19)
 };
 
 // Define los tipos para los parÃ¡metros de la ruta
@@ -212,7 +154,7 @@ const JuegosPregunta1 = () => {
           {/* Imagen de la planta */}
           <View style={styles.imageContainer}>
             <Image
-              source={getPlantImage(preguntaActual.id)}
+              source={getPlantImage(preguntaActual)}
               style={styles.plantImage}
               contentFit="contain"
             />

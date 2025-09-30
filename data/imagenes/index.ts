@@ -39,15 +39,16 @@ const plantaImagenes: Record<string, any> = {
   '31': require('../../assets/plants/palmafenix-31.jpg'),
   '32': require('../../assets/plants/ombu-32.jpg'), 
   '33': require('../../assets/plants/granado-33.jpg'),
-  '34': require('../../assets/plants/arboldelcorcho-34.webp'),
-  '35': require('../../assets/plants/falsoacacia-35.webp'), // Corregido de png a webp
-  '36': require('../../assets/plants/aguaribay-36.jpg'),
-  '37': require('../../assets/plants/pindo-37.jpg'), 
-  '38': require('../../assets/plants/tilo-38.jpg'),
-  '39': require('../../assets/plants/tipa-39.jpg'),
-  '40': require('../../assets/plants/sauzgatillo-40.jpg'),
-  '41': require('../../assets/plants/palmerachina-41.jpg'),
-  '42': require('../../assets/plants/palmeraabanico-42.jpg')
+  '34': require('../../assets/plants/roble-34.webp'), 
+  '35': require('../../assets/plants/arboldelcorcho-35.webp'),
+  '36': require('../../assets/plants/falsoacacia-36.webp'), // Corregido de png a webp
+  '37': require('../../assets/plants/aguaribay-37.jpg'),
+  '38': require('../../assets/plants/pindo-38.jpg'), 
+  '39': require('../../assets/plants/tilo-39.jpg'),
+  '40': require('../../assets/plants/tipa-40.jpg'),
+  '41': require('../../assets/plants/sauzgatillo-41.jpg'),
+  '42': require('../../assets/plants/palmerachina-42.jpg'),
+  '43': require('../../assets/plants/palmeraabanico-43.jpg')
 };
 
 /**

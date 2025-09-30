@@ -21,7 +21,7 @@ const plazaEspana: Plaza = {
           plantaId: '33', // Punica granatum
         },
         {
-          plantaId: '40', // Vitex agnus-castus
+          plantaId: '41', // Vitex agnus-castus
         }
       ]
     },

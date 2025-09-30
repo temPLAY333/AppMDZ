@@ -9,6 +9,7 @@ const nuevasPlazaSanMartin: BancoPreguntas = {
         es: '¿Cuál de estas características es propia del Platanus x acerifolia?',
         en: 'Which of these characteristics belongs to Platanus x acerifolia?'
       },
+      plantaId: '30', // ID de Platanus x acerifolia (plátano)
       opciones: [
         { 
           texto: { 
@@ -40,7 +41,7 @@ const nuevasPlazaSanMartin: BancoPreguntas = {
         }
       ],
       explicacion: {
-        es: 'El Platanus x acerifolia presenta una corteza característica de color ceniciento que se desprende en placas escamosas, dejando manchas irregulares amarillentas o blanquecinas de la corteza interna.',
+        es: 'Platanus x acerifolia presenta una corteza característica de color ceniciento que se desprende en placas escamosas, dejando manchas irregulares amarillentas o blanquecinas de la corteza interna.',
         en: 'Platanus x acerifolia has a characteristic ash-colored bark that peels off in scaly plates, exposing irregular yellowish or whitish patches of the inner bark.'
       }
     },
@@ -50,6 +51,7 @@ const nuevasPlazaSanMartin: BancoPreguntas = {
         es: '¿Qué característica poseen los frutos de Jacaranda mimosifolia?',
         en: 'What characteristic do the fruits of Jacaranda mimosifolia have?'
       },
+      plantaId: '19', // ID de Jacaranda mimosifolia (jacarandá)
       opciones: [
         { 
           texto: { 
@@ -81,7 +83,7 @@ const nuevasPlazaSanMartin: BancoPreguntas = {
         }
       ],
       explicacion: {
-        es: 'El Jacaranda mimosifolia produce frutos en forma de cápsulas planas que se abren al madurar y contienen semillas aladas para facilitar su dispersión por el viento.',
+        es: 'Jacaranda mimosifolia produce frutos en forma de cápsulas planas que se abren al madurar y contienen semillas aladas para facilitar su dispersión por el viento.',
         en: 'Jacaranda mimosifolia produces fruits in the form of flat capsules that open when ripe and contain winged seeds to facilitate their dispersion by wind.'
       }
     },
@@ -91,6 +93,7 @@ const nuevasPlazaSanMartin: BancoPreguntas = {
         es: '¿Qué característica distintiva presenta el tronco de Ceiba speciosa?',
         en: 'What distinctive characteristic does the trunk of Ceiba speciosa present?'
       },
+      plantaId: '10', // ID de Ceiba speciosa (palo borracho)
       opciones: [
         { 
           texto: { 
@@ -132,6 +135,7 @@ const nuevasPlazaSanMartin: BancoPreguntas = {
         es: '¿Qué tipo de fruto produce Phoenix canariensis?',
         en: 'What type of fruit does Phoenix canariensis produce?'
       },
+      plantaId: '31', // ID de Phoenix canariensis (palma fénix)
       opciones: [
         { 
           texto: { 
@@ -149,8 +153,8 @@ const nuevasPlazaSanMartin: BancoPreguntas = {
         },
         { 
           texto: { 
-            es: 'Drupas comestibles de color amarillo-anaranjado', 
-            en: 'Edible yellow-orange drupes' 
+            es: 'Carpelos comestibles de color amarillo-anaranjado', 
+            en: 'Edible yellow-orange carpels' 
           }, 
           esCorrecta: true 
         },
@@ -173,6 +177,7 @@ const nuevasPlazaSanMartin: BancoPreguntas = {
         es: '¿Qué adaptación presenta Quercus robur en sus frutos?',
         en: 'What adaptation does Quercus robur present in its fruits?'
       },
+      plantaId: '34', // ID de Quercus robur (roble)
       opciones: [
         { 
           texto: { 
@@ -214,6 +219,7 @@ const nuevasPlazaSanMartin: BancoPreguntas = {
         es: '¿Qué adaptación foliar presenta Cedrus deodara para sobrevivir en climas fríos?',
         en: 'What leaf adaptation does Cedrus deodara have to survive in cold climates?'
       },
+      plantaId: '9', // ID de Cedrus deodara (cedro del Himalaya)
       opciones: [
         { 
           texto: { 
@@ -252,50 +258,10 @@ const nuevasPlazaSanMartin: BancoPreguntas = {
     {
       id: 'psm-pregunta-7',
       texto: {
-        es: '¿Qué tipo de inflorescencia caracteriza a la familia Asteraceae presente en la plaza?',
-        en: 'What type of inflorescence characterizes the Asteraceae family present in the plaza?'
-      },
-      opciones: [
-        { 
-          texto: { 
-            es: 'Umbela', 
-            en: 'Umbel' 
-          }, 
-          esCorrecta: false 
-        },
-        { 
-          texto: { 
-            es: 'Capítulo', 
-            en: 'Capitulum' 
-          }, 
-          esCorrecta: true 
-        },
-        { 
-          texto: { 
-            es: 'Espiga', 
-            en: 'Spike' 
-          }, 
-          esCorrecta: false 
-        },
-        { 
-          texto: { 
-            es: 'Cima', 
-            en: 'Cyme' 
-          }, 
-          esCorrecta: false 
-        }
-      ],
-      explicacion: {
-        es: 'La familia Asteraceae se caracteriza por sus inflorescencias en capítulo, donde numerosas flores pequeñas se agrupan sobre un receptáculo común, dando la apariencia de una sola flor grande.',
-        en: 'The Asteraceae family is characterized by its capitulum inflorescences, where numerous small flowers are grouped on a common receptacle, giving the appearance of a single large flower.'
-      }
-    },
-    {
-      id: 'psm-pregunta-8',
-      texto: {
         es: '¿Qué tipo de hoja presenta Magnolia grandiflora?',
         en: 'What type of leaf does Magnolia grandiflora have?'
       },
+      plantaId: '23', // ID de Magnolia grandiflora (magnolia)
       opciones: [
         { 
           texto: { 
@@ -332,52 +298,54 @@ const nuevasPlazaSanMartin: BancoPreguntas = {
       }
     },
     {
-      id: 'psm-pregunta-9',
+      id: 'psm-pregunta-8',
       texto: {
-        es: '¿Qué adaptación reproductiva distingue a los Ginkgo biloba masculinos de los femeninos?',
-        en: 'What reproductive adaptation distinguishes male from female Ginkgo biloba?'
+        es: '¿Qué característica presenta la flor de Erythrina crista-galli?',
+        en: 'What characteristic does the flower of Erythrina crista-galli have?'
       },
+      plantaId: '15', // ID de Erythrina crista-galli (ceibo)
       opciones: [
         { 
           texto: { 
-            es: 'Los masculinos producen polen y los femeninos óvulos', 
-            en: 'Males produce pollen and females produce ovules' 
+            es: 'Flores pequeñas y discretas', 
+            en: 'Small and discrete flowers' 
+          }, 
+          esCorrecta: false 
+        },
+        { 
+          texto: { 
+            es: 'Flores en racimos pendulares', 
+            en: 'Flowers in pendular clusters' 
+          }, 
+          esCorrecta: false 
+        },
+        { 
+          texto: { 
+            es: 'Flores grandes de color rojo intenso', 
+            en: 'Large bright red flowers' 
           }, 
           esCorrecta: true 
         },
         { 
           texto: { 
-            es: 'Solo los femeninos producen flores', 
-            en: 'Only females produce flowers' 
-          }, 
-          esCorrecta: false 
-        },
-        { 
-          texto: { 
-            es: 'Los masculinos son siempre más altos', 
-            en: 'Males are always taller' 
-          }, 
-          esCorrecta: false 
-        },
-        { 
-          texto: { 
-            es: 'Solo los masculinos sobreviven las heladas', 
-            en: 'Only males survive frosts' 
+            es: 'Flores con aroma dulce', 
+            en: 'Flowers with sweet aroma' 
           }, 
           esCorrecta: false 
         }
       ],
       explicacion: {
-        es: 'Ginkgo biloba es una especie dioica, lo que significa que hay individuos masculinos que producen polen y femeninos que producen óvulos. Para la reproducción, se necesitan ambos sexos.',
-        en: 'Ginkgo biloba is a dioecious species, which means there are male individuals that produce pollen and female individuals that produce ovules. For reproduction, both sexes are needed.'
+        es: 'Erythrina crista-galli se caracteriza por sus grandes y llamativas flores de color rojo intenso, que destacan visualmente y atraen a polinizadores como colibríes.',
+        en: 'Erythrina crista-galli is characterized by its large and striking bright red flowers, which stand out visually and attract pollinators such as hummingbirds.'
       }
     },
     {
-      id: 'psm-pregunta-10',
+      id: 'psm-pregunta-9',
       texto: {
         es: '¿Qué característica presenta el fruto de Syagrus romanzoffiana?',
         en: 'What characteristic does the fruit of Syagrus romanzoffiana present?'
       },
+      plantaId: '38', // ID de Syagrus romanzoffiana (pindó)
       opciones: [
         { 
           texto: { 

@@ -18,7 +18,7 @@ const plazaItalia: Plaza = {
       ubicacionY: 150,
       plantas: [
         {
-          plantaId: '41' // Trachycarpus fortunei
+          plantaId: '42' // Trachycarpus fortunei
         },
         {
           plantaId: '8' // Casuarina cunninghamiana

@@ -18,7 +18,7 @@ const plazaSanMartin: Plaza = {
       ubicacionY: 110,
       plantas: [
         {
-          plantaId: '35' // Robinia pseudoacacia
+          plantaId: '36' // Robinia pseudoacacia
         },
         {
           plantaId: '30' // Platanus x acerifolia
@@ -35,7 +35,7 @@ const plazaSanMartin: Plaza = {
           plantaId: '5' // Salix nigra (no esta en el índice)
         },
         {
-          plantaId: '42' // Washingtonia robusta
+          plantaId: '43' // Washingtonia robusta
         }
       ]
     },
@@ -49,7 +49,7 @@ const plazaSanMartin: Plaza = {
           plantaId: '5' // Araucaria bidwilli 
         },
         {
-          plantaId: '37' //  Syagrus romanzoffiana  
+          plantaId: '38' //  Syagrus romanzoffiana  
         }
       ]
     },
