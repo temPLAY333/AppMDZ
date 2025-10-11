@@ -65,7 +65,7 @@ export const spanishBundle: LanguageBundle = {
     "flora.title": "Flora de la Parada",
     "unknown.plant": "Planta desconocida",
     "naturalized": "Naturalizada",
-    "economic.use": "Uso Económico",
+    "economic.use": "Uso Economico", // Versión sin tilde para mejor compatibilidad web
     "drought.resistant": "Resistente a sequía",
     "exotic": "Exótica",
     "cold.resistant": "Resistente al frío",

@@ -116,17 +116,28 @@ const MapaDeLaPlaza = () => {
           
           const imageDims = knownImageDimensions[plaza.id] || { width: 2500, height: 2500 };
           const screenWidth = Dimensions.get('window').width;
+          const screenHeight = Dimensions.get('window').height;
           const imageAspectRatio = imageDims.width / imageDims.height;
           
-          // Calcular dimensiones que se ajusten a la pantalla
-          let displayWidth = screenWidth - 40; // Margen de 20px a cada lado
+          // Calcular padding responsive
+          const responsivePadding = Math.min(Padding.p_36, screenWidth * 0.05) * 2; // Padding total horizontal
+          
+          // Calcular dimensiones que se ajusten completamente a la pantalla
+          let displayWidth = screenWidth - responsivePadding - 20; // Restamos padding + margen adicional
           let displayHeight = displayWidth / imageAspectRatio;
           
-          // Limitar altura máxima
-          const maxHeight = Dimensions.get('window').height * 0.6;
+          // Limitar altura máxima (más generoso en pantallas pequeñas)
+          const maxHeight = Math.min(screenHeight * 0.5, 400); // Máximo 50% de la pantalla o 400px
           if (displayHeight > maxHeight) {
             displayHeight = maxHeight;
             displayWidth = displayHeight * imageAspectRatio;
+          }
+          
+          // Asegurar que la imagen no sea demasiado pequeña
+          const minWidth = 250;
+          if (displayWidth < minWidth) {
+            displayWidth = minWidth;
+            displayHeight = displayWidth / imageAspectRatio;
           }
           
           setMapImageDimensions({
@@ -158,16 +169,15 @@ const MapaDeLaPlaza = () => {
       return { left: originalX, top: originalY };
     }
     
-    // Dimensiones del contenedor (imagen con style width/height 100%)
+    // Dimensiones del contenedor de la imagen (ya centrado)
     const containerWidth = mapImageDimensions.displayWidth;
     const containerHeight = mapImageDimensions.displayHeight;
     
-    // Dimensiones originales de la imagen
+    // Dimensiones originales de la imagen (2500x2500)
     const originalWidth = mapImageDimensions.width;
     const originalHeight = mapImageDimensions.height;
     
     // Calcular la escala que usa resizeMode="contain"
-    // Se usa la menor escala para que la imagen quepa completamente
     const scaleX = containerWidth / originalWidth;
     const scaleY = containerHeight / originalHeight;
     const scale = Math.min(scaleX, scaleY);
@@ -176,21 +186,22 @@ const MapaDeLaPlaza = () => {
     const renderedWidth = originalWidth * scale;
     const renderedHeight = originalHeight * scale;
     
-    // Offset de centrado (espacios vacíos)
+    // Offset de centrado por resizeMode="contain"
     const offsetX = (containerWidth - renderedWidth) / 2;
     const offsetY = (containerHeight - renderedHeight) / 2;
     
-    // Posición final = posición escalada + offset de centrado
+    // Posición final = coordenadas escaladas + offset de centrado
     const result = {
       left: (originalX * scale) + offsetX,
       top: (originalY * scale) + offsetY
     };
     
     console.log('DEBUG PIN POSITION:', {
-      originalX, originalY,
-      containerDims: { width: containerWidth, height: containerHeight },
-      originalDims: { width: originalWidth, height: originalHeight },
-      scale, renderedDims: { width: renderedWidth, height: renderedHeight },
+      originalCoords: { x: originalX, y: originalY },
+      container: { width: containerWidth, height: containerHeight },
+      originalImage: { width: originalWidth, height: originalHeight },
+      scale,
+      rendered: { width: renderedWidth, height: renderedHeight },
       offset: { x: offsetX, y: offsetY },
       finalPosition: result
     });
@@ -238,20 +249,23 @@ const MapaDeLaPlaza = () => {
         
         {/* Contenedor de imagen y pines */}
         <View style={styles.imageContainer}>
-          {/* Imagen del modelo 3D */}
-          <Image
-            style={[
-              styles.imagenPlaza,
-              mapImageDimensions.displayWidth > 0 && {
-                width: mapImageDimensions.displayWidth,
-                height: mapImageDimensions.displayHeight
-              }
-            ]}
-            resizeMode="contain"
-            source={plaza?.modeloImagenPath || require("../assets/plazas/Modelo-PSanMartin.png")}
-          />
-          
-          {/* Pines de las paradas */}
+          {/* Contenedor de imagen con pines encima */}
+          <View style={[
+            styles.imageWithPinsContainer,
+            mapImageDimensions.displayWidth > 0 && {
+              width: mapImageDimensions.displayWidth,
+              height: mapImageDimensions.displayHeight,
+              alignSelf: 'center'
+            }
+          ]}>
+            {/* Imagen del modelo 3D */}
+            <Image
+              style={styles.imagenPlaza}
+              resizeMode="contain"
+              source={plaza?.modeloImagenPath || require("../assets/plazas/Modelo-PSanMartin.png")}
+            />
+            
+            {/* Pines de las paradas */}
           {plaza?.paradas.some(parada => typeof parada.ubicacionX === 'number' && typeof parada.ubicacionY === 'number') ? (
             plaza.paradas.map((parada) => {
               // Comprobamos que las coordenadas existan y sean válidas
@@ -288,6 +302,7 @@ const MapaDeLaPlaza = () => {
               </Text>
             </View>
           )}
+          </View>
         </View>
       </View>
       <NavBar />
@@ -319,7 +334,7 @@ const styles = StyleSheet.create({
   },
   list: {
     overflow: "hidden",
-    paddingHorizontal: Padding.p_36,
+    paddingHorizontal: Math.min(Padding.p_36, Dimensions.get('window').width * 0.05), // Responsive: máximo 36px o 5% del ancho
     paddingTop: 45,
     paddingBottom: 93,
     gap: Gap.gap_19,
@@ -334,10 +349,12 @@ const styles = StyleSheet.create({
   imageContainer: {
     position: 'relative',
     width: '100%',
-    height: 450, // Altura aumentada
+    minHeight: Math.min(Dimensions.get('window').height * 0.5, 400), // Altura responsive
     marginVertical: 30, // Mayor margen vertical
     borderRadius: 12,
     overflow: 'hidden',
+    alignItems: 'center',
+    justifyContent: 'center',
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -346,6 +363,11 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.4,
     shadowRadius: 8,
     elevation: 10,
+  },
+  imageWithPinsContainer: {
+    position: 'relative',
+    width: "100%",
+    height: '100%',
   },
   imagenPlaza: {
     width: "100%",

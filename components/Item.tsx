@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Pressable, Text, StyleSheet, View, ViewStyle } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
+import UniversalEmoji from "./UniversalEmoji";
 import {
   Color,
   FontFamily,
@@ -91,15 +92,13 @@ const Item = ({
       </Text>
       
       {emoji && (
-        <Text 
-          style={[
-            styles.emojiText, 
-            styles.textTypo, 
-            { fontSize: emojiSize }
-          ]}
-        >
-          {emoji}
-        </Text>
+        <View style={styles.emojiContainer}>
+          <UniversalEmoji 
+            emoji={emoji} 
+            size={emojiSize} 
+            isFlag={/[\u{1F1E0}-\u{1F1FF}]/gu.test(emoji)}
+          />
+        </View>
       )}
     </View>
   );
@@ -182,6 +181,13 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     marginTop: -5, // Ajustamos hacia arriba para mejorar el centrado visual
     lineHeight: 60, // Asegura que la línea sea lo suficientemente alta
+  },
+  emojiContainer: {
+    minHeight: 60,
+    minWidth: 60,
+    alignItems: 'center',
+    justifyContent: 'center',
+    alignSelf: 'center',
   },
   pressable: {
     width: "100%",

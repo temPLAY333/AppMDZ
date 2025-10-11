@@ -68,7 +68,7 @@ export const portugueseBundle: LanguageBundle = {
     "naturalized": "Naturalizada",
     "economic.use": "Uso Econômico",
     "drought.resistant": "Resistente à seca",
-    "exotic": "Exótica",
+    "exotic": "Exótica", 
     "cold.resistant": "Resistente ao frio",
     "salt.resistant": "Resistente a solo salino",
     "back.to.menu": "Voltar ao Menu",

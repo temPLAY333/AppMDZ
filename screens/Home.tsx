@@ -47,7 +47,7 @@ const Home = () => {
         {/* Plaza Independencia */}
         <Item 
           text={t("plaza.independencia")}
-          emoji="🏛️"
+          emoji="�🇷"
           onPress={() => handlePlazaPress('plaza-independencia')}
           width={340}
           height={80}

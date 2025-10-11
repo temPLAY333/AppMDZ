@@ -129,7 +129,7 @@ export const PlazaImage: React.FC<PlazaImageProps> = ({
       {isLoading && (
         <div className="image-skeleton">
           <div className="skeleton-placeholder">
-            🏛️ Cargando plaza...
+            🗺️ Cargando plaza...
           </div>
         </div>
       )}

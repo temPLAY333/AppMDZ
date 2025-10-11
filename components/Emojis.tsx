@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Text, StyleSheet, View, Pressable } from "react-native";
 import { FontSize, FontFamily, Color } from "../GlobalStyles";
+import UniversalEmoji from "./UniversalEmoji";
 
 export type EmojisType = {
   /** Emoji a mostrar */
@@ -17,17 +18,13 @@ const Emojis = ({ emoji = "🌲", size }: EmojisType) => {
 
   return (
     <View style={styles.emojis}>
-      <Text 
-        style={[
-          styles.text, 
-          size ? { 
-            fontSize: size,
-          } : null,
-          { marginTop: ajusteVertical } // Aplicamos el ajuste vertical
-        ]}
-      >
-        {emoji}
-      </Text>
+      <View style={{ marginTop: ajusteVertical }}>
+        <UniversalEmoji 
+          emoji={emoji} 
+          size={size || 72} 
+          isFlag={/[\u{1F1E0}-\u{1F1FF}]/gu.test(emoji)}
+        />
+      </View>
     </View>
   );
 };

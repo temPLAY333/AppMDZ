@@ -20,6 +20,7 @@ import { OptimizedLocalizationProvider } from "./localization";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { View, Text, Pressable, TouchableOpacity } from "react-native";
 import { actualizarDescripcionesPlantasMultilingues } from "./utils/plantasTranslations";
+import { setupTwemojiStyles } from "./utils/twemojiSetup";
 
 const App = () => {
   const [hideSplashScreen, setHideSplashScreen] = React.useState(false); // Comienza mostrando la pantalla de carga
@@ -34,6 +35,9 @@ const App = () => {
   React.useEffect(() => {
     // Inicializar traducciones de plantas
     actualizarDescripcionesPlantasMultilingues();
+    
+    // Inicializar sistema de emojis Twemoji para web
+    setupTwemojiStyles();
     
     // Mostrar pantalla de carga por 4 segundos
     const timer = setTimeout(() => {
