@@ -14,8 +14,8 @@ const plazaSanMartin: Plaza = {
     {
       id: 'parada-1',
       numero: 1,
-      ubicacionX: 280,
-      ubicacionY: 110,
+      ubicacionX: 2100,
+      ubicacionY: 500,
       plantas: [
         {
           plantaId: '36' // Robinia pseudoacacia
@@ -28,11 +28,11 @@ const plazaSanMartin: Plaza = {
     {
       id: 'parada-2',
       numero: 2,
-      ubicacionX: 240,
-      ubicacionY: 270,
+      ubicacionX: 1800,
+      ubicacionY: 1600,
       plantas: [
         {
-          plantaId: '5' // Salix nigra (no esta en el índice)
+          plantaId: '46' // Salix nigra
         },
         {
           plantaId: '43' // Washingtonia robusta
@@ -42,8 +42,8 @@ const plazaSanMartin: Plaza = {
     {
       id: 'parada-3',
       numero: 3,
-      ubicacionX: 280,
-      ubicacionY: 340,
+      ubicacionX: 2100,
+      ubicacionY: 2100,
       plantas: [
         {
           plantaId: '5' // Araucaria bidwilli 
@@ -56,8 +56,8 @@ const plazaSanMartin: Plaza = {
     {
       id: 'parada-4',
       numero: 4,
-      ubicacionX: 210,
-      ubicacionY: 320,
+      ubicacionX: 1500,
+      ubicacionY: 1900,
       plantas: [
         {
           plantaId: '31' // Phoenix canariensis
@@ -70,8 +70,8 @@ const plazaSanMartin: Plaza = {
     {
       id: 'parada-5',
       numero: 5,
-      ubicacionX: 50,
-      ubicacionY: 160,
+      ubicacionX: 300,
+      ubicacionY: 700,
       plantas: [
         {
           plantaId: '2' // Acacia melanoxylon

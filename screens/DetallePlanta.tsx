@@ -51,7 +51,7 @@ const DetallePlanta = () => {
                 nombre={plantaAMostrar.atributos.nombre}
                 nombreCientifico={plantaAMostrar.atributos.nombreCientifico}
                 descripcionesMultilingue={plantaAMostrar.atributos.descripcionesMultilingue}
-                imagenPath={plantaAMostrar.atributos.imagenPath}
+                imagenPath={getPlantaImagen(plantaAMostrar.id)}
               />
             </View>
           </ScrollView>

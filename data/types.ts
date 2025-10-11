@@ -21,7 +21,7 @@ export interface PlantaAtributos {
   nombre: string;
   nombreCientifico: string;
   descripcionesMultilingue: DescripcionesPlanta; // Descripciones en diferentes idiomas (requerido)
-  imagenPath: string;  // Ruta a la imagen en /assets
+  imagenPath?: string;  // Ruta opcional - se genera dinámicamente si no existe
   referencias: EmojiReferencia[];  // Lista de referencias (máximo 4 de los 7 disponibles)
 }
 

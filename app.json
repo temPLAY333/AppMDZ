@@ -12,8 +12,12 @@
       "backgroundColor": "#ffffff"
     },
     "updates": {
-      "fallbackToCacheTimeout": 0
+      "enabled": true,
+      "fallbackToCacheTimeout": 0,
+      "checkAutomatically": "ON_LOAD",
+      "url": "https://u.expo.dev/2513f473-cb1f-4c84-a4e9-5e11db3d30f7"
     },
+    "runtimeVersion": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
     ],
@@ -24,10 +28,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.templay333.mdzappparques"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "2513f473-cb1f-4c84-a4e9-5e11db3d30f7"
+      }
     }
   }
 }

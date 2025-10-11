@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, StyleSheet } from 'react-native';
 import { Planta } from '../data/types';
-import { useLanguage } from '../contexts/LanguageContext';
+import { useSimplePlant } from '../localization/PlantLocalization';
 
 interface PlantaDescripcionMultilingue {
   es: string;
@@ -25,26 +25,23 @@ const PlantaDescripcion: React.FC<PlantaDescripcionProps> = ({
   descripcionesMultilingue,
   style 
 }) => {
-  const { language } = useLanguage();
+  // Si tenemos una planta, usar el nuevo sistema
+  const plantData = planta ? useSimplePlant(planta) : null;
   
   // Obtener la descripción según el idioma
   const getDescripcion = () => {
-    // Si se proporciona una planta completa
-    if (planta) {
-      // Ahora todas las plantas deberían tener descripcionesMultilingue
-      return planta.atributos.descripcionesMultilingue[language as 'es' | 'en'] || 
-             planta.atributos.descripcionesMultilingue.es;
+    // NUEVO: Si se proporciona una planta completa, usar sistema de plantas
+    if (planta && plantData) {
+      return plantData.description;
     }
     
-    // Si se proporcionan descripciones multilingües directamente
+    // LEGACY: Si se proporcionan descripciones multilingües directamente (para compatibilidad)
     if (descripcionesMultilingue) {
-      return descripcionesMultilingue[language as 'es' | 'en'] || 
-             descripcionesMultilingue.es;
+      return descripcionesMultilingue.es || descripcionesMultilingue.en;
     }
     
-    // Si solo se proporciona una descripción (para compatibilidad con versiones anteriores)
-    // En el futuro esta parte podría eliminarse ya que todas las plantas deberían usar descripcionesMultilingue
-    return descripcion || '';
+    // Fallback a descripción simple
+    return descripcion || 'Sin descripción disponible';
   };
 
   return (

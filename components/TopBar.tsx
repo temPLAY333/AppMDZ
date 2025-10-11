@@ -1,7 +1,7 @@
-import React, { useMemo, useContext } from "react";
+import React, { useMemo } from "react";
 import { Text, StyleSheet, View, Pressable } from "react-native";
 import { Color, Padding, FontSize, FontFamily } from "../GlobalStyles";
-import { LanguageContext } from "../contexts/LanguageContext";
+import { useTranslation } from "../localization";
 import { useNavigation } from "@react-navigation/native";
 
 export type TopBarType = {
@@ -20,9 +20,8 @@ const getStyleValue = (key: string, value: string | number | undefined) => {
   return { [key]: value === "unset" ? undefined : value };
 };
 const TopBar = ({ text = "", translationKey, textoWidth, title, showBackButton, onBackPress }: TopBarType) => {
-  // Usar el contexto de idioma si está disponible
-  const languageContext = useContext(LanguageContext);
-  const { language } = languageContext || { language: 'es' };
+  // Usar el nuevo sistema de traducción
+  const { t } = useTranslation();
   const navigation = useNavigation();
   
   const textoStyle = useMemo(() => {
@@ -43,27 +42,16 @@ const TopBar = ({ text = "", translationKey, textoWidth, title, showBackButton, 
   // Comenzamos con el texto proporcionado o el título si existe
   let displayText = title || text || "";
   
-  // Si se proporciona translationKey (y no está vacía), usar la traducción
-  if (translationKey && languageContext?.translate && translationKey !== "") {
-    displayText = languageContext.translate(translationKey as any);
-    return (
-      <View style={styles.topbar}>
-        {showBackButton && (
-          <Pressable style={styles.backButton} onPress={handleBackPress}>
-            <Text style={styles.backButtonText}>←</Text>
-          </Pressable>
-        )}
-        <Text style={[styles.texto, textoStyle]}>{displayText}</Text>
-      </View>
-    );
+  // Si se proporciona translationKey, usar la traducción
+  if (translationKey) {
+    const translated = t(translationKey as any, displayText);
+    console.log(`TOPBAR: translationKey="${translationKey}", fallback="${displayText}", result="${translated}"`);
+    displayText = translated;
   }
   
   // Si ya tenemos un texto explícito (sin translationKey), mantenerlo tal cual está
   if (text || title) {
-    // Caso especial para Parada: traduce "Parada" a "Stop" en inglés si estamos en inglés
-    if ((displayText.includes("Parada")) && language === 'en') {
-      displayText = displayText.replace("Parada", "Stop");
-    }
+    // El nuevo sistema maneja las traducciones automáticamente, no necesitamos casos especiales
   }
 
   return (

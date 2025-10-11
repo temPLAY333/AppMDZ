@@ -1,6 +1,6 @@
 import plantas, { plantasPorId } from '../data/plantas';
 import { Planta } from '../data/types';
-import { LanguageContext } from '../contexts/LanguageContext';
+// Migrated to new localization system - no longer needed
 
 // Función para actualizar todas las plantas con descripciones multilingües
 // Esta función ya no es necesaria ya que todas las plantas ahora tienen descripciones multilingües

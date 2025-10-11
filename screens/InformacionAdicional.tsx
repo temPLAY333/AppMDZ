@@ -5,25 +5,25 @@ import TopBar from "../components/TopBar";
 import NavBar from "../components/NavBar";
 import Item from "../components/Item";
 import Klipartz from "../assets/Klipartz.svg";
-import { useNavigation } from "@react-navigation/native";
 import { Color, Padding } from "../GlobalStyles";
-import { useLanguage } from "../contexts/LanguageContext";
+import { useTranslation } from "../localization";
+import { useUniversalNavigation, SCREENS } from "../navigation";
 
 const InformacionAdicional = () => {
-  const navigation = useNavigation<any>();
-  const { translate } = useLanguage();
+  const navigation = useUniversalNavigation();
+  const { t } = useTranslation();
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
 
   // Navegación a Referencias
   const navigateToReferencias = () => {
     setSelectedOption('referencias');
-    navigation.navigate("Referencias");
+    navigation.navigate(SCREENS.REFERENCIAS);
   };
 
   // Navegación a Glosario
   const navigateToGlosario = () => {
     setSelectedOption('glosario');
-    navigation.navigate("Glosario");
+    navigation.navigate(SCREENS.GLOSARIO);
   };
   
   return (
@@ -34,7 +34,7 @@ const InformacionAdicional = () => {
       <TopBar translationKey="info.title" textoWidth={260} />
       <View style={styles.list}>
         <Item 
-          text={translate("references.title")}
+          text={t("nav.references", "Referencias")}
           isSelected={selectedOption === 'referencias'}
           onPress={navigateToReferencias}
           height={80}
@@ -43,7 +43,7 @@ const InformacionAdicional = () => {
         />
         
         <Item 
-          text={translate("glossary.title")}
+          text={t("nav.glossary", "Glosario")}
           isSelected={selectedOption === 'glosario'}
           onPress={navigateToGlosario}
           height={80}

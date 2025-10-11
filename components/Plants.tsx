@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { TextInput, StyleSheet, View, Image, Text, Dimensions } from "react-native";
+import { TextInput, StyleSheet, View, Image, Text, Dimensions, Platform } from "react-native";
 import PlantaDescripcion from "./PlantaDescripcion";
 import { PlantaAtributos, EmojiReferencia } from "../data/types";
 import Emojis from "./Emojis";
@@ -30,15 +30,39 @@ const Plants = ({
   useEffect(() => {
     if (imagenPath) {
       try {
-        const source = Image.resolveAssetSource(imagenPath);
-        if (source && source.width && source.height) {
-          setImageDimensions({
-            width: source.width,
-            height: source.height
-          });
+        // En React Native, usar resolveAssetSource
+        if (Platform.OS !== 'web' && Image.resolveAssetSource) {
+          const source = Image.resolveAssetSource(imagenPath);
+          if (source && source.width && source.height) {
+            setImageDimensions({
+              width: source.width,
+              height: source.height
+            });
+            return;
+          }
+        }
+        
+        // Para React Native Web o como fallback, usar Image.getSize si está disponible
+        if (typeof imagenPath === 'string' && Image.getSize) {
+          Image.getSize(
+            imagenPath,
+            (width, height) => {
+              setImageDimensions({ width, height });
+            },
+            (error) => {
+              console.warn('Error al obtener dimensiones de imagen:', error);
+              // Usar dimensiones por defecto
+              setImageDimensions({ width: 300, height: 200 });
+            }
+          );
+        } else {
+          // Fallback: usar dimensiones por defecto
+          setImageDimensions({ width: 300, height: 200 });
         }
       } catch (error) {
         console.warn('Error al cargar dimensiones de imagen:', error);
+        // Usar dimensiones por defecto en caso de error
+        setImageDimensions({ width: 300, height: 200 });
       }
     }
   }, [imagenPath]);

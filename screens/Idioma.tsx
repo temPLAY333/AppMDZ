@@ -1,32 +1,36 @@
 import * as React from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
-import { useNavigation } from "@react-navigation/native";
 import TopBar from "../components/TopBar";
 import Item from "../components/Item";
 import { Color, Padding } from "../GlobalStyles";
-import { LanguageContext } from "../contexts/LanguageContext";
-
-type NavigationProp = {
-  navigate: (screen: string) => void;
-};
+import { useLanguageSelector, useTranslation } from "../localization";
+import { useUniversalNavigation, SCREENS } from "../navigation";
+import { SupportedLanguage } from "../localization/types";
 
 const Idioma = () => {
-  const navigation = useNavigation<NavigationProp>();
-  const { setLanguage, language } = React.useContext(LanguageContext);
-  const [selectedLanguage, setSelectedLanguage] = React.useState<'es' | 'en' | null>(null);
+  const navigation = useUniversalNavigation();
+  const { language, t } = useTranslation();
+  const { setLanguage } = useLanguageSelector();
+  const [selectedLanguage, setSelectedLanguage] = React.useState<SupportedLanguage | null>(null);
+  
+
   
   // Inicializar el idioma seleccionado con el idioma actual del contexto
   React.useEffect(() => {
-    setSelectedLanguage(language as 'es' | 'en' || null);
+    setSelectedLanguage(language);
   }, [language]);
   
-  const handleLanguageSelect = (language: 'es' | 'en') => {
-    // Actualizar el estado local
-    setSelectedLanguage(language);
-    // Cambiar el idioma en el contexto global
-    setLanguage(language);
-    // Navegar a Home
-    navigation.navigate("Home");
+  const handleLanguageSelect = async (selectedLang: SupportedLanguage) => {
+    try {
+      // Actualizar el estado local
+      setSelectedLanguage(selectedLang);
+      // Cambiar el idioma en el contexto global (es async)
+      await setLanguage(selectedLang);
+      // Navegar a Home usando constantes
+      navigation.navigate(SCREENS.HOME);
+    } catch (error) {
+      console.error('Error changing language:', error);
+    }
   };
 
   return (

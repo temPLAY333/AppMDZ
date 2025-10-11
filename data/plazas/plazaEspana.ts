@@ -14,8 +14,8 @@ const plazaEspana: Plaza = {
     {
       id: 'parada-1',
       numero: 1,
-      ubicacionX: 250,
-      ubicacionY: 110,
+      ubicacionX: 1800,
+      ubicacionY: 400,
       plantas: [
         {
           plantaId: '33', // Punica granatum
@@ -28,8 +28,8 @@ const plazaEspana: Plaza = {
     {
       id: 'parada-2',
       numero: 2,
-      ubicacionX: 250,
-      ubicacionY: 230,
+      ubicacionX: 1800,
+      ubicacionY: 1250,
       plantas: [
         {
           plantaId: '4', // Aesculus hipocastanum 
@@ -42,8 +42,8 @@ const plazaEspana: Plaza = {
     {
       id: 'parada-3',
       numero: 3,
-      ubicacionX: 250,
-      ubicacionY: 310,
+      ubicacionX: 1800,
+      ubicacionY: 1750,
       plantas: [
         {
           plantaId: '9', // Cedrus deodara 
@@ -56,22 +56,22 @@ const plazaEspana: Plaza = {
     {
       id: 'parada-4',
       numero: 4,
-      ubicacionX: 80,
-      ubicacionY: 240,
+      ubicacionX: 500,
+      ubicacionY: 1300,
       plantas: [
         {
           plantaId: '27' // Nerium oleander
         },
         {
-          plantaId: '29' // Pittosporum tobira
+          plantaId: '44' // Pittosporum tobira
         }
       ]
     },
     {
       id: 'parada-5',
       numero: 5,
-      ubicacionX: 190,
-      ubicacionY: 120,
+      ubicacionX: 1400,
+      ubicacionY: 400,
       plantas: [
         {
           plantaId: '17' // Firmiana simplex

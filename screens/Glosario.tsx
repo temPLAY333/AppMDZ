@@ -6,10 +6,10 @@ import TerminoEspecifico from "../components/TerminoEspecifico";
 import NavBar from "../components/NavBar";
 import Klipartz from "../assets/Klipartz.svg";
 import { Color, Padding } from "../GlobalStyles";
-import { useLanguage } from "../contexts/LanguageContext";
+import { useTranslation } from "../localization";
 
 const Glosario = () => {
-  const { language, translate } = useLanguage();
+  const { language, t } = useTranslation();
   
   // Definición de términos en español
   const terminosEspanol = [

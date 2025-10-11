@@ -1,10 +1,8 @@
 import React, { useMemo } from "react";
 import { View, StyleSheet, ImageSourcePropType, Pressable } from "react-native";
 import { Image } from "expo-image";
-import Klipartz from "../assets/Klipartz.svg";
-import Ellipse6 from "../assets/Ellipse-6.svg";
 import { Color, Gap, Border } from "../GlobalStyles";
-import { useNavigation, CommonActions } from "@react-navigation/native";
+import { useUniversalNavigation, SCREENS } from "../navigation";
 
 export type NavBarType = {
   klipartz?: React.ReactNode;
@@ -19,7 +17,7 @@ const getStyleValue = (key: string, value: string | number | undefined) => {
   return { [key]: value === "unset" ? undefined : value };
 };
 const NavBar = ({ navBarElevation, klipartz, activeItem }: NavBarType) => {
-  const navigation = useNavigation<any>();
+  const navigation = useUniversalNavigation();
   
   const navBarStyle = useMemo(() => {
     return {
@@ -34,26 +32,30 @@ const NavBar = ({ navBarElevation, klipartz, activeItem }: NavBarType) => {
   
   // Navegación al Home
   const navigateToHome = () => {
-    navigation.navigate("Home");
+    navigation.navigate(SCREENS.HOME);
   };
   
   // Navegación a Información Adicional
   const navigateToInformacionAdicional = () => {
-    navigation.navigate("InformacionAdicional");
+    navigation.navigate(SCREENS.INFO_ADICIONAL);
   };
 
   return (
     <View style={[styles.navbar, navBarStyle]}>
       <Pressable onPress={handleGoBack}>
-        <Klipartz
+        <Image
           style={[styles.klipartzIcon, styles.iconLayout]}
-          width={60}
-          height={60}
+          contentFit="contain"
+          source={require("../assets/Klipartz.svg")}
         />
       </Pressable>
       
       <Pressable onPress={navigateToHome}>
-        <Ellipse6 style={styles.navbarChild} width={55} height={55} />
+        <Image
+          style={[styles.navbarChild, styles.iconLayout]}
+          contentFit="contain"
+          source={require("../assets/Ellipse-6.svg")}
+        />
       </Pressable>
       
       <Pressable onPress={navigateToInformacionAdicional}>
@@ -98,6 +100,7 @@ const styles = StyleSheet.create({
   navbarChild: {
     width: 55,
     height: 55,
+    borderRadius: 27.5, // Circular para el botón home
   },
 });
 

@@ -2,7 +2,8 @@
 import { Image } from "expo-image";
 import { StyleSheet, ImageBackground, View, Text, Pressable, ScrollView, ImageSourcePropType } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useRoute, useNavigation } from "@react-navigation/native";
+import { useRoute } from "@react-navigation/native";
+import { useUniversalNavigation, SCREENS } from "../navigation";
 import TopBar from "../components/TopBar";
 import Item from "../components/Item";
 import QuestionOption from "../components/QuestionOption";
@@ -12,7 +13,7 @@ import Klipartz from "../assets/Klipartz.svg";
 import { Color, FontFamily, FontSize } from "../GlobalStyles";
 import { preguntasPorPlazaId } from "../data/preguntas/index";
 import { Pregunta, Opcion } from "../data/types";
-import { useLanguage } from "../contexts/LanguageContext";
+import { useTranslation } from "../localization";
 import { getPlantaImagen } from "../data/imagenes/index";
 
 // Función para obtener la imagen de la planta según la pregunta
@@ -38,8 +39,8 @@ type JuegosPregunta1ScreenRouteProp = RouteProp<RouteParamList, 'JuegosPregunta1
 
 const JuegosPregunta1 = () => {
   const route = useRoute<JuegosPregunta1ScreenRouteProp>();
-  const navigation = useNavigation<any>();
-  const { language } = useLanguage();
+  const navigation = useUniversalNavigation();
+  const { language } = useTranslation();
   const { plazaId } = route.params || { plazaId: 'plaza-san-martin' }; // Valor por defecto
   
   const [preguntasSeleccionadas, setPreguntasSeleccionadas] = useState<Pregunta[]>([]);
@@ -109,7 +110,7 @@ const JuegosPregunta1 = () => {
       setSelectedOption(null); // Resetear la opciÃ³n seleccionada
     } else {
       // Si es la Ãºltima pregunta, navegar a la pantalla de revisiÃ³n
-      navigation.navigate("Revision", {
+      navigation.navigate(SCREENS.REVISION, {
         plazaId,
         respuestas,
         preguntas: preguntasSeleccionadas,
@@ -148,7 +149,7 @@ const JuegosPregunta1 = () => {
         
         <ScrollView style={styles.scrollView}>
           <View style={styles.preguntaContainer}>
-            <Text style={styles.preguntaText}>{preguntaActual.texto[language]}</Text>
+            <Text style={styles.preguntaText}>{preguntaActual.texto[language as 'es' | 'en']}</Text>
           </View>
           
           {/* Imagen de la planta */}
@@ -164,7 +165,7 @@ const JuegosPregunta1 = () => {
             {preguntaActual.opciones.map((opcion, index) => (
               <QuestionOption
                 key={index}
-                text={opcion.texto[language]}
+                text={opcion.texto[language as 'es' | 'en']}
                 state={selectedOption === String(index) ? "Seleccionado" : "SinMarcar"}
                 onPress={() => handleSeleccionRespuesta(index)}
               />

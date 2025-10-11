@@ -5,22 +5,22 @@ import TopBar from "../components/TopBar";
 import NavBar from "../components/NavBar";
 import Item from "../components/Item";
 import Klipartz from "../assets/Klipartz.svg";
-import { useNavigation } from "@react-navigation/native";
 import { Color, Padding, Gap, FontSize, FontFamily } from "../GlobalStyles";
 import plazas from "../data/plazas";
-import { useLanguage } from "../contexts/LanguageContext";
+import { useTranslation } from "../localization";
+import { useUniversalNavigation, SCREENS } from "../navigation";
 
 const Home = () => {
-  const navigation = useNavigation<any>();
-  const { language, translate } = useLanguage();
+  const navigation = useUniversalNavigation();
+  const { language, t } = useTranslation();
   const [selectedPlaza, setSelectedPlaza] = useState<string | null>(null);
 
   // Manejador de navegación a la plaza seleccionada
   const handlePlazaPress = (plazaId: string) => {
     // Actualizamos el estado para mostrar cuál fue la última plaza seleccionada
     setSelectedPlaza(plazaId);
-    // Navegamos a la pantalla de menú de la plaza
-    navigation.navigate("MenuPlaza", { plazaId });
+    // Navegamos a la pantalla de menú de la plaza usando constantes
+    navigation.navigate(SCREENS.MENU_PLAZA, { plazaId });
   };
 
   return (
@@ -30,13 +30,13 @@ const Home = () => {
     >
       <TopBar 
         text="Menú Principal"
-        translationKey="main.menu" 
+        translationKey="nav.main.menu" 
         textoWidth={200} 
       />
       <View style={styles.list}>
         {/* Plaza San Martín */}
         <Item 
-          text={translate("plaza.san.martin")}
+          text={t("plaza.san.martin")}
           emoji="🎖️"
           onPress={() => handlePlazaPress('plaza-san-martin')}
           width={340}
@@ -46,7 +46,7 @@ const Home = () => {
         
         {/* Plaza Independencia */}
         <Item 
-          text={translate("plaza.independencia")}
+          text={t("plaza.independencia")}
           emoji="🏛️"
           onPress={() => handlePlazaPress('plaza-independencia')}
           width={340}
@@ -56,7 +56,7 @@ const Home = () => {
         
         {/* Plaza España */}
         <Item 
-          text={translate("plaza.espana")}
+          text={t("plaza.espana")}
           emoji="🇪🇸"
           onPress={() => handlePlazaPress('plaza-espana')}
           width={340}
@@ -66,7 +66,7 @@ const Home = () => {
         
         {/* Plaza Italia */}
         <Item 
-          text={translate("plaza.italia")}
+          text={t("plaza.italia")}
           emoji="🇮🇹"
           onPress={() => handlePlazaPress('plaza-italia')}
           width={340}
@@ -76,7 +76,7 @@ const Home = () => {
         
         {/* Plaza Chile */}
         <Item 
-          text={translate("plaza.chile")}
+          text={t("plaza.chile")}
           emoji="🇨🇱"
           onPress={() => handlePlazaPress('plaza-chile')}
           width={340}

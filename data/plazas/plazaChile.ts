@@ -14,8 +14,8 @@ const plazaChile: Plaza = {
     {
       id: 'parada-1',
       numero: 1,
-      ubicacionX: 280,
-      ubicacionY: 120,
+      ubicacionX: 2100,
+      ubicacionY: 400,
       plantas: [
         {
           plantaId: '9', // Cedrus deodara
@@ -28,11 +28,11 @@ const plazaChile: Plaza = {
     {
       id: 'parada-2',
       numero: 2,
-      ubicacionX: 270,
-      ubicacionY: 180,
+      ubicacionX: 2000,
+      ubicacionY: 1000,
       plantas: [
         {
-          plantaId: 'planta-sin-indice-2', // Eucalyptus sp. (no está en el índice)
+          plantaId: '48', // Eucalyptus sp.
         },
         {
           plantaId: '12', // Cocculus laurifolius
@@ -42,8 +42,8 @@ const plazaChile: Plaza = {
     {
       id: 'parada-3',
       numero: 3,
-      ubicacionX: 230,
-      ubicacionY: 260,
+      ubicacionX: 1600,
+      ubicacionY: 1550,
       plantas: [
         {
           plantaId: '39', // Tilia cordata 
@@ -56,8 +56,8 @@ const plazaChile: Plaza = {
     {
       id: 'parada-4',
       numero: 4,
-      ubicacionX: 150,
-      ubicacionY: 330,
+      ubicacionX: 1100,
+      ubicacionY: 2000,
       plantas: [
         {
           plantaId: '26', // Prosopis sp. 
@@ -70,8 +70,8 @@ const plazaChile: Plaza = {
     {
       id: 'parada-5',
       numero: 5,
-      ubicacionX: 100,
-      ubicacionY: 290,
+      ubicacionX: 670,
+      ubicacionY: 1800,
       plantas: [
         {
           plantaId: '37', // Schinus molle

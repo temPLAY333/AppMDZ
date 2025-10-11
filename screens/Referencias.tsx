@@ -5,10 +5,10 @@ import NavBar from "../components/NavBar";
 import Klipartz from "../assets/Klipartz.svg";
 import Emojis from "../components/Emojis";
 import { Gap, Color, FontSize, FontFamily, Padding } from "../GlobalStyles";
-import { useLanguage } from "../contexts/LanguageContext";
+import { useTranslation } from "../localization";
 
 const Referencias = () => {
-  const { translate } = useLanguage();
+  const { t } = useTranslation();
   return (
     <ScrollView
       style={styles.referencias}
@@ -22,7 +22,7 @@ const Referencias = () => {
           </View>
           <Text style={styles.separatorElements}>{`: `}</Text>
           <Text style={[styles.descripcionTexto, styles.usoEconmicoTypo]}>
-            {translate("naturalized")}
+            {t("naturalized")}
           </Text>
         </View>
         <View style={[styles.parent, styles.parentFlexBox]}>
@@ -31,7 +31,7 @@ const Referencias = () => {
           </View>
           <Text style={styles.separatorElements}>{`: `}</Text>
           <Text style={[styles.descripcionTexto, styles.usoEconmicoTypo]}>
-            {translate("economic.use")}
+            {t("economic.use")}
           </Text>
         </View>
         <View style={styles.parentFlexBox}>
@@ -40,7 +40,7 @@ const Referencias = () => {
           </View>
           <Text style={styles.separatorElements}>{`: `}</Text>
           <Text style={[styles.descripcionTexto, styles.usoEconmicoTypo]}>
-            {translate("drought.resistant")}
+            {t("drought.resistant")}
           </Text>
         </View>
         <View style={[styles.parent, styles.parentFlexBox]}>
@@ -49,7 +49,7 @@ const Referencias = () => {
           </View>
           <Text style={styles.separatorElements}>{`: `}</Text>
           <Text style={[styles.descripcionTexto, styles.usoEconmicoTypo]}>
-            {translate("exotic")}
+            {t("exotic")}
           </Text>
         </View>
         <View style={[styles.parent, styles.parentFlexBox]}>
@@ -58,7 +58,7 @@ const Referencias = () => {
           </View>
           <Text style={styles.separatorElements}>{`: `}</Text>
           <Text style={[styles.descripcionTexto, styles.usoEconmicoTypo]}>
-            {translate("cold.resistant")}
+            {t("cold.resistant")}
           </Text>
         </View>
         <View style={[styles.parent, styles.parentFlexBox]}>
@@ -67,7 +67,7 @@ const Referencias = () => {
           </View>
           <Text style={styles.separatorElements}>{`: `}</Text>
           <Text style={[styles.descripcionTexto, styles.usoEconmicoTypo]}>
-            {translate("salt.resistant")}
+            {t("salt.resistant")}
           </Text>
         </View>
       </View>

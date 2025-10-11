@@ -1,15 +1,15 @@
 import * as React from "react";
-import { useState } from "react";
-import { ScrollView, Text, StyleSheet, View, Image, Dimensions } from "react-native";
+import { useState, useEffect } from "react";
+import { ScrollView, Text, StyleSheet, View, Image, Dimensions, Platform } from "react-native";
 import TopBar from "../components/TopBar";
 import ModeloIcon from "../components/ModeloIcon";
 import NavBar from "../components/NavBar";
-import Klipartz from "../assets/Klipartz.svg";
 import Pin from "../components/Pin";
-import { useRoute, useNavigation, useFocusEffect } from "@react-navigation/native";
+import { useRoute, useFocusEffect } from "@react-navigation/native";
+import { useUniversalNavigation, SCREENS } from "../navigation";
 import { RouteProp } from "@react-navigation/native";
 import { plazasPorId } from "../data";
-import { useLanguage } from "../contexts/LanguageContext";
+import { useTranslation } from "../localization";
 import {
   Color,
   FontSize,
@@ -25,12 +25,20 @@ type MapaModeloRouteProp = RouteProp<{
 }, 'MapaDeLaPlaza'>;
 
 const MapaDeLaPlaza = () => {
-  const navigation = useNavigation<any>();
+  const navigation = useUniversalNavigation();
   const route = useRoute<MapaModeloRouteProp>();
-  const { translate } = useLanguage();
+  const { t } = useTranslation();
   
   // Estado para controlar qué pin está destacado (grande)
   const [highlightedPinId, setHighlightedPinId] = useState<string>('parada-1');
+  
+  // Estado para las dimensiones de la imagen del mapa
+  const [mapImageDimensions, setMapImageDimensions] = useState({
+    width: 0,
+    height: 0,
+    displayWidth: 0,
+    displayHeight: 0
+  });
   
   // Obtenemos el plazaId de los parámetros de la ruta
   const { plazaId = 'plaza-san-martin' } = route.params || {};
@@ -58,11 +66,144 @@ const MapaDeLaPlaza = () => {
       setHighlightedPinId('parada-1');
     }
   }, [plaza]);
-  
+
+  // Efecto para calcular las dimensiones de la imagen cuando cambia la plaza
+  useEffect(() => {
+    if (plaza?.modeloImagenPath) {
+      try {
+        // Resolver la imagen como asset
+        const imageAsset = plaza.modeloImagenPath;
+        
+        // Para React Native nativo, usar resolveAssetSource
+        if (Platform.OS !== 'web') {
+          const source = typeof imageAsset === 'number' ? Image.resolveAssetSource(imageAsset) : null;
+          if (source) {
+            const screenWidth = Dimensions.get('window').width;
+            const imageAspectRatio = source.width / source.height;
+            
+            // Calcular dimensiones que se ajusten a la pantalla
+            let displayWidth = screenWidth - 40; // Margen de 20px a cada lado
+            let displayHeight = displayWidth / imageAspectRatio;
+            
+            // Limitar altura máxima
+            const maxHeight = Dimensions.get('window').height * 0.6;
+            if (displayHeight > maxHeight) {
+              displayHeight = maxHeight;
+              displayWidth = displayHeight * imageAspectRatio;
+            }
+            
+            setMapImageDimensions({
+              width: source.width,
+              height: source.height,
+              displayWidth: displayWidth,
+              displayHeight: displayHeight
+            });
+            console.log('DEBUG: Native image dimensions set:', {
+              original: { width: source.width, height: source.height },
+              display: { width: displayWidth, height: displayHeight }
+            });
+          }
+        } else {
+          // Para React Native Web, usar dimensiones conocidas de las imágenes
+          // TODO: Estas dimensiones deberían venir de un archivo de configuración
+          const knownImageDimensions: Record<string, { width: number; height: number }> = {
+            'plaza-san-martin': { width: 2500, height: 2500 },
+            'plaza-independencia': { width: 2500, height: 2500 },
+            'plaza-espana': { width: 2500, height: 2500 },
+            'plaza-italia': { width: 2500, height: 2500 },
+            'plaza-chile': { width: 2500, height: 2500 }
+          };
+          
+          const imageDims = knownImageDimensions[plaza.id] || { width: 2500, height: 2500 };
+          const screenWidth = Dimensions.get('window').width;
+          const imageAspectRatio = imageDims.width / imageDims.height;
+          
+          // Calcular dimensiones que se ajusten a la pantalla
+          let displayWidth = screenWidth - 40; // Margen de 20px a cada lado
+          let displayHeight = displayWidth / imageAspectRatio;
+          
+          // Limitar altura máxima
+          const maxHeight = Dimensions.get('window').height * 0.6;
+          if (displayHeight > maxHeight) {
+            displayHeight = maxHeight;
+            displayWidth = displayHeight * imageAspectRatio;
+          }
+          
+          setMapImageDimensions({
+            width: imageDims.width,
+            height: imageDims.height,
+            displayWidth: displayWidth,
+            displayHeight: displayHeight
+          });
+          console.log('DEBUG: Web image dimensions set:', {
+            original: imageDims,
+            display: { width: displayWidth, height: displayHeight }
+          });
+        }
+      } catch (error) {
+        console.warn('Error loading image dimensions:', error);
+      }
+    }
+  }, [plaza?.modeloImagenPath]);
+
+  // Debug effect para ver el estado de las dimensiones
+  useEffect(() => {
+    console.log('DEBUG: Image dimensions updated:', mapImageDimensions);
+  }, [mapImageDimensions]);
+
+  // Función para convertir coordenadas originales a coordenadas responsivas
+  const getResponsivePosition = (originalX: number, originalY: number) => {
+    if (mapImageDimensions.width === 0 || mapImageDimensions.height === 0) {
+      console.log('DEBUG: Using original coordinates (no image dimensions)');
+      return { left: originalX, top: originalY };
+    }
+    
+    // Dimensiones del contenedor (imagen con style width/height 100%)
+    const containerWidth = mapImageDimensions.displayWidth;
+    const containerHeight = mapImageDimensions.displayHeight;
+    
+    // Dimensiones originales de la imagen
+    const originalWidth = mapImageDimensions.width;
+    const originalHeight = mapImageDimensions.height;
+    
+    // Calcular la escala que usa resizeMode="contain"
+    // Se usa la menor escala para que la imagen quepa completamente
+    const scaleX = containerWidth / originalWidth;
+    const scaleY = containerHeight / originalHeight;
+    const scale = Math.min(scaleX, scaleY);
+    
+    // Dimensiones reales de la imagen renderizada
+    const renderedWidth = originalWidth * scale;
+    const renderedHeight = originalHeight * scale;
+    
+    // Offset de centrado (espacios vacíos)
+    const offsetX = (containerWidth - renderedWidth) / 2;
+    const offsetY = (containerHeight - renderedHeight) / 2;
+    
+    // Posición final = posición escalada + offset de centrado
+    const result = {
+      left: (originalX * scale) + offsetX,
+      top: (originalY * scale) + offsetY
+    };
+    
+    console.log('DEBUG PIN POSITION:', {
+      originalX, originalY,
+      containerDims: { width: containerWidth, height: containerHeight },
+      originalDims: { width: originalWidth, height: originalHeight },
+      scale, renderedDims: { width: renderedWidth, height: renderedHeight },
+      offset: { x: offsetX, y: offsetY },
+      finalPosition: result
+    });
+    
+    return result;
+  };
+
   // Efecto para actualizar el pin destacado cuando se regresa a esta pantalla
   useFocusEffect(
     React.useCallback(() => {
-      // Verificar si venimos de ParadaPlanta1
+      // TODO: Implementar lógica de navegación anterior cuando sea necesario para web
+      // Comentado temporalmente para compatibilidad universal con web
+      /*
       const previousRoute = navigation.getState()?.routes?.[navigation.getState().index - 1];
       
       if (previousRoute && previousRoute.name === 'ParadaPlanta1' && previousRoute.params?.paradaId) {
@@ -73,8 +214,9 @@ const MapaDeLaPlaza = () => {
         // Si venimos de una parada, destacar esa parada 
         setHighlightedPinId(previousParadaId);
       }
+      */
       // Ya no reseteamos a parada-1 si venimos de otra pantalla para mantener el estado
-    }, [navigation, plazaId, plaza])
+    }, [plazaId, plaza])
   );
   
   // Navegar a la pantalla de ParadaPlanta1 cuando se presiona un pin
@@ -83,7 +225,7 @@ const MapaDeLaPlaza = () => {
     setHighlightedPinId(paradaId);
     
     // Navegar a la pantalla de ParadaPlanta1 con los parámetros de la parada seleccionada
-    navigation.navigate('ParadaPlanta1', { plazaId, paradaId });
+    navigation.navigate(SCREENS.PARADA_PLANTA, { plazaId, paradaId });
   };
   
   return (
@@ -98,7 +240,13 @@ const MapaDeLaPlaza = () => {
         <View style={styles.imageContainer}>
           {/* Imagen del modelo 3D */}
           <Image
-            style={styles.imagenPlaza}
+            style={[
+              styles.imagenPlaza,
+              mapImageDimensions.displayWidth > 0 && {
+                width: mapImageDimensions.displayWidth,
+                height: mapImageDimensions.displayHeight
+              }
+            ]}
             resizeMode="contain"
             source={plaza?.modeloImagenPath || require("../assets/plazas/Modelo-PSanMartin.png")}
           />
@@ -109,8 +257,11 @@ const MapaDeLaPlaza = () => {
               // Comprobamos que las coordenadas existan y sean válidas
               if (typeof parada.ubicacionX === 'number' && typeof parada.ubicacionY === 'number') {
                 // Usar coordenadas del modelo si están disponibles, de lo contrario usar las coordenadas estándar
-                const posX = parada.modeloX !== undefined ? parada.modeloX : parada.ubicacionX;
-                const posY = parada.modeloY !== undefined ? parada.modeloY : parada.ubicacionY;
+                const originalX = parada.modeloX !== undefined ? parada.modeloX : parada.ubicacionX;
+                const originalY = parada.modeloY !== undefined ? parada.modeloY : parada.ubicacionY;
+                
+                // Convertir a coordenadas responsivas
+                const responsivePos = getResponsivePosition(originalX, originalY);
                 
                 return (
                   <Pin
@@ -120,8 +271,8 @@ const MapaDeLaPlaza = () => {
                     onPress={() => handlePinPress(parada.id)}
                     style={{
                       position: 'absolute',
-                      left: posX,
-                      top: posY,
+                      left: responsivePos.left,
+                      top: responsivePos.top,
                       // Mayor z-index para asegurarnos que aparecen por encima de la imagen
                       zIndex: 10
                     }}
@@ -139,7 +290,7 @@ const MapaDeLaPlaza = () => {
           )}
         </View>
       </View>
-      <NavBar klipartz={<Klipartz width={55} height={55} />} />
+      <NavBar />
     </ScrollView>
   );
 };

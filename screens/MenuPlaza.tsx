@@ -6,10 +6,11 @@ import NavBar from "../components/NavBar";
 import Item from "../components/Item";
 import Klipartz from "../assets/Klipartz.svg";
 import { Color, Padding, Gap } from "../GlobalStyles";
-import { useRoute, useNavigation } from "@react-navigation/native";
+import { useRoute } from "@react-navigation/native";
 import { RouteProp } from "@react-navigation/native";
 import { plazasPorId } from "../data";
-import { useLanguage } from "../contexts/LanguageContext";
+import { useTranslation } from "../localization";
+import { useUniversalNavigation, SCREENS } from "../navigation";
 
 // Define el tipo para la ruta
 type MenuPlazaRouteProp = RouteProp<{
@@ -17,9 +18,9 @@ type MenuPlazaRouteProp = RouteProp<{
 }, 'MenuPlaza'>;
 
 const MenuPlaza = () => {
-  const navigation = useNavigation<any>();
+  const navigation = useUniversalNavigation();
   const route = useRoute<MenuPlazaRouteProp>();
-  const { translate } = useLanguage();
+  const { t } = useTranslation();
   
   // Estado para trackear la última opción seleccionada
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
@@ -45,12 +46,12 @@ const MenuPlaza = () => {
   // Manejadores de navegación
   const handleIniciarRecorrido = () => {
     setSelectedOption('recorrido');
-    navigation.navigate("MapaDeLaPlaza", { plazaId });
+    navigation.navigate(SCREENS.MAPA_PLAZA, { plazaId });
   };
 
   const handleJugarTrivia = () => {
     setSelectedOption('trivia');
-    navigation.navigate("JuegosPregunta1", { plazaId });
+    navigation.navigate(SCREENS.JUEGOS_PREGUNTA, { plazaId });
   };
 
   return (
@@ -61,7 +62,7 @@ const MenuPlaza = () => {
       <TopBar translationKey={plazaTranslationKey} textoWidth="auto" />
       <View style={styles.list}>
         <Item 
-          text={translate("start.tour")}
+          text={t("start.tour")}
           emoji="🌱"
           onPress={handleIniciarRecorrido}
           width={340}
@@ -70,7 +71,7 @@ const MenuPlaza = () => {
         />
         
         <Item 
-          text={translate("play.trivia")}
+          text={t("play.trivia")}
           emoji="🎲"
           onPress={handleJugarTrivia}
           width={340}

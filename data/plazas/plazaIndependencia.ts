@@ -14,8 +14,8 @@ const plazaIndependencia: Plaza = {
     {
       id: 'parada-1',
       numero: 1,
-      ubicacionX: 50,
-      ubicacionY: 250,
+      ubicacionX: 300,
+      ubicacionY: 1600,
       plantas: [
         {
           plantaId: '29' // Tipuana tipu
@@ -28,8 +28,8 @@ const plazaIndependencia: Plaza = {
     {
       id: 'parada-2',
       numero: 2,
-      ubicacionX: 60,
-      ubicacionY: 300,
+      ubicacionX: 400,
+      ubicacionY: 2000,
       plantas: [
         {
           plantaId: '13' // Cupressus sp.
@@ -42,11 +42,11 @@ const plazaIndependencia: Plaza = {
     {
       id: 'parada-3',
       numero: 3,
-      ubicacionX: 60,
-      ubicacionY: 350,
+      ubicacionX: 400,
+      ubicacionY: 2300,
       plantas: [
         {
-          plantaId: 'planta-sin-indice-2' // Pinus sp (no está en el índice)
+          plantaId: '49' // Pinus halepensis
         },
         {
           plantaId: '41' // Vitex agnus-castus
@@ -56,11 +56,11 @@ const plazaIndependencia: Plaza = {
     {
       id: 'parada-4',
       numero: 4,
-      ubicacionX: 30,
-      ubicacionY: 300,
+      ubicacionX: 200,
+      ubicacionY: 2000,
       plantas: [
         {
-          plantaId: 'planta-sin-indice-4' // Eucalyptus sp. (no está en el índice)
+          plantaId: '48' // Eucalyptus sp.
         },
         {
           plantaId: '25' // Morus nigra 
@@ -70,8 +70,8 @@ const plazaIndependencia: Plaza = {
     {
       id: 'parada-5',
       numero: 5,
-      ubicacionX: 110,
-      ubicacionY: 340,
+      ubicacionX: 700,
+      ubicacionY: 2200,
       plantas: [
         {
           plantaId: '16' // Gleditsia triacanthos
@@ -84,8 +84,8 @@ const plazaIndependencia: Plaza = {
     {
       id: 'parada-6',
       numero: 6,
-      ubicacionX: 250,
-      ubicacionY: 370,
+      ubicacionX: 1600,
+      ubicacionY: 2400,
       plantas: [
         {
           plantaId: '28' // Pinus griffithi
@@ -98,8 +98,8 @@ const plazaIndependencia: Plaza = {
     {
       id: 'parada-7',
       numero: 7,
-      ubicacionX: 310,
-      ubicacionY: 340,
+      ubicacionX: 2000,
+      ubicacionY: 2200,
       plantas: [
         {
           plantaId: '9' // Cedrus deodara
@@ -112,8 +112,8 @@ const plazaIndependencia: Plaza = {
     {
       id: 'parada-8',
       numero: 8,
-      ubicacionX: 300,
-      ubicacionY: 120,
+      ubicacionX: 2000,
+      ubicacionY: 800,
       plantas: [
         {
           plantaId: '18' // Fraxinus sp.
@@ -126,8 +126,8 @@ const plazaIndependencia: Plaza = {
     {
       id: 'parada-9',
       numero: 9,
-      ubicacionX: 220,
-      ubicacionY: 120,
+      ubicacionX: 1400,
+      ubicacionY: 800,
       plantas: [
         {
           plantaId: '23' // Magnolia grandiflora
@@ -140,8 +140,8 @@ const plazaIndependencia: Plaza = {
     {
       id: 'parada-10',
       numero: 10,
-      ubicacionX: 70,
-      ubicacionY: 130,
+      ubicacionX: 500,
+      ubicacionY: 900,
       plantas: [
         {
           plantaId: '37' // Schinus molle

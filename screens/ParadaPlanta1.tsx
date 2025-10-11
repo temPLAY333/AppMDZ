@@ -11,12 +11,12 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import TopBar from "../components/TopBar";
 import Plants from "../components/Plants";
 import NavBar from "../components/NavBar";
-import Klipartz from "../assets/Klipartz.svg";
 import { Color, Padding, FontFamily } from "../GlobalStyles";
 import { plantasPorId, plazasPorId, obtenerPlantasEnParada } from "../data";
 import { useRoute, RouteProp } from '@react-navigation/native';
-import { useLanguage } from "../contexts/LanguageContext";
+import { useTranslation } from "../localization";
 import { Planta } from "../data/types";
+import { getPlantaImagen } from "../data/imagenes";
 
 // Definimos el tipo para los parámetros de la ruta
 type ParadaPlantaParams = {
@@ -26,7 +26,7 @@ type ParadaPlantaParams = {
 
 const ParadaPlanta1 = () => {
   // Obtenemos el contexto de idioma
-  const { translate } = useLanguage();
+  const { t } = useTranslation();
   
   // Obtenemos los parámetros de la ruta con tipado
   const route = useRoute<RouteProp<Record<string, ParadaPlantaParams>, string>>();
@@ -73,7 +73,7 @@ const ParadaPlanta1 = () => {
         setErrorCarga(errorMsg);
       }
       
-      // Establecer las plantas en el estado
+      // Establecer las plantas en el estado (las imágenes se obtienen dinámicamente con getPlantaImagen)
       setPlantas(plantasEnParada);
     } catch (error) {
       const errorMsg = error instanceof Error ? error.message : 'Error desconocido al obtener plantas';
@@ -94,8 +94,8 @@ const ParadaPlanta1 = () => {
   const paradaNumero = parada?.numero || 1;
   
   // Títulos para mostrar
-  const paradaTitle = `${translate("stop.title")} ${paradaNumero}`;
-  const floraTitle = `${translate("flora.title")} ${paradaNumero}`;
+  const paradaTitle = `${t("stop.title")} ${paradaNumero}`;
+  const floraTitle = `${t("flora.title")} ${paradaNumero}`;
     
   return (
     <View style={styles.container}>
@@ -114,7 +114,7 @@ const ParadaPlanta1 = () => {
               {errorCarga && (
                 <View style={styles.errorContainer}>
                   <Text style={styles.errorText}>{errorCarga}</Text>
-                  <Text style={styles.errorHelp}>{translate("error.retry")}</Text>
+                  <Text style={styles.errorHelp}>{t("error.retry")}</Text>
                 </View>
               )}
               
@@ -122,10 +122,10 @@ const ParadaPlanta1 = () => {
               {plantas.length > 0 && (
                 <View style={styles.plantContainer}>
                   <Plants
-                    nombre={plantas[0].atributos?.nombre || translate("unknown.plant")}
+                    nombre={plantas[0].atributos?.nombre || t("unknown.plant")}
                     nombreCientifico={plantas[0].atributos?.nombreCientifico || ""}
                     descripcionesMultilingue={plantas[0].atributos?.descripcionesMultilingue || {}}
-                    imagenPath={plantas[0].atributos?.imagenPath || null}
+                    imagenPath={getPlantaImagen(plantas[0].id)}
                     referencias={plantas[0].atributos?.referencias || []}
                   />
                 </View>
@@ -138,17 +138,17 @@ const ParadaPlanta1 = () => {
               {plantas.length > 1 && (
                 <View style={styles.plantContainer}>
                   <Plants
-                    nombre={plantas[1].atributos?.nombre || translate("unknown.plant")}
+                    nombre={plantas[1].atributos?.nombre || t("unknown.plant")}
                     nombreCientifico={plantas[1].atributos?.nombreCientifico || ""}
                     descripcionesMultilingue={plantas[1].atributos?.descripcionesMultilingue || {}}
-                    imagenPath={plantas[1].atributos?.imagenPath || null}
+                    imagenPath={getPlantaImagen(plantas[1].id)}
                     referencias={plantas[1].atributos?.referencias || []}
                   />
                 </View>
               )}
             </View>
           </ScrollView>
-          <NavBar klipartz={<Klipartz width={60} height={60} />} />
+          <NavBar />
         </View>
       </KeyboardAvoidingView>
     </View>

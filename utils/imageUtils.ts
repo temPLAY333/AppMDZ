@@ -8,7 +8,7 @@ const imageMapping: Record<string, ImageSourcePropType> = {
   'Modelo-PChile.png': require('../assets/plazas/Modelo-PChile.png'),
   'Modelo-PEspaña.png': require('../assets/plazas/Modelo-PEspaña.png'),
   'Modelo-PIndependencia.png': require('../assets/plazas/Modelo-PIndependencia.png'),
-  'Modelo-PItalia.png': require('../assets/plazas/Model-PItalia.png'),
+  'Modelo-PItalia.png': require('../assets/plazas/Modelo-PItalia.png'),
   
   // Puedes agregar más imágenes según sea necesario
 };

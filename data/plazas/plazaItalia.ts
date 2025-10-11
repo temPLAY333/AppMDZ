@@ -14,8 +14,8 @@ const plazaItalia: Plaza = {
     {
       id: 'parada-1',
       numero: 1,
-      ubicacionX: 280,
-      ubicacionY: 150,
+      ubicacionX: 2000,
+      ubicacionY: 800,
       plantas: [
         {
           plantaId: '42' // Trachycarpus fortunei
@@ -28,8 +28,8 @@ const plazaItalia: Plaza = {
     {
       id: 'parada-2',
       numero: 2,
-      ubicacionX: 250,
-      ubicacionY: 270,
+      ubicacionX: 1900,
+      ubicacionY: 1450,
       plantas: [
         {
           plantaId: '15' // Erythrina crista-galli
@@ -42,8 +42,8 @@ const plazaItalia: Plaza = {
     {
       id: 'parada-3',
       numero: 3,
-      ubicacionX: 250,
-      ubicacionY: 320,
+      ubicacionX: 1850,
+      ubicacionY: 1850,
       plantas: [
         {
           plantaId: '14' // Evonimus japonicus
@@ -56,8 +56,8 @@ const plazaItalia: Plaza = {
     {
       id: 'parada-4',
       numero: 4,
-      ubicacionX: 130,
-      ubicacionY: 320,
+      ubicacionX: 800,
+      ubicacionY: 2000,
       plantas: [
         {
           plantaId: '9' // Cedrus deodara
@@ -70,14 +70,14 @@ const plazaItalia: Plaza = {
     {
       id: 'parada-5',
       numero: 5,
-      ubicacionX: 70,
-      ubicacionY: 190,
+      ubicacionX: 550,
+      ubicacionY: 850,
       plantas: [
         {
           plantaId: '13' // Cupressus sp.
         },
         {
-          plantaId: 'planta-sin-indice-5' // Brachychiton populneus (no está en el índice)
+          plantaId: '47' // Brachychiton populneus
         }
       ]
     }

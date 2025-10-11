@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { ScrollView, Text, StyleSheet, View, Pressable, ImageBackground } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useRoute, useNavigation } from "@react-navigation/native";
+import { useRoute } from "@react-navigation/native";
+import { useUniversalNavigation, SCREENS } from "../navigation";
 import TopBar from "../components/TopBar";
 import QuestionOption from "../components/QuestionOption";
 import NavBar from "../components/NavBar";
@@ -9,7 +10,7 @@ import Item from "../components/Item";
 import Klipartz from "../assets/Klipartz.svg";
 import { Color, FontSize, FontFamily } from "../GlobalStyles";
 import { Pregunta } from "../data/types";
-import { useLanguage } from "../contexts/LanguageContext";
+import { useTranslation } from "../localization";
 
 // Define los tipos para los parámetros de la ruta
 type RouteParamList = {
@@ -27,8 +28,8 @@ type RevisionScreenRouteProp = RouteProp<RouteParamList, 'Revision'>;
 
 const Revision = () => {
   const route = useRoute<RevisionScreenRouteProp>();
-  const navigation = useNavigation<any>();
-  const { language: contextLanguage, translate } = useLanguage();
+  const navigation = useUniversalNavigation();
+  const { language: contextLanguage, t } = useTranslation();
   const { plazaId, respuestas, preguntas, modo, language: routeLanguage } = route.params || { 
     plazaId: '', 
     respuestas: {}, 
@@ -57,7 +58,7 @@ const Revision = () => {
   
   // Volver al menú de la plaza
   const volverAlMenu = () => {
-    navigation.navigate("MenuPlaza", { plazaId });
+    navigation.navigate(SCREENS.MENU_PLAZA, { plazaId });
   };
 
   return (
@@ -129,7 +130,7 @@ const Revision = () => {
         
         <View style={styles.buttonContainer}>
           <Item 
-            text={translate("back.to.menu")}
+            text={t("back.to.menu")}
             onPress={volverAlMenu}
             width="90%"
             height={70}

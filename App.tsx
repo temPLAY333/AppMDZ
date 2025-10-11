@@ -15,7 +15,7 @@ import Referencias from "./screens/Referencias";
 import Glosario from "./screens/Glosario";
 import ParadaPlanta1 from "./screens/ParadaPlanta1";
 // Los componentes UI no se importan aquí porque no son pantallas navegables
-import { LanguageProvider } from "./contexts/LanguageContext";
+import { OptimizedLocalizationProvider } from "./localization";
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { View, Text, Pressable, TouchableOpacity } from "react-native";
@@ -49,7 +49,7 @@ const App = () => {
 
   return (
     <>
-      <LanguageProvider>
+      <OptimizedLocalizationProvider>
         <NavigationContainer>
           {!hideSplashScreen ? (
             <LoadScreen />
@@ -122,7 +122,7 @@ const App = () => {
           </Stack.Navigator>
           )}
         </NavigationContainer>
-      </LanguageProvider>
+      </OptimizedLocalizationProvider>
     </>
   );
 };
