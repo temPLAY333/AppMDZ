@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { TextInput, StyleSheet, View, Image, Text, Dimensions, Platform } from "react-native";
+import { TextInput, StyleSheet, View, Image, Text, Dimensions, Platform, ScrollView, TouchableOpacity } from "react-native";
 import PlantaDescripcion from "./PlantaDescripcion";
 import { PlantaAtributos, EmojiReferencia } from "../data/types";
 import Emojis from "./Emojis";
@@ -10,7 +10,8 @@ export type PlantsType = {
   nombre: string;
   nombreCientifico: string;
   descripcionesMultilingue: PlantaAtributos['descripcionesMultilingue'];
-  imagenPath: any; // Imagen de la planta
+  imagenPath?: any; // Imagen única (para compatibilidad)
+  imagenesPath?: string[]; // Múltiples imágenes de la planta
   referencias?: EmojiReferencia[]; // Referencias (emojis)
 };
 
@@ -19,12 +20,42 @@ const Plants = ({
   nombreCientifico,
   descripcionesMultilingue,
   imagenPath,
+  imagenesPath = [],
   referencias = []
 }: PlantsType) => {
   // Estado para almacenar las dimensiones de la imagen
   const [imageDimensions, setImageDimensions] = useState({ width: 0, height: 0 });
+  // Estado para el carrusel de imágenes
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   // Obtenemos el ancho de la pantalla para calcular proporciones
   const screenWidth = Dimensions.get('window').width;
+  // Referencia al ScrollView para control programático
+  const scrollViewRef = React.useRef<ScrollView>(null);
+  
+  // Determinar qué imágenes usar (múltiples o única)
+  const imagesToShow = imagenesPath.length > 0 ? imagenesPath : (imagenPath ? [imagenPath] : []);
+  const hasMultipleImages = imagesToShow.length > 1;
+  
+  // Log para depurar qué imágenes está recibiendo el componente
+  React.useEffect(() => {
+    console.log(`🖼️ Plants component "${nombre}" recibió ${imagesToShow.length} imágenes:`);
+    imagesToShow.forEach((img, index) => {
+      console.log(`   ${index + 1}. ${img}`);
+    });
+    // Resetear el índice cuando cambien las imágenes
+    setCurrentImageIndex(0);
+  }, [imagesToShow, nombre]);
+
+  // Función para navegar a una imagen específica
+  const navigateToImage = (index: number) => {
+    setCurrentImageIndex(index);
+    if (scrollViewRef.current) {
+      scrollViewRef.current.scrollTo({
+        x: index * screenWidth * 0.8,
+        animated: true
+      });
+    }
+  };
   
   // Efecto para cargar las dimensiones de la imagen cuando cambia imagenPath
   useEffect(() => {
@@ -101,19 +132,70 @@ const Plants = ({
         numberOfLines={2}
       />
       
-      {/* Imagen de la planta con contenedor adaptativo */}
-      {imagenPath && (
+      {/* Carrusel de imágenes de la planta */}
+      {imagesToShow.length > 0 && (
         <View style={styles.imagenContainer}>
-          <Image 
-            source={imagenPath}
-            style={[
-              styles.imagenPlanta,
-              {
-                height: getAdjustedImageHeight()
-              }
-            ]}
-            resizeMode="contain"
-          />
+          {hasMultipleImages ? (
+            <View style={styles.carouselContainer}>
+              {/* Imagen actual - método simplificado */}
+              <View style={styles.singleImageContainer}>
+                <Image 
+                  key={`${nombre}-current-${currentImageIndex}`}
+                  source={typeof imagesToShow[currentImageIndex] === 'string' ? { uri: imagesToShow[currentImageIndex] } : imagesToShow[currentImageIndex]}
+                  style={[
+                    styles.imagenPlanta,
+                    {
+                      height: getAdjustedImageHeight(),
+                      width: '100%'
+                    }
+                  ]}
+                  resizeMode="contain"
+                  onError={(error) => {
+                    console.error(`❌ Error cargando imagen ${currentImageIndex + 1} para "${nombre}": ${imagesToShow[currentImageIndex]}`, error);
+                  }}
+                  onLoad={() => {
+                    console.log(`✅ Imagen ${currentImageIndex + 1} cargada correctamente para "${nombre}": ${imagesToShow[currentImageIndex]}`);
+                  }}
+                />
+              </View>
+              
+              {/* Indicadores de página */}
+              <View style={styles.pageIndicators}>
+                {imagesToShow.map((_, index) => (
+                  <TouchableOpacity
+                    key={index}
+                    style={[
+                      styles.indicator,
+                      index === currentImageIndex ? styles.activeIndicator : styles.inactiveIndicator
+                    ]}
+                    onPress={() => {
+                      console.log(`🎯 Usuario presionó indicador ${index}, cambiando de ${currentImageIndex} a ${index}`);
+                      setCurrentImageIndex(index);
+                    }}
+                  />
+                ))}
+              </View>
+              
+              {/* Contador de imágenes */}
+              <View style={styles.imageCounter}>
+                <Text style={styles.counterText}>
+                  {currentImageIndex + 1} / {imagesToShow.length}
+                </Text>
+              </View>
+            </View>
+          ) : (
+            /* Imagen única (modo compatibilidad) */
+            <Image 
+              source={typeof imagesToShow[0] === 'string' ? { uri: imagesToShow[0] } : imagesToShow[0]}
+              style={[
+                styles.imagenPlanta,
+                {
+                  height: getAdjustedImageHeight()
+                }
+              ]}
+              resizeMode="contain"
+            />
+          )}
         </View>
       )}
       
@@ -230,7 +312,52 @@ const styles = StyleSheet.create({
   imagenPlanta: {
     width: '100%',
     borderRadius: 10,
-    // La altura se calcula din�micamente seg�n la proporci�n de la imagen
+    // La altura se calcula dinámicamente según la proporción de la imagen
+  },
+  carouselContainer: {
+    width: '100%',
+    position: 'relative',
+  },
+  carousel: {
+    width: '100%',
+  },
+  singleImageContainer: {
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  pageIndicators: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 10,
+    paddingHorizontal: 20,
+  },
+  indicator: {
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    marginHorizontal: 4,
+  },
+  activeIndicator: {
+    backgroundColor: '#A6D451', // Verde activo
+  },
+  inactiveIndicator: {
+    backgroundColor: 'rgba(255, 255, 255, 0.3)', // Blanco transparente
+  },
+  imageCounter: {
+    position: 'absolute',
+    top: 10,
+    right: 10,
+    backgroundColor: 'rgba(0, 0, 0, 0.7)',
+    borderRadius: 12,
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+  },
+  counterText: {
+    color: Color.colorWhite,
+    fontSize: 12,
+    fontFamily: FontFamily.interRegular,
   },
   referenciasContainer: {
     flexDirection: 'row',

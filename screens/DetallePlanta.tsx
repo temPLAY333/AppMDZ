@@ -12,7 +12,7 @@ import Plants from "../components/Plants";
 import NavBar from "../components/NavBar";
 import Klipartz from "../assets/Klipartz.svg";
 import { Color, Padding } from "../GlobalStyles";
-import { getPlantaImagen } from "../data/imagenes";
+import { getPlantaImagenesPrueba } from "../data/imagenes";
 import { plantasPorId } from "../data/plantas";
 import { useRoute, RouteProp } from '@react-navigation/native';
 
@@ -51,7 +51,7 @@ const DetallePlanta = () => {
                 nombre={plantaAMostrar.atributos.nombre}
                 nombreCientifico={plantaAMostrar.atributos.nombreCientifico}
                 descripcionesMultilingue={plantaAMostrar.atributos.descripcionesMultilingue}
-                imagenPath={getPlantaImagen(plantaAMostrar.id)}
+                imagenesPath={getPlantaImagenesPrueba(plantaAMostrar.id, 5)}
               />
             </View>
           </ScrollView>

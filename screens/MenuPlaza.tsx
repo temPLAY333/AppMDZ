@@ -12,6 +12,14 @@ import { plazasPorId } from "../data";
 import { useTranslation } from "../localization";
 import { useUniversalNavigation, SCREENS } from "../navigation";
 
+/**
+ * Genera la clave de traducción para una plaza basada en su ID
+ * Convierte "plaza-san-martin" → "plaza.san.martin"
+ */
+const getPlazaTranslationKey = (plazaId: string): string => {
+  return plazaId.replace(/-/g, '.');
+};
+
 // Define el tipo para la ruta
 type MenuPlazaRouteProp = RouteProp<{
   MenuPlaza: { plazaId: string };
@@ -31,17 +39,8 @@ const MenuPlaza = () => {
   // Obtenemos los datos de la plaza
   const plaza = plazasPorId[plazaId];
   
-  // Determinar la clave de traducción para el nombre de la plaza según su ID
-  let plazaTranslationKey = "plaza.san.martin"; // Por defecto
-  if (plazaId === 'plaza-independencia') {
-    plazaTranslationKey = "plaza.independencia";
-  } else if (plazaId === 'plaza-espana') {
-    plazaTranslationKey = "plaza.espana";
-  } else if (plazaId === 'plaza-italia') {
-    plazaTranslationKey = "plaza.italia";
-  } else if (plazaId === 'plaza-chile') {
-    plazaTranslationKey = "plaza.chile";
-  }
+  // Generar automáticamente la clave de traducción basada en el ID
+  const plazaTranslationKey = getPlazaTranslationKey(plazaId);
 
   // Manejadores de navegación
   const handleIniciarRecorrido = () => {

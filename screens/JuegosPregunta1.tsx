@@ -20,13 +20,13 @@ import { getPlantaImagen } from "../data/imagenes/index";
 const getPlantImage = (pregunta: Pregunta): ImageSourcePropType => {
   // Si la pregunta tiene un plantaId definido, usarlo para obtener la imagen
   if (pregunta.plantaId) {
-    return getPlantaImagen(pregunta.plantaId);
+    const imageUrl = getPlantaImagen(pregunta.plantaId);
+    return { uri: imageUrl };
   }
   
   // Si no hay plantaId, usar una imagen predeterminada
-  // No podemos usar require() con variables dinámicas en tiempo de ejecución
-  // Ya que require() necesita una ruta estática en tiempo de compilación
-  return getPlantaImagen('19'); // Fallback a jacarandá (ID 19)
+  const fallbackUrl = getPlantaImagen('19'); // Fallback a jacarandá (ID 19)
+  return { uri: fallbackUrl };
 };
 
 // Define los tipos para los parÃ¡metros de la ruta

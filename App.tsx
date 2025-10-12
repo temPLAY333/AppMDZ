@@ -19,7 +19,6 @@ import { OptimizedLocalizationProvider } from "./localization";
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { View, Text, Pressable, TouchableOpacity } from "react-native";
-import { actualizarDescripcionesPlantasMultilingues } from "./utils/plantasTranslations";
 import { setupTwemojiStyles } from "./utils/twemojiSetup";
 
 const App = () => {
@@ -33,9 +32,6 @@ const App = () => {
 
   // Inicializar traducciones y simular una pantalla de carga
   React.useEffect(() => {
-    // Inicializar traducciones de plantas
-    actualizarDescripcionesPlantasMultilingues();
-    
     // Inicializar sistema de emojis Twemoji para web
     setupTwemojiStyles();
     

@@ -16,7 +16,7 @@ import { plantasPorId, plazasPorId, obtenerPlantasEnParada } from "../data";
 import { useRoute, RouteProp } from '@react-navigation/native';
 import { useTranslation } from "../localization";
 import { Planta } from "../data/types";
-import { getPlantaImagen } from "../data/imagenes";
+import { getPlantaImagen, getPlantaImagenesPrueba } from "../data/imagenes";
 
 // Definimos el tipo para los parámetros de la ruta
 type ParadaPlantaParams = {
@@ -37,6 +37,10 @@ const ParadaPlanta1 = () => {
   
   // Estado para indicar si hay un error al cargar los datos
   const [errorCarga, setErrorCarga] = React.useState<string | null>(null);
+  
+  // Estado para almacenar las imágenes generadas (para evitar regeneración aleatoria)
+  const [imagenesPlanta1, setImagenesPlanta1] = React.useState<string[]>([]);
+  const [imagenesPlanta2, setImagenesPlanta2] = React.useState<string[]>([]);
 
   // Cargar plantas al inicio o cuando cambian los parámetros
   React.useEffect(() => {
@@ -73,8 +77,16 @@ const ParadaPlanta1 = () => {
         setErrorCarga(errorMsg);
       }
       
-      // Establecer las plantas en el estado (las imágenes se obtienen dinámicamente con getPlantaImagen)
+      // Establecer las plantas en el estado
       setPlantas(plantasEnParada);
+      
+      // Generar las imágenes una sola vez para evitar regeneración aleatoria
+      if (plantasEnParada.length > 0) {
+        setImagenesPlanta1(getPlantaImagenesPrueba(plantasEnParada[0].id, 5));
+      }
+      if (plantasEnParada.length > 1) {
+        setImagenesPlanta2(getPlantaImagenesPrueba(plantasEnParada[1].id, 5));
+      }
     } catch (error) {
       const errorMsg = error instanceof Error ? error.message : 'Error desconocido al obtener plantas';
       console.error('Error al obtener plantas:', error);
@@ -119,13 +131,13 @@ const ParadaPlanta1 = () => {
               )}
               
               {/* Primera planta */}
-              {plantas.length > 0 && (
+              {plantas.length > 0 && imagenesPlanta1.length > 0 && (
                 <View style={styles.plantContainer}>
                   <Plants
                     nombre={plantas[0].atributos?.nombre || t("unknown.plant")}
                     nombreCientifico={plantas[0].atributos?.nombreCientifico || ""}
                     descripcionesMultilingue={plantas[0].atributos?.descripcionesMultilingue || {}}
-                    imagenPath={getPlantaImagen(plantas[0].id)}
+                    imagenesPath={imagenesPlanta1}
                     referencias={plantas[0].atributos?.referencias || []}
                   />
                 </View>
@@ -135,13 +147,13 @@ const ParadaPlanta1 = () => {
               {plantas.length > 1 && <View style={{height: 20}} />}
               
               {/* Segunda planta */}
-              {plantas.length > 1 && (
+              {plantas.length > 1 && imagenesPlanta2.length > 0 && (
                 <View style={styles.plantContainer}>
                   <Plants
                     nombre={plantas[1].atributos?.nombre || t("unknown.plant")}
                     nombreCientifico={plantas[1].atributos?.nombreCientifico || ""}
                     descripcionesMultilingue={plantas[1].atributos?.descripcionesMultilingue || {}}
-                    imagenPath={getPlantaImagen(plantas[1].id)}
+                    imagenesPath={imagenesPlanta2}
                     referencias={plantas[1].atributos?.referencias || []}
                   />
                 </View>

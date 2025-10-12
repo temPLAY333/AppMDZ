@@ -10,6 +10,31 @@ import { useUniversalNavigation, SCREENS } from "../navigation";
 import { RouteProp } from "@react-navigation/native";
 import { plazasPorId } from "../data";
 import { useTranslation } from "../localization";
+
+/**
+ * Genera la clave de traducción para una plaza basada en su ID
+ * Convierte "plaza-san-martin" → "plaza.san.martin"
+ */
+const getPlazaTranslationKey = (plazaId: string): string => {
+  return plazaId.replace(/-/g, '.');
+};
+
+/**
+ * Dimensiones de imágenes de mapas (cache para optimización)
+ * Todas las plazas usan la misma dimensión por simplicidad
+ */
+const MAP_IMAGE_DIMENSIONS = { width: 2500, height: 2500 };
+
+/**
+ * Obtiene las dimensiones de imagen para una plaza
+ * Cache centralizado para evitar recálculos
+ */
+const getMapImageDimensions = (plazaId: string) => {
+  // Por ahora todas las plazas tienen las mismas dimensiones
+  // En el futuro se puede expandir para dimensiones específicas por plaza
+  return MAP_IMAGE_DIMENSIONS;
+};
+
 import {
   Color,
   FontSize,
@@ -46,17 +71,8 @@ const MapaDeLaPlaza = () => {
   // Obtenemos los datos de la plaza
   const plaza = plazasPorId[plazaId];
   
-  // Determinar la clave de traducción para el nombre de la plaza según su ID
-  let plazaTranslationKey = "plaza.san.martin"; // Por defecto
-  if (plazaId === 'plaza-independencia') {
-    plazaTranslationKey = "plaza.independencia";
-  } else if (plazaId === 'plaza-espana') {
-    plazaTranslationKey = "plaza.espana";
-  } else if (plazaId === 'plaza-italia') {
-    plazaTranslationKey = "plaza.italia";
-  } else if (plazaId === 'plaza-chile') {
-    plazaTranslationKey = "plaza.chile";
-  }
+  // Generar automáticamente la clave de traducción basada en el ID
+  const plazaTranslationKey = getPlazaTranslationKey(plazaId);
   
   // Efecto para inicializar el pin destacado al montar el componente
   React.useEffect(() => {
@@ -104,17 +120,8 @@ const MapaDeLaPlaza = () => {
             });
           }
         } else {
-          // Para React Native Web, usar dimensiones conocidas de las imágenes
-          // TODO: Estas dimensiones deberían venir de un archivo de configuración
-          const knownImageDimensions: Record<string, { width: number; height: number }> = {
-            'plaza-san-martin': { width: 2500, height: 2500 },
-            'plaza-independencia': { width: 2500, height: 2500 },
-            'plaza-espana': { width: 2500, height: 2500 },
-            'plaza-italia': { width: 2500, height: 2500 },
-            'plaza-chile': { width: 2500, height: 2500 }
-          };
-          
-          const imageDims = knownImageDimensions[plaza.id] || { width: 2500, height: 2500 };
+          // Para React Native Web, usar dimensiones optimizadas centralizadas
+          const imageDims = getMapImageDimensions(plaza.id);
           const screenWidth = Dimensions.get('window').width;
           const screenHeight = Dimensions.get('window').height;
           const imageAspectRatio = imageDims.width / imageDims.height;
