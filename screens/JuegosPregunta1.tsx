@@ -1,15 +1,12 @@
 ﻿import React, { useState, useEffect } from "react";
 import { Image } from "expo-image";
-import { StyleSheet, ImageBackground, View, Text, Pressable, ScrollView, ImageSourcePropType } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { StyleSheet, View, Text, ScrollView, ImageSourcePropType } from "react-native";
 import { useRoute } from "@react-navigation/native";
 import { useUniversalNavigation, SCREENS } from "../navigation";
 import TopBar from "../components/TopBar";
 import Item from "../components/Item";
 import QuestionOption from "../components/QuestionOption";
-import CircleSelector from "../components/CircleSelector";
-import NavBar from "../components/NavBar";
-import Klipartz from "../assets/Klipartz.svg";
+import InfoButton from "../components/InfoButton";
 import { Color, FontFamily, FontSize } from "../GlobalStyles";
 import { preguntasPorPlazaId } from "../data/preguntas/index";
 import { Pregunta, Opcion } from "../data/types";
@@ -29,7 +26,7 @@ const getPlantImage = (pregunta: Pregunta): ImageSourcePropType => {
   return { uri: fallbackUrl };
 };
 
-// Define los tipos para los parÃ¡metros de la ruta
+// Define los tipos para los parámetros de la ruta
 type RouteParamList = {
   JuegosPregunta1: { plazaId: string };
 };
@@ -59,39 +56,35 @@ const JuegosPregunta1 = () => {
       setPreguntasSeleccionadas(preguntasAleatorias);
     }
   }, [plazaId]);
+  // Genera opciones barajadas y devuelve también el orden resultante (índices originales)
+  const generarOpcionesBarajadas = (opciones: Opcion[]): { opciones: Opcion[]; orden: number[] } => {
+    const indices = opciones.map((_, i) => i);
+    for (let i = indices.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [indices[i], indices[j]] = [indices[j], indices[i]];
+    }
+    const opcionesBarajadas = indices.map(i => opciones[i]);
+    return { opciones: opcionesBarajadas, orden: indices };
+  };
 
-  // FunciÃ³n para seleccionar preguntas aleatorias y barajar sus opciones
+  // Selecciona preguntas aleatorias y baraja sus opciones preservando el orden
   const seleccionarPreguntasAleatorias = (preguntas: Pregunta[], cantidad: number): Pregunta[] => {
     const preguntasCopiadas = [...preguntas];
     const resultado: Pregunta[] = [];
-    
-    // Asegurarse de no seleccionar mÃ¡s preguntas de las disponibles
     const cantidadReal = Math.min(cantidad, preguntasCopiadas.length);
-    
     for (let i = 0; i < cantidadReal; i++) {
       const indiceAleatorio = Math.floor(Math.random() * preguntasCopiadas.length);
       const pregunta = { ...preguntasCopiadas[indiceAleatorio] };
-      
-      // Barajar las opciones de la pregunta
-      pregunta.opciones = barajarOpciones([...pregunta.opciones]);
-      
+      const { opciones: opcionesBarajadas, orden } = generarOpcionesBarajadas([...pregunta.opciones]);
+      pregunta.opciones = opcionesBarajadas;
+      pregunta.ordenOpciones = orden;
       resultado.push(pregunta);
       preguntasCopiadas.splice(indiceAleatorio, 1);
     }
-    
     return resultado;
   };
-  
-  // FunciÃ³n para barajar un array (algoritmo Fisher-Yates)
-  const barajarOpciones = (opciones: Opcion[]): Opcion[] => {
-    for (let i = opciones.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [opciones[i], opciones[j]] = [opciones[j], opciones[i]];
-    }
-    return opciones;
-  };
 
-  // FunciÃ³n para manejar la selecciÃ³n de respuesta
+  // Función para manejar la selección de respuesta
   const handleSeleccionRespuesta = (opcionIndex: number) => {
     const preguntaActual = preguntasSeleccionadas[indicePreguntaActual];
     if (preguntaActual) {
@@ -103,7 +96,7 @@ const JuegosPregunta1 = () => {
     }
   };
 
-  // FunciÃ³n para pasar a la siguiente pregunta
+  // Función para pasar a la siguiente pregunta
   const siguientePregunta = () => {
     if (indicePreguntaActual < preguntasSeleccionadas.length - 1) {
       setIndicePreguntaActual(indicePreguntaActual + 1);
@@ -123,13 +116,21 @@ const JuegosPregunta1 = () => {
   // Si no hay preguntas seleccionadas, mostrar un mensaje de carga
   if (preguntasSeleccionadas.length === 0) {
     return (
-      <View style={styles.backgroundContainer}>
+      <View 
+        style={styles.backgroundContainer}
+        accessibilityLabel="Cargando preguntas"
+        accessibilityRole="none"
+      >
         <View style={styles.container}>
           <TopBar text={`Trivia`} textoWidth={157} translationKey="" />
-          <Text style={styles.loadingText}>
+          <Text 
+            style={styles.loadingText}
+            accessibilityRole="text"
+            accessibilityLabel={language === 'es' ? "Cargando preguntas..." : "Loading questions..."}
+            accessibilityLiveRegion="polite"
+          >
             {language === 'es' ? "Cargando preguntas..." : "Loading questions..."}
           </Text>
-          <NavBar klipartz={<Klipartz width={55} height={55} />} />
         </View>
       </View>
     );
@@ -139,41 +140,70 @@ const JuegosPregunta1 = () => {
   const preguntaActual = preguntasSeleccionadas[indicePreguntaActual];
   
   return (
-    <View style={styles.backgroundContainer}>
+    <View 
+      style={styles.backgroundContainer}
+      accessibilityRole="none"
+    >
       <View style={styles.container}>
         <TopBar 
           text={`${language === 'es' ? 'Pregunta' : 'Question'} ${indicePreguntaActual + 1} ${language === 'es' ? 'de' : 'of'} ${preguntasSeleccionadas.length}`} 
           textoWidth={250} 
           translationKey="" 
         />
-        
-        <ScrollView style={styles.scrollView}>
-          <View style={styles.preguntaContainer}>
-            <Text style={styles.preguntaText}>{preguntaActual.texto[language as 'es' | 'en']}</Text>
+        <ScrollView 
+          style={styles.scrollView}
+          accessibilityRole="scrollbar"
+          accessibilityLabel={language === 'es' ? "Contenido de la pregunta" : "Question content"}
+        >
+          <View 
+            style={styles.preguntaContainer}
+            accessibilityRole="header"
+          >
+            <Text 
+              style={styles.preguntaText}
+              accessibilityRole="text"
+              accessibilityLabel={`${language === 'es' ? 'Pregunta' : 'Question'} ${indicePreguntaActual + 1}: ${preguntaActual.texto[language as 'es' | 'en']}`}
+            >
+              {preguntaActual.texto[language as 'es' | 'en']}
+            </Text>
           </View>
-          
-          {/* Imagen de la planta */}
-          <View style={styles.imageContainer}>
+          <View 
+            style={styles.imageContainer}
+            accessibilityRole="image"
+            accessibilityLabel={preguntaActual.plantaId ? 
+              `${language === 'es' ? 'Imagen de planta' : 'Plant image'}` : 
+              `${language === 'es' ? 'Imagen relacionada' : 'Related image'}`
+            }
+          >
             <Image
               source={getPlantImage(preguntaActual)}
               style={styles.plantImage}
               contentFit="contain"
+              accessible={true}
+              accessibilityIgnoresInvertColors={true}
             />
           </View>
-          
-          <View style={styles.opcionesContainer}>
+          <View 
+            style={styles.opcionesContainer}
+            accessibilityRole="radiogroup"
+            accessibilityLabel={language === 'es' ? "Opciones de respuesta" : "Answer options"}
+          >
             {preguntaActual.opciones.map((opcion, index) => (
               <QuestionOption
                 key={index}
                 text={opcion.texto[language as 'es' | 'en']}
                 state={selectedOption === String(index) ? "Seleccionado" : "SinMarcar"}
                 onPress={() => handleSeleccionRespuesta(index)}
+                optionIndex={index}
+                totalOptions={preguntaActual.opciones.length}
               />
             ))}
           </View>
         </ScrollView>
-        
-        <View style={styles.buttonContainer}>
+        <View 
+          style={styles.buttonContainer}
+          accessibilityRole="toolbar"
+        >
           <Item
             text={indicePreguntaActual < preguntasSeleccionadas.length - 1 ? 
               (language === 'es' ? "Siguiente" : "Next") : 
@@ -182,10 +212,15 @@ const JuegosPregunta1 = () => {
             width="90%"
             height={70}
             textSize={FontSize.size_24}
+            accessibilityLabel={indicePreguntaActual < preguntasSeleccionadas.length - 1 ? 
+              (language === 'es' ? "Ir a la siguiente pregunta" : "Go to next question") : 
+              (language === 'es' ? "Ver resultados del cuestionario" : "View quiz results")}
+            accessibilityHint={selectedOption ? 
+              (language === 'es' ? "Has seleccionado una respuesta" : "You have selected an answer") : 
+              (language === 'es' ? "Selecciona una opción antes de continuar" : "Select an option before continuing")}
           />
         </View>
-        
-        <NavBar klipartz={<Klipartz width={55} height={55} />} />
+        <InfoButton />
       </View>
     </View>
   );

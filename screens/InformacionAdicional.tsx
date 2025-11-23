@@ -2,7 +2,6 @@ import * as React from "react";
 import { useState } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 import TopBar from "../components/TopBar";
-import NavBar from "../components/NavBar";
 import Item from "../components/Item";
 import Klipartz from "../assets/Klipartz.svg";
 import { Color, Padding } from "../GlobalStyles";
@@ -51,7 +50,6 @@ const InformacionAdicional = () => {
           textSize={36}
         />
       </View>
-      <NavBar klipartz={<Klipartz width={55} height={55} />} />
     </ScrollView>
   );
 };

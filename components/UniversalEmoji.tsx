@@ -1,5 +1,5 @@
 import React from 'react';
-import { Platform, Image, Text, TextStyle, ImageStyle } from 'react-native';
+import { Image, Text, TextStyle, ImageStyle } from 'react-native';
 import { getTwemojiUrl } from '../utils/twemojiSetup';
 
 interface UniversalEmojiProps {
@@ -20,19 +20,19 @@ const UniversalEmoji: React.FC<UniversalEmojiProps> = ({
   style,
   isFlag = false
 }) => {
-  // En plataformas nativas, usar emoji del sistema (no hay otra opción viable)
-  if (Platform.OS !== 'web') {
-    return (
-      <Text style={[{ fontSize: size }, style]}>
-        {emoji}
-      </Text>
-    );
-  }
+  // Versión web-only: siempre forzamos Twemoji, removidas ramas nativas
 
-  // Mapeo especial para emojis corruptos
+  // Mapeo especial para emojis corruptos y compuestos
   let cleanEmoji = emoji;
   if (emoji.includes('�🇷')) {
     cleanEmoji = '🇦🇷'; // Bandera argentina completa
+  }
+  // Si el emoji es compuesto (edificio + bandera), tomar solo el edificio
+  // Ejemplo: 🏛🇦🇷 -> 🏛
+  const emojiArray = Array.from(cleanEmoji);
+  if (emojiArray.length > 2 && /[\u{1F1E0}-\u{1F1FF}]/gu.test(cleanEmoji) && !/^[\u{1F1E0}-\u{1F1FF}]{2}$/gu.test(cleanEmoji)) {
+    // Contiene una bandera pero NO es solo una bandera, tomar el primer emoji
+    cleanEmoji = emojiArray[0];
   }
 
   // En web, FORZAR uso de imágenes SVG de Twemoji

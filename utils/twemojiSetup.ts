@@ -1,4 +1,4 @@
-import { Platform } from 'react-native';
+// Web-only: se elimina uso de Platform
 
 /**
  * Mapeo directo de emojis problemáticos a sus codepoints correctos
@@ -14,6 +14,9 @@ const EMOJI_MAPPINGS: Record<string, string> = {
   '🇮🇹': '1f1ee-1f1f9', // Italia
   '🇨🇱': '1f1e8-1f1f1', // Chile
   '🇧🇷': '1f1e7-1f1f7', // Brasil
+  
+  // Emojis compuestos (solo usar primer emoji)
+  '🏛🇦🇷': '1f3db',    // Edificio clásico (ignorar bandera)
   
   // Emojis de plantas
   '🪵': '1fab5',      // Tronco (para uso económico)
@@ -68,7 +71,7 @@ export const extractEmojis = (text: string): string[] => {
  * Configuración global de CSS para Twemoji
  */
 export const setupTwemojiStyles = (): void => {
-  if (Platform.OS === 'web' && typeof window !== 'undefined') {
+  if (typeof window !== 'undefined') {
     const styleId = 'twemoji-global-styles';
     if (!document.getElementById(styleId)) {
       const style = document.createElement('style');

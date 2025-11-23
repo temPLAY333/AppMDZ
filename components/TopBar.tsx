@@ -39,6 +39,17 @@ const TopBar = ({ text = "", translationKey, textoWidth, title, showBackButton, 
     }
   };
   
+  // Feedback háptico importado dinámicamente
+  const handleBackPressWithHaptic = async () => {
+    try {
+      const Haptics = await import("expo-haptics");
+      await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    } catch (e) {
+      // Haptics no disponible en web
+    }
+    handleBackPress();
+  };
+  
   // Comenzamos con el texto proporcionado o el título si existe
   let displayText = title || text || "";
   
@@ -55,13 +66,28 @@ const TopBar = ({ text = "", translationKey, textoWidth, title, showBackButton, 
   }
 
   return (
-    <View style={styles.topbar}>
+    <View 
+      style={styles.topbar}
+      accessibilityRole="header"
+    >
       {showBackButton && (
-        <Pressable style={styles.backButton} onPress={handleBackPress}>
+        <Pressable 
+          style={styles.backButton} 
+          onPress={handleBackPressWithHaptic}
+          accessibilityRole="button"
+          accessibilityLabel="Volver atrás"
+          accessibilityHint="Regresa a la pantalla anterior"
+        >
           <Text style={styles.backButtonText}>←</Text>
         </Pressable>
       )}
-      <Text style={[styles.texto, textoStyle]}>{displayText}</Text>
+      <Text 
+        style={[styles.texto, textoStyle]}
+        accessibilityRole="text"
+        accessibilityLabel={`Título: ${displayText}`}
+      >
+        {displayText}
+      </Text>
     </View>
   );
 };

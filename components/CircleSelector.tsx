@@ -1,5 +1,6 @@
-import React from "react";
-import { Pressable, StyleSheet, ViewStyle } from "react-native";
+import React, { useRef } from "react";
+import { Pressable, StyleSheet, ViewStyle, Animated, Platform } from "react-native";
+import * as Haptics from "expo-haptics";
 import SinMarcarSVG from "../assets/SinMarcar.svg";
 import SeleccionadoSVG from "../assets/Seleccionado.svg";
 import CorrectoSVG from "../assets/Correcto.svg";
@@ -13,6 +14,8 @@ type CircleSelectorProps = {
   disabled?: boolean;
   size?: number;
   style?: ViewStyle;
+  accessibilityLabel?: string;
+  accessibilityHint?: string;
 };
 
 const CircleSelector: React.FC<CircleSelectorProps> = ({
@@ -20,8 +23,12 @@ const CircleSelector: React.FC<CircleSelectorProps> = ({
   onPress,
   disabled = false,
   size = 40,
-  style
+  style,
+  accessibilityLabel,
+  accessibilityHint,
 }) => {
+  const scale = useRef(new Animated.Value(1)).current;
+  
   // Función para renderizar el SVG correspondiente según el estado
   const renderIcon = () => {
     try {
@@ -42,20 +49,77 @@ const CircleSelector: React.FC<CircleSelectorProps> = ({
       return null; // Renderizar nada en caso de error
     }
   };
+  
+  const animateIn = () => {
+    if (Platform.OS !== 'web' && !disabled) {
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    }
+    Animated.spring(scale, {
+      toValue: 0.9,
+      useNativeDriver: true,
+      speed: 50,
+      bounciness: 8,
+    }).start();
+  };
+  
+  const animateOut = () => {
+    Animated.spring(scale, {
+      toValue: 1,
+      useNativeDriver: true,
+      speed: 50,
+      bounciness: 8,
+    }).start();
+  };
+  
+  const handlePress = () => {
+    if (disabled || !onPress) return;
+    if (Platform.OS !== 'web') {
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    }
+    onPress();
+  };
+  
+  const getAccessibilityLabel = () => {
+    if (accessibilityLabel) return accessibilityLabel;
+    switch (state) {
+      case "SinMarcar":
+        return "No seleccionado";
+      case "Seleccionado":
+        return "Seleccionado";
+      case "Correcto":
+        return "Correcto";
+      case "Incorrecto":
+        return "Incorrecto";
+      default:
+        return "Selector";
+    }
+  };
 
   return (
-    <Pressable
-      style={[
-        styles.container,
-        { width: size, height: size },
-        disabled && styles.disabled,
-        style
-      ]}
-      onPress={disabled ? undefined : onPress}
-      disabled={disabled}
-    >
-      {renderIcon()}
-    </Pressable>
+    <Animated.View style={{ transform: [{ scale }] }}>
+      <Pressable
+        style={[
+          styles.container,
+          { width: size, height: size },
+          disabled && styles.disabled,
+          style
+        ]}
+        onPress={handlePress}
+        onPressIn={animateIn}
+        onPressOut={animateOut}
+        disabled={disabled}
+        accessibilityRole="button"
+        accessibilityLabel={getAccessibilityLabel()}
+        accessibilityHint={accessibilityHint || "Toca para cambiar la selección"}
+        accessibilityState={{
+          disabled: disabled,
+          selected: state === "Seleccionado",
+          checked: state === "Correcto" || state === "Seleccionado",
+        }}
+      >
+        {renderIcon()}
+      </Pressable>
+    </Animated.View>
   );
 };
 

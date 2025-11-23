@@ -1,9 +1,10 @@
 import * as React from "react";
 import { useState } from "react";
 import { ScrollView, StyleSheet, View, Text } from "react-native";
+import { useFocusEffect } from "@react-navigation/native";
 import TopBar from "../components/TopBar";
-import NavBar from "../components/NavBar";
 import Item from "../components/Item";
+import InfoButton from "../components/InfoButton";
 import Klipartz from "../assets/Klipartz.svg";
 import { Color, Padding, Gap, FontSize, FontFamily } from "../GlobalStyles";
 import plazas from "../data/plazas";
@@ -14,6 +15,13 @@ const Home = () => {
   const navigation = useUniversalNavigation();
   const { language, t } = useTranslation();
   const [selectedPlaza, setSelectedPlaza] = useState<string | null>(null);
+
+  // Resetear selectedPlaza cuando la pantalla gana foco
+  useFocusEffect(
+    React.useCallback(() => {
+      setSelectedPlaza(null);
+    }, [])
+  );
 
   // Manejador de navegación a la plaza seleccionada
   const handlePlazaPress = (plazaId: string) => {
@@ -27,13 +35,19 @@ const Home = () => {
     <ScrollView
       style={styles.home}
       contentContainerStyle={styles.homeScrollViewContent}
+      accessibilityRole="scrollbar"
+      accessibilityLabel={t("nav.main.menu")}
     >
       <TopBar 
         text="Menú Principal"
         translationKey="nav.main.menu" 
         textoWidth={200} 
       />
-      <View style={styles.list}>
+      <View 
+        style={styles.list}
+        accessibilityRole="menu"
+        accessibilityLabel={language === 'es' ? "Lista de plazas disponibles" : "Available plazas list"}
+      >
         {/* Plaza San Martín */}
         <Item 
           text={t("plaza.san.martin")}
@@ -42,16 +56,20 @@ const Home = () => {
           width={340}
           height={80}
           isSelected={selectedPlaza === 'plaza-san-martin'}
+          accessibilityLabel={`${t("plaza.san.martin")}`}
+          accessibilityHint={language === 'es' ? "Explora la Plaza San Martín" : "Explore Plaza San Martín"}
         />
         
         {/* Plaza Independencia */}
         <Item 
           text={t("plaza.independencia")}
-          emoji="�🇷"
+          emoji="🏛🇦🇷"
           onPress={() => handlePlazaPress('plaza-independencia')}
           width={340}
           height={80}
           isSelected={selectedPlaza === 'plaza-independencia'}
+          accessibilityLabel={`${t("plaza.independencia")}`}
+          accessibilityHint={language === 'es' ? "Explora la Plaza Independencia" : "Explore Plaza Independencia"}
         />
         
         {/* Plaza España */}
@@ -62,6 +80,8 @@ const Home = () => {
           width={340}
           height={80}
           isSelected={selectedPlaza === 'plaza-espana'}
+          accessibilityLabel={`${t("plaza.espana")}`}
+          accessibilityHint={language === 'es' ? "Explora la Plaza España" : "Explore Plaza España"}
         />
         
         {/* Plaza Italia */}
@@ -72,6 +92,8 @@ const Home = () => {
           width={340}
           height={80}
           isSelected={selectedPlaza === 'plaza-italia'}
+          accessibilityLabel={`${t("plaza.italia")}`}
+          accessibilityHint={language === 'es' ? "Explora la Plaza Italia" : "Explore Plaza Italia"}
         />
         
         {/* Plaza Chile */}
@@ -82,9 +104,11 @@ const Home = () => {
           width={340}
           height={80}
           isSelected={selectedPlaza === 'plaza-chile'}
+          accessibilityLabel={`${t("plaza.chile")}`}
+          accessibilityHint={language === 'es' ? "Explora la Plaza Chile" : "Explore Plaza Chile"}
         />
       </View>
-      <NavBar klipartz={<Klipartz width={55} height={55} />} />
+      <InfoButton />
     </ScrollView>
   );
 };

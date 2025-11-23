@@ -5,8 +5,8 @@ import { useRoute } from "@react-navigation/native";
 import { useUniversalNavigation, SCREENS } from "../navigation";
 import TopBar from "../components/TopBar";
 import QuestionOption from "../components/QuestionOption";
-import NavBar from "../components/NavBar";
 import Item from "../components/Item";
+import InfoButton from "../components/InfoButton";
 import Klipartz from "../assets/Klipartz.svg";
 import { Color, FontSize, FontFamily } from "../GlobalStyles";
 import { Pregunta } from "../data/types";
@@ -62,12 +62,26 @@ const Revision = () => {
   };
 
   return (
-    <View style={styles.backgroundContainer}>
+    <View 
+      style={styles.backgroundContainer}
+      accessibilityRole="none"
+    >
       <View style={styles.container}>
-        <TopBar text="Resultados" textoWidth={142} translationKey="results.title" />
+        <TopBar text="Resultados" textoWidth={142} translationKey="results.title" showBackButton />
         
-        <View style={styles.puntuacionContainer}>
-          <Text style={styles.puntuacionText}>
+        <View 
+          style={styles.puntuacionContainer}
+          accessibilityRole="summary"
+        >
+          <Text 
+            style={styles.puntuacionText}
+            accessibilityRole="text"
+            accessibilityLabel={language === 'es' 
+              ? `Obtuviste ${puntuacion} respuestas correctas de ${preguntas.length} preguntas, equivalente al ${porcentajeAciertos.toFixed(0)} por ciento`
+              : `You got ${puntuacion} correct answers out of ${preguntas.length} questions, equivalent to ${porcentajeAciertos.toFixed(0)} percent`
+            }
+            accessibilityLiveRegion="polite"
+          >
             {language === 'es' 
               ? `Tu puntuación: ${puntuacion} de ${preguntas.length} (${porcentajeAciertos.toFixed(0)}%)`
               : `Your score: ${puntuacion} of ${preguntas.length} (${porcentajeAciertos.toFixed(0)}%)`
@@ -78,15 +92,34 @@ const Revision = () => {
         <ScrollView
           style={styles.scrollView}
           contentContainerStyle={styles.scrollViewContent}
+          accessibilityRole="scrollbar"
+          accessibilityLabel={language === 'es' ? "Revisión de respuestas" : "Answer review"}
         >
           {preguntas.map((pregunta, preguntaIndex) => {
+            const esRespuestaCorrecta = respuestas[pregunta.id] && pregunta.opciones[Number(respuestas[pregunta.id])]?.esCorrecta;
             return (
-              <View key={preguntaIndex} style={styles.preguntaContainer}>
-                <Text style={styles.preguntaText}>
+              <View 
+                key={preguntaIndex} 
+                style={styles.preguntaContainer}
+                accessibilityRole="article"
+                accessibilityLabel={language === 'es' 
+                  ? `Pregunta ${preguntaIndex + 1} de ${preguntas.length}. ${esRespuestaCorrecta ? 'Respuesta correcta' : 'Respuesta incorrecta'}`
+                  : `Question ${preguntaIndex + 1} of ${preguntas.length}. ${esRespuestaCorrecta ? 'Correct answer' : 'Incorrect answer'}`
+                }
+              >
+                <Text 
+                  style={styles.preguntaText}
+                  accessibilityRole="header"
+                  accessibilityLevel={2}
+                >
                   {preguntaIndex + 1}. {pregunta.texto[language as keyof typeof pregunta.texto]}
                 </Text>
                 
-                <View style={styles.opcionesContainer}>
+                <View 
+                  style={styles.opcionesContainer}
+                  accessibilityRole="radiogroup"
+                  accessibilityLabel={language === 'es' ? "Opciones de respuesta" : "Answer options"}
+                >
                   {pregunta.opciones.map((opcion, opcionIndex) => {
                     // Determinar el estado del círculo para cada opción
                     let estado: "SinMarcar" | "Seleccionado" | "Correcto" | "Incorrecto" = "SinMarcar";
@@ -128,17 +161,21 @@ const Revision = () => {
           })}
         </ScrollView>
         
-        <View style={styles.buttonContainer}>
+        <View 
+          style={styles.buttonContainer}
+          accessibilityRole="toolbar"
+        >
           <Item 
             text={t("back.to.menu")}
             onPress={volverAlMenu}
             width="90%"
             height={70}
             textSize={24}
+            accessibilityLabel={t("back.to.menu")}
+            accessibilityHint={language === 'es' ? "Regresa al menú de la plaza" : "Go back to plaza menu"}
           />
         </View>
-        
-        <NavBar klipartz={<Klipartz width={60} height={60} />} />
+        <InfoButton />
       </View>
     </View>
   );

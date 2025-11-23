@@ -1,6 +1,7 @@
-import React from "react";
-import { Pressable, Text, StyleSheet, View } from "react-native";
+import React, { useRef } from "react";
+import { Pressable, Text, StyleSheet, View, Animated, Platform } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
+import * as Haptics from "expo-haptics";
 import {
   Color,
   FontFamily,
@@ -24,6 +25,10 @@ type DobleButtonProps = {
   onDerechoPress: () => void;
   width?: number;
   height?: number;
+  accessibilityLabelLeft?: string;
+  accessibilityLabelRight?: string;
+  accessibilityHintLeft?: string;
+  accessibilityHintRight?: string;
 };
 
 const DobleButton = ({
@@ -34,7 +39,13 @@ const DobleButton = ({
   onDerechoPress,
   width = 344,
   height = 80,
+  accessibilityLabelLeft,
+  accessibilityLabelRight,
+  accessibilityHintLeft,
+  accessibilityHintRight,
 }: DobleButtonProps) => {
+  const scaleLeft = useRef(new Animated.Value(1)).current;
+  const scaleRight = useRef(new Animated.Value(1)).current;
   // Determinar el gradiente para cada botón según el estado de selección
   const getGradientIzquierdo = () => {
     if (seleccionado === DobleBtnSeleccionado.Izquierdo) {
@@ -52,6 +63,62 @@ const DobleButton = ({
     }
   };
   
+  const animateInLeft = () => {
+    if (Platform.OS !== 'web') {
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    }
+    Animated.spring(scaleLeft, {
+      toValue: 0.95,
+      useNativeDriver: true,
+      speed: 50,
+      bounciness: 4,
+    }).start();
+  };
+  
+  const animateOutLeft = () => {
+    Animated.spring(scaleLeft, {
+      toValue: 1,
+      useNativeDriver: true,
+      speed: 50,
+      bounciness: 4,
+    }).start();
+  };
+  
+  const animateInRight = () => {
+    if (Platform.OS !== 'web') {
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    }
+    Animated.spring(scaleRight, {
+      toValue: 0.95,
+      useNativeDriver: true,
+      speed: 50,
+      bounciness: 4,
+    }).start();
+  };
+  
+  const animateOutRight = () => {
+    Animated.spring(scaleRight, {
+      toValue: 1,
+      useNativeDriver: true,
+      speed: 50,
+      bounciness: 4,
+    }).start();
+  };
+  
+  const handleLeftPress = () => {
+    if (Platform.OS !== 'web') {
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    }
+    onIzquierdoPress();
+  };
+  
+  const handleRightPress = () => {
+    if (Platform.OS !== 'web') {
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    }
+    onDerechoPress();
+  };
+  
   return (
     <LinearGradient
       style={[styles.dobleButton, { width, height }]}
@@ -62,35 +129,55 @@ const DobleButton = ({
     >
       <View style={[styles.contenedor, { height: "100%" }]}>
         {/* Botón Izquierdo */}
-        <Pressable 
-          style={[styles.boton, { width: width / 2 - 10 }]} 
-          onPress={onIzquierdoPress}
-        >
-          <LinearGradient
-            style={styles.botonGradient}
-            locations={[0, 1]}
-            colors={getGradientIzquierdo()}
+        <Animated.View style={{ transform: [{ scale: scaleLeft }] }}>
+          <Pressable 
+            style={[styles.boton, { width: width / 2 - 10 }]} 
+            onPress={handleLeftPress}
+            onPressIn={animateInLeft}
+            onPressOut={animateOutLeft}
+            accessibilityRole="button"
+            accessibilityLabel={accessibilityLabelLeft || textoIzquierdo}
+            accessibilityHint={accessibilityHintLeft}
+            accessibilityState={{
+              selected: seleccionado === DobleBtnSeleccionado.Izquierdo,
+            }}
           >
-            <Text style={styles.textoBoton}>{textoIzquierdo}</Text>
-          </LinearGradient>
-        </Pressable>
+            <LinearGradient
+              style={styles.botonGradient}
+              locations={[0, 1]}
+              colors={getGradientIzquierdo()}
+            >
+              <Text style={styles.textoBoton}>{textoIzquierdo}</Text>
+            </LinearGradient>
+          </Pressable>
+        </Animated.View>
 
         {/* Divisor */}
         <View style={styles.divisor} />
 
         {/* Botón Derecho */}
-        <Pressable 
-          style={[styles.boton, { width: width / 2 - 10 }]} 
-          onPress={onDerechoPress}
-        >
-          <LinearGradient
-            style={styles.botonGradient}
-            locations={[0, 1]}
-            colors={getGradientDerecho()}
+        <Animated.View style={{ transform: [{ scale: scaleRight }] }}>
+          <Pressable 
+            style={[styles.boton, { width: width / 2 - 10 }]} 
+            onPress={handleRightPress}
+            onPressIn={animateInRight}
+            onPressOut={animateOutRight}
+            accessibilityRole="button"
+            accessibilityLabel={accessibilityLabelRight || textoDerecho}
+            accessibilityHint={accessibilityHintRight}
+            accessibilityState={{
+              selected: seleccionado === DobleBtnSeleccionado.Derecho,
+            }}
           >
-            <Text style={styles.textoBoton}>{textoDerecho}</Text>
-          </LinearGradient>
-        </Pressable>
+            <LinearGradient
+              style={styles.botonGradient}
+              locations={[0, 1]}
+              colors={getGradientDerecho()}
+            >
+              <Text style={styles.textoBoton}>{textoDerecho}</Text>
+            </LinearGradient>
+          </Pressable>
+        </Animated.View>
       </View>
     </LinearGradient>
   );

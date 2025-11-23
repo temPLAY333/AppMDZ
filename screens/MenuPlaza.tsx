@@ -1,9 +1,10 @@
 import * as React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ScrollView, StyleSheet, View, Text } from "react-native";
+import { useFocusEffect } from "@react-navigation/native";
 import TopBar from "../components/TopBar";
-import NavBar from "../components/NavBar";
 import Item from "../components/Item";
+import InfoButton from "../components/InfoButton";
 import Klipartz from "../assets/Klipartz.svg";
 import { Color, Padding, Gap } from "../GlobalStyles";
 import { useRoute } from "@react-navigation/native";
@@ -41,6 +42,13 @@ const MenuPlaza = () => {
   
   // Generar automáticamente la clave de traducción basada en el ID
   const plazaTranslationKey = getPlazaTranslationKey(plazaId);
+  
+  // Resetear selección cuando la pantalla gana foco (al volver)
+  useFocusEffect(
+    React.useCallback(() => {
+      setSelectedOption(null);
+    }, [])
+  );
 
   // Manejadores de navegación
   const handleIniciarRecorrido = () => {
@@ -57,9 +65,15 @@ const MenuPlaza = () => {
     <ScrollView
       style={styles.menuPlaza}
       contentContainerStyle={styles.menuPlazaScrollViewContent}
+      accessibilityRole="scrollbar"
+      accessibilityLabel={`${t(plazaTranslationKey)} - Menu`}
     >
-      <TopBar translationKey={plazaTranslationKey} textoWidth="auto" />
-      <View style={styles.list}>
+      <TopBar translationKey={plazaTranslationKey} textoWidth="auto" showBackButton />
+      <View 
+        style={styles.list}
+        accessibilityRole="menu"
+        accessibilityLabel={t("start.tour") + " y " + t("play.trivia")}
+      >
         <Item 
           text={t("start.tour")}
           emoji="🌱"
@@ -67,6 +81,8 @@ const MenuPlaza = () => {
           width={340}
           height={80}
           isSelected={selectedOption === 'recorrido'}
+          accessibilityLabel={t("start.tour")}
+          accessibilityHint="Comienza un recorrido guiado por las plantas de la plaza"
         />
         
         <Item 
@@ -76,9 +92,11 @@ const MenuPlaza = () => {
           width={340}
           height={80}
           isSelected={selectedOption === 'trivia'}
+          accessibilityLabel={t("play.trivia")}
+          accessibilityHint="Responde preguntas sobre las plantas de la plaza"
         />
       </View>
-      <NavBar klipartz={<Klipartz width={55} height={55} />} />
+      <InfoButton />
     </ScrollView>
   );
 };

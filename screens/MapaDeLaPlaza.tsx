@@ -1,9 +1,8 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
-import { ScrollView, Text, StyleSheet, View, Image, Dimensions, Platform } from "react-native";
+import { ScrollView, Text, StyleSheet, View, Image, Dimensions } from "react-native";
 import TopBar from "../components/TopBar";
 import ModeloIcon from "../components/ModeloIcon";
-import NavBar from "../components/NavBar";
 import Pin from "../components/Pin";
 import { useRoute, useFocusEffect } from "@react-navigation/native";
 import { useUniversalNavigation, SCREENS } from "../navigation";
@@ -91,35 +90,7 @@ const MapaDeLaPlaza = () => {
         const imageAsset = plaza.modeloImagenPath;
         
         // Para React Native nativo, usar resolveAssetSource
-        if (Platform.OS !== 'web') {
-          const source = typeof imageAsset === 'number' ? Image.resolveAssetSource(imageAsset) : null;
-          if (source) {
-            const screenWidth = Dimensions.get('window').width;
-            const imageAspectRatio = source.width / source.height;
-            
-            // Calcular dimensiones que se ajusten a la pantalla
-            let displayWidth = screenWidth - 40; // Margen de 20px a cada lado
-            let displayHeight = displayWidth / imageAspectRatio;
-            
-            // Limitar altura máxima
-            const maxHeight = Dimensions.get('window').height * 0.6;
-            if (displayHeight > maxHeight) {
-              displayHeight = maxHeight;
-              displayWidth = displayHeight * imageAspectRatio;
-            }
-            
-            setMapImageDimensions({
-              width: source.width,
-              height: source.height,
-              displayWidth: displayWidth,
-              displayHeight: displayHeight
-            });
-            console.log('DEBUG: Native image dimensions set:', {
-              original: { width: source.width, height: source.height },
-              display: { width: displayWidth, height: displayHeight }
-            });
-          }
-        } else {
+        {
           // Para React Native Web, usar dimensiones optimizadas centralizadas
           const imageDims = getMapImageDimensions(plaza.id);
           const screenWidth = Dimensions.get('window').width;
@@ -157,7 +128,7 @@ const MapaDeLaPlaza = () => {
             original: imageDims,
             display: { width: displayWidth, height: displayHeight }
           });
-        }
+  }
       } catch (error) {
         console.warn('Error loading image dimensions:', error);
       }
@@ -312,7 +283,6 @@ const MapaDeLaPlaza = () => {
           </View>
         </View>
       </View>
-      <NavBar />
     </ScrollView>
   );
 };

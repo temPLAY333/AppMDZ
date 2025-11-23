@@ -21,16 +21,9 @@
     "assetBundlePatterns": [
       "**/*"
     ],
-    "ios": {
-      "supportsTablet": true
-    },
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
-      },
-      "package": "com.templay333.mdzappparques"
-    },
+    "platforms": [
+      "web"
+    ],
     "web": {
       "favicon": "./assets/favicon.png"
     },
@@ -38,6 +31,9 @@
       "eas": {
         "projectId": "2513f473-cb1f-4c84-a4e9-5e11db3d30f7"
       }
-    }
+    },
+    "plugins": [
+      "expo-font"
+    ]
   }
 }

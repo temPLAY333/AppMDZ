@@ -1,7 +1,6 @@
 import * as React from "react";
 import { ScrollView, Text, StyleSheet, View, Dimensions } from "react-native";
 import TopBar from "../components/TopBar";
-import NavBar from "../components/NavBar";
 import Klipartz from "../assets/Klipartz.svg";
 import Emojis from "../components/Emojis";
 import { Gap, Color, FontSize, FontFamily, Padding } from "../GlobalStyles";
@@ -71,7 +70,6 @@ const Referencias = () => {
           </Text>
         </View>
       </View>
-      <NavBar klipartz={<Klipartz width={55} height={55} />} />
     </ScrollView>
   );
 };

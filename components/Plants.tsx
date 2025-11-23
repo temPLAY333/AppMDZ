@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { TextInput, StyleSheet, View, Image, Text, Dimensions, Platform, ScrollView, TouchableOpacity } from "react-native";
+import React, { useState, useEffect, useCallback } from "react";
+import { TextInput, StyleSheet, View, Image, Text, Dimensions, ScrollView, TouchableOpacity } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
 import PlantaDescripcion from "./PlantaDescripcion";
 import { PlantaAtributos, EmojiReferencia } from "../data/types";
 import Emojis from "./Emojis";
@@ -46,34 +47,35 @@ const Plants = ({
     setCurrentImageIndex(0);
   }, [imagesToShow, nombre]);
 
-  // Función para navegar a una imagen específica
-  const navigateToImage = (index: number) => {
-    setCurrentImageIndex(index);
-    if (scrollViewRef.current) {
-      scrollViewRef.current.scrollTo({
-        x: index * screenWidth * 0.8,
-        animated: true
-      });
+  // Función para ir a imagen específica
+  const navigateToImage = useCallback((index: number) => {
+    const safeIndex = Math.max(0, Math.min(index, imagesToShow.length - 1));
+    setCurrentImageIndex(safeIndex);
+  }, [imagesToShow.length]);
+
+  const nextImage = useCallback(() => {
+    navigateToImage((currentImageIndex + 1) % imagesToShow.length);
+  }, [currentImageIndex, imagesToShow.length, navigateToImage]);
+
+  const prevImage = useCallback(() => {
+    navigateToImage((currentImageIndex - 1 + imagesToShow.length) % imagesToShow.length);
+  }, [currentImageIndex, imagesToShow.length, navigateToImage]);
+
+  // Navegación con teclado (← y →)
+  const handleKeyDown = useCallback((e: any) => {
+    if (!hasMultipleImages) return;
+    if (e.key === 'ArrowRight') {
+      nextImage();
+    } else if (e.key === 'ArrowLeft') {
+      prevImage();
     }
-  };
+  }, [hasMultipleImages, nextImage, prevImage]);
   
   // Efecto para cargar las dimensiones de la imagen cuando cambia imagenPath
   useEffect(() => {
     if (imagenPath) {
       try {
-        // En React Native, usar resolveAssetSource
-        if (Platform.OS !== 'web' && Image.resolveAssetSource) {
-          const source = Image.resolveAssetSource(imagenPath);
-          if (source && source.width && source.height) {
-            setImageDimensions({
-              width: source.width,
-              height: source.height
-            });
-            return;
-          }
-        }
-        
-        // Para React Native Web o como fallback, usar Image.getSize si está disponible
+        // Web-only: intentar obtener dimensiones si es URL string
         if (typeof imagenPath === 'string' && Image.getSize) {
           Image.getSize(
             imagenPath,
@@ -132,9 +134,36 @@ const Plants = ({
         numberOfLines={2}
       />
       
+      {/* Indicadores de página - Arriba de las imágenes */}
+      {imagesToShow.length > 1 && (
+        <View style={styles.pageIndicatorsTop}>
+          {imagesToShow.map((_, index) => (
+            <TouchableOpacity
+              key={index}
+              style={[
+                styles.indicator,
+                index === currentImageIndex ? styles.activeIndicator : styles.inactiveIndicator
+              ]}
+              onPress={() => {
+                console.log(`🎯 Usuario presionó indicador ${index}, cambiando de ${currentImageIndex} a ${index}`);
+                setCurrentImageIndex(index);
+              }}
+              accessibilityRole="button"
+              accessibilityLabel={`Imagen ${index + 1} de ${imagesToShow.length}`}
+              accessibilityHint="Toca para ver esta imagen"
+            />
+          ))}
+        </View>
+      )}
+      
       {/* Carrusel de imágenes de la planta */}
       {imagesToShow.length > 0 && (
-        <View style={styles.imagenContainer}>
+        <LinearGradient
+          colors={['rgba(16, 102, 138, 0.15)', 'rgba(1, 139, 159, 0.08)', 'rgba(16, 102, 138, 0.15)']}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 1 }}
+          style={styles.imagenContainer}
+        >
           {hasMultipleImages ? (
             <View style={styles.carouselContainer}>
               {/* Imagen actual - método simplificado */}
@@ -157,30 +186,25 @@ const Plants = ({
                     console.log(`✅ Imagen ${currentImageIndex + 1} cargada correctamente para "${nombre}": ${imagesToShow[currentImageIndex]}`);
                   }}
                 />
-              </View>
-              
-              {/* Indicadores de página */}
-              <View style={styles.pageIndicators}>
-                {imagesToShow.map((_, index) => (
-                  <TouchableOpacity
-                    key={index}
-                    style={[
-                      styles.indicator,
-                      index === currentImageIndex ? styles.activeIndicator : styles.inactiveIndicator
-                    ]}
-                    onPress={() => {
-                      console.log(`🎯 Usuario presionó indicador ${index}, cambiando de ${currentImageIndex} a ${index}`);
-                      setCurrentImageIndex(index);
-                    }}
-                  />
-                ))}
-              </View>
-              
-              {/* Contador de imágenes */}
-              <View style={styles.imageCounter}>
-                <Text style={styles.counterText}>
-                  {currentImageIndex + 1} / {imagesToShow.length}
-                </Text>
+                {/* Flechas navegación */}
+                {hasMultipleImages && (
+                  <>
+                    <TouchableOpacity
+                      aria-label="Imagen anterior"
+                      onPress={prevImage}
+                      style={[styles.arrowButton, styles.arrowLeft]}
+                    >
+                      <Text style={styles.arrowText}>{'<'}</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      aria-label="Imagen siguiente"
+                      onPress={nextImage}
+                      style={[styles.arrowButton, styles.arrowRight]}
+                    >
+                      <Text style={styles.arrowText}>{'>'}</Text>
+                    </TouchableOpacity>
+                  </>
+                )}
               </View>
             </View>
           ) : (
@@ -196,10 +220,10 @@ const Plants = ({
               resizeMode="contain"
             />
           )}
-        </View>
+        </LinearGradient>
       )}
       
-      {/* Referencias (emojis) - ajuste autom�tico de tama�o seg�n cantidad */}
+      {/* Referencias (emojis) - ajuste automático de tamaño según cantidad */}
       {referencias && referencias.length > 0 && (
         <View style={[
           styles.referenciasContainer,
@@ -305,9 +329,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginVertical: 8,
-    borderRadius: 10,
+    borderRadius: 12,
     overflow: 'hidden',
-    backgroundColor: 'rgba(255,255,255,0.1)',
+    borderWidth: 1,
+    borderColor: 'rgba(166, 212, 81, 0.2)',
+    padding: 8,
   },
   imagenPlanta: {
     width: '100%',
@@ -325,39 +351,57 @@ const styles = StyleSheet.create({
     width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
+    position: 'relative',
   },
-  pageIndicators: {
+  pageIndicatorsTop: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 10,
+    marginVertical: 12,
     paddingHorizontal: 20,
   },
   indicator: {
-    width: 8,
-    height: 8,
-    borderRadius: 4,
-    marginHorizontal: 4,
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+    marginHorizontal: 5,
+    borderWidth: 1,
+    borderColor: 'rgba(166, 212, 81, 0.5)',
   },
   activeIndicator: {
-    backgroundColor: '#A6D451', // Verde activo
+    backgroundColor: '#A6D451',
+    borderColor: '#A6D451',
+    transform: [{ scale: 1.2 }],
   },
   inactiveIndicator: {
-    backgroundColor: 'rgba(255, 255, 255, 0.3)', // Blanco transparente
+    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+    borderColor: 'rgba(255, 255, 255, 0.4)',
   },
-  imageCounter: {
+  arrowButton: {
     position: 'absolute',
-    top: 10,
-    right: 10,
-    backgroundColor: 'rgba(0, 0, 0, 0.7)',
-    borderRadius: 12,
-    paddingHorizontal: 8,
-    paddingVertical: 4,
+    top: '50%',
+    transform: [{ translateY: -24 }],
+    backgroundColor: 'rgba(0,0,0,0.35)',
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 2,
+    borderColor: '#A6D451',
+    cursor: 'pointer',
+    userSelect: 'none',
   },
-  counterText: {
-    color: Color.colorWhite,
-    fontSize: 12,
-    fontFamily: FontFamily.interRegular,
+  arrowLeft: {
+    left: 10,
+  },
+  arrowRight: {
+    right: 10,
+  },
+  arrowText: {
+    color: '#A6D451',
+    fontSize: 26,
+    fontWeight: 'bold',
   },
   referenciasContainer: {
     flexDirection: 'row',

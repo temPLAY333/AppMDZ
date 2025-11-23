@@ -3,14 +3,12 @@ import {
   ScrollView,
   StyleSheet,
   View,
-  Platform,
   KeyboardAvoidingView,
   Text,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import TopBar from "../components/TopBar";
 import Plants from "../components/Plants";
-import NavBar from "../components/NavBar";
 import { Color, Padding, FontFamily } from "../GlobalStyles";
 import { plantasPorId, plazasPorId, obtenerPlantasEnParada } from "../data";
 import { useRoute, RouteProp } from '@react-navigation/native';
@@ -111,10 +109,7 @@ const ParadaPlanta1 = () => {
     
   return (
     <View style={styles.container}>
-      <KeyboardAvoidingView
-        style={styles.keyboardavoidingview}
-        behavior={Platform.OS === "ios" ? "padding" : undefined}
-      >
+      <KeyboardAvoidingView style={styles.keyboardavoidingview}>
         <View style={[styles.view, styles.viewBg]}>
           <TopBar text={paradaTitle} textoWidth="auto" />
             <ScrollView
@@ -160,7 +155,6 @@ const ParadaPlanta1 = () => {
               )}
             </View>
           </ScrollView>
-          <NavBar />
         </View>
       </KeyboardAvoidingView>
     </View>

@@ -4,6 +4,20 @@
     "strict": true,
     "jsx": "react",
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true
-  }
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
+    "noEmit": true
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules",
+    "android",
+    "ios",
+    "dist",
+    "web-build",
+    "build"
+  ]
 }

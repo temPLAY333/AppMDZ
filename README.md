@@ -1,88 +1,86 @@
-# AppMDZ - App de Parques Mendoza
+# AppMDZ (Versión Web)
 
-## Descripción
-Esta aplicación móvil desarrollada con React Native y Expo ofrece información sobre las plazas de Mendoza, incluyendo características de flora, mapas, modelos 3D y juegos interactivos educativos.
+Esta versión se migró para funcionar exclusivamente como una aplicación web (desktop y mobile web) utilizando Expo Web + React Native Web. Ya no se compila para Android ni iOS.
 
 ## Requisitos
-- Node.js 18 o superior
-- npm 9 o superior
-- Expo CLI
+* Node.js 18+
+* npm 9+
+* (Opcional) `serve` para previsualizar builds estáticos
 
-## Dependencias
-La aplicación utiliza las siguientes dependencias principales:
-- React Native 0.76.9
-- Expo 52.0.46
-- React Navigation 6.x
-- Expo Image
-- React Native SVG
-- Expo Linear Gradient
+## Dependencias clave
+* React 19 / React Native Web
+* Expo SDK 54 (modo web)
+* React Navigation 6 (enrutamiento declarativo)
+* `react-native-svg` + transformer para SVG
+* `@expo/vector-icons` para íconos
+
+## Scripts
+```bash
+npm run start        # Dev server (Expo Web)
+npm run dev          # Alias
+npm run build:web    # Export estático a ./dist
+npm run preview:web  # Sirve ./dist localmente
+```
 
 ## Instalación
-
-### 1. Resolución de dependencias
-Ejecuta el archivo batch incluido:
-```
-install_dependencies.bat
-```
-
-O instala manualmente con:
 ```bash
 npm install
-npm install --save expo-linear-gradient@^12.8.2
 ```
 
-### 2. Verificar que todas las dependencias estén instaladas
+## Build de producción
 ```bash
-npm list --depth=0
+npm run build:web
+npm run preview:web
+```
+Publica la carpeta `dist/` en tu hosting estático favorito (Netlify, Vercel, GitHub Pages, Cloudflare Pages, etc.).
+
+## Estructura relevante
+```
+assets/        Recursos (imágenes, fuentes)
+components/    Componentes reutilizables
+screens/       Pantallas de navegación
+data/          Datos estáticos (plantas, plazas, preguntas)
+localization/  Internacionalización
+styling/       Temas y estilos
+utils/         Helpers (emoji, imágenes, etc.)
 ```
 
-## Ejecución
+## Migración desde móvil
+Eliminado / desactivado:
+* Scripts batch Android (`start-expo.bat`, `start-app.bat`, `update-expo.bat`)
+* Configuración NDK (`expo-module.config.js`)
+* Entradas `android` / `ios` en `app.json` (ahora `platforms: ["web"]`)
 
-### Para preview y ejecución en tu dispositivo:
+Pendiente opcional (manual): borrar carpeta `android/` si ya no la necesitas como referencia histórica.
 
-1. Abre la carpeta del proyecto en <u>Visual Studio Code</u>
-2. Ejecuta `npm install` en la terminal
-3. Ejecuta `npx expo start` en la terminal
-4. Para dispositivo iOS (solo en MacOS)
-   1. Presiona `i` para ver en el simulador iOS o sigue las instrucciones [aquí](https://docs.expo.dev/workflow/run-on-device/) para ejecutar en un dispositivo físico.
-5. Para dispositivo Android
-   1. Presiona `a` para ver en Android Virtual Device o sigue las instrucciones [aquí](https://docs.expo.dev/workflow/run-on-device/) para ejecutar en un dispositivo físico.
+## Condicionales de plataforma
+Persisten algunos checks como `Platform.OS === 'web'` o ramas para `ios`/`android` que ahora son redundantes. Puedes simplificarlos gradualmente:
+```ts
+// Antes
+if (Platform.OS !== 'web') { /* lógica nativa */ }
 
-## Estructura del proyecto
-
-### Carpetas principales
-- `/assets`: Contiene imágenes, SVGs y fuentes utilizadas en la aplicación
-- `/components`: Componentes reutilizables
-- `/screens`: Pantallas de la aplicación
-- `/scripts`: Scripts de utilidad
-
-### Componentes principales
-- `TopBar`: Barra superior de navegación
-- `NavBar`: Barra inferior de navegación
-- `Emojis`: Componente para mostrar emojis
-- `Item`: Elemento para listas
-- `MapaIcon`: Icono de mapa
-- `ModeloIcon`: Icono de modelo 3D
-- `MultipleChoice`: Componente para preguntas de opción múltiple
-
-### Pantallas
-- `Home`: Pantalla principal
-- `MapaDeLaPlazaModelo`: Vista de modelo 3D de plazas
-- `ParadaPlanta1`: Información sobre plantas
-- `Glosario`: Glosario de términos
-- `JuegosPregunta1` y `JuegosPregunta2`: Juegos interactivos
-
-## Solución de problemas
-
-Si encuentras problemas con los permisos de ejecución de scripts en PowerShell, puedes usar:
-```powershell
-Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+// Web only: eliminar bloque o convertir a noop
 ```
 
-Para problemas con SVG:
-- Ejecuta el script de validación: `node scripts/validate-svgs.js`
+## Optimización sugerida
+* Reemplazar animaciones complejas de `react-native-reanimated` con CSS / Animated estándar si buscas reducir tamaño.
+* Auditar bundle: `npx expo export --platform web --dump-sourcemap` y analizar con herramientas de source-map.
 
-### Nota:
+## Troubleshooting Web
+* Caché corrupto: borrar `.expo`, `.cache` y ejecutar `npm run start`.
+* SVG roto: confirmar `metro.config.js` incluye `react-native-svg-transformer`.
+* Fuentes: verificar carga (generalmente en el entry de Expo) y que estén en `assets/fonts`.
 
-1. Asegúrate de haber instalado las dependencias de código nativo [aquí](https://reactnative.dev/docs/environment-setup#installing-dependencies)
-2. Asegúrate de que tu `versión de node` sea mínimo `18`.
+## Contribuir
+1. `npm install`
+2. `npm run start`
+3. Cambios y pruebas en navegador
+4. Crear PR describiendo impacto en bundle y accesibilidad
+
+## Próximos pasos sugeridos
+* Eliminar código de ramas nativas
+* Añadir pruebas E2E (Playwright) para flujos críticos
+* Añadir análisis de performance (Lighthouse) al CI
+
+---
+¿Necesitas ayuda para limpiar la carpeta `android/` o refactorizar condicionales? Abre un issue y lo hacemos.

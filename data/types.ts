@@ -77,6 +77,8 @@ export interface Pregunta {
   plantaId?: string;   // ID opcional de la planta asociada a la pregunta
   opciones: Opcion[];
   explicacion: TextoMultilingue;  // Explicación de la respuesta correcta
+  // Orden de las opciones tal como se mostraron al usuario (índices originales tras barajar)
+  ordenOpciones?: number[];
 }
 
 export interface BancoPreguntas {

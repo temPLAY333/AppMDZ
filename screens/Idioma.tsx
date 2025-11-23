@@ -8,6 +8,7 @@ import { useUniversalNavigation, SCREENS } from "../navigation";
 import { SupportedLanguage } from "../localization/types";
 
 const Idioma = () => {
+  console.log('[Idioma] Render start');
   const navigation = useUniversalNavigation();
   const { language, t } = useTranslation();
   const { setLanguage } = useLanguageSelector();
@@ -17,15 +18,18 @@ const Idioma = () => {
   
   // Inicializar el idioma seleccionado con el idioma actual del contexto
   React.useEffect(() => {
+    console.log('[Idioma] useEffect language changed to', language);
     setSelectedLanguage(language);
   }, [language]);
   
   const handleLanguageSelect = async (selectedLang: SupportedLanguage) => {
     try {
+      console.log('[Idioma] handleLanguageSelect invoked with', selectedLang);
       // Actualizar el estado local
       setSelectedLanguage(selectedLang);
       // Cambiar el idioma en el contexto global (es async)
       await setLanguage(selectedLang);
+      console.log('[Idioma] Language set, navigating to HOME');
       // Navegar a Home usando constantes
       navigation.navigate(SCREENS.HOME);
     } catch (error) {

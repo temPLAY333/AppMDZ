@@ -3,13 +3,11 @@ import {
   ScrollView,
   StyleSheet,
   View,
-  Platform,
   KeyboardAvoidingView,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import TopBar from "../components/TopBar";
 import Plants from "../components/Plants";
-import NavBar from "../components/NavBar";
 import Klipartz from "../assets/Klipartz.svg";
 import { Color, Padding } from "../GlobalStyles";
 import { getPlantaImagenesPrueba } from "../data/imagenes";
@@ -35,10 +33,7 @@ const DetallePlanta = () => {
   
   return (
     <SafeAreaView style={styles.viewBg}>
-      <KeyboardAvoidingView
-        style={styles.keyboardavoidingview}
-        behavior={Platform.OS === "ios" ? "padding" : undefined}
-      >
+      <KeyboardAvoidingView style={styles.keyboardavoidingview}>
         <View style={[styles.view, styles.viewBg]}>
           <TopBar text={`Parada N°${paradaNumero}`} />
           <ScrollView
@@ -55,7 +50,6 @@ const DetallePlanta = () => {
               />
             </View>
           </ScrollView>
-          <NavBar klipartz={<Klipartz width={55} height={55} />} />
         </View>
       </KeyboardAvoidingView>
     </SafeAreaView>
