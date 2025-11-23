@@ -80,10 +80,10 @@ const ParadaPlanta1 = () => {
       
       // Generar las imágenes una sola vez para evitar regeneración aleatoria
       if (plantasEnParada.length > 0) {
-        setImagenesPlanta1(getPlantaImagenesPrueba(plantasEnParada[0].id, 5));
+        setImagenesPlanta1(getPlantaImagenesPrueba(plantasEnParada[0].id));
       }
       if (plantasEnParada.length > 1) {
-        setImagenesPlanta2(getPlantaImagenesPrueba(plantasEnParada[1].id, 5));
+        setImagenesPlanta2(getPlantaImagenesPrueba(plantasEnParada[1].id));
       }
     } catch (error) {
       const errorMsg = error instanceof Error ? error.message : 'Error desconocido al obtener plantas';

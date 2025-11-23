@@ -36,8 +36,8 @@ import { getPlantaImagenesPrueba } from '../data/imagenes';
 export const prefetchInitialPlantImages = (): Promise<void> => {
   // IDs ejemplo: '1' y '2' usadas como fallback inicial
   const imgs = [
-    ...getPlantaImagenesPrueba('1', 5),
-    ...getPlantaImagenesPrueba('2', 5)
+    ...getPlantaImagenesPrueba('1'),
+    ...getPlantaImagenesPrueba('2')
   ];
   return prefetchImages(imgs);
 };

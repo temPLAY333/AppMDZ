@@ -1,11 +1,69 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { TextInput, StyleSheet, View, Image, Text, Dimensions, ScrollView, TouchableOpacity } from "react-native";
+import { TextInput, StyleSheet, View, Image, Text, Dimensions, ScrollView, TouchableOpacity, ImageStyle } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import PlantaDescripcion from "./PlantaDescripcion";
 import { PlantaAtributos, EmojiReferencia } from "../data/types";
 import Emojis from "./Emojis";
 
 import { FontFamily, Gap, FontSize, Color, Padding } from "../GlobalStyles";
+
+// Componente auxiliar para manejar fallback automático entre .jpg y .jpeg
+const ImageWithFallback = ({ 
+  nombre, 
+  index, 
+  imageUrl, 
+  style 
+}: { 
+  nombre: string; 
+  index: number; 
+  imageUrl: string; 
+  style: any;
+}) => {
+  const [failedUrls, setFailedUrls] = useState<Set<string>>(new Set());
+  
+  // Parsear la URL para obtener las opciones de fallback
+  const urls = imageUrl.includes('|') ? imageUrl.split('|') : [imageUrl];
+  const [currentUrl, setCurrentUrl] = useState<string>(urls[0]);
+
+  useEffect(() => {
+    // Reiniciar cuando cambie la URL de entrada
+    const newUrls = imageUrl.includes('|') ? imageUrl.split('|') : [imageUrl];
+    setCurrentUrl(newUrls[0]);
+    setFailedUrls(new Set());
+  }, [imageUrl]);
+
+  const handleError = () => {
+    const urls = imageUrl.includes('|') ? imageUrl.split('|') : [imageUrl];
+    const newFailedUrls = new Set(failedUrls);
+    newFailedUrls.add(currentUrl);
+    
+    // Buscar la siguiente URL que no haya fallado
+    const nextUrl = urls.find(url => !newFailedUrls.has(url));
+    
+    if (nextUrl) {
+      console.log(`⚠️ Intentando fallback: ${currentUrl} -> ${nextUrl}`);
+      setFailedUrls(newFailedUrls);
+      setCurrentUrl(nextUrl);
+    } else {
+      console.error(`❌ Error cargando todas las opciones de imagen ${index + 1} para "${nombre}"`);
+    }
+  };
+
+  const handleLoad = () => {
+    console.log(`✅ Imagen ${index + 1} cargada correctamente para "${nombre}": ${currentUrl}`);
+  };
+
+  return (
+    <Image 
+      key={`${nombre}-${index}-${currentUrl}`}
+      source={{ uri: currentUrl }}
+      style={style}
+      resizeMode="contain"
+      onError={handleError}
+      onLoad={handleLoad}
+    />
+  );
+};
 
 export type PlantsType = {
   nombre: string;
@@ -101,14 +159,15 @@ const Plants = ({
   }, [imagenPath]);
   
   // Calcular altura ajustada para la imagen basada en sus proporciones originales
-  // pero con un m�nimo y un m�ximo para no distorsionar demasiado la UI
+  // pero con un mínimo y un máximo para no distorsionar demasiado la UI
   const getAdjustedImageHeight = () => {
     if (imageDimensions.width === 0 || imageDimensions.height === 0) {
-      return 250; // Altura por defecto si a�n no se han cargado las dimensiones
+      return 400; // Altura por defecto más grande para imágenes verticales
     }
     
     const ratio = imageDimensions.height / imageDimensions.width;
-    const calculatedHeight = Math.min(Math.max((screenWidth - 40) * ratio, 200), 400);
+    // Aumentar máximo a 600px para permitir imágenes más verticales
+    const calculatedHeight = Math.min(Math.max((screenWidth - 40) * ratio, 250), 600);
     
     return calculatedHeight;
   };
@@ -168,9 +227,10 @@ const Plants = ({
             <View style={styles.carouselContainer}>
               {/* Imagen actual - método simplificado */}
               <View style={styles.singleImageContainer}>
-                <Image 
-                  key={`${nombre}-current-${currentImageIndex}`}
-                  source={typeof imagesToShow[currentImageIndex] === 'string' ? { uri: imagesToShow[currentImageIndex] } : imagesToShow[currentImageIndex]}
+                <ImageWithFallback 
+                  nombre={nombre}
+                  index={currentImageIndex}
+                  imageUrl={imagesToShow[currentImageIndex]}
                   style={[
                     styles.imagenPlanta,
                     {
@@ -178,13 +238,6 @@ const Plants = ({
                       width: '100%'
                     }
                   ]}
-                  resizeMode="contain"
-                  onError={(error) => {
-                    console.error(`❌ Error cargando imagen ${currentImageIndex + 1} para "${nombre}": ${imagesToShow[currentImageIndex]}`, error);
-                  }}
-                  onLoad={() => {
-                    console.log(`✅ Imagen ${currentImageIndex + 1} cargada correctamente para "${nombre}": ${imagesToShow[currentImageIndex]}`);
-                  }}
                 />
                 {/* Flechas navegación */}
                 {hasMultipleImages && (
@@ -298,14 +351,14 @@ const styles = StyleSheet.create({
   nombreContainer: {
     width: '100%',
     position: 'relative',
-    marginBottom: 5,
+    marginBottom: 0,
   },
   nombrePlanta: {
     width: '100%',
     maxWidth: 500,
-    minHeight: 58, // Cambiado de height a minHeight para permitir m�ltiples l�neas
+    minHeight: 42, // Cambiado de height a minHeight para permitir m�ltiples l�neas
     fontSize: FontSize.size_36,
-    paddingBottom: 8, // Espacio para el subrayado
+    paddingBottom: 0, // Espacio para el subrayado
     textAlign: 'center', // Centrar el texto
   },
   underline: {
@@ -321,8 +374,8 @@ const styles = StyleSheet.create({
     maxWidth: 500,
     minHeight: 55, // Aumentamos la altura para que no se corte
     fontSize: FontSize.size_24,
-    marginBottom: 10,
-    paddingTop: 5,
+    marginBottom: 5,
+    paddingTop: 2,
   },
   imagenContainer: {
     width: '100%',

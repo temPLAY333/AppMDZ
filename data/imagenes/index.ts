@@ -9,30 +9,35 @@ import { plantasPorId } from '../plantas';
 // Cache para nombres slug ya calculados (optimización de rendimiento)
 const slugCache: Map<string, string> = new Map();
 
+// Mapa con la cantidad real de imágenes por planta (actualizado después de la migración)
+const imagenesDisponiblesPorPlanta: Record<string, number> = {
+  '1': 9, '2': 7, '3': 4, '4': 9, '5': 7, '6': 7, '7': 6, '8': 3, '9': 4, '10': 6,
+  '11': 2, '12': 3, '13': 4, '14': 1, '15': 6, '16': 6, '17': 5, '18': 4, '19': 9, '20': 4,
+  '21': 4, '22': 5, '23': 8, '24': 13, '25': 1, '26': 2, '27': 13, '28': 1, '29': 11, '30': 13,
+  '31': 1, '32': 6, '33': 7, '34': 4, '35': 10, '36': 12, '37': 3, '38': 6, '39': 4, '40': 11,
+  '41': 3, '42': 1, '43': 3, '44': 1, '45': 8, '46': 5, '47': 8, '48': 5, '49': 0
+};
+
 /**
  * Convierte el nombre de una planta a formato de archivo (slug)
- * Ej: "Falsa Acacia" -> "falsa-acacia"
+ * Ej: "Falsa Acacia" -> "falsaacacia" (sin guiones, coincide con nombres de archivos)
  */
 const nombreASlug = (nombre: string): string => {
   return nombre
     .toLowerCase()
     .normalize('NFD') // Descomponer acentos
     .replace(/[\u0300-\u036f]/g, '') // Remover marcas diacríticas
-    .replace(/[^a-z0-9\s]/g, '') // Solo letras, números y espacios
-    .trim()
-    .replace(/\s+/g, '-'); // Espacios a guiones
+    .replace(/[^a-z0-9]/g, '') // Solo letras y números (elimina espacios y caracteres especiales)
+    .trim();
 };
 
 /**
- * Verifica si una planta tiene múltiples imágenes
- * Por ahora asumimos que plantas con carpetas organizadas tienen múltiples imágenes
- * En el futuro esto podría escanearse dinámicamente
+ * Obtiene la cantidad real de imágenes disponibles para una planta
+ * @param id - El ID de la planta
+ * @returns Número de imágenes disponibles (mínimo 1)
  */
-const tieneMultiplesImagenes = (id: string): boolean => {
-  // Lista de plantas que sabemos que tienen múltiples imágenes
-  // Esta función se puede extender para escanear dinámicamente las carpetas
-  const plantasConMultiplesImagenes = ['36']; // Agregar más IDs según necesites
-  return plantasConMultiplesImagenes.includes(id);
+const getCantidadImagenesDisponibles = (id: string): number => {
+  return imagenesDisponiblesPorPlanta[id] || 1;
 };
 
 /**
@@ -91,90 +96,37 @@ export const getPlantaImagen = (id: string): string => {
 };
 
 /**
- * Genera imágenes de prueba mezclando la imagen real con imágenes aleatorias
- * Para testing mientras no tengamos todas las fotos múltiples
+ * Obtiene TODAS las imágenes reales disponibles para una planta
  * @param id - El ID de la planta
- * @param numImagenes - Número de imágenes deseadas
- * @returns Array con mezcla de imagen real + imágenes de otras plantas DIFERENTES
+ * @param numImagenes - Parámetro opcional mantenido por compatibilidad (se ignora)
+ * @returns Array con TODAS las imágenes disponibles de la planta
  */
-export const getPlantaImagenesPrueba = (id: string, numImagenes: number = 5): string[] => {
+export const getPlantaImagenesPrueba = (id: string, numImagenes?: number): string[] => {
   const imagenes: string[] = [];
   const nombreSlug = getPlantaNombreSlug(id);
   const planta = plantasPorId[id];
   
-  console.log(`🌱 Generando ${numImagenes} imágenes para planta ID: ${id} (${planta?.atributos.nombre})`);
-  
   if (!nombreSlug || !planta) {
-    // Si no existe la planta, usar solo fallback
-    for (let i = 0; i < numImagenes; i++) {
-      imagenes.push('/images/plantas/fallback.svg');
-    }
-    console.log(`📸 Usando solo fallbacks para planta desconocida`);
-    return imagenes;
+    console.log(`⚠️ Planta ${id} no encontrada - usando fallback`);
+    return ['/images/plantas/fallback.svg'];
   }
 
   const paddedId = id.padStart(2, '0');
+  const cantidadReal = getCantidadImagenesDisponibles(id);
   
-  // Estrategia: Primero intentar usar múltiples imágenes de la misma planta si existen
-  // Si no existen, usar la primera + imágenes aleatorias de otras plantas
+  console.log(`🌱 Cargando ${cantidadReal} imágenes reales para planta ID: ${id} (${planta.atributos.nombre})`);
   
-  // Verificar si la planta tiene múltiples imágenes propias
-  if (tieneMultiplesImagenes(id)) {
-    console.log(`🎯 Planta ${id} detectada con múltiples imágenes - usando todas`);
-    for (let i = 1; i <= numImagenes; i++) {
-      const imagen = `/images/plantas/${id}/${paddedId}-${nombreSlug}-${i}.webp`;
-      imagenes.push(imagen);
-      console.log(`📸 Imagen ${i}: ${imagen}`);
-    }
-  } else {
-    // Para otras plantas, usar la primera imagen + imágenes aleatorias de plantas conocidas
-    const imagenPrincipal = `/images/plantas/${id}/${paddedId}-${nombreSlug}-1.webp`;
-    imagenes.push(imagenPrincipal);
-    console.log(`📸 Imagen principal: ${imagenPrincipal}`);
-    
-    // Obtener todas las plantas disponibles del catálogo (todas tienen imágenes)
-    const todasLasPlantasIds = Object.keys(plantasPorId);
-    const plantasDisponibles = todasLasPlantasIds.filter(plantaId => plantaId !== id);
-    
-    // Mezclar para obtener orden aleatorio
-    const seed = Date.now() + Math.random();
-    const plantasAleatorias = [...plantasDisponibles]
-      .sort(() => {
-        const random = Math.sin(seed * Math.random()) * 10000;
-        return random - Math.floor(random);
-      });
-    
-    console.log(`🎲 Plantas con imágenes disponibles: ${plantasAleatorias.join(', ')}`);
-    
-    // Completar con imágenes de otras plantas que sabemos que existen
-    for (let i = 1; i < numImagenes && i-1 < plantasAleatorias.length; i++) {
-      const randomPlantaId = plantasAleatorias[i-1];
-      const randomNombreSlug = getPlantaNombreSlug(randomPlantaId);
-      const paddedRandomId = randomPlantaId.padStart(2, '0');
-      if (randomNombreSlug) {
-        const imagenAleatoria = `/images/plantas/${randomPlantaId}/${paddedRandomId}-${randomNombreSlug}-1.webp`;
-        imagenes.push(imagenAleatoria);
-        console.log(`📸 Imagen ${i + 1}: ${imagenAleatoria} (planta ${randomPlantaId})`);
-      }
-    }
-    
-    // Si aún faltan imágenes, repetir algunas de las plantas disponibles con diferentes números
-    while (imagenes.length < numImagenes) {
-      const plantaIndex = (imagenes.length - 1) % plantasDisponibles.length;
-      const plantaId = plantasDisponibles[plantaIndex];
-      const nombreSlugExtra = getPlantaNombreSlug(plantaId);
-      const paddedRandomId = plantaId.padStart(2, '0');
-      const numeroImagen = Math.floor(Math.random() * 3) + 1; // Usar imágenes 1, 2, o 3
-      if (nombreSlugExtra) {
-        const imagenExtra = `/images/plantas/${plantaId}/${paddedRandomId}-${nombreSlugExtra}-${numeroImagen}.webp`;
-        imagenes.push(imagenExtra);
-        console.log(`📸 Imagen extra: ${imagenExtra}`);
-      }
-    }
+  // Generar URLs para TODAS las imágenes disponibles
+  // Formato especial: incluir ambas extensiones para fallback automático
+  // Formato: "url.jpeg|url.jpg" - el componente intentará primero jpeg, luego jpg
+  for (let i = 1; i <= cantidadReal; i++) {
+    const baseUrl = `/images/plantas/${id}/${paddedId}-${nombreSlug}-${i}`;
+    // Formato especial con pipe | para indicar fallback automático
+    const imagenConFallback = `${baseUrl}.jpeg|${baseUrl}.jpg`;
+    imagenes.push(imagenConFallback);
   }
   
-  console.log(`✅ Total de imágenes generadas: ${imagenes.length}`);
-  console.log(`🔗 URLs finales:`, imagenes);
+  console.log(`✅ ${imagenes.length} imágenes con fallback automático para planta ${id}`);
   
   return imagenes;
 };
